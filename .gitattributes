@@ -1,1 +1,8 @@
 * text=auto !eol
+/EQ2.ISXEQ2.csproj -text
+/EQ2.ISXEQ2.sln -text
+/Event.cs -text
+/Extension.cs -text
+Properties/AssemblyInfo.cs -text
+bin/Debug/PostBuild.bat -text
+bin/Release/PostBuild.bat -text
