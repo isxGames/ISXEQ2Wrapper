@@ -14,6 +14,12 @@ namespace EQ2.ISXEQ2
         {
         }
 
+        public EQ2 EQ2()
+        {
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("EQ2");
+            return new EQ2(Obj);
+        }
+
         public Character Me()
         {
             LavishScriptObject Obj = LavishScript.Objects.GetObject("Me");
@@ -29,6 +35,18 @@ namespace EQ2.ISXEQ2
         public Actor Actor(params string[] Args)
         {
             LavishScriptObject Obj = LavishScript.Objects.GetObject("Actor", Args);
+            return new Actor(Obj);
+        }
+
+        public Actor CustomActor(int Arg)
+        {
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("CustomActor", Arg.ToString());
+            return new Actor(Obj);
+        }
+
+        public Actor CustomActor(params string[] Args)
+        {
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("CustomActor", Args);
             return new Actor(Obj);
         }
 

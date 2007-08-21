@@ -46,6 +46,7 @@
     <Compile Include="Component.cs" />
     <Compile Include="Consignment.cs" />
     <Compile Include="Effect.cs" />
+    <Compile Include="EQ2.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="GroupMember.cs" />
