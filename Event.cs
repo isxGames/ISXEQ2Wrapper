@@ -11,12 +11,12 @@ namespace EQ2.ISXEQ2
     public class Event
     {
         #region .Net Events
-        //public event System.EventHandler<LSEventArgs> EVEEvent;
+        //public event System.EventHandler<LSEventArgs> EQ2Event;
         #endregion
 
         #region .Net Event Raisers
         /*
-        protected virtual void EVE_EVEEvent(object Sender, LSEventArgs e)
+        protected virtual void EQ2_EQ2Event(object Sender, LSEventArgs e)
         {
             System.EventHandler<LSEventArgs> temp = ReceivedNotice;
             if (temp != null)
@@ -27,13 +27,13 @@ namespace EQ2.ISXEQ2
 
         ~Event()
         {
-            //LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EVE_EVEEvent"), EVE_Event);
+            //LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_EQ2Event"), EQ2_Event);
 
         }
 
         public Event()
         {
-            //LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EVE_EVEEvent"), IRC_ReceivedNotice);
+            //LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_EQ2Event"), EQ2_Event);
         }
 
 
