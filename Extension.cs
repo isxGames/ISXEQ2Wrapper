@@ -72,5 +72,10 @@ namespace EQ2.ISXEQ2
         {
             LavishScript.ExecuteCommand("Face " + Args);
         }
+
+        public void Target(string Args)
+        {
+            LavishScript.ExecuteCommand("Target " + Args);
+        }
     }
 }

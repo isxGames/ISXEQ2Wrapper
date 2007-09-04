@@ -10,6 +10,7 @@
 /EQ2.ISXEQ2.csproj -text
 /EQ2.ISXEQ2.sln -text
 /EQ2.cs -text
+/EQ2Event.cs -text
 /Effect.cs -text
 /Event.cs -text
 /Extension.cs -text

@@ -943,6 +943,12 @@ namespace EQ2.ISXEQ2
             return new Item(Obj);
         }
 
+        public Item CustomInventory(int Index)
+        {
+            LavishScriptObject Obj = GetMember("CustomInventory", Index.ToString());
+            return new Item(Obj);
+        }
+
         public Item CustomInventory(params string[] Parameters)
         {
             LavishScriptObject Obj = GetMember("CustomInventory", Parameters);
