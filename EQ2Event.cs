@@ -13,6 +13,7 @@ namespace EQ2.ISXEQ2
         #region .Net Events
         public event System.EventHandler<LSEventArgs> IncomingChatText;
         public event System.EventHandler<LSEventArgs> InventoryUpdate;
+        public event System.EventHandler<LSEventArgs> Announcement;
         #endregion
 
         #region .Net Event Raisers
@@ -29,12 +30,20 @@ namespace EQ2.ISXEQ2
             if (temp != null)
                 temp(Sender, e);
         }
+
+        protected virtual void OnAnnouncement(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = Announcement;
+            if (temp != null)
+                temp(Sender, e);
+        }
         #endregion
 
         ~EQ2Event()
         {
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingChatText"), OnIncomingChatText);
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onInventoryUpdate"), OnInventoryUpdate);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_OnAnnouncement"), OnAnnouncement);
 
         }
 
@@ -42,6 +51,7 @@ namespace EQ2.ISXEQ2
         {
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingChatText"), OnIncomingChatText);
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onInventoryUpdate"), OnInventoryUpdate);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_OnAnnouncement"), OnAnnouncement);
         }
     }
 }
