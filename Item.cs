@@ -195,6 +195,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool OffersQuest
+        {
+            get
+            {
+                return GetMember<bool>("OffersQuest");
+            }
+        }
+
+        public bool RequiredByQuest
+        {
+            get
+            {
+                return GetMember<bool>("RequiredByQuest");
+            }
+        }
+
         public float DamageRating
         {
             get
@@ -912,6 +928,54 @@ namespace EQ2.ISXEQ2
         public bool InstallAsVendingContainer()
         {
             return ExecuteMethod("InstallAsVendingContainer");
+        }
+
+        public bool InInventory
+        {
+            get
+            {
+                return GetMember<bool>("InInventory");
+            }
+        }
+
+        public bool InInventorySlot
+        {
+            get
+            {
+                return GetMember<bool>("InInventorySlot");
+            }
+        }
+
+        public bool IsInventoryContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsInventoryContainer");
+            }
+        }
+
+        public bool IsBankContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsBankContainer");
+            }
+        }
+
+        public bool IsSharedBankContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsSharedBankContainer");
+            }
+        }
+
+        public int NumSlotsFree
+        {
+            get
+            {
+                return GetMember<int>("NumSlotsFree");
+            }
         }
     }
 }

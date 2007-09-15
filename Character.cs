@@ -1222,5 +1222,30 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("CreateCustomInventoryArray", Bank.ToString());
         }
 
+        public int InventorySlotsFree
+        {
+            get
+            {
+                return GetMember<int>("InventorySlotsFree");
+            }
+        }
+
+        public int BankSlotsFree
+        {
+            get
+            {
+                return GetMember<int>("BankSlotsFree");
+            }
+        }
+
+        public int SharedBankSlotsFree
+        {
+            get
+            {
+                return GetMember<int>("SharedBankSlotsFree");
+            }
+        }
+
+
     }
 }
