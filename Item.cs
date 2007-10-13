@@ -844,6 +844,11 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("Destroy");
         }
 
+        public bool Destroy(int Quantity)
+        {
+            return ExecuteMethod("Destroy", Quantity.ToString());
+        }
+
         public bool Equip()
         {
             return ExecuteMethod("Equip");
