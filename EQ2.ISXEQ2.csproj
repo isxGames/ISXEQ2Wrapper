@@ -51,6 +51,7 @@
     <Compile Include="Extension.cs" />
     <Compile Include="GroupMember.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemModifier.cs" />
     <Compile Include="Maintained.cs" />
     <Compile Include="Merchandise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

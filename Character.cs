@@ -463,22 +463,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int AC
-        {
-            get
-            {
-                return GetMember<int>("AC");
-            }
-        }
-
-        public int BaseAC
-        {
-            get
-            {
-                return GetMember<int>("BaseAC");
-            }
-        }
-
         public int Copper
         {
             get

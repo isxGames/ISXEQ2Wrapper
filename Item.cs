@@ -390,6 +390,20 @@ namespace EQ2.ISXEQ2
             return new Item(Obj);
         }
 
+        public ItemModifier Modifier(int Index)
+        {
+            LavishScriptObject Obj = GetMember("Modifier", Index.ToString());
+            return new ItemModifier(Obj);
+        }
+
+        public int NumModifiers
+        {
+            get
+            {
+                return GetMember<int>("NumModifiers");
+            }
+        }
+
         public int InContainerID
         {
             get
