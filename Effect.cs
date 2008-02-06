@@ -43,14 +43,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool Cancellable
-        {
-            get
-            {
-                return GetMember<bool>("Cancellable");
-            }
-        }
-
         public float Duration
         {
             get

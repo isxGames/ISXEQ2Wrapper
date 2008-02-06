@@ -583,6 +583,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int CountBeneficialEffects
+        {
+            get
+            {
+                return GetMember<int>("CountEffects","Beneficial");
+            }
+        }
+
+        public int CountDetrimentalEffects
+        {
+            get
+            {
+                return GetMember<int>("CountEffects","Detrimental");
+            }
+        }
+
         public Maintained Maintained(int MaintainedNum)
         {
             LavishScriptObject Obj = GetMember("Maintained", MaintainedNum.ToString());
@@ -604,6 +620,30 @@ namespace EQ2.ISXEQ2
         public Effect Effect(string EffectName)
         {
             LavishScriptObject Obj = GetMember("Effect", EffectName);
+            return new Effect(Obj);
+        }
+
+        public Effect BeneficialEffect(int EffectNum)
+        {
+            LavishScriptObject Obj = GetMember("Effect", "Benficial", EffectNum.ToString());
+            return new Effect(Obj);
+        }
+
+        public Effect BenficialEffect(string EffectName)
+        {
+            LavishScriptObject Obj = GetMember("Effect", "Beneficial", EffectName);
+            return new Effect(Obj);
+        }
+
+        public Effect DetrimentalEffect(int EffectNum)
+        {
+            LavishScriptObject Obj = GetMember("Effect", "Detrimental", EffectNum.ToString());
+            return new Effect(Obj);
+        }
+
+        public Effect DetrimentalEffect(string EffectName)
+        {
+            LavishScriptObject Obj = GetMember("Effect", "Detrimental", EffectName);
             return new Effect(Obj);
         }
 
@@ -1195,6 +1235,11 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("CreateCustomInventoryArray");
         }
 
+        public bool InitializeEffects()
+        {
+            return ExecuteMethod("InitializeEffects");
+        }
+
         public enum InventoryType
         {
             nonbankonly,
@@ -1228,6 +1273,12 @@ namespace EQ2.ISXEQ2
             {
                 return GetMember<int>("SharedBankSlotsFree");
             }
+        }
+
+        public Actor Pet()
+        {
+            LavishScriptObject Obj = GetMember("Pet");
+            return new Actor(Obj);
         }
 
 

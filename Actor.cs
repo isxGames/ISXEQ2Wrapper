@@ -546,6 +546,11 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("DoTarget");
         }
 
+        public bool InitializeEffects()
+        {
+            return ExecuteMethod("InitializeEffects");
+        }
+
         public enum CommandType
         {
             Add,
@@ -560,6 +565,14 @@ namespace EQ2.ISXEQ2
         public bool Location(string AddNotes)
         {
             return ExecuteMethod("Location", "Add", AddNotes);
+        }
+
+        public bool IsDead
+        {
+            get
+            {
+                return GetMember<bool>("IsDead");
+            }
         }
     }
 }
