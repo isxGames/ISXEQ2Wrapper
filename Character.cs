@@ -1281,6 +1281,38 @@ namespace EQ2.ISXEQ2
             return new Actor(Obj);
         }
 
+        public bool IsInPVP
+        {
+            get
+            {
+                return GetMember<bool>("IsInPVP");
+            }
+        }
+
+        public bool IsHated
+        {
+            get
+            {
+                return GetMember<bool>("IsHated");
+            }
+        }
+
+        public int HealthRegen
+        {
+            get
+            {
+                return GetMember<int>("HealthRegen");
+            }
+        }
+
+        public int PowerRegen
+        {
+            get
+            {
+                return GetMember<int>("PowerRegen");
+            }
+        }
+
 
     }
 }
