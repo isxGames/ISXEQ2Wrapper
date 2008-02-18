@@ -526,6 +526,30 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int Faction
+        {
+            get
+            {
+                return GetMember<int>("Faction");
+            }
+        }
+
+        public bool IsRooted
+        {
+            get
+            {
+                return GetMember<bool>("IsRooted");
+            }
+        }
+
+        public bool CanTurn
+        {
+            get
+            {
+                return GetMember<bool>("CanTurn");
+            }
+        }
+
         public bool DoubleClick()
         {
             return ExecuteMethod("DoubleClick");
