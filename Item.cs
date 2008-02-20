@@ -944,6 +944,11 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("AddToConsignment", Quantity.ToString());
         }
 
+        public bool AddToConsignment(int Quantity,int VendorIndex)
+        {
+            return ExecuteMethod("AddToConsignment", Quantity.ToString(), VendorIndex.ToString());
+        }
+
         public bool InstallAsVendingContainer()
         {
             return ExecuteMethod("InstallAsVendingContainer");
