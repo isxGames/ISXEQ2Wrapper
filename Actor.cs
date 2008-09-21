@@ -19,14 +19,6 @@ namespace EQ2.ISXEQ2
         {
         }
 
-        public int ID
-        {
-            get
-            {
-                return GetMember<int>("ID");
-            }
-        }
-
         public string Name
         {
             get
@@ -40,6 +32,30 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<string>("LastName");
+            }
+        }
+
+        public string Gender
+        {
+            get
+            {
+                return GetMember<string>("Gender");
+            }
+        }
+
+        public string Race
+        {
+            get
+            {
+                return GetMember<string>("Race");
+            }
+        }
+
+        public string Class
+        {
+            get
+            {
+                return GetMember<string>("Class");
             }
         }
 
@@ -75,87 +91,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string Gender
+        public int ID
         {
             get
             {
-                return GetMember<string>("Gender");
-            }
-        }
-
-        public string Race
-        {
-            get
-            {
-                return GetMember<string>("Race");
-            }
-        }
-
-        public string Class
-        {
-            get
-            {
-                return GetMember<string>("Class");
-            }
-        }
-
-        public string Guild
-        {
-            get
-            {
-                return GetMember<string>("Guild");
-            }
-        }
-
-        public string Type
-        {
-            get
-            {
-                return GetMember<string>("Type");
-            }
-        }
-
-        public string SuffixTitle
-        {
-            get
-            {
-                return GetMember<string>("SuffixTitle");
-            }
-        }
-
-        public string ConColor
-        {
-            get
-            {
-                return GetMember<string>("ConColor");
-            }
-        }
-
-        public string FactionStanding
-        {
-            get
-            {
-                return GetMember<string>("FactionStanding");
-            }
-        }
-
-        public Actor Target()
-        {
-            LavishScriptObject Obj = GetMember("Target");
-            return new Actor(Obj);
-        }
-
-        public Actor Pet()
-        {
-            LavishScriptObject Obj = GetMember("Pet");
-            return new Actor(Obj);
-        }
-
-        public float Distance
-        {
-            get
-            {
-                return GetMember<float>("Distance");
+                return GetMember<int>("ID");
             }
         }
 
@@ -183,11 +123,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float Heading
+        public float Distance
         {
             get
             {
-                return GetMember<float>("Heading");
+                return GetMember<float>("Distance");
             }
         }
 
@@ -199,105 +139,19 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int WhoFollowingID
+        public float Heading
         {
             get
             {
-                return GetMember<int>("HeadinWhoFollowingIDgTo");
+                return GetMember<float>("Heading");
             }
         }
 
-        public string WhoFollowing
+        public string Type
         {
             get
             {
-                return GetMember<string>("WhoFollowing");
-            }
-        }
-
-        public float Speed
-        {
-            get
-            {
-                return GetMember<float>("Speed");
-            }
-        }
-
-        public Actor LookingAt()
-        {
-            LavishScriptObject Obj = GetMember("LookingAt");
-            return new Actor(Obj);
-        }
-
-        public float SwimmingSpeedMod
-        {
-            get
-            {
-                return GetMember<float>("SwimmingSpeedMod");
-            }
-        }
-
-        public bool IsAPet
-        {
-            get
-            {
-                return GetMember<bool>("IsAPet");
-            }
-        }
-
-        public bool IsMyPet
-        {
-            get
-            {
-                return GetMember<bool>("IsMyPet");
-            }
-        }
-
-        public bool IsAFK
-        {
-            get
-            {
-                return GetMember<bool>("IsAFK");
-            }
-        }
-
-        public bool IsLFW
-        {
-            get
-            {
-                return GetMember<bool>("IsLFW");
-            }
-        }
-
-        public bool IsLFG
-        {
-            get
-            {
-                return GetMember<bool>("IsLFG");
-            }
-        }
-
-        public bool IsLinkdead
-        {
-            get
-            {
-                return GetMember<bool>("IsLinkdead");
-            }
-        }
-
-        public bool IsCamping
-        {
-            get
-            {
-                return GetMember<bool>("IsCamping");
-            }
-        }
-
-        public bool IsLocked
-        {
-            get
-            {
-                return GetMember<bool>("IsLocked");
+                return GetMember<string>("Type");
             }
         }
 
@@ -333,6 +187,140 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool IsEncounterBroken
+        {
+            get
+            {
+                return GetMember<bool>("IsEncounterBroken");
+            }
+        }
+
+        public string FactionStanding
+        {
+            get
+            {
+                return GetMember<string>("FactionStanding");
+            }
+        }
+
+        public string ConColor
+        {
+            get
+            {
+                return GetMember<string>("ConColor");
+            }
+        }
+
+        public bool IsLFG
+        {
+            get
+            {
+                return GetMember<bool>("IsLFG");
+            }
+        }
+
+        public bool IsLFW
+        {
+            get
+            {
+                return GetMember<bool>("IsLFW");
+            }
+        }
+
+        public bool IsAFK
+        {
+            get
+            {
+                return GetMember<bool>("IsAFK");
+            }
+        }
+
+        public bool IsLinkdead
+        {
+            get
+            {
+                return GetMember<bool>("IsLinkdead");
+            }
+        }
+
+        public bool IsCamping
+        {
+            get
+            {
+                return GetMember<bool>("IsCamping");
+            }
+        }
+
+        public Actor Target()
+        {
+            LavishScriptObject Obj = GetMember("Target");
+            return new Actor(Obj);
+        }
+
+        public bool IsLocked
+        {
+            get
+            {
+                return GetMember<bool>("IsLocked");
+            }
+        }
+
+        public int WhoFollowingID
+        {
+            get
+            {
+                return GetMember<int>("WhoFollowingID");
+            }
+        }
+
+        public string WhoFollowing
+        {
+            get
+            {
+                return GetMember<string>("WhoFollowing");
+            }
+        }
+
+        public float Speed
+        {
+            get
+            {
+                return GetMember<float>("Speed");
+            }
+        }
+
+        public string Guild
+        {
+            get
+            {
+                return GetMember<string>("Guild");
+            }
+        }
+
+        public string SuffixTitle
+        {
+            get
+            {
+                return GetMember<string>("SuffixTitle");
+            }
+        }
+
+        public bool IsAPet
+        {
+            get
+            {
+                return GetMember<bool>("IsAPet");
+            }
+        }
+
+        public bool IsMyPet
+        {
+            get
+            {
+                return GetMember<bool>("IsMyPet");
+            }
+        }
+
         public bool IsNamed
         {
             get
@@ -349,27 +337,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool IsEncounterBroken
+        public float SwimmingSpeedMod
         {
             get
             {
-                return GetMember<bool>("IsEncounterBroken");
-            }
-        }
-
-        public bool IsStealthed
-        {
-            get
-            {
-                return GetMember<bool>("IsStealthed");
-            }
-        }
-
-        public bool IsInvis
-        {
-            get
-            {
-                return GetMember<bool>("IsInvis");
+                return GetMember<float>("SwimmingSpeedMod");
             }
         }
 
@@ -387,39 +359,6 @@ namespace EQ2.ISXEQ2
             {
                 return GetMember<int>("Difficulty");
             }
-        }
-
-        public bool IsInSameEncounter(int ActorID)
-        {
-            return GetMember<bool>("IsInSameEncounter", ActorID.ToString());
-        }
-
-        public int RaidSize
-        {
-            get
-            {
-                return GetMember<int>("RaidSize");
-            }
-        }
-
-        public int NumEffects
-        {
-            get
-            {
-                return GetMember<int>("NumEffects");
-            }
-        }
-
-        public Effect Effect(int EffectNum)
-        {
-            LavishScriptObject Obj = GetMember("Effect", EffectNum.ToString());
-            return new Effect(Obj);
-        }
-
-        public Effect Effect(string EffectName)
-        {
-            LavishScriptObject Obj = GetMember("Effect", EffectName);
-            return new Effect(Obj);
         }
 
         public bool InCombatMode
@@ -467,6 +406,14 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<bool>("OnGriffin");
+            }
+        }
+
+        public bool OnGriffon
+        {
+            get
+            {
+                return GetMember<bool>("OnGriffon");
             }
         }
 
@@ -526,6 +473,118 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool IsInSameEncounter(int ActorID)
+        {
+            return GetMember<bool>("IsInSameEncounter", ActorID.ToString());
+        }
+
+        public Actor Pet()
+        {
+            LavishScriptObject Obj = GetMember("Pet");
+            return new Actor(Obj);
+        }
+
+        public int NumEffects
+        {
+            get
+            {
+                return GetMember<int>("NumEffects");
+            }
+        }
+
+        public Effect Effect(int EffectNum)
+        {
+            LavishScriptObject Obj = GetMember("Effect", EffectNum.ToString());
+            return new Effect(Obj);
+        }
+
+        public Effect Effect(string EffectName)
+        {
+            LavishScriptObject Obj = GetMember("Effect", EffectName);
+            return new Effect(Obj);
+        }
+
+        public bool IsInvis
+        {
+            get
+            {
+                return GetMember<bool>("IsInvis");
+            }
+        }
+
+        public bool IsStealthed
+        {
+            get
+            {
+                return GetMember<bool>("IsStealthed");
+            }
+        }
+
+        public bool IsBanker
+        {
+            get
+            {
+                return GetMember<bool>("IsBanker");
+            }
+        }
+
+        public bool IsMerchant
+        {
+            get
+            {
+                return GetMember<bool>("IsMerchant");
+            }
+        }
+
+        public bool IsChest
+        {
+            get
+            {
+                return GetMember<bool>("IsChest");
+            }
+        }
+
+        public bool IsClimbing
+        {
+            get
+            {
+                return GetMember<bool>("IsClimbing");
+            }
+        }
+
+        public bool IsJumping
+        {
+            get
+            {
+                return GetMember<bool>("IsJumping");
+            }
+        }
+
+        public bool IsFalling
+        {
+            get
+            {
+                return GetMember<bool>("IsFalling");
+            }
+        }
+
+        public Point3f Loc
+        {
+            get
+            {
+                LavishScriptObject Obj = GetMember("Loc");
+                return new Point3f(Obj);
+            }
+        }
+
+        public bool IsDead
+        {
+            get
+            {
+                return GetMember<bool>("IsDead");
+            }
+        }
+
         public int Faction
         {
             get
@@ -550,6 +609,55 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool IsFD
+        {
+            get
+            {
+                return GetMember<bool>("IsFD");
+            }
+        }
+
+        public Actor ToActor
+        {
+            get
+            {
+                LavishScriptObject Obj = GetMember("ToActor");
+                return new Actor(Obj);
+            }
+        }
+
+        public bool CheckCollision
+        {
+            get
+            {
+                return GetMember<bool>("CheckCollision");
+            }
+        }
+
+        public float TargetRingRadius
+        {
+            get
+            {
+                return GetMember<float>("TargetRingRadius");
+            }
+        }
+
+        public float CollisionRadius
+        {
+            get
+            {
+                return GetMember<float>("CollisionRadius");
+            }
+        }
+
+        public float CollisionScale
+        {
+            get
+            {
+                return GetMember<float>("CollisionScale");
+            }
+        }
+
         public bool DoubleClick()
         {
             return ExecuteMethod("DoubleClick");
@@ -570,11 +678,6 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("DoTarget");
         }
 
-        public bool InitializeEffects()
-        {
-            return ExecuteMethod("InitializeEffects");
-        }
-
         public enum CommandType
         {
             Add,
@@ -591,12 +694,10 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("Location", "Add", AddNotes);
         }
 
-        public bool IsDead
+        public bool InitializeEffects()
         {
-            get
-            {
-                return GetMember<bool>("IsDead");
-            }
+            return ExecuteMethod("InitializeEffects");
         }
+
     }
 }

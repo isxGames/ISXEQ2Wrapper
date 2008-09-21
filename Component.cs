@@ -35,11 +35,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int PrimaryComponentQuantityOnHand
+        public int QuantityOnHand
         {
             get
             {
-                return GetMember<int>("PrimaryComponentQuantityOnHand");
+                return GetMember<int>("QuantityOnHand");
             }
         }
     }

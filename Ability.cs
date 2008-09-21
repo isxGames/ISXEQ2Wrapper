@@ -115,11 +115,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float TimeUntilReady
+        public float TimeRemaining
         {
             get
             {
-                return GetMember<float>("TimeUntilReady");
+                return GetMember<float>("TimeRemaining");
             }
         }
 
@@ -128,6 +128,22 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<bool>("IsReady");
+            }
+        }
+
+        public string ToLink
+        {
+            get
+            {
+                return GetMember<string>("ToLink");
+            }
+        }
+
+        public uint ID
+        {
+            get
+            {
+                return GetMember<uint>("ID");
             }
         }
 
@@ -149,28 +165,6 @@ namespace EQ2.ISXEQ2
         {
             LavishScriptObject Obj = GetMember("Class", ClassName);
             return new Class(Obj);
-        }
-
-        public int NumEffects
-        {
-            get
-            {
-                return GetMember<int>("NumEffects");
-            }
-        }
-
-        public AbilityEffect Effect()
-        {
-            LavishScriptObject Obj = GetMember("Effect");
-            return new AbilityEffect(Obj);
-        }
-
-        public int BackDropIconID
-        {
-            get
-            {
-                return GetMember<int>("BackDropIconID");
-            }
         }
 
         public int HealthCostPerTick
@@ -196,12 +190,42 @@ namespace EQ2.ISXEQ2
                 return GetMember<int>("MaxAOETargets");
             }
         }
-
+/* Something wrong with this.
+        public float MinDuration
+        {
+            get
+            {
+                return GetMember<float>("MinDuration");
+            }
+        }
+*/
         public bool DoesNotExpire
         {
             get
             {
                 return GetMember<bool>("DoesNotExpire");
+            }
+        }
+
+        public int BackDropIconID
+        {
+            get
+            {
+                return GetMember<int>("BackDropIconID");
+            }
+        }
+
+        public AbilityEffect Effect()
+        {
+            LavishScriptObject Obj = GetMember("Effect");
+            return new AbilityEffect(Obj);
+        }
+
+        public int NumEffects
+        {
+            get
+            {
+                return GetMember<int>("NumEffects");
             }
         }
 
@@ -221,14 +245,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float EffectRadius
-        {
-            get
-            {
-                return GetMember<float>("EffectRadius");
-            }
-        }
-
         public int TargetType
         {
             get
@@ -245,11 +261,51 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int NumAbilities
+        public float EffectRadius
         {
             get
             {
-                return GetMember<int>("NumAbilities");
+                return GetMember<float>("EffectRadius");
+            }
+        }
+
+        public float TimeUntilReady
+        {
+            get
+            {
+                return GetMember<float>("TimeUntilReady");
+            }
+        }
+
+        public float Range
+        {
+            get
+            {
+                return GetMember<float>("Range");
+            }
+        }
+
+        public float MinRange
+        {
+            get
+            {
+                return GetMember<float>("MinRange");
+            }
+        }
+
+        public float MaxRange
+        {
+            get
+            {
+                return GetMember<float>("MaxRange");
+            }
+        }
+/* State? */
+        public bool IsQueued
+        {
+            get
+            {
+                return GetMember<bool>("IsQueued");
             }
         }
 

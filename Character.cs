@@ -19,14 +19,6 @@ namespace EQ2.ISXEQ2
         {
         }
 
-        public int ID
-        {
-            get
-            {
-                return GetMember<int>("ID");
-            }
-        }
-
         public string Name
         {
             get
@@ -43,11 +35,19 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string Class
+        public int Level
         {
             get
             {
-                return GetMember<string>("Class");
+                return GetMember<int>("Level");
+            }
+        }
+
+        public string Gender
+        {
+            get
+            {
+                return GetMember<string>("Gender");
             }
         }
 
@@ -56,6 +56,14 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<string>("Archetype");
+            }
+        }
+
+        public string Class
+        {
+            get
+            {
+                return GetMember<string>("Class");
             }
         }
 
@@ -91,11 +99,410 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string Gender
+        public int EffectiveLevel
         {
             get
             {
-                return GetMember<string>("Gender");
+                return GetMember<int>("EffectiveLevel");
+            }
+        }
+
+        public int TSLevel
+        {
+            get
+            {
+                return GetMember<int>("TSLevel");
+            }
+        }
+
+        public int Health
+        {
+            get
+            {
+                return GetMember<int>("Health");
+            }
+        }
+
+        public int MaxHealth
+        {
+            get
+            {
+                return GetMember<int>("MaxHealth");
+            }
+        }
+
+        public int Power
+        {
+            get
+            {
+                return GetMember<int>("Power");
+            }
+        }
+
+        public int MaxPower
+        {
+            get
+            {
+                return GetMember<int>("MaxPower");
+            }
+        }
+
+        public int UsedConc
+        {
+            get
+            {
+                return GetMember<int>("UsedConc");
+            }
+        }
+
+        public int MaxConc
+        {
+            get
+            {
+                return GetMember<int>("MaxConc");
+            }
+        }
+
+        public int Attack
+        {
+            get
+            {
+                return GetMember<int>("Attack");
+            }
+        }
+
+        public int BaseAttack
+        {
+            get
+            {
+                return GetMember<int>("BaseAttack");
+            }
+        }
+        public float Mitigation
+        {
+            get
+            {
+                return GetMember<float>("Mitigation");
+            }
+        }
+
+        public float OverallAvoidance
+        {
+            get
+            {
+                return GetMember<float>("OverallAvoidance");
+            }
+        }
+
+        public float BaseOverallAvoidance
+        {
+            get
+            {
+                return GetMember<float>("BaseOverallAvoidance");
+            }
+        }
+
+        public float Avoidance
+        {
+            get
+            {
+                return GetMember<float>("Avoidance");
+            }
+        }
+
+        public float BaseAvoidance
+        {
+            get
+            {
+                return GetMember<float>("BaseAvoidance");
+            }
+        }
+
+        public float Parry
+        {
+            get
+            {
+                return GetMember<float>("Parry");
+            }
+        }
+
+        public float BaseParry
+        {
+            get
+            {
+                return GetMember<float>("BaseParry");
+            }
+        }
+
+        public float Deflection
+        {
+            get
+            {
+                return GetMember<float>("Deflection");
+            }
+        }
+
+        public float BaseDeflection
+        {
+            get
+            {
+                return GetMember<float>("BaseDeflection");
+            }
+        }
+
+        public float Block
+        {
+            get
+            {
+                return GetMember<float>("Block");
+            }
+        }
+
+        public float BaseBlock
+        {
+            get
+            {
+                return GetMember<float>("BaseBlock");
+            }
+        }
+
+        public int Strength
+        {
+            get
+            {
+                return GetMember<int>("Strength");
+            }
+        }
+
+        public int Stamina
+        {
+            get
+            {
+                return GetMember<int>("Stamina");
+            }
+        }
+
+        public int Agility
+        {
+            get
+            {
+                return GetMember<int>("Agility");
+            }
+        }
+
+        public int Wisdom
+        {
+            get
+            {
+                return GetMember<int>("Wisdom");
+            }
+        }
+
+        public int Intelligence
+        {
+            get
+            {
+                return GetMember<int>("Intelligence");
+            }
+        }
+
+        public int BaseStrength
+        {
+            get
+            {
+                return GetMember<int>("BaseStrength");
+            }
+        }
+
+        public int BaseStamina
+        {
+            get
+            {
+                return GetMember<int>("BaseStamina");
+            }
+        }
+
+        public int BaseAgility
+        {
+            get
+            {
+                return GetMember<int>("BaseAgility");
+            }
+        }
+
+        public int BaseWisdom
+        {
+            get
+            {
+                return GetMember<int>("BaseWisdom");
+            }
+        }
+
+        public int BaseIntelligence
+        {
+            get
+            {
+                return GetMember<int>("BaseIntelligence");
+            }
+        }
+
+        public int HeatRes
+        {
+            get
+            {
+                return GetMember<int>("HeatRes");
+            }
+        }
+
+        public int ColdRes
+        {
+            get
+            {
+                return GetMember<int>("ColdRes");
+            }
+        }
+
+        public int MagicRes
+        {
+            get
+            {
+                return GetMember<int>("MagicRes");
+            }
+        }
+
+        public int MentalRes
+        {
+            get
+            {
+                return GetMember<int>("MentalRes");
+            }
+        }
+
+        public int DivineRes
+        {
+            get
+            {
+                return GetMember<int>("DivineRes");
+            }
+        }
+
+        public int DiseaseRes
+        {
+            get
+            {
+                return GetMember<int>("DiseaseRes");
+            }
+        }
+
+        public int PoisonRes
+        {
+            get
+            {
+                return GetMember<int>("PoisonRes");
+            }
+        }
+
+        public int BaseHeatRes
+        {
+            get
+            {
+                return GetMember<int>("BaseHeatRes");
+            }
+        }
+
+        public int BaseColdRes
+        {
+            get
+            {
+                return GetMember<int>("BaseColdRes");
+            }
+        }
+
+        public int BaseMagicRes
+        {
+            get
+            {
+                return GetMember<int>("BaseMagicRes");
+            }
+        }
+
+        public int BaseMentalRes
+        {
+            get
+            {
+                return GetMember<int>("BaseMentalRes");
+            }
+        }
+
+        public int BaseDivineRes
+        {
+            get
+            {
+                return GetMember<int>("BaseDivineRes");
+            }
+        }
+
+        public int BaseDiseaseRes
+        {
+            get
+            {
+                return GetMember<int>("BaseDiseaseRes");
+            }
+        }
+
+        public int BasePoisonRes
+        {
+            get
+            {
+                return GetMember<int>("BasePoisonRes");
+            }
+        }
+
+        public int Copper
+        {
+            get
+            {
+                return GetMember<int>("Copper");
+            }
+        }
+
+        public int Silver
+        {
+            get
+            {
+                return GetMember<int>("Silver");
+            }
+        }
+
+        public int Gold
+        {
+            get
+            {
+                return GetMember<int>("Gold");
+            }
+        }
+
+        public int Platinum
+        {
+            get
+            {
+                return GetMember<int>("Platinum");
+            }
+        }
+
+        public int Weight
+        {
+            get
+            {
+                return GetMember<int>("Weight");
+            }
+        }
+
+        public int MaxWeight
+        {
+            get
+            {
+                return GetMember<int>("MaxWeight");
             }
         }
 
@@ -107,19 +514,19 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int CurrentStatus
+        {
+            get
+            {
+                return GetMember<int>("CurrentStatus");
+            }
+        }
+
         public float X
         {
             get
             {
                 return GetMember<float>("X");
-            }
-        }
-
-        public float Y
-        {
-            get
-            {
-                return GetMember<float>("Y");
             }
         }
 
@@ -131,59 +538,27 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float Heading
+        public float Y
         {
             get
             {
-                return GetMember<float>("Heading");
+                return GetMember<float>("Y");
             }
         }
 
-        public bool IsMoving
+        public int LifetimeGuildStatus
         {
             get
             {
-                return GetMember<bool>("IsMoving");
+                return GetMember<int>("LifetimeGuildStatus");
             }
         }
 
-        public bool InGameWorld
+        public bool CombatExpEnabled
         {
             get
             {
-                return GetMember<bool>("InGameWorld");
-            }
-        }
-
-        public bool AtCharSelect
-        {
-            get
-            {
-                return GetMember<bool>("AtCharSelect");
-            }
-        }
-
-        public string BindLocation
-        {
-            get
-            {
-                return GetMember<string>("BindLocation");
-            }
-        }
-
-        public string HouseLocation
-        {
-            get
-            {
-                return GetMember<string>("HouseLocation");
-            }
-        }
-
-        public float WaterDepth
-        {
-            get
-            {
-                return GetMember<float>("WaterDepth");
+                return GetMember<bool>("CombatExpEnabled");
             }
         }
 
@@ -243,287 +618,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Level
+        public float Breath
         {
             get
             {
-                return GetMember<int>("Level");
-            }
-        }
-
-        public int EffectiveLevel
-        {
-            get
-            {
-                return GetMember<int>("EffectiveLevel");
-            }
-        }
-
-        public int TSLevel
-        {
-            get
-            {
-                return GetMember<int>("TSLevel");
-            }
-        }
-
-        public int CurrentStatus
-        {
-            get
-            {
-                return GetMember<int>("CurrentStatus");
-            }
-        }
-
-        public int LifetimeGuildStatus
-        {
-            get
-            {
-                return GetMember<int>("LifetimeGuildStatus");
-            }
-        }
-
-        public float APExp
-        {
-            get
-            {
-                return GetMember<float>("APExp");
-            }
-        }
-
-        public int TotalEarnedAPs
-        {
-            get
-            {
-                return GetMember<int>("TotalEarnedAPs");
-            }
-        }
-
-        public int MaxAPs
-        {
-            get
-            {
-                return GetMember<int>("MaxAPs");
-            }
-        }
-
-        public Achievement Achievement(int AchievementNum)
-        {
-            LavishScriptObject Obj = GetMember("Achievement", AchievementNum.ToString());
-            return new Achievement(Obj);
-        }
-
-        public Achievement Achievement(string AchievementName)
-        {
-            LavishScriptObject Obj = GetMember("Achievement", AchievementName);
-            return new Achievement(Obj);
-        }
-
-        public int NumConsignmentItems
-        {
-            get
-            {
-                return GetMember<int>("NumConsignmentItems");
-            }
-        }
-
-        public Consignment Consignment(int ConsignmentNum)
-        {
-            LavishScriptObject Obj = GetMember("Consignment", ConsignmentNum.ToString());
-            return new Consignment(Obj);
-        }
-
-        public Consignment Consignment(string ConsignmentName)
-        {
-            LavishScriptObject Obj = GetMember("Consignment", ConsignmentName);
-            return new Consignment(Obj);
-        }
-
-        public VendingContainer Vending(int VendingNum)
-        {
-            LavishScriptObject Obj = GetMember("Vending", VendingNum.ToString());
-            return new VendingContainer(Obj);
-        }
-
-        public VendingContainer Vending(string VendingName)
-        {
-            LavishScriptObject Obj = GetMember("Vending", VendingName);
-            return new VendingContainer(Obj);
-        }
-
-        public int TotalVendingCapacity
-        {
-            get
-            {
-                return GetMember<int>("TotalVendingCapacity");
-            }
-        }
-
-        public int VendingCapacityUsed
-        {
-            get
-            {
-                return GetMember<int>("VendingCapacityUsed");
-            }
-        }
-
-        public int VendingCapacityFree
-        {
-            get
-            {
-                return GetMember<int>("VendingCapacityFree");
-            }
-        }
-
-        public float Mitigation
-        {
-            get
-            {
-                return GetMember<float>("Mitigation");
-            }
-        }
-
-        public float OverallAvoidance
-        {
-            get
-            {
-                return GetMember<float>("OverallAvoidance");
-            }
-        }
-
-        public float BaseOverallAvoidance
-        {
-            get
-            {
-                return GetMember<float>("BaseOverallAvoidance");
-            }
-        }
-
-        public float Parry
-        {
-            get
-            {
-                return GetMember<float>("Parry");
-            }
-        }
-
-        public float BaseParry
-        {
-            get
-            {
-                return GetMember<float>("BaseParry");
-            }
-        }
-
-        public float Deflection
-        {
-            get
-            {
-                return GetMember<float>("Deflection");
-            }
-        }
-
-        public float BaseDeflection
-        {
-            get
-            {
-                return GetMember<float>("BaseDeflection");
-            }
-        }
-
-        public float Block
-        {
-            get
-            {
-                return GetMember<float>("Block");
-            }
-        }
-
-        public float BaseBlock
-        {
-            get
-            {
-                return GetMember<float>("BaseBlock");
-            }
-        }
-
-        public int Attack
-        {
-            get
-            {
-                return GetMember<int>("Attack");
-            }
-        }
-
-        public int BaseAttack
-        {
-            get
-            {
-                return GetMember<int>("BaseAttack");
-            }
-        }
-
-        public int Copper
-        {
-            get
-            {
-                return GetMember<int>("Copper");
-            }
-        }
-
-        public int Silver
-        {
-            get
-            {
-                return GetMember<int>("Silver");
-            }
-        }
-
-        public int Gold
-        {
-            get
-            {
-                return GetMember<int>("Gold");
-            }
-        }
-
-        public int Platinum
-        {
-            get
-            {
-                return GetMember<int>("Platinum");
-            }
-        }
-
-        public int Health
-        {
-            get
-            {
-                return GetMember<int>("Health");
-            }
-        }
-
-        public int MaxHealth
-        {
-            get
-            {
-                return GetMember<int>("MaxHealth");
-            }
-        }
-
-        public int Power
-        {
-            get
-            {
-                return GetMember<int>("Power");
-            }
-        }
-
-        public int MaxPower
-        {
-            get
-            {
-                return GetMember<int>("MaxPower");
+                return GetMember<float>("Breath");
             }
         }
 
@@ -543,38 +642,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float Breath
-        {
-            get
-            {
-                return GetMember<float>("Breath");
-            }
-        }
-
-        public int CountMaintained
-        {
-            get
-            {
-                return GetMember<int>("CountMaintained");
-            }
-        }
-
-        public int UsedConc
-        {
-            get
-            {
-                return GetMember<int>("UsedConc");
-            }
-        }
-
-        public int MaxConc
-        {
-            get
-            {
-                return GetMember<int>("MaxConc");
-            }
-        }
-
         public int CountEffects
         {
             get
@@ -587,7 +654,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<int>("CountEffects","Beneficial");
+                return GetMember<int>("CountEffects", "Beneficial");
             }
         }
 
@@ -595,7 +662,23 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<int>("CountEffects","Detrimental");
+                return GetMember<int>("CountEffects", "Detrimental");
+            }
+        }
+
+        public int CountMaintained
+        {
+            get
+            {
+                return GetMember<int>("CountMaintained");
+            }
+        }
+
+        public float Heading
+        {
+            get
+            {
+                return GetMember<float>("Heading");
             }
         }
 
@@ -647,252 +730,60 @@ namespace EQ2.ISXEQ2
             return new Effect(Obj);
         }
 
-        public bool IsAfflicted
+        public bool InGameWorld
         {
             get
             {
-                return GetMember<bool>("IsAfflicted");
+                return GetMember<bool>("InGameWorld");
             }
         }
 
-        public int Noxious
+        public bool AtCharSelect
         {
             get
             {
-                return GetMember<int>("Noxious");
+                return GetMember<bool>("AtCharSelect");
             }
         }
 
-        public int Trauma
+        public bool CastingSpell
         {
             get
             {
-                return GetMember<int>("Trauma");
+                return GetMember<bool>("CastingSpell");
             }
         }
 
-        public int Elemental
+        public int ID
         {
             get
             {
-                return GetMember<int>("Elemental");
+                return GetMember<int>("ID");
             }
         }
 
-        public int Arcane
+        public Item Inventory(params string[] Parameters)
         {
-            get
-            {
-                return GetMember<int>("Arcane");
-            }
+            LavishScriptObject Obj = GetMember("Inventory", Parameters);
+            return new Item(Obj);
         }
 
-        public int Weight
+        public Item Equipment(params string[] Parameters)
         {
-            get
-            {
-                return GetMember<int>("Weight");
-            }
+            LavishScriptObject Obj = GetMember("Equipment", Parameters);
+            return new Item(Obj);
         }
 
-        public int MaxWeight
+        public GroupMember Group(int GroupNum)
         {
-            get
-            {
-                return GetMember<int>("MaxWeight");
-            }
+            LavishScriptObject Obj = GetMember("Group", GroupNum.ToString());
+            return new GroupMember(Obj);
         }
 
-        public int Strength
+        public GroupMember Group(string GroupName)
         {
-            get
-            {
-                return GetMember<int>("Strength");
-            }
-        }
-
-        public int BaseStrength
-        {
-            get
-            {
-                return GetMember<int>("BaseStrength");
-            }
-        }
-
-        public int Stamina
-        {
-            get
-            {
-                return GetMember<int>("Stamina");
-            }
-        }
-
-        public int BaseStamina
-        {
-            get
-            {
-                return GetMember<int>("BaseStamina");
-            }
-        }
-
-        public int Agility
-        {
-            get
-            {
-                return GetMember<int>("Agility");
-            }
-        }
-
-        public int BaseAgility
-        {
-            get
-            {
-                return GetMember<int>("BaseAgility");
-            }
-        }
-
-        public int Wisdom
-        {
-            get
-            {
-                return GetMember<int>("Wisdom");
-            }
-        }
-
-        public int BaseWisdom
-        {
-            get
-            {
-                return GetMember<int>("BaseWisdom");
-            }
-        }
-
-        public int Intelligence
-        {
-            get
-            {
-                return GetMember<int>("Intelligence");
-            }
-        }
-
-        public int BaseIntelligence
-        {
-            get
-            {
-                return GetMember<int>("BaseIntelligence");
-            }
-        }
-
-        public int HeatRes
-        {
-            get
-            {
-                return GetMember<int>("HeatRes");
-            }
-        }
-
-        public int BaseHeatRes
-        {
-            get
-            {
-                return GetMember<int>("BaseHeatRes");
-            }
-        }
-
-        public int ColdRes
-        {
-            get
-            {
-                return GetMember<int>("ColdRes");
-            }
-        }
-
-        public int BaseColdRes
-        {
-            get
-            {
-                return GetMember<int>("BaseColdRes");
-            }
-        }
-
-        public int MagicRes
-        {
-            get
-            {
-                return GetMember<int>("MagicRes");
-            }
-        }
-
-        public int BaseMagicRes
-        {
-            get
-            {
-                return GetMember<int>("BaseMagicRes");
-            }
-        }
-
-        public int MentalRes
-        {
-            get
-            {
-                return GetMember<int>("MentalRes");
-            }
-        }
-
-        public int BaseMentalRes
-        {
-            get
-            {
-                return GetMember<int>("BaseMentalRes");
-            }
-        }
-
-        public int DivineRes
-        {
-            get
-            {
-                return GetMember<int>("DivineRes");
-            }
-        }
-
-        public int BaseDivineRes
-        {
-            get
-            {
-                return GetMember<int>("BaseDivineRes");
-            }
-        }
-
-        public int DiseaseRes
-        {
-            get
-            {
-                return GetMember<int>("DiseaseRes");
-            }
-        }
-
-        public int BaseDiseaseRes
-        {
-            get
-            {
-                return GetMember<int>("BaseDiseaseRes");
-            }
-        }
-
-        public int PoisonRes
-        {
-            get
-            {
-                return GetMember<int>("PoisonRes");
-            }
-        }
-
-        public int BasePoisonRes
-        {
-            get
-            {
-                return GetMember<int>("BasePoisonRes");
-            }
+            LavishScriptObject Obj = GetMember("Group", GroupName);
+            return new GroupMember(Obj);
         }
 
         public int GroupCount
@@ -911,62 +802,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public GroupMember Group(int GroupNum)
-        {
-            LavishScriptObject Obj = GetMember("Group", GroupNum.ToString());
-            return new GroupMember(Obj);
-        }
-
-        public GroupMember Group(string GroupName)
-        {
-            LavishScriptObject Obj = GetMember("Group", GroupName);
-            return new GroupMember(Obj);
-        }
-
-        public int RaidCount
-        {
-            get
-            {
-                return GetMember<int>("RaidCount");
-            }
-        }
-
-        public RaidMember Raid(int RaidNum)
-        {
-            LavishScriptObject Obj = GetMember("Raid", RaidNum.ToString());
-            return new RaidMember(Obj);
-        }
-
-        public RaidMember Raid(string RaidName)
-        {
-            LavishScriptObject Obj = GetMember("Raid", RaidName);
-            return new RaidMember(Obj);
-        }
-
-        public Actor ToActor()
-        {
-            LavishScriptObject Obj = GetMember("ToActor");
-            return new Actor(Obj);
-        }
-
-        public Actor CursorActor()
-        {
-            LavishScriptObject Obj = GetMember("CursorActor");
-            return new Actor(Obj);
-        }
-
-        public Item Inventory(params string[] Parameters)
-        {
-            LavishScriptObject Obj = GetMember("Inventory", Parameters);
-            return new Item(Obj);
-        }
-
-        public Item Equipment(params string[] Parameters)
-        {
-            LavishScriptObject Obj = GetMember("Equipment", Parameters);
-            return new Item(Obj);
-        }
-
         public Item CustomInventory(int Index)
         {
             LavishScriptObject Obj = GetMember("CustomInventory", Index.ToString());
@@ -977,6 +812,50 @@ namespace EQ2.ISXEQ2
         {
             LavishScriptObject Obj = GetMember("CustomInventory", Parameters);
             return new Item(Obj);
+        }
+
+        public int CustomInventoryArraySize
+        {
+            get
+            {
+                return GetMember<int>("CustomInventoryArraySize");
+            }
+        }
+
+        public int NextFreeInvContainer
+        {
+            get
+            {
+                return GetMember<int>("NextFreeInvContainer");
+            }
+        }
+
+        public Actor ToActor()
+        {
+            LavishScriptObject Obj = GetMember("ToActor");
+            return new Actor(Obj);
+        }
+
+        public bool AutoAttackOn
+        {
+            get
+            {
+                return GetMember<bool>("AutoAttackOn");
+            }
+        }
+
+        public bool RangedAutoAttackOn
+        {
+            get
+            {
+                return GetMember<bool>("RangedAutoAttackOn");
+            }
+        }
+
+        public Actor CursorActor()
+        {
+            LavishScriptObject Obj = GetMember("CursorActor");
+            return new Actor(Obj);
         }
 
         public Merchandise Merchandise(int Index)
@@ -999,19 +878,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int CustomInventoryArraySize
+        public int NumAbilities
         {
             get
             {
-                return GetMember<int>("CustomInventoryArraySize");
-            }
-        }
-
-        public int NextFreeInvContainer
-        {
-            get
-            {
-                return GetMember<int>("NextFreeInvContainer");
+                return GetMember<int>("NumAbilities");
             }
         }
 
@@ -1027,11 +898,11 @@ namespace EQ2.ISXEQ2
             return new Ability(Obj);
         }
 
-        public int NumAbilities
+        public int NumRecipes
         {
             get
             {
-                return GetMember<int>("NumAbilities");
+                return GetMember<int>("NumRecipes");
             }
         }
 
@@ -1047,35 +918,27 @@ namespace EQ2.ISXEQ2
             return new Recipe(Obj);
         }
 
-        public int NumRecipes
+        public bool IsMoving
         {
             get
             {
-                return GetMember<int>("NumRecipes");
+                return GetMember<bool>("IsMoving");
             }
         }
 
-        public bool AutoAttackOn
+        public string HouseLocation
         {
             get
             {
-                return GetMember<bool>("AutoAttackOn");
+                return GetMember<string>("HouseLocation");
             }
         }
 
-        public bool CastingSpell
+        public string BindLocation
         {
             get
             {
-                return GetMember<bool>("CastingSpell");
-            }
-        }
-
-        public bool RangedAutoAttackOn
-        {
-            get
-            {
-                return GetMember<bool>("RangedAutoAttackOn");
+                return GetMember<string>("BindLocation");
             }
         }
 
@@ -1095,19 +958,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool InCombat
+        public bool IsSitting
         {
             get
             {
-                return GetMember<bool>("InCombat");
-            }
-        }
-
-        public bool InRaid
-        {
-            get
-            {
-                return GetMember<bool>("InRaid");
+                return GetMember<bool>("IsSitting");
             }
         }
 
@@ -1119,27 +974,27 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool IsCamping
+        public bool InCombat
         {
             get
             {
-                return GetMember<bool>("IsCamping");
+                return GetMember<bool>("InCombat");
             }
         }
 
-        public bool IsSitting
+        public bool TargetLOS
         {
             get
             {
-                return GetMember<bool>("IsSitting");
+                return GetMember<bool>("TargetLOS");
             }
         }
 
-        public bool IsAFK
+        public float WaterDepth
         {
             get
             {
-                return GetMember<bool>("IsAFK");
+                return GetMember<float>("WaterDepth");
             }
         }
 
@@ -1148,6 +1003,14 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<bool>("IsLFG");
+            }
+        }
+
+        public bool IsAFK
+        {
+            get
+            {
+                return GetMember<bool>("IsAFK");
             }
         }
 
@@ -1199,11 +1062,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool TargetLOS
+        public bool IsCamping
         {
             get
             {
-                return GetMember<bool>("TargetLOS");
+                return GetMember<bool>("IsCamping");
             }
         }
 
@@ -1215,41 +1078,169 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool Face()
+        public int RaidCount
         {
-            return ExecuteMethod("Face");
+            get
+            {
+                return GetMember<int>("RaidCount");
+            }
         }
 
-        public bool Face(float Angle)
+        public bool InRaid
         {
-            return ExecuteMethod("Face", Angle.ToString());
+            get
+            {
+                return GetMember<bool>("InRaid");
+            }
         }
 
-        public bool TakeAllVendingCoin()
+        public RaidMember Raid(int RaidNum)
         {
-            return ExecuteMethod("TakeAllVendingCoin");
+            LavishScriptObject Obj = GetMember("Raid", RaidNum.ToString());
+            return new RaidMember(Obj);
         }
 
-        public bool CreateCustomInventoryArray()
+        public RaidMember Raid(string RaidName)
         {
-            return ExecuteMethod("CreateCustomInventoryArray");
+            LavishScriptObject Obj = GetMember("Raid", RaidName);
+            return new RaidMember(Obj);
         }
 
-        public bool InitializeEffects()
+        public int Arcane
         {
-            return ExecuteMethod("InitializeEffects");
+            get
+            {
+                return GetMember<int>("Arcane");
+            }
         }
 
-        public enum InventoryType
+        public int Noxious
         {
-            nonbankonly,
-            bankonly
+            get
+            {
+                return GetMember<int>("Noxious");
+            }
         }
 
-        public bool CreateCustomInventoryArray(InventoryType Bank)
+        public int Cursed
         {
-            return ExecuteMethod("CreateCustomInventoryArray", Bank.ToString());
+            get
+            {
+                return GetMember<int>("Cursed");
+            }
         }
+
+        public int Elemental
+        {
+            get
+            {
+                return GetMember<int>("Elemental");
+            }
+        }
+
+        public int Trauma
+        {
+            get
+            {
+                return GetMember<int>("Trauma");
+            }
+        }
+
+        public bool IsAfflicted
+        {
+            get
+            {
+                return GetMember<bool>("IsAfflicted");
+            }
+        }
+
+        public float APExp
+        {
+            get
+            {
+                return GetMember<float>("APExp");
+            }
+        }
+
+        public int TotalEarnedAPs
+        {
+            get
+            {
+                return GetMember<int>("TotalEarnedAPs");
+            }
+        }
+
+        public int MaxAPs
+        {
+            get
+            {
+                return GetMember<int>("MaxAPs");
+            }
+        }
+
+        public Achievement Achievement(int AchievementNum)
+        {
+            LavishScriptObject Obj = GetMember("Achievement", AchievementNum.ToString());
+            return new Achievement(Obj);
+        }
+
+        public Achievement Achievement(string AchievementName)
+        {
+            LavishScriptObject Obj = GetMember("Achievement", AchievementName);
+            return new Achievement(Obj);
+        }
+
+        public VendingContainer Vending(int VendingNum)
+        {
+            LavishScriptObject Obj = GetMember("Vending", VendingNum.ToString());
+            return new VendingContainer(Obj);
+        }
+
+        public VendingContainer Vending(string VendingName)
+        {
+            LavishScriptObject Obj = GetMember("Vending", VendingName);
+            return new VendingContainer(Obj);
+        }
+
+        public int TotalVendingCapacity
+        {
+            get
+            {
+                return GetMember<int>("TotalVendingCapacity");
+            }
+        }
+
+        public int VendingCapacityUsed
+        {
+            get
+            {
+                return GetMember<int>("VendingCapacityUsed");
+            }
+        }
+
+        public int VendingCapacityFree
+        {
+            get
+            {
+                return GetMember<int>("VendingCapacityFree");
+            }
+        }
+
+        public bool IgnoringAll
+        {
+            get
+            {
+                return GetMember<bool>("IgnoringAll");
+            }
+        }
+
+        /* TODO: GetInventory
+         *       GetInventoryAtHand
+         *       GetEquipment
+         *       NumVendingContainers
+         *       NumVendors
+         *       GetAbilities
+         */
 
         public int InventorySlotsFree
         {
@@ -1297,14 +1288,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int HealthRegen
-        {
-            get
-            {
-                return GetMember<int>("HealthRegen");
-            }
-        }
-
         public int PowerRegen
         {
             get
@@ -1313,6 +1296,105 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int HealthRegen
+        {
+            get
+            {
+                return GetMember<int>("HealthRegen");
+            }
+        }
 
+        public bool CheckCollision(Point3f CollisionTo)
+        {
+            return GetMember<bool>("CheckCollision",CollisionTo.X.ToString(),CollisionTo.Y.ToString(),CollisionTo.Z.ToString());
+        }
+
+        public bool IsDecliningGuildInvites
+        {
+            get
+            {
+                return GetMember<bool>("IsDecliningGuildInvites");
+            }
+        }
+
+        public bool IsDecliningRaidInvites
+        {
+            get
+            {
+                return GetMember<bool>("IsDecliningRaidInvites");
+            }
+        }
+
+        public bool Face()
+        {
+            return ExecuteMethod("Face");
+        }
+
+        public bool Face(float Angle)
+        {
+            return ExecuteMethod("Face", Angle.ToString());
+        }
+
+        public bool CreateCustomInventoryArray()
+        {
+            return ExecuteMethod("CreateCustomInventoryArray");
+        }
+
+        public enum InventoryType
+        {
+            nonbankonly,
+            bankonly
+        }
+
+        public bool CreateCustomInventoryArray(InventoryType Bank)
+        {
+            return ExecuteMethod("CreateCustomInventoryArray", Bank.ToString());
+        }
+
+        public bool TakeAllVendingCoin()
+        {
+            return ExecuteMethod("TakeAllVendingCoin");
+        }
+/*
+        public bool BankDeposit()
+        {
+            return false;
+        }
+
+        public bool BankWithdraw()
+        {
+            return false;
+        }
+
+        public bool GuildBankWithdraw()
+        {
+            return false;
+        }
+*/
+        public bool InitializeEffects()
+        {
+            return ExecuteMethod("InitializeEffects");
+        }
+/* gone?
+        public int NumConsignmentItems
+        {
+            get
+            {
+                return GetMember<int>("NumConsignmentItems");
+            }
+        }
+
+        public Consignment Consignment(int ConsignmentNum)
+        {
+            LavishScriptObject Obj = GetMember("Consignment", ConsignmentNum.ToString());
+            return new Consignment(Obj);
+        }
+
+        public Consignment Consignment(string ConsignmentName)
+        {
+            LavishScriptObject Obj = GetMember("Consignment", ConsignmentName);
+            return new Consignment(Obj);
+        }
+*/
     }
 }

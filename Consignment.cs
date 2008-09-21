@@ -27,30 +27,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Quantity
-        {
-            get
-            {
-                return GetMember<int>("Quantity");
-            }
-        }
-
-        public int LinkID
-        {
-            get
-            {
-                return GetMember<int>("LinkID");
-            }
-        }
-
-        public float Value
-        {
-            get
-            {
-                return GetMember<float>("Value");
-            }
-        }
-
         public float Price
         {
             get
@@ -59,11 +35,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string PriceString
+        public int Quantity
         {
             get
             {
-                return GetMember<string>("PriceString");
+                return GetMember<int>("Quantity");
             }
         }
 
@@ -83,11 +59,59 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string SkillType
+        public int LinkID
         {
             get
             {
-                return GetMember<string>("SkillType");
+                return GetMember<int>("LinkID");
+            }
+        }
+
+        public string ToLink
+        {
+            get
+            {
+                return GetMember<string>("ToLink");
+            }
+        }
+
+        public int Level
+        {
+            get
+            {
+                return GetMember<int>("Level");
+            }
+        }
+
+        public bool IsListed
+        {
+            get
+            {
+                return GetMember<bool>("IsListed");
+            }
+        }
+
+        public string Market
+        {
+            get
+            {
+                return GetMember<string>("Market");
+            }
+        }
+
+        public float Value
+        {
+            get
+            {
+                return GetMember<float>("Value");
+            }
+        }
+
+        public ulong SerialNumber
+        {
+            get
+            {
+                return GetMember<ulong>("SerialNumber");
             }
         }
 
@@ -106,24 +130,19 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("Examine");
         }
 
-        public string ToLink(string LinkName)
-        {
-            return GetMember<string>("ToLink", LinkName);
-        }
-
         public bool SetPrice(float SetPrice)
         {
             return ExecuteMethod("SetPrice", SetPrice.ToString());
         }
 
-        public bool Unlist()
-        {
-            return ExecuteMethod("Unlist");
-        }
-
         public bool List()
         {
             return ExecuteMethod("List");
+        }
+
+        public bool Unlist()
+        {
+            return ExecuteMethod("Unlist");
         }
 
         public bool Remove()
