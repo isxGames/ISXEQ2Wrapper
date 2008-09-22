@@ -323,11 +323,11 @@ namespace EQ2.ISXEQ2
             return GetMember<string>("ToLink", LinkName);
         }
 
-        public ulong SerialNumber
+        public long SerialNumber
         {
             get
             {
-                return GetMember<ulong>("SerialNumber");
+                return GetMember<long>("SerialNumber");
             }
         }
 
@@ -1140,6 +1140,16 @@ namespace EQ2.ISXEQ2
         public bool AddToConsignment(int Quantity, int VendorIndex)
         {
             return ExecuteMethod("AddToConsignment", Quantity.ToString(), VendorIndex.ToString());
+        }
+
+        public bool AddToConsignment(int Quantity, long VendorSerialNumber)
+        {
+            return ExecuteMethod("AddToConsignment", Quantity.ToString(), VendorSerialNumber.ToString());
+        }
+
+        public bool AddToConsignment(int Quantity, int VendorIndex, long StackWithSerialNumber)
+        {
+            return ExecuteMethod("AddToConsignment", Quantity.ToString(), VendorIndex.ToString(), StackWithSerialNumber.ToString());
         }
 
         public bool Transmute(bool Ask)

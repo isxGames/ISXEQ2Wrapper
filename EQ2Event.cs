@@ -23,6 +23,7 @@ namespace EQ2.ISXEQ2
         public event System.EventHandler<LSEventArgs> QuestOffered;
         public event System.EventHandler<LSEventArgs> ChoiceWindowAppeared;
         public event System.EventHandler<LSEventArgs> SendMailComplete;
+        public event System.EventHandler<LSEventArgs> IncomingText;
 
         #endregion
 
@@ -104,6 +105,14 @@ namespace EQ2.ISXEQ2
             if (temp != null)
                 temp(Sender, e);
         }
+
+        protected virtual void OnIncomingText(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = IncomingText;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
         #endregion
 
         //
@@ -120,6 +129,7 @@ namespace EQ2.ISXEQ2
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onQuestOffered"), OnQuestOffered);
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingText"), OnIncomingText);
 
         }
 
@@ -137,6 +147,7 @@ namespace EQ2.ISXEQ2
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onQuestOffered"), OnQuestOffered);
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingText"), OnIncomingText);
         }
     }
 }

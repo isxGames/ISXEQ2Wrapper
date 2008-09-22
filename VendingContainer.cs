@@ -27,14 +27,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string Description
-        {
-            get
-            {
-                return GetMember<string>("Description");
-            }
-        }
-
         public int UsedCapacity
         {
             get
@@ -67,6 +59,42 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public Consignment Consignment(int Index)
+        {
+            LavishScriptObject Obj = GetMember("Consignment", Index.ToString());
+            return new Consignment(Obj);
+        }
+
+        public Consignment Consignment(string Name)
+        {
+            LavishScriptObject Obj = GetMember("Consignment", Name);
+            return new Consignment(Obj);
+        }
+
+        public int NumItems
+        {
+            get
+            {
+                return GetMember<int>("NumItems");
+            }
+        }
+
+        public string Market
+        {
+            get
+            {
+                return GetMember<string>("Market");
+            }
+        }
+
+        public long SerialNumber
+        {
+            get
+            {
+                return GetMember<long>("SerialNumber");
+            }
+        }
+
         public bool TakeCoin()
         {
             return ExecuteMethod("TakeCoin");
@@ -81,5 +109,11 @@ namespace EQ2.ISXEQ2
         {
             return ExecuteMethod("Remove");
         }
+
+        public bool ChangeTo()
+        {
+            return ExecuteMethod("ChangeTo");
+        }
+
     }
 }

@@ -13,12 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public Recipe()
             : base(LavishScript.Objects.GetObject("Recipe"))
         {
         }
-
+*/
         public string Name
         {
             get
@@ -51,6 +51,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int Level
+        {
+            get
+            {
+                return GetMember<int>("Level");
+            }
+        }
+
+        public long ID
+        {
+            get
+            {
+                return GetMember<long>("ID");
+            }
+        }
+
         public string Technique
         {
             get
@@ -64,22 +80,6 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<string>("Knowledge");
-            }
-        }
-
-        public Int64 ID
-        {
-            get
-            {
-                return GetMember<Int64>("ID");
-            }
-        }
-
-        public int Level
-        {
-            get
-            {
-                return GetMember<int>("Level");
             }
         }
 

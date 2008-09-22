@@ -13,12 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public ItemModifier()
             : base(LavishScript.Objects.GetObject("ItemModifier"))
         {
         }
-
+*/
         public string Type
         {
             get

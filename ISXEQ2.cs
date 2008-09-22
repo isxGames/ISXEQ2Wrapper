@@ -31,20 +31,16 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int EQ2LocsCount
+        public int EQ2LocsCount(bool AllZones)
         {
-            get
-            {
-                return GetMember<int>("EQ2LocsCount");
-            }
+            if (AllZones)
+                return GetMember<int>("EQ2LocsCount", "AllZones");
+            return GetMember<int>("EQ2LocsCount");
         }
 
-        public bool IsValidEQ2PressKey
+        public bool IsValidEQ2PressKey(string KeyName)
         {
-            get
-            {
-                return GetMember<bool>("IsValidEQ2PressKey");
-            }
+            return GetMember<bool>("IsValidEQ2PressKey",KeyName);
         }
 
         public void SetActorEventsRange(float Range)

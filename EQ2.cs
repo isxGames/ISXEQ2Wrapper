@@ -231,15 +231,12 @@ namespace EQ2.ISXEQ2
         {
             return GetMember<bool>("CheckCollision",X1.ToString(),Y1.ToString(),Z1.ToString(),X2.ToString(),Y2.ToString(),Z2.ToString());
         }
-/* broken? Syntax?
-        public float HeadingTo
+
+        public float HeadingTo(float From_X, float From_Y, float From_Z, float To_X, float To_Y, float To_Z)
         {
-            get
-            {
-                return GetMember<float>("HeadingTo");
-            }
+            return GetMember<float>("HeadingTo",From_X.ToString(),From_Y.ToString(),From_Z.ToString(),To_X.ToString(),To_Y.ToString(),To_Z.ToString());
         }
-*/
+
         public List<Actor> GetActors()
         {
             LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");

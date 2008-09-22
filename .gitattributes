@@ -4,6 +4,7 @@
 /Achievement.cs -text
 /Actor.cs -text
 /Character.cs -text
+/ChoiceWindow.cs -text
 /Class.cs -text
 /Component.cs -text
 /Consignment.cs -text
@@ -11,6 +12,7 @@
 /EQ2.ISXEQ2.sln -text
 /EQ2.cs -text
 /EQ2Event.cs -text
+/EQ2Location.cs -text
 /EQ2Mail.cs -text
 /EQ2UIElement.cs -text
 /EQ2UIPage.cs -text
@@ -20,11 +22,15 @@
 /ISXEQ2.cs -text
 /Item.cs -text
 /ItemModifier.cs -text
+/LootWindow.cs -text
 /Maintained.cs -text
 /Merchandise.cs -text
 Properties/AssemblyInfo.cs -text
+/Radar.cs -text
 /Recipe.cs -text
+/RewardWindow.cs -text
 /VendingContainer.cs -text
+/Vendor.cs -text
 /Zone.cs -text
 bin/Debug/PostBuild.bat -text
 bin/Release/PostBuild.bat -text

@@ -20,5 +20,13 @@ namespace EQ2.ISXEQ2
             return new EQ2UIElement(Obj);
         }
 
+        public bool IsVisible
+        {
+            get
+            {
+                return GetMember<bool>("IsVisible");
+            }
+        }
+
     }
 }

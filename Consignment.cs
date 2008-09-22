@@ -107,11 +107,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public ulong SerialNumber
+        public long SerialNumber
         {
             get
             {
-                return GetMember<ulong>("SerialNumber");
+                return GetMember<long>("SerialNumber");
             }
         }
 

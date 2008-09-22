@@ -912,6 +912,12 @@ namespace EQ2.ISXEQ2
             return new Recipe(Obj);
         }
 
+        public Recipe Recipe(long RecipeID)
+        {
+            LavishScriptObject Obj = GetMember("Recipe","id", RecipeID.ToString());
+            return new Recipe(Obj);
+        }
+
         public Recipe Recipe(string Recipename)
         {
             LavishScriptObject Obj = GetMember("Recipe", Recipename);
@@ -1141,11 +1147,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Cursed
+        public bool Cursed
         {
             get
             {
-                return GetMember<int>("Cursed");
+                return GetMember<bool>("Cursed");
             }
         }
 
@@ -1256,10 +1262,30 @@ namespace EQ2.ISXEQ2
         /* TODO: GetInventory
          *       GetInventoryAtHand
          *       GetEquipment
-         *       NumVendingContainers
-         *       NumVendors
-         *       GetAbilities
          */
+
+        public int NumVendingContainers
+        {
+            get
+            {
+                return GetMember<int>("NumVendingContainers");
+            }
+        }
+
+        public List<Ability> GetAbilities()
+        {
+            LavishScriptObject Index = LavishScript.Objects.NewObject("index:ability");
+
+            int Count = GetMember<int>("GetAbilities", Index.GetLSReference());
+            List<Ability> List = new List<Ability>(Count);
+
+            for (int i = 1; i < Count; i++)
+            {
+                List.Add(new Ability(Index.GetIndex(i.ToString())));
+            }
+
+            return List;
+        }
 
         public int InventorySlotsFree
         {

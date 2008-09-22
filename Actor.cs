@@ -203,12 +203,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string ConColor
+        public string ConColor(bool RGB)
         {
-            get
-            {
-                return GetMember<string>("ConColor");
-            }
+            if (RGB)
+                return GetMember<string>("ConColor", "raw");
+            return GetMember<string>("ConColor");
         }
 
         public bool IsLFG
@@ -626,12 +625,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool CheckCollision
+        public bool CheckCollision()
         {
-            get
-            {
-                return GetMember<bool>("CheckCollision");
-            }
+            return GetMember<bool>("CheckCollision");
+        }
+
+        public bool CheckCollision(float To_X, float To_Y, float To_Z)
+        {
+            return GetMember<bool>("CheckCollision",To_X.ToString(),To_Y.ToString(),To_Z.ToString());
         }
 
         public float TargetRingRadius
