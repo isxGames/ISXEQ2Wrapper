@@ -179,5 +179,49 @@ namespace EQ2.ISXEQ2
         {
             LavishScript.ExecuteCommand("EQ2Execute " + Args);
         }
+
+        public void EQ2Press(string Args)
+        {
+            LavishScript.ExecuteCommand("EQ2Press " + Args);
+        }
+
+        public void EQ2Ignore(string Args)
+        {
+            LavishScript.ExecuteCommand("EQ2Ignore " + Args);
+        }
+
+        public void EQ2Announce(string Announcement)
+        {
+            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\"");
+        }
+
+        public void EQ2Announce(string Announcement, float Time)
+        {
+            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\" " + Time.ToString());
+        }
+
+        public enum AnnouncementSound
+        {
+            SkillUp = 1,
+            QuestUpdate,
+            LevelDing,
+            CallForHelp,
+            HarvestRare,
+            QuestComplete,
+            LocationDiscovery,
+            SendMailFailed,
+            SendMailSuccess
+        }
+
+        public void EQ2Announce(string Announcement, float Time, AnnouncementSound Sound)
+        {
+            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\" " + Time.ToString() + " " + ((int)Sound).ToString());
+        }
+
+        public void EQ2Announce(string Announcement, AnnouncementSound Sound)
+        {
+            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\" 4.5 " + ((int)Sound).ToString());
+        }
+
     }
 }
