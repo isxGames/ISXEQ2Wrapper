@@ -13,12 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public Maintained()
             : base(LavishScript.Objects.GetObject("Maintained"))
         {
         }
-
+*/
         public string Name
         {
             get
@@ -51,10 +51,12 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public Actor Target()
+        public float MaxDuration
         {
-            LavishScriptObject Obj = GetMember("Target");
-            return new Actor(Obj);
+            get
+            {
+                return GetMember<float>("MaxDuration");
+            }
         }
 
         public float Duration
@@ -65,12 +67,10 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float MaxDuration
+        public Actor Target()
         {
-            get
-            {
-                return GetMember<float>("MaxDuration");
-            }
+            LavishScriptObject Obj = GetMember("Target");
+            return new Actor(Obj);
         }
 
         public bool Cancel()

@@ -1094,16 +1094,35 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public RaidMember Raid(int RaidNum)
+        public int Raid()
         {
-            LavishScriptObject Obj = GetMember("Raid", RaidNum.ToString());
-            return new RaidMember(Obj);
+            return GetMember<int>("Raid");
         }
 
-        public RaidMember Raid(string RaidName)
+        public GroupMember Raid(int Num, bool ByID)
+        {
+            LavishScriptObject Obj;
+            if (ByID)
+            {
+                Obj = GetMember("Raid", "id",Num.ToString());
+            }
+            else
+            {
+                Obj = GetMember("Raid", Num.ToString());
+            }
+            return new GroupMember(Obj);
+        }
+
+        public GroupMember Raid(int GroupNum, int MemberNum)
+        {
+            LavishScriptObject Obj = GetMember("Raid",GroupNum.ToString(),MemberNum.ToString());
+            return new GroupMember(Obj);
+        }
+
+        public GroupMember Raid(string RaidName)
         {
             LavishScriptObject Obj = GetMember("Raid", RaidName);
-            return new RaidMember(Obj);
+            return new GroupMember(Obj);
         }
 
         public int Arcane
@@ -1307,6 +1326,19 @@ namespace EQ2.ISXEQ2
         public bool CheckCollision(float X, float Y, float Z)
         {
             return GetMember<bool>("CheckCollision",X.ToString(),Y.ToString(),Z.ToString());
+        }
+
+        public float HeadingTo(float X, float Y, float Z)
+        {
+            return GetMember<float>("HeadingTo",X.ToString(),Y.ToString(),Z.ToString());
+        }
+
+        public int RaidGroupNum
+        {
+            get
+            {
+                return GetMember<int>("RaidGroupNum");
+            }
         }
 
         public bool IsDecliningGuildInvites

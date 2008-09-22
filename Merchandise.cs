@@ -13,25 +13,17 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public Merchandise()
             : base(LavishScript.Objects.GetObject("Merchandise"))
         {
         }
-
+*/
         public string Name
         {
             get
             {
                 return GetMember<string>("Name");
-            }
-        }
-
-        public int Level
-        {
-            get
-            {
-                return GetMember<int>("Level");
             }
         }
 
@@ -51,14 +43,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int StatusCost
-        {
-            get
-            {
-                return GetMember<int>("StatusCost");
-            }
-        }
-
         public int Quantity
         {
             get
@@ -75,12 +59,33 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int StatusCost
+        {
+            get
+            {
+                return GetMember<int>("StatusCost");
+            }
+        }
+
         public bool IsForSale
         {
             get
             {
                 return GetMember<bool>("IsForSale");
             }
+        }
+
+        public int Level
+        {
+            get
+            {
+                return GetMember<int>("Level");
+            }
+        }
+
+        public string ToLink(string LinkText)
+        {
+            return GetMember<string>("ToLink", LinkText);
         }
 
         public bool Buy()

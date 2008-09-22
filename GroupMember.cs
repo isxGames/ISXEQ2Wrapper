@@ -169,10 +169,21 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        /*
-         * RaidRole
-         * RaidGroupNum
-         */
+        public string RaidRole
+        {
+            get
+            {
+                return GetMember<string>("RaidRole");
+            }
+        }
+
+        public int RaidGroupNum
+        {
+            get
+            {
+                return GetMember<int>("RaidGroupNum");
+            }
+        }
 
     }
 }
