@@ -13,12 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public AbilityEffect()
             : base(LavishScript.Objects.GetObject("AbilityEffect"))
         {
         }
-
+*/
         public int PercentSuccess
         {
             get

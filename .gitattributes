@@ -11,9 +11,13 @@
 /EQ2.ISXEQ2.sln -text
 /EQ2.cs -text
 /EQ2Event.cs -text
+/EQ2Mail.cs -text
+/EQ2UIElement.cs -text
+/EQ2UIPage.cs -text
 /Effect.cs -text
 /Extension.cs -text
 /GroupMember.cs -text
+/ISXEQ2.cs -text
 /Item.cs -text
 /ItemModifier.cs -text
 /Maintained.cs -text

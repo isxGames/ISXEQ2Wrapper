@@ -13,26 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
-        public GroupMember()
-            : base(LavishScript.Objects.GetObject("GroupMember"))
-        {
-        }
-
-        public int ID
-        {
-            get
-            {
-                return GetMember<int>("ID");
-            }
-        }
-
-        public Actor ToActor()
-        {
-            LavishScriptObject Obj = GetMember("ToActor");
-            return new Actor(Obj);
-        }
-
+        /*
+                public GroupMember()
+                    : base(LavishScript.Objects.GetObject("GroupMember"))
+                {
+                }
+        */
         public string Name
         {
             get
@@ -54,22 +40,6 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<string>("Class");
-            }
-        }
-
-        public string ZoneName
-        {
-            get
-            {
-                return GetMember<string>("ZoneName");
-            }
-        }
-
-        public int PetID
-        {
-            get
-            {
-                return GetMember<int>("PetID");
             }
         }
 
@@ -97,6 +67,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int MaxPower
+        {
+            get
+            {
+                return GetMember<int>("Power");
+            }
+        }
+
         public int Level
         {
             get
@@ -105,19 +83,41 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public string ZoneName
+        {
+            get
+            {
+                return GetMember<string>("ZoneName");
+            }
+        }
+
+        public int ID
+        {
+            get
+            {
+                return GetMember<int>("ID");
+            }
+        }
+
+        public int PetID
+        {
+            get
+            {
+                return GetMember<int>("PetID");
+            }
+        }
+
+        public Actor ToActor()
+        {
+            LavishScriptObject Obj = GetMember("ToActor");
+            return new Actor(Obj);
+        }
+
         public int EffectiveLevel
         {
             get
             {
                 return GetMember<int>("EffectiveLevel");
-            }
-        }
-
-        public bool IsAfflicted
-        {
-            get
-            {
-                return GetMember<bool>("IsAfflicted");
             }
         }
 
@@ -129,11 +129,19 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Trauma
+        public int Cursed
         {
             get
             {
-                return GetMember<int>("Trauma");
+                return GetMember<int>("Cursed");
+            }
+        }
+
+        public int Arcane
+        {
+            get
+            {
+                return GetMember<int>("Arcane");
             }
         }
 
@@ -145,12 +153,26 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Arcane
+        public int Trauma
         {
             get
             {
-                return GetMember<int>("Arcane");
+                return GetMember<int>("Trauma");
             }
         }
+
+        public bool IsAfflicted
+        {
+            get
+            {
+                return GetMember<bool>("IsAfflicted");
+            }
+        }
+
+        /*
+         * RaidRole
+         * RaidGroupNum
+         */
+
     }
 }

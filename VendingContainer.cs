@@ -13,12 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public VendingContainer()
             : base(LavishScript.Objects.GetObject("VendingContainer"))
         {
         }
-
+*/
         public string Name
         {
             get

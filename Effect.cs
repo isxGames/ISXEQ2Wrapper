@@ -13,20 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public Effect()
             : base(LavishScript.Objects.GetObject("Effect"))
         {
         }
-
-        public int ID
-        {
-            get
-            {
-                return GetMember<int>("ID");
-            }
-        }
-
+*/
         public string Name
         {
             get
@@ -43,6 +35,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public float MaxDuration
+        {
+            get
+            {
+                return GetMember<float>("MaxDuration");
+            }
+        }
+
         public float Duration
         {
             get
@@ -51,11 +51,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float MaxDuration
+        public int ID
         {
             get
             {
-                return GetMember<float>("MaxDuration");
+                return GetMember<int>("ID");
             }
         }
 

@@ -13,17 +13,97 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public Item()
             : base(LavishScript.Objects.GetObject("Item"))
         {
         }
-
-        public int ID
+*/
+        public bool InInventory
         {
             get
             {
-                return GetMember<int>("ID");
+                return GetMember<bool>("InInventory");
+            }
+        }
+
+        public bool InInventorySlot
+        {
+            get
+            {
+                return GetMember<bool>("InInventorySlot");
+            }
+        }
+
+        public bool IsInventoryContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsInventoryContainer");
+            }
+        }
+
+        public bool IsBankContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsBankContainer");
+            }
+        }
+
+        public bool IsSharedBankContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsSharedBankContainer");
+            }
+        }
+
+        public int NumSlotsFree
+        {
+            get
+            {
+                return GetMember<int>("NumSlotsFree");
+            }
+        }
+
+        public bool RequiredByQuest
+        {
+            get
+            {
+                return GetMember<bool>("RequiredByQuest");
+            }
+        }
+
+        public bool OffersQuest
+        {
+            get
+            {
+                return GetMember<bool>("OffersQuest");
+            }
+        }
+
+        public bool AlreadyCollected
+        {
+            get
+            {
+                return GetMember<bool>("AlreadyCollected");
+            }
+        }
+
+        public bool IsCollectible
+        {
+            get
+            {
+                return GetMember<bool>("IsCollectible");
+            }
+        }
+
+        public int Index
+        {
+            get
+            {
+                return GetMember<int>("Index");
             }
         }
 
@@ -43,6 +123,97 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool IsContainer
+        {
+            get
+            {
+                return GetMember<bool>("IsContainer");
+            }
+        }
+
+        public int NumSlots
+        {
+            get
+            {
+                return GetMember<int>("NumSlots");
+            }
+        }
+
+        public int Quantity
+        {
+            get
+            {
+                return GetMember<int>("Quantity");
+            }
+        }
+
+        public int Slot
+        {
+            get
+            {
+                return GetMember<int>("Slot");
+            }
+        }
+
+        public bool InContainer
+        {
+            get
+            {
+                return GetMember<bool>("InContainer");
+            }
+        }
+
+        public int InContainerID
+        {
+            get
+            {
+                return GetMember<int>("InContainerID");
+            }
+        }
+
+        public int ContainerID
+        {
+            get
+            {
+                return GetMember<int>("ContainerID");
+            }
+        }
+
+        public bool InBank
+        {
+            get
+            {
+                return GetMember<bool>("InBank");
+            }
+        }
+
+        public bool InSharedBank
+        {
+            get
+            {
+                return GetMember<bool>("InSharedBank");
+            }
+        }
+
+        public Item ItemInSlot(int ItemInSlotNum)
+        {
+            LavishScriptObject Obj = GetMember("ItemInSlot", ItemInSlotNum.ToString());
+            return new Item(Obj);
+        }
+
+        public bool IsSlotOpen(int SlotNum)
+        {
+            return GetMember<bool>("IsSlotOpen", SlotNum.ToString());
+        }
+
+        public int NextSlotOpen
+        {
+            get
+            {
+                return GetMember<int>("NextSlotOpen");
+            }
+        }
+
         public string Description
         {
             get
@@ -59,27 +230,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public string Type
+        public string WieldStyle
         {
             get
             {
-                return GetMember<string>("Type");
-            }
-        }
-
-        public string Crafter
-        {
-            get
-            {
-                return GetMember<string>("Crafter");
-            }
-        }
-
-        public int LinkID
-        {
-            get
-            {
-                return GetMember<int>("LinkID");
+                return GetMember<string>("WieldStyle");
             }
         }
 
@@ -91,11 +246,43 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public string Type
+        {
+            get
+            {
+                return GetMember<string>("Type");
+            }
+        }
+
+        public int ShieldFactor
+        {
+            get
+            {
+                return GetMember<int>("ShieldFactor");
+            }
+        }
+
+        public int MaxShieldFactor
+        {
+            get
+            {
+                return GetMember<int>("MaxShieldFactor");
+            }
+        }
+
         public int RentStatusReduction
         {
             get
             {
                 return GetMember<int>("RentStatusReduction");
+            }
+        }
+
+        public string Crafter
+        {
+            get
+            {
+                return GetMember<string>("Crafter");
             }
         }
 
@@ -123,91 +310,75 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Index
+        public int LinkID
         {
             get
             {
-                return GetMember<int>("Index");
+                return GetMember<int>("LinkID");
             }
         }
 
-        public int Quantity
+        public string ToLink(string LinkName)
+        {
+            return GetMember<string>("ToLink", LinkName);
+        }
+
+        public ulong SerialNumber
         {
             get
             {
-                return GetMember<int>("Quantity");
+                return GetMember<ulong>("SerialNumber");
             }
         }
 
-        public int Slot
+        public int NumClasses
         {
             get
             {
-                return GetMember<int>("Slot");
+                return GetMember<int>("NumClasses");
             }
         }
 
-        public bool IsReady
+        public Class Class(int ClassNum)
+        {
+            LavishScriptObject Obj = GetMember("Class", ClassNum.ToString());
+            return new Class(Obj);
+        }
+
+        public int NumEquipSlots
         {
             get
             {
-                return GetMember<bool>("IsReady");
+                return GetMember<int>("NumEquipSlots");
             }
         }
 
-        public float TimeUntilReady
+        public string EquipSlot(int EquipSlotNum)
+        {
+            return GetMember<string>("EquipSlot", EquipSlotNum.ToString());
+        }
+
+        public string Satiation
         {
             get
             {
-                return GetMember<float>("TimeUntilReady");
+                return GetMember<string>("Satiation");
             }
         }
 
-        public bool InBank
+        public int Level
         {
             get
             {
-                return GetMember<bool>("InBank");
+                return GetMember<int>("Level");
             }
         }
 
-        public bool InSharedBank
+        public float Duration
         {
             get
             {
-                return GetMember<bool>("InSharedBank");
-            }
-        }
-
-        public bool IsCollectible
-        {
-            get
-            {
-                return GetMember<bool>("IsCollectible");
-            }
-        }
-
-        public bool AlreadyCollected
-        {
-            get
-            {
-                return GetMember<bool>("AlreadyCollected");
-            }
-        }
-
-        public bool OffersQuest
-        {
-            get
-            {
-                return GetMember<bool>("OffersQuest");
-            }
-        }
-
-        public bool RequiredByQuest
-        {
-            get
-            {
-                return GetMember<bool>("RequiredByQuest");
+                return GetMember<float>("Duration");
             }
         }
 
@@ -275,11 +446,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Range
+        public int MaxRange
         {
             get
             {
-                return GetMember<int>("Range");
+                return GetMember<int>("MaxRange");
             }
         }
 
@@ -291,59 +462,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int MaxRange
+        public int Range
         {
             get
             {
-                return GetMember<int>("MaxRange");
-            }
-        }
-
-        public string WieldStyle
-        {
-            get
-            {
-                return GetMember<string>("WieldStyle");
-            }
-        }
-
-        public string SubType
-        {
-            get
-            {
-                return GetMember<string>("SubType");
-            }
-        }
-
-        public string DamageType
-        {
-            get
-            {
-                return GetMember<string>("DamageType");
-            }
-        }
-
-        public string DamageTypeVerb
-        {
-            get
-            {
-                return GetMember<string>("DamageTypeVerb");
-            }
-        }
-
-        public int ShieldFactor
-        {
-            get
-            {
-                return GetMember<int>("ShieldFactor");
-            }
-        }
-
-        public int MaxShieldFactor
-        {
-            get
-            {
-                return GetMember<int>("MaxShieldFactor");
+                return GetMember<int>("Range");
             }
         }
 
@@ -371,95 +494,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int NextSlotOpen
-        {
-            get
-            {
-                return GetMember<int>("NextSlotOpen");
-            }
-        }
-
-        public bool IsSlotOpen(int SlotNum)
-        {
-            return GetMember<bool>("IsSlotOpen", SlotNum.ToString());
-        }
-
-        public Item ItemInSlot(int ItemInSlotNum)
-        {
-            LavishScriptObject Obj = GetMember("ItemInSlot", ItemInSlotNum.ToString());
-            return new Item(Obj);
-        }
-
-        public ItemModifier Modifier(int Index)
-        {
-            LavishScriptObject Obj = GetMember("Modifier", Index.ToString());
-            return new ItemModifier(Obj);
-        }
-
-        public int NumModifiers
-        {
-            get
-            {
-                return GetMember<int>("NumModifiers");
-            }
-        }
-
-        public int InContainerID
-        {
-            get
-            {
-                return GetMember<int>("InContainerID");
-            }
-        }
-
-        public bool IsContainer
-        {
-            get
-            {
-                return GetMember<bool>("IsContainer");
-            }
-        }
-
-        public bool InContainer
-        {
-            get
-            {
-                return GetMember<bool>("InContainer");
-            }
-        }
-
-        public int NumSlots
-        {
-            get
-            {
-                return GetMember<int>("NumSlots");
-            }
-        }
-
-        public string Satiation
-        {
-            get
-            {
-                return GetMember<string>("Satiation");
-            }
-        }
-
-        public int Level
-        {
-            get
-            {
-                return GetMember<int>("Level");
-            }
-        }
-
-        public bool IsActivatable
-        {
-            get
-            {
-                return GetMember<bool>("IsActivatable");
-            }
-        }
-
         public float CastingTime
         {
             get
@@ -484,64 +518,25 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int NumEffects
+        public int NumModifiers
         {
             get
             {
-                return GetMember<int>("NumEffects");
+                return GetMember<int>("NumModifiers");
             }
         }
 
-        public bool EffectName(int EffectNum)
+        public ItemModifier Modifier(int Index)
         {
-            return GetMember<bool>("EffectName", EffectNum.ToString());
+            LavishScriptObject Obj = GetMember("Modifier", Index.ToString());
+            return new ItemModifier(Obj);
         }
 
-        public bool EffectDescription(int EffectNum)
-        {
-            return GetMember<bool>("EffectDescription", EffectNum.ToString());
-        }
-
-        public float Duration
+        public bool Attuned
         {
             get
             {
-                return GetMember<float>("Duration");
-            }
-        }
-
-        public int NumClasses 
-        {
-            get
-            {
-                return GetMember<int>("NumClasses");
-            }
-        }
-
-        public Class Class(int ClassNum)
-        {
-            LavishScriptObject Obj = GetMember("Class", ClassNum.ToString());
-            return new Class(Obj);
-        }
-
-        public int NumEquipSlots
-        {
-            get
-            {
-                return GetMember<int>("NumEquipSlots");
-            }
-        }
-
-        public string EquipSlot(int EquipSlotNum)
-        {
-            return GetMember<string>("EquipSlot", EquipSlotNum.ToString());
-        }
-
-        public bool Artifact
-        {
-            get
-            {
-                return GetMember<bool>("Artifact");
+                return GetMember<bool>("Attuned");
             }
         }
 
@@ -553,11 +548,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool Attuned
+        public bool Artifact
         {
             get
             {
-                return GetMember<bool>("Attuned");
+                return GetMember<bool>("Artifact");
             }
         }
 
@@ -569,11 +564,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool NoDestroy
+        public bool Temporary
         {
             get
             {
-                return GetMember<bool>("NoDestroy");
+                return GetMember<bool>("Temporary");
             }
         }
 
@@ -601,59 +596,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool Temporary
+        public bool NoDestroy
         {
             get
             {
-                return GetMember<bool>("Temporary");
-            }
-        }
-
-        public int Agility
-        {
-            get
-            {
-                return GetMember<int>("Agility");
-            }
-        }
-
-        public int Crushing
-        {
-            get
-            {
-                return GetMember<int>("Crushing");
-            }
-        }
-
-        public int Defense
-        {
-            get
-            {
-                return GetMember<int>("Defense");
-            }
-        }
-
-        public int Deflection
-        {
-            get
-            {
-                return GetMember<int>("Deflection");
-            }
-        }
-
-        public int Disruption
-        {
-            get
-            {
-                return GetMember<int>("Disruption");
-            }
-        }
-
-        public int Focus
-        {
-            get
-            {
-                return GetMember<int>("Focus");
+                return GetMember<bool>("NoDestroy");
             }
         }
 
@@ -665,58 +612,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Intelligence
-        {
-            get
-            {
-                return GetMember<int>("Intelligence");
-            }
-        }
-
-        public int Ministration
-        {
-            get
-            {
-                return GetMember<int>("Ministration");
-            }
-        }
-
-        public int Ordination
-        {
-            get
-            {
-                return GetMember<int>("Ordination");
-            }
-        }
-        public int Piercing
-        {
-            get
-            {
-                return GetMember<int>("Piercing");
-            }
-        }
-
         public int Power
         {
             get
             {
                 return GetMember<int>("Power");
-            }
-        }
-
-        public int Slashing
-        {
-            get
-            {
-                return GetMember<int>("Slashing");
-            }
-        }
-
-        public int Stamina
-        {
-            get
-            {
-                return GetMember<int>("Stamina");
             }
         }
 
@@ -728,11 +628,19 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Subjugation
+        public int Intelligence
         {
             get
             {
-                return GetMember<int>("Subjugation");
+                return GetMember<int>("Intelligence");
+            }
+        }
+
+        public int Agility
+        {
+            get
+            {
+                return GetMember<int>("Agility");
             }
         }
 
@@ -744,6 +652,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int Stamina
+        {
+            get
+            {
+                return GetMember<int>("Stamina");
+            }
+        }
+
         public int vsCold
         {
             get
@@ -752,11 +668,11 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int vsCrushing
+        public int vsMagic
         {
             get
             {
-                return GetMember<int>("vsCrushing");
+                return GetMember<int>("vsMagic");
             }
         }
 
@@ -768,11 +684,59 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int vsMental
+        {
+            get
+            {
+                return GetMember<int>("vsMental");
+            }
+        }
+
         public int vsDivine
         {
             get
             {
                 return GetMember<int>("vsDivine");
+            }
+        }
+
+        public int vsPoison
+        {
+            get
+            {
+                return GetMember<int>("vsPoison");
+            }
+        }
+
+        public int vsHeat
+        {
+            get
+            {
+                return GetMember<int>("vsHeat");
+            }
+        }
+
+        public int vsCrushing
+        {
+            get
+            {
+                return GetMember<int>("vsCrushing");
+            }
+        }
+
+        public int vsSlashing
+        {
+            get
+            {
+                return GetMember<int>("vsSlashing");
+            }
+        }
+
+        public int vsPiercing
+        {
+            get
+            {
+                return GetMember<int>("vsPiercing");
             }
         }
 
@@ -792,30 +756,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int vsHeat
-        {
-            get
-            {
-                return GetMember<int>("vsHeat");
-            }
-        }
-
-        public int vsMagic
-        {
-            get
-            {
-                return GetMember<int>("vsMagic");
-            }
-        }
-
-        public int vsMental
-        {
-            get
-            {
-                return GetMember<int>("vsMental");
-            }
-        }
-
         public int vsPainAndSuffering
         {
             get
@@ -824,27 +764,285 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int vsPiercing
+        public int Focus
         {
             get
             {
-                return GetMember<int>("vsPiercing");
+                return GetMember<int>("Focus");
             }
         }
 
-        public int vsPoison
+        public int Defense
         {
             get
             {
-                return GetMember<int>("vsPoison");
+                return GetMember<int>("Defense");
             }
         }
 
-        public int vsSlashing
+        public int Disruption
         {
             get
             {
-                return GetMember<int>("vsSlashing");
+                return GetMember<int>("Disruption");
+            }
+        }
+
+        public int Ministration
+        {
+            get
+            {
+                return GetMember<int>("Ministration");
+            }
+        }
+
+        public int Ordination
+        {
+            get
+            {
+                return GetMember<int>("Ordination");
+            }
+        }
+
+        public int Subjugation
+        {
+            get
+            {
+                return GetMember<int>("Subjugation");
+            }
+        }
+
+        public int Crushing
+        {
+            get
+            {
+                return GetMember<int>("Crushing");
+            }
+        }
+
+        public int Piercing
+        {
+            get
+            {
+                return GetMember<int>("Piercing");
+            }
+        }
+
+        public int Slashing
+        {
+            get
+            {
+                return GetMember<int>("Slashing");
+            }
+        }
+
+        public int Deflection
+        {
+            get
+            {
+                return GetMember<int>("Deflection");
+            }
+        }
+
+        public int ID
+        {
+            get
+            {
+                return GetMember<int>("ID");
+            }
+        }
+
+        public bool IsReady
+        {
+            get
+            {
+                return GetMember<bool>("IsReady");
+            }
+        }
+
+        public bool IsActivatable
+        {
+            get
+            {
+                return GetMember<bool>("IsActivatable");
+            }
+        }
+
+        public float TimeUntilReady
+        {
+            get
+            {
+                return GetMember<float>("TimeUntilReady");
+            }
+        }
+
+        public string SubType
+        {
+            get
+            {
+                return GetMember<string>("SubType");
+            }
+        }
+
+        public int NumEffects
+        {
+            get
+            {
+                return GetMember<int>("NumEffects");
+            }
+        }
+
+        public bool EffectName(int EffectNum)
+        {
+            return GetMember<bool>("EffectName", EffectNum.ToString());
+        }
+
+        public bool EffectDescription(int EffectNum)
+        {
+            return GetMember<bool>("EffectDescription", EffectNum.ToString());
+        }
+
+        public string DamageType
+        {
+            get
+            {
+                return GetMember<string>("DamageType");
+            }
+        }
+
+        public string DamageTypeVerb
+        {
+            get
+            {
+                return GetMember<string>("DamageTypeVerb");
+            }
+        }
+
+        public float Weight
+        {
+            get
+            {
+                return GetMember<float>("Weight");
+            }
+        }
+
+        public int Parry
+        {
+            get
+            {
+                return GetMember<int>("Parry");
+            }
+        }
+
+        public string AdornmentDescription
+        {
+            get
+            {
+                return GetMember<string>("AdornmentDescription");
+            }
+        }
+
+        public bool Ornate
+        {
+            get
+            {
+                return GetMember<bool>("Ornate");
+            }
+        }
+
+        public bool RequiresQeynosCitizenship
+        {
+            get
+            {
+                return GetMember<bool>("RequiresQeynosCitizenship");
+            }
+        }
+
+        public bool RequiresFreeportCitizenship
+        {
+            get
+            {
+                return GetMember<bool>("RequiresFreeportCitizenship");
+            }
+        }
+
+        public bool RequiresKelethinCitizenship
+        {
+            get
+            {
+                return GetMember<bool>("RequiresKelethinCitizenship");
+            }
+        }
+
+        public bool RequiresNeriakCitizenship
+        {
+            get
+            {
+                return GetMember<bool>("RequiresNeriakCitizenship");
+            }
+        }
+
+        public bool IsReserved
+        {
+            get
+            {
+                return GetMember<bool>("IsReserved");
+            }
+        }
+
+        public bool IsScribeable
+        {
+            get
+            {
+                return GetMember<bool>("IsScribable");
+            }
+        }
+
+        public bool CanScribeNow
+        {
+            get
+            {
+                return GetMember<bool>("CanScribeNow");
+            }
+        }
+
+        public bool AutoConsumeOn
+        {
+            get
+            {
+                return GetMember<bool>("AutoConsumeOn");
+            }
+        }
+
+        public bool IsAutoConsumeable
+        {
+            get
+            {
+                return GetMember<bool>("IsAutoConsumeOn");
+            }
+        }
+
+        public bool IsFoodOrDrink
+        {
+            get
+            {
+                return GetMember<bool>("IsFoodOrDrink");
+            }
+        }
+
+        public bool CanBeRedeemed
+        {
+            get
+            {
+                return GetMember<bool>("CanBeRedeemed");
+            }
+        }
+
+        public bool IsEquipped
+        {
+            get
+            {
+                return GetMember<bool>("IsEquipped");
             }
         }
 
@@ -861,36 +1059,6 @@ namespace EQ2.ISXEQ2
         public bool Destroy(int Quantity)
         {
             return ExecuteMethod("Destroy", Quantity.ToString());
-        }
-
-        public bool Equip()
-        {
-            return ExecuteMethod("Equip");
-        }
-
-        public bool UnEquip()
-        {
-            return ExecuteMethod("UnEquip");
-        }
-
-        public bool Consume()
-        {
-            return ExecuteMethod("Consume");
-        }
-
-        public bool Examine()
-        {
-            return ExecuteMethod("Examine");
-        }
-
-        public bool Open()
-        {
-            return ExecuteMethod("Open");
-        }
-
-        public bool Use()
-        {
-            return ExecuteMethod("Use");
         }
 
         public bool Move(int BagSlotNum, int BagID)
@@ -914,14 +1082,34 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("Move", BagSlotNum.ToString(), BagID.ToString(), Quantity.ToString());
         }
 
-        public bool RemoveFlag(int BitFlag)
+        public bool Equip()
         {
-            return ExecuteMethod("RemoveFlag", BitFlag.ToString());
+            return ExecuteMethod("Equip");
         }
 
-        public string ToLink(string LinkName)
+        public bool UnEquip()
         {
-            return GetMember<string>("ToLink", LinkName);
+            return ExecuteMethod("UnEquip");
+        }
+
+        public bool Consume()
+        {
+            return ExecuteMethod("Consume");
+        }
+
+        public bool Examine()
+        {
+            return ExecuteMethod("Examine");
+        }
+
+        public bool Use()
+        {
+            return ExecuteMethod("Use");
+        }
+
+        public bool Open()
+        {
+            return ExecuteMethod("Open");
         }
 
         public bool SendAsGift()
@@ -934,6 +1122,11 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("SendAsGift", Quantity.ToString());
         }
 
+        public bool InstallAsVendingContainer()
+        {
+            return ExecuteMethod("InstallAsVendingContainer");
+        }
+
         public bool AddToConsignment()
         {
             return ExecuteMethod("AddToConsignment");
@@ -944,62 +1137,34 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("AddToConsignment", Quantity.ToString());
         }
 
-        public bool AddToConsignment(int Quantity,int VendorIndex)
+        public bool AddToConsignment(int Quantity, int VendorIndex)
         {
             return ExecuteMethod("AddToConsignment", Quantity.ToString(), VendorIndex.ToString());
         }
 
-        public bool InstallAsVendingContainer()
+        public bool Transmute(bool Ask)
         {
-            return ExecuteMethod("InstallAsVendingContainer");
+            if (Ask)
+                return ExecuteMethod("Transmute", "askmefirst");
+            return ExecuteMethod("Transmute");
         }
 
-        public bool InInventory
+        public bool Sacrifice(bool Ask)
         {
-            get
-            {
-                return GetMember<bool>("InInventory");
-            }
+            if (Ask)
+                return ExecuteMethod("Sacrifice", "With Confirmation");
+            return ExecuteMethod("Sacrifice");
         }
 
-        public bool InInventorySlot
+        public bool Scribe()
         {
-            get
-            {
-                return GetMember<bool>("InInventorySlot");
-            }
+            return ExecuteMethod("Scribe");
         }
 
-        public bool IsInventoryContainer
+        public bool ToggleAutoConsume()
         {
-            get
-            {
-                return GetMember<bool>("IsInventoryContainer");
-            }
+            return ExecuteMethod("ToggleAutoConsume");
         }
 
-        public bool IsBankContainer
-        {
-            get
-            {
-                return GetMember<bool>("IsBankContainer");
-            }
-        }
-
-        public bool IsSharedBankContainer
-        {
-            get
-            {
-                return GetMember<bool>("IsSharedBankContainer");
-            }
-        }
-
-        public int NumSlotsFree
-        {
-            get
-            {
-                return GetMember<int>("NumSlotsFree");
-            }
-        }
     }
 }

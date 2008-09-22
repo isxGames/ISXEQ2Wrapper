@@ -13,12 +13,12 @@ namespace EQ2.ISXEQ2
             : base(Obj)
         {
         }
-
+/*
         public Component()
             : base(LavishScript.Objects.GetObject("Component"))
         {
         }
-
+*/
         public string Name
         {
             get

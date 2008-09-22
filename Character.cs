@@ -1304,9 +1304,9 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool CheckCollision(Point3f CollisionTo)
+        public bool CheckCollision(float X, float Y, float Z)
         {
-            return GetMember<bool>("CheckCollision",CollisionTo.X.ToString(),CollisionTo.Y.ToString(),CollisionTo.Z.ToString());
+            return GetMember<bool>("CheckCollision",X.ToString(),Y.ToString(),Z.ToString());
         }
 
         public bool IsDecliningGuildInvites

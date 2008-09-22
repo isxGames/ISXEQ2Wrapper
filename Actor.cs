@@ -14,8 +14,8 @@ namespace EQ2.ISXEQ2
         {
         }
 
-        public Actor()
-            : base(LavishScript.Objects.GetObject("Actor"))
+        public Actor(params string[] Args)
+            : base(LavishScript.Objects.GetObject("Actor", Args))
         {
         }
 
