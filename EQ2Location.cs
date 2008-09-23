@@ -15,7 +15,12 @@ namespace EQ2.ISXEQ2
         {
         }
 
-        public string Label
+		public EQ2Location(Int32 Index) 
+			: base(LavishScript.Objects.GetObject("EQ2Loc", Index.ToString()))
+		{
+		}
+
+		public string Label
         {
             get
             {
@@ -79,4 +84,18 @@ namespace EQ2.ISXEQ2
         }
 
     }
+
+	public class EQ2LocationAllZones : EQ2Location
+	{
+
+		public EQ2LocationAllZones(LavishScriptObject Obj)
+			: base(Obj)
+		{
+		}
+
+		public EQ2LocationAllZones(Int32 Index)
+			: base(LavishScript.Objects.GetObject("EQ2Loc", Index.ToString(), "AllZones"))
+		{
+		}
+	}
 }
