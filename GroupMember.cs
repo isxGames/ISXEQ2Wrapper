@@ -71,7 +71,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<int>("Power");
+                return GetMember<int>("MaxPower");
             }
         }
 
