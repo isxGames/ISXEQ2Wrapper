@@ -51,23 +51,27 @@ namespace EQ2.ISXEQ2
             return new EQ2UIElement(Obj);
         }
 
-        public EQ2Location EQ2Loc(int Index, bool AllZones)
+        public EQ2Location EQ2Loc(int Index)
         {
-            LavishScriptObject Obj;
-            if (AllZones)
-                Obj = LavishScript.Objects.GetObject("EQ2Loc", Index.ToString(), "AllZones");
-            else
-                Obj = LavishScript.Objects.GetObject("EQ2Loc", Index.ToString());
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("EQ2Loc", Index.ToString());
             return new EQ2Location(Obj);
         }
 
-        public EQ2Location EQ2Loc(string Label, bool AllZones)
+        public EQ2Location EQ2LocAllZones(int Index)
         {
-            LavishScriptObject Obj;
-            if (AllZones)
-                Obj = LavishScript.Objects.GetObject("EQ2Loc", Label, "AllZones");
-            else
-                Obj = LavishScript.Objects.GetObject("EQ2Loc", Label);
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("EQ2Loc", Index.ToString(), "AllZones");
+            return new EQ2Location(Obj);
+        }
+
+        public EQ2Location EQ2Loc(string Label)
+        {
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("EQ2Loc", Label);
+            return new EQ2Location(Obj);
+        }
+
+        public EQ2Location EQ2LocAllZones(string Label)
+        {
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("EQ2Loc", Label, "AllZones");
             return new EQ2Location(Obj);
         }
 
@@ -105,6 +109,12 @@ namespace EQ2.ISXEQ2
         {
             LavishScriptObject Obj = LavishScript.Objects.GetObject("LootWindow");
             return new LootWindow(Obj);
+        }
+
+        public ChoiceWindow ChoiceWindow()
+        {
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("ChoiceWindow");
+            return new ChoiceWindow(Obj);
         }
 
         public Character Me()

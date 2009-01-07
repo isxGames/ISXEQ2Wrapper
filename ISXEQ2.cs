@@ -31,12 +31,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int EQ2LocsCount(bool AllZones)
+        public int EQ2LocsCount
         {
-            if (AllZones)
-                return GetMember<int>("EQ2LocsCount", "AllZones");
-            return GetMember<int>("EQ2LocsCount");
+            get
+            {
+                return GetMember<int>("EQ2LocsCount");
+            }
         }
+
+        public int EQ2LocsCountAllZones
+        {
+            get
+            {
+                return GetMember<int>("EQ2LocsCount", "AllZones");
+            }
+        }
+
 
         public bool IsValidEQ2PressKey(string KeyName)
         {

@@ -14,6 +14,11 @@ namespace EQ2.ISXEQ2
         {
         }
 
+        public ChoiceWindow()
+            : base(LavishScript.Objects.GetObject("ChoiceWindow"))
+        {
+        }
+
         public EQ2UIPage ToEQ2UIPage
         {
             get
