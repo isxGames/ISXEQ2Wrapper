@@ -7,10 +7,25 @@ using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
-    public class Radar : LavishScriptObject
+    public class Radar : LavishScriptPersistentObject
     {
-        public Radar(LavishScriptObject Obj)
+        public Radar(LavishScriptPersistentObject Obj)
             : base(Obj)
+        {
+        }
+
+        public Radar(params string[] Args)
+            : base(LavishScript.Objects.GetPersistentObject("Radar", Args))
+        {
+        }
+
+        public Radar(int Index)
+            : base(LavishScript.Objects.GetPersistentObject("Radar", Index.ToString()))
+        {
+        }
+
+        public Radar()
+            : base(LavishScript.Objects.GetPersistentObject("Radar", "1"))
         {
         }
 

@@ -7,14 +7,14 @@ using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
-    public class Character : LavishScriptObject
+    public class Character : LavishScriptPersistentObject
     {
         public Character()
-            : base(LavishScript.Objects.GetObject("Me"))
+            : base(LavishScript.Objects.GetPersistentObject("Me"))
         {
         }
 
-        public Character(LavishScriptObject Copy)
+        public Character(LavishScriptPersistentObject Copy)
             : base(Copy)
         {
         }

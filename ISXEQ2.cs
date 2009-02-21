@@ -7,11 +7,15 @@ using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
-    public class ISXEQ2 : LavishScriptObject
+    public class ISXEQ2 : LavishScriptPersistentObject
     {
+        public ISXEQ2(LavishScriptPersistentObject Copy)
+            : base(Copy)
+        {
+        }
 
-        public ISXEQ2(LavishScriptObject Obj)
-            : base(Obj)
+        public ISXEQ2()
+            : base(LavishScript.Objects.GetPersistentObject("ISXEQ2"))
         {
         }
 

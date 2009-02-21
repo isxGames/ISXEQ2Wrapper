@@ -8,19 +8,20 @@ using LavishVMAPI;
 
 namespace EQ2.ISXEQ2
 {
-    public class EQ2 : LavishScriptObject
+    public class EQ2 : LavishScriptPersistentObject
     {
         public EQ2()
             :
-            base(LavishScript.Objects.GetObject("EQ2"))
+            base(LavishScript.Objects.GetPersistentObject("EQ2"))
         {
         }
 
-        public EQ2(LavishScriptObject Copy)
+        public EQ2(LavishScriptPersistentObject Copy)
             :
             base(Copy)
         {
         }
+
         public string ServerName
         {
             get
