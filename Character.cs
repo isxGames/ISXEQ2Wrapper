@@ -892,6 +892,12 @@ namespace EQ2.ISXEQ2
             return new Ability(Obj);
         }
 
+        public Ability AbilityByID(uint AbilityID)
+        {
+            LavishScriptObject Obj = GetMember("Ability", "id", AbilityID.ToString());
+            return new Ability(Obj);
+        }
+
         public Ability Ability(string AbilityName)
         {
             LavishScriptObject Obj = GetMember("Ability", AbilityName);
