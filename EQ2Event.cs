@@ -1,3 +1,6 @@
+// Disable all XML Comment warnings in this file // 
+#pragma warning disable 1591 
+
 using System;
 using System.Text;
 
@@ -24,6 +27,13 @@ namespace EQ2.ISXEQ2
         public event System.EventHandler<LSEventArgs> ChoiceWindowAppeared;
         public event System.EventHandler<LSEventArgs> SendMailComplete;
         public event System.EventHandler<LSEventArgs> IncomingText;
+        public event System.EventHandler<LSEventArgs> MeAfflicted;
+        public event System.EventHandler<LSEventArgs> GroupMemberAfflicted;
+        public event System.EventHandler<LSEventArgs> RaidMemberAfflicted;
+        public event System.EventHandler<LSEventArgs> ActorTargetChange;
+        public event System.EventHandler<LSEventArgs> ActorStanceChange;
+        public event System.EventHandler<LSEventArgs> ActorHealthChange;
+        public event System.EventHandler<LSEventArgs> ActorPowerChange;
 
         #endregion
 
@@ -113,6 +123,55 @@ namespace EQ2.ISXEQ2
                 temp(Sender, e);
         }
 
+        protected virtual void OnMeAfflicted(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = MeAfflicted;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
+        protected virtual void OnGroupMemberAfflicted(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = GroupMemberAfflicted;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
+        protected virtual void OnRaidMemberAfflicted(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = RaidMemberAfflicted;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
+        protected virtual void OnActorTargetChange(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = ActorTargetChange;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
+        protected virtual void OnActorStanceChange(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = ActorStanceChange;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
+        protected virtual void OnActorHealthChange(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = ActorHealthChange;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
+        protected virtual void OnActorPowerChange(object Sender, LSEventArgs e)
+        {
+            System.EventHandler<LSEventArgs> temp = ActorPowerChange;
+            if (temp != null)
+                temp(Sender, e);
+        }
+
         #endregion
 
         //
@@ -130,6 +189,13 @@ namespace EQ2.ISXEQ2
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingText"), OnIncomingText);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onMeAfflicted"), OnMeAfflicted);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onGroupMemberAfflicted"), OnGroupMemberAfflicted);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorTargetChange"), OnActorTargetChange);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorStanceChange"), OnActorStanceChange);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorHealthChange"), OnActorHealthChange);
+            LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorPowerChange"), OnActorPowerChange);
 
         }
 
@@ -148,6 +214,13 @@ namespace EQ2.ISXEQ2
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
             LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingText"), OnIncomingText);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onMeAfflicted"), OnMeAfflicted);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onGroupMemberAfflicted"), OnGroupMemberAfflicted);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorTargetChange"), OnActorTargetChange);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorStanceChange"), OnActorStanceChange);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorHealthChange"), OnActorHealthChange);
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_ActorPowerChange"), OnActorPowerChange);
         }
     }
 }

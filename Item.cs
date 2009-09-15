@@ -1,3 +1,6 @@
+// Disable all XML Comment warnings in this file // 
+#pragma warning disable 1591 
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -942,6 +945,30 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool InNoSaleContainer
+        {
+            get
+            {
+                return GetMember<bool>("InNoSaleContainer");
+            }
+        }
+
+        public bool ContentsForSale
+        {
+            get
+            {
+                return GetMember<bool>("ContentsForSale");
+            }
+        }
+
+        public int EmptySlots
+        {
+            get
+            {
+                return GetMember<int>("EmptySlots");
+            }
+        }
+
         public bool Ornate
         {
             get
@@ -950,35 +977,43 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool RequiresQeynosCitizenship
+        public bool Good
         {
             get
             {
-                return GetMember<bool>("RequiresQeynosCitizenship");
+                return GetMember<bool>("Good");
             }
         }
 
-        public bool RequiresFreeportCitizenship
+        public bool Evil
         {
             get
             {
-                return GetMember<bool>("RequiresFreeportCitizenship");
+                return GetMember<bool>("Evil");
             }
         }
 
-        public bool RequiresKelethinCitizenship
+        public bool Heirloom
         {
             get
             {
-                return GetMember<bool>("RequiresKelethinCitizenship");
+                return GetMember<bool>("Heirloom");
             }
         }
 
-        public bool RequiresNeriakCitizenship
+        public bool AppearanceOnly
         {
             get
             {
-                return GetMember<bool>("RequiresNeriakCitizenship");
+                return GetMember<bool>("AppearanceOnly");
+            }
+        }
+
+        public bool LoreOnEquip
+        {
+            get
+            {
+                return GetMember<bool>("LoreOnEquip");
             }
         }
 
@@ -1174,6 +1209,16 @@ namespace EQ2.ISXEQ2
         public bool ToggleAutoConsume()
         {
             return ExecuteMethod("ToggleAutoConsume");
+        }
+
+        public bool AddToDepot(int DepotID)
+        {
+            return ExecuteMethod("AddToDepot", DepotID.ToString());
+        }
+
+        public bool AddToDepot(int DepotID, int Quantity)
+        {
+            return ExecuteMethod("AddToDepot", DepotID.ToString(), Quantity.ToString());
         }
 
     }

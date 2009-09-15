@@ -1,3 +1,6 @@
+// Disable all XML Comment warnings in this file // 
+#pragma warning disable 1591 
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -567,6 +570,15 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public Point3f Velocity
+        {
+            get
+            {
+                LavishScriptObject Obj = GetMember("Velocity");
+                return new Point3f(Obj);
+            }
+        }
+
         public Point3f Loc
         {
             get
@@ -656,6 +668,30 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<float>("CollisionScale");
+            }
+        }
+
+        public float Distance2D
+        {
+            get
+            {
+                return GetMember<float>("Distance2D");
+            }
+        }
+
+        public int ThreatToMe
+        {
+            get
+            {
+                return GetMember<int>("ThreatToMe");
+            }
+        }
+
+        public int ThreatToNext
+        {
+            get
+            {
+                return GetMember<int>("ThreatToNext");
             }
         }
 

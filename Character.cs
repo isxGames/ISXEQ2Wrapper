@@ -1,3 +1,6 @@
+// Disable all XML Comment warnings in this file // 
+#pragma warning disable 1591 
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -682,6 +685,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool GuildPrivacyOn
+        {
+            get
+            {
+                return GetMember<bool>("GuildPrivacyOn");
+            }
+        }
+
         public Maintained Maintained(int MaintainedNum)
         {
             LavishScriptObject Obj = GetMember("Maintained", MaintainedNum.ToString());
@@ -929,6 +940,21 @@ namespace EQ2.ISXEQ2
             LavishScriptObject Obj = GetMember("Recipe", Recipename);
             return new Recipe(Obj);
         }
+
+        public EQ2UIElement GetGameData(string VariableString)
+        {
+            LavishScriptObject Obj = GetMember("GetGameData", VariableString);
+            return new EQ2UIElement(Obj);
+        }
+
+        public bool InitializingEffects
+        {
+            get
+            {
+                return GetMember<bool>("InitializingEffects");
+            }
+        }
+
 
         public bool IsMoving
         {

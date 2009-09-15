@@ -1,3 +1,6 @@
+// Disable all XML Comment warnings in this file // 
+#pragma warning disable 1591 
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -50,6 +53,24 @@ namespace EQ2.ISXEQ2
                 return GetMember<int>("EQ2LocsCount", "AllZones");
             }
         }
+
+        public bool InitializingActorEffects
+        {
+            get
+            {
+                return GetMember<bool>("InitializingActorEffects");
+            }
+        }
+
+        public bool AfflictionEventsOn
+        {
+            get
+            {
+                return GetMember<bool>("AfflictionEventsOn");
+            }
+        }
+
+
 
 
         public bool IsValidEQ2PressKey(string KeyName)
@@ -106,6 +127,31 @@ namespace EQ2.ISXEQ2
         public void Popup(params string[] Args)
         {
             ExecuteMethod("Popup", Args);
+        }
+
+        public void EnableAfflictionEvents()
+        {
+            ExecuteMethod("EnableAfflictionEvents");
+        }
+
+        public void DisableAfflictionEvents()
+        {
+            ExecuteMethod("DisableAfflictionEvents");
+        }
+
+        public void SetAfflictionEventsTimeInterval(int Milliseconds)
+        {
+            ExecuteMethod("SetAfflictionEventsTimeInterval", Milliseconds.ToString());
+        }
+
+        public void EnableActorEvents()
+        {
+            ExecuteMethod("EnableActorEvents");
+        }
+
+        public void DisableActorEvents()
+        {
+            ExecuteMethod("DisableActorEvents");
         }
 
     }

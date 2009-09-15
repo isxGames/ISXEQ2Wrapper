@@ -1,3 +1,6 @@
+// Disable all XML Comment warnings in this file // 
+#pragma warning disable 1591 
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -223,6 +226,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool ShowingUnknowns
+        {
+            get
+            {
+                return GetMember<bool>("ShowingUnknowns");
+            }
+        }
+
+        public bool ColorizingLabels
+        {
+            get
+            {
+                return GetMember<bool>("ColorizingLabels");
+            }
+        }
+
         public void FilterMe()
         {
             ExecuteMethod("FilterMe");
@@ -326,6 +345,16 @@ namespace EQ2.ISXEQ2
         public void FilterDoors()
         {
             ExecuteMethod("FilterDoors");
+        }
+
+        public void FilterUnknowns()
+        {
+            ExecuteMethod("FilterUnknowns");
+        }
+
+        public void ColorizeLabels()
+        {
+            ExecuteMethod("ColorizeLabels");
         }
 
     }
