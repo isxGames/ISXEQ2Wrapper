@@ -1221,5 +1221,10 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("AddToDepot", DepotID.ToString(), Quantity.ToString());
         }
 
+        public bool EnchantItem(int ItemID)
+        {
+            return ExecuteMethod("EnchantITem", ItemID.ToString());
+        }
+
     }
 }
