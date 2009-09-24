@@ -166,21 +166,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Attack
-        {
-            get
-            {
-                return GetMember<int>("Attack");
-            }
-        }
-
-        public int BaseAttack
-        {
-            get
-            {
-                return GetMember<int>("BaseAttack");
-            }
-        }
         public float Mitigation
         {
             get
