@@ -38,11 +38,11 @@ namespace EQ2.ISXEQ2
             get { return GetMember<int>("CustomActorArraySize"); }
         }
 
-        public bool Zoning
+        public int Zoning
         {
             get
             {
-                return GetMember<bool>("Zoning");
+                return GetMember<int>("Zoning");
             }
         }
 
