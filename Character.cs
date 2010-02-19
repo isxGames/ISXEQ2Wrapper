@@ -222,22 +222,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float Deflection
-        {
-            get
-            {
-                return GetMember<float>("Deflection");
-            }
-        }
-
-        public float BaseDeflection
-        {
-            get
-            {
-                return GetMember<float>("BaseDeflection");
-            }
-        }
-
         public float Block
         {
             get
@@ -334,115 +318,51 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int HeatRes
+        public int ElementalResist
         {
             get
             {
-                return GetMember<int>("HeatRes");
+                return GetMember<int>("ElementalResist");
             }
         }
 
-        public int ColdRes
+        public int NoxiousResist
         {
             get
             {
-                return GetMember<int>("ColdRes");
+                return GetMember<int>("NoxiousResist");
             }
         }
 
-        public int MagicRes
+        public int ArcaneResist
         {
             get
             {
-                return GetMember<int>("MagicRes");
+                return GetMember<int>("ArcaneResist");
             }
         }
 
-        public int MentalRes
+        public int ElementalResistPct
         {
             get
             {
-                return GetMember<int>("MentalRes");
+                return GetMember<int>("ElementalResistPct");
             }
         }
 
-        public int DivineRes
+        public int NoxiousResistPct
         {
             get
             {
-                return GetMember<int>("DivineRes");
+                return GetMember<int>("NoxiousResistPct");
             }
         }
 
-        public int DiseaseRes
+        public int ArcaneResistPct
         {
             get
             {
-                return GetMember<int>("DiseaseRes");
-            }
-        }
-
-        public int PoisonRes
-        {
-            get
-            {
-                return GetMember<int>("PoisonRes");
-            }
-        }
-
-        public int BaseHeatRes
-        {
-            get
-            {
-                return GetMember<int>("BaseHeatRes");
-            }
-        }
-
-        public int BaseColdRes
-        {
-            get
-            {
-                return GetMember<int>("BaseColdRes");
-            }
-        }
-
-        public int BaseMagicRes
-        {
-            get
-            {
-                return GetMember<int>("BaseMagicRes");
-            }
-        }
-
-        public int BaseMentalRes
-        {
-            get
-            {
-                return GetMember<int>("BaseMentalRes");
-            }
-        }
-
-        public int BaseDivineRes
-        {
-            get
-            {
-                return GetMember<int>("BaseDivineRes");
-            }
-        }
-
-        public int BaseDiseaseRes
-        {
-            get
-            {
-                return GetMember<int>("BaseDiseaseRes");
-            }
-        }
-
-        public int BasePoisonRes
-        {
-            get
-            {
-                return GetMember<int>("BasePoisonRes");
+                return GetMember<int>("ArcaneResistPct");
             }
         }
 
@@ -1429,6 +1349,11 @@ namespace EQ2.ISXEQ2
         public bool TakeAllVendingCoin()
         {
             return ExecuteMethod("TakeAllVendingCoin");
+        }
+
+        public bool ResetZoneTimer(string ZoneName)
+        {
+            return ExecuteMethod("ResetZoneTimer", ZoneName.ToString());
         }
 /*
         public bool BankDeposit()

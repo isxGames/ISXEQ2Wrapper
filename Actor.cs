@@ -628,6 +628,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public bool Interactable
+        {
+            get
+            {
+                return GetMember<bool>("Interactable");
+            }
+        }
+
         public Actor ToActor
         {
             get

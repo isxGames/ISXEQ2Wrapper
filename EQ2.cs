@@ -46,6 +46,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public uint PersistentZoneID
+        {
+            get
+            {
+                return GetMember<uint>("PersistentZoneID");
+            }
+        }
+
         public bool HOWindowActive
         {
             get

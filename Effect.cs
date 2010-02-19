@@ -54,6 +54,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int BackDropIconID
+        {
+            get
+            {
+                return GetMember<int>("BackDropIconID");
+            }
+        }
+
+        public int MainIconID
+        {
+            get
+            {
+                return GetMember<int>("MainIconID");
+            }
+        }
+
         public int ID
         {
             get
