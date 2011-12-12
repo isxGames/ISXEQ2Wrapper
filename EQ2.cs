@@ -11,15 +11,15 @@ using LavishVMAPI;
 
 namespace EQ2.ISXEQ2
 {
-    public class EQ2 : LavishScriptPersistentObject
+    public class EQ2 : LavishScriptObject
     {
         public EQ2()
             :
-            base(LavishScript.Objects.GetPersistentObject("EQ2"))
+            base(LavishScript.Objects.GetObject("EQ2"))
         {
         }
 
-        public EQ2(LavishScriptPersistentObject Copy)
+        public EQ2(LavishScriptObject Copy)
             :
             base(Copy)
         {

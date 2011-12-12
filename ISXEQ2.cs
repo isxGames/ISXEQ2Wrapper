@@ -10,15 +10,15 @@ using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
-    public class ISXEQ2 : LavishScriptPersistentObject
+    public class ISXEQ2 : LavishScriptObject
     {
-        public ISXEQ2(LavishScriptPersistentObject Copy)
+        public ISXEQ2(LavishScriptObject Copy)
             : base(Copy)
         {
         }
 
         public ISXEQ2()
-            : base(LavishScript.Objects.GetPersistentObject("ISXEQ2"))
+            : base(LavishScript.Objects.GetObject("ISXEQ2"))
         {
         }
 

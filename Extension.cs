@@ -44,7 +44,7 @@ namespace EQ2.ISXEQ2
 
         public EQ2 EQ2()
         {
-            LavishScriptPersistentObject Obj = LavishScript.Objects.GetPersistentObject("EQ2");
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("EQ2");
             return new EQ2(Obj);
         }
 
@@ -104,7 +104,7 @@ namespace EQ2.ISXEQ2
 
         public ISXEQ2 ISXEQ2()
         {
-            LavishScriptPersistentObject Obj = LavishScript.Objects.GetPersistentObject("ISXEQ2");
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("ISXEQ2");
             return new ISXEQ2(Obj);
         }
 
@@ -122,25 +122,25 @@ namespace EQ2.ISXEQ2
 
         public Character Me()
         {
-            LavishScriptPersistentObject Obj = LavishScript.Objects.GetPersistentObject("Me");
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("Me");
             return new Character(Obj);
         }
 
         public Radar Radar()
         {
-            LavishScriptPersistentObject Obj = LavishScript.Objects.GetPersistentObject("Radar");
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("Radar");
             return new Radar(Obj);
         }
 
         public Radar Radar(int Index)
         {
-            LavishScriptPersistentObject Obj = LavishScript.Objects.GetPersistentObject("Radar", Index.ToString());
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("Radar", Index.ToString());
             return new Radar(Obj);
         }
 
         public Radar Radar(string Name)
         {
-            LavishScriptPersistentObject Obj = LavishScript.Objects.GetPersistentObject("Radar", Name);
+            LavishScriptObject Obj = LavishScript.Objects.GetObject("Radar", Name);
             return new Radar(Obj);
         }
 
