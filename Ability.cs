@@ -70,6 +70,22 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        public int SavageryCost
+        {
+            get
+            {
+                return GetMember<int>("SavageryCost");
+            }
+        }
+
+        public int SavageryCostPerTick
+        {
+            get
+            {
+                return GetMember<int>("SavageryCostPerTick");
+            }
+        }
+
         public int MainIconID
         {
             get

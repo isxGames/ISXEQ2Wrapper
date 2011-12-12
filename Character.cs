@@ -166,78 +166,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float Mitigation
-        {
-            get
-            {
-                return GetMember<float>("Mitigation");
-            }
-        }
-
-        public float OverallAvoidance
-        {
-            get
-            {
-                return GetMember<float>("OverallAvoidance");
-            }
-        }
-
-        public float BaseOverallAvoidance
-        {
-            get
-            {
-                return GetMember<float>("BaseOverallAvoidance");
-            }
-        }
-
-        public float Avoidance
-        {
-            get
-            {
-                return GetMember<float>("Avoidance");
-            }
-        }
-
-        public float BaseAvoidance
-        {
-            get
-            {
-                return GetMember<float>("BaseAvoidance");
-            }
-        }
-
-        public float Parry
-        {
-            get
-            {
-                return GetMember<float>("Parry");
-            }
-        }
-
-        public float BaseParry
-        {
-            get
-            {
-                return GetMember<float>("BaseParry");
-            }
-        }
-
-        public float Block
-        {
-            get
-            {
-                return GetMember<float>("Block");
-            }
-        }
-
-        public float BaseBlock
-        {
-            get
-            {
-                return GetMember<float>("BaseBlock");
-            }
-        }
-
         public int Strength
         {
             get
@@ -422,14 +350,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int CurrentStatus
-        {
-            get
-            {
-                return GetMember<int>("CurrentStatus");
-            }
-        }
-
         public float X
         {
             get
@@ -451,14 +371,6 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<float>("Y");
-            }
-        }
-
-        public int LifetimeGuildStatus
-        {
-            get
-            {
-                return GetMember<int>("LifetimeGuildStatus");
             }
         }
 
@@ -866,22 +778,6 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<bool>("IsMoving");
-            }
-        }
-
-        public string HouseLocation
-        {
-            get
-            {
-                return GetMember<string>("HouseLocation");
-            }
-        }
-
-        public string BindLocation
-        {
-            get
-            {
-                return GetMember<string>("BindLocation");
             }
         }
 
