@@ -326,22 +326,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Weight
-        {
-            get
-            {
-                return GetMember<int>("Weight");
-            }
-        }
-
-        public int MaxWeight
-        {
-            get
-            {
-                return GetMember<int>("MaxWeight");
-            }
-        }
-
         public string PetName
         {
             get
@@ -373,6 +357,47 @@ namespace EQ2.ISXEQ2
                 return GetMember<float>("Y");
             }
         }
+
+        public float VeteranBonus
+        {
+            get
+            {
+                return GetMember<int>("VeteranBonus");
+            }
+        }
+
+        public float ExpPoints
+        {
+            get
+            {
+                return GetMember<float>("ExpPoints");
+            }
+        }
+
+        public float ExpPointsToLevel
+        {
+            get
+            {
+                return GetMember<float>("ExpPointsToLevel");
+            }
+        }
+
+        public float TSExpPoints
+        {
+            get
+            {
+                return GetMember<float>("TSExpPoints");
+            }
+        }
+
+        public float TSExpPointsToLevel
+        {
+            get
+            {
+                return GetMember<float>("TSExpPointsToLevel");
+            }
+        }
+
 
         public bool CombatExpEnabled
         {
@@ -611,6 +636,12 @@ namespace EQ2.ISXEQ2
         public GroupMember Group(string GroupName)
         {
             LavishScriptObject Obj = GetMember("Group", GroupName);
+            return new GroupMember(Obj);
+        }
+
+        public GroupMember GroupMemberByID(int ID)
+        {
+            LavishScriptObject Obj = GetMember("Group", "id", ID.ToString());
             return new GroupMember(Obj);
         }
 
@@ -1251,22 +1282,46 @@ namespace EQ2.ISXEQ2
         {
             return ExecuteMethod("ResetZoneTimer", ZoneName.ToString());
         }
-/*
-        public bool BankDeposit()
+
+
+        public bool BankDeposit(string CoinType, int Amount)
         {
-            return false;
+            return ExecuteMethod("BankDeposit", CoinType.ToString(), Amount.ToString());
         }
 
-        public bool BankWithdraw()
+        /// <summary>
+        /// August 31, 2011 -- By Amadeus
+        /// Updated the 'BankDeposit' METHOD of the "character" datatype to utilize an *optional* 3rd parameter "FromShared"
+        /// </summary>
+        /// <param name="CoinType"></param>
+        /// <param name="Amount"></param>
+        /// <param name="Source"></param>
+        /// <returns></returns>
+        public bool BankDeposit(string CoinType, int Amount, string Source)
         {
-            return false;
+            return ExecuteMethod("BankDeposit", CoinType.ToString(), Amount.ToString(), Source.ToString());
         }
 
-        public bool GuildBankWithdraw()
+        public bool SharedBankDeposit(string CoinType, int Amount)
         {
-            return false;
+            return ExecuteMethod("SharedBankDeposit", CoinType.ToString(), Amount.ToString());
         }
-*/
+
+        public bool SharedBankDeposit(string CoinType, int Amount, string Source)
+        {
+            return ExecuteMethod("SharedBankDeposit", CoinType.ToString(), Amount.ToString(), Source.ToString());
+        }
+
+        public bool BankWithdrawl(string CoinType, int Amount)
+        {
+            return ExecuteMethod("BankWithdrawl", CoinType.ToString(), Amount.ToString());
+        }
+
+        public bool SharedBankWithdrawl(string CoinType, int Amount)
+        {
+            return ExecuteMethod("SharedBankWithdrawl", CoinType.ToString(), Amount.ToString());
+        }
+
         public bool InitializeEffects()
         {
             return ExecuteMethod("InitializeEffects");

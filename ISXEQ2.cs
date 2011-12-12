@@ -154,5 +154,13 @@ namespace EQ2.ISXEQ2
             ExecuteMethod("DisableActorEvents");
         }
 
+        /// <summary>
+        /// Clears the abilities cache which means it will be rebuilt automatically when abilities are next used
+        /// </summary>
+        public void ClearAbilitiesCache()
+        {
+            ExecuteMethod("ClearAbilitiesCache");
+        }
+
     }
 }

@@ -241,14 +241,6 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int WeightReduction
-        {
-            get
-            {
-                return GetMember<int>("WeightReduction");
-            }
-        }
-
         public string Type
         {
             get
@@ -257,19 +249,19 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int ShieldFactor
+        public int Protection
         {
             get
             {
-                return GetMember<int>("ShieldFactor");
+                return GetMember<int>("Protection");
             }
         }
 
-        public int MaxShieldFactor
+        public int MaxProtection
         {
             get
             {
-                return GetMember<int>("MaxShieldFactor");
+                return GetMember<int>("MaxProtection");
             }
         }
 
@@ -678,14 +670,6 @@ namespace EQ2.ISXEQ2
             get
             {
                 return GetMember<string>("DamageTypeVerb");
-            }
-        }
-
-        public float Weight
-        {
-            get
-            {
-                return GetMember<float>("Weight");
             }
         }
 

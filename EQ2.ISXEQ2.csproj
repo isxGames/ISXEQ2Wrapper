@@ -55,6 +55,8 @@
     <Compile Include="Class.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Consignment.cs" />
+    <Compile Include="ContainerWindow.cs" />
+    <Compile Include="ContainerWindowItem.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="EQ2.cs" />
     <Compile Include="EQ2Event.cs" />
