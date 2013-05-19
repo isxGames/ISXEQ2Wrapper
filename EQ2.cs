@@ -1,331 +1,474 @@
 // Disable all XML Comment warnings in this file // 
 #pragma warning disable 1591 
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
+using System.Globalization;
 using LavishScriptAPI;
-using LavishVMAPI;
+using EQ2.ISXEQ2.Extensions;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes miscellaneous data that is available to ISXEQ2 that does not fit into any other ISXEQ2 DataType
+    /// </summary>
     public class EQ2 : LavishScriptObject
     {
+
+        #region Constructor
         public EQ2()
             :
             base(LavishScript.Objects.GetObject("EQ2"))
         {
         }
 
-        public EQ2(LavishScriptObject Copy)
+        public EQ2(LavishScriptObject copy)
             :
-            base(Copy)
+            base(copy)
         {
         }
+        #endregion
 
+        /// <summary>
+        /// Returns the name of the server. This is only available when in the game proper.
+        /// </summary>
         public string ServerName
         {
             get
             {
-                return GetMember<string>("ServerName");
+                return this.GetStringFromLSO("ServerName");
             }
         }
 
+        /// <summary>
+        /// Returns the size of the custom actor array.
+        /// </summary>
         public int CustomActorArraySize
         {
-            get { return GetMember<int>("CustomActorArraySize"); }
+            get { return this.GetIntFromLSO("CustomActorArraySize"); }
         }
 
+        /// <summary>
+        /// Returns an integer indicating the zoning status of the character. -1 = unsure, 0 = not zoning, 1 = zoning
+        /// </summary>
         public int Zoning
         {
             get
             {
-                return GetMember<int>("Zoning");
+                return this.GetIntFromLSO("Zoning");
             }
         }
 
-        public uint PersistentZoneID
-        {
-            get
-            {
-                return GetMember<uint>("PersistentZoneID");
-            }
-        }
-
+        /// <summary>
+        /// Returns a boolean indicating whether or not the Heroic Opportunity window is active
+        /// </summary>
         public bool HOWindowActive
         {
             get
             {
-                return GetMember<bool>("HoWindowActive");
+                return this.GetBoolFromLSO("HOWindowActive");
             }
         }
 
+        /// <summary>
+        /// Returns the name of the Heroic Opportunity
+        /// </summary>
         public string HoName
         {
             get
             {
-                return GetMember<string>("HOName");
+                return this.GetStringFromLSO("HOName");
             }
         }
 
+        /// <summary>
+        /// Returns the description of the Heroic Opportunity
+        /// </summary>
         public string HODescription
         {
             get
             {
-                return GetMember<string>("HODescription");
+                return this.GetStringFromLSO("HODescription");
             }
         }
 
+        /// <summary>
+        /// Returns the ID# of the wheel
+        /// </summary>
         public int HOWheelID
         {
             get
             {
-                return GetMember<int>("HOWheelID");
+                return this.GetIntFromLSO("HOWheelID");
             }
         }
 
+        /// <summary>
+        /// Current state of the Heroic Opportunity window
+        /// </summary>
         public int HOWindowState
         {
             get
             {
-                return GetMember<int>("HOWindowState");
+                return this.GetIntFromLSO("HOWindowState");
             }
         }
 
+        /// <summary>
+        /// Returns the total time allowed for the cuurent Heroic Opportunity
+        /// </summary>
         public float HOTimeLimit
         {
             get
             {
-                return GetMember<float>("HOTimeLimit");
+                return this.GetFloatFromLSO("HOTimeLimit");
             }
         }
 
+        /// <summary>
+        /// Returns the total time elapsed on the current Heroic Opportunity
+        /// </summary>
         public float HOTimeElapsed
         {
             get
             {
-                return GetMember<float>("HOTimeElapsed");
+                return this.GetFloatFromLSO("HOTimeElapsed");
             }
         }
 
+        /// <summary>
+        /// Returns the time remaining on the current Heroic Opportunity
+        /// </summary>
         public float HOTimeRemaining
         {
             get
             {
-                return GetMember<float>("HOTimeRemaining");
+                return this.GetFloatFromLSO("HOTimeRemaining");
             }
         }
 
+        /// <summary>
+        /// Returns the last actor to initialize/manipulate the Heroic Opportunity window/wheel
+        /// </summary>
         public Actor HOLastManipulator
         {
             get
             {
-                LavishScriptObject Obj=GetMember("HoLastManipulator");
-                return new Actor(Obj);
+                return this.GetActorFromLSO("HOLastManipulator");
             }
         }
 
+        /// <summary>
+        /// Returns the last known active Heroic Opportunity wheel slot
+        /// </summary>
         public int HOCurrentWheelSlot
         {
             get
             {
-                return GetMember<int>("HOCurrentWheelSlot");
+                return this.GetIntFromLSO("HOCurrentWheelSlot");
             }
         }
 
+        /// <summary>
+        /// Returns the last known state of the Heroic Opportunity wheel
+        /// </summary>
         public int HOWheelState
         {
             get
             {
-                return GetMember<int>("HOWheelState");
+                return this.GetIntFromLSO("HOWheelState");
             }
         }
 
+        /// <summary>
+        /// Returns the IconID of slot 1
+        /// </summary>
         public int HOIconID1
         {
             get
             {
-                return GetMember<int>("HOIconID1");
+                return this.GetIntFromLSO("HOIconID1");
             }
         }
 
+        /// <summary>
+        /// Returns the IconID of slot 2
+        /// </summary>
         public int HOIconID2
         {
             get
             {
-                return GetMember<int>("HOIconID2");
+                return this.GetIntFromLSO("HOIconID2");
             }
         }
 
+        /// <summary>
+        /// Returns the IconID of slot 3
+        /// </summary>
         public int HOIconID3
         {
             get
             {
-                return GetMember<int>("HOIconID3");
+                return this.GetIntFromLSO("HOIconID3");
             }
         }
 
+        /// <summary>
+        /// Returns the IconID of slot 4
+        /// </summary>
         public int HOIconID4
         {
             get
             {
-                return GetMember<int>("HOIconID4");
+                return this.GetIntFromLSO("HOIconID4");
             }
         }
 
+        /// <summary>
+        /// Returns the IconID of slot 5
+        /// </summary>
         public int HOIconID5
         {
             get
             {
-                return GetMember<int>("HOIconID5");
+                return this.GetIntFromLSO("HOIconID5");
             }
         }
 
+        /// <summary>
+        /// Returns the IconID of slot 6
+        /// </summary>
         public int HOIconID6
         {
             get
             {
-                return GetMember<int>("HOIconID6");
+                return this.GetIntFromLSO("HOIconID6");
             }
         }
 
+        /// <summary>
+        /// Returns the number of active radars
+        /// </summary>
         public int NumRadars
         {
             get
             {
-                return GetMember<int>("NumRadars");
+                return this.GetIntFromLSO("NumRadars");
             }
         }
 
+        /// <summary>
+        /// Returns the current master volume as a percentage
+        /// </summary>
         public float MasterVolume
         {
             get
             {
-                return GetMember<float>("MasterVolume");
+                return this.GetFloatFromLSO("MasterVolume");
             }
         }
 
+        /// <summary>
+        /// Returns the name of the quest currently being offered.
+        /// Returns "none" if no quest is currently being offered.
+        /// </summary>
         public string PendingQuestName
         {
             get
             {
-                return GetMember<string>("PendingQuestName");
+                return this.GetStringFromLSO("PendingQuestName");
             }
         }
 
+        /// <summary>
+        /// Returns the description of the quest currently being offered
+        /// </summary>
         public string PendingQuestDescription
         {
             get
             {
-                return GetMember<string>("PendingQuestDescription");
+                return this.GetStringFromLSO("PendingQuestDescription");
             }
         }
 
+        /// <summary>
+        /// Returns the number of mail items in the character's inbox.
+        /// The mailbox must have been opened at least once.
+        /// </summary>
         public int InboxMailCount
         {
             get
             {
-                return GetMember<int>("InboxMailCount");
+                return this.GetIntFromLSO("InboxMailCount");
             }
         }
+
 
         public bool RewardPending
         {
             get
             {
-                return GetMember<bool>("RewardPending");
+                return this.GetBoolFromLSO("RewardPending");
             }
         }
 
-        public bool CheckCollision(float X1, float Y1, float Z1, float X2, float Y2, float Z2)
+        /// <summary>
+        /// Returns a boolean stating whether or not two points (1 and 2) have Line of Sight.
+        /// Please note that this checks a direct line between two points for a collision.
+        /// This is subject to false positives or negativesdue to railings (seeing between the rails,
+        /// false negative) or staircases (top to bottom, false positive).
+        /// </summary>
+        /// <param name="x1">x-coordinate of 1</param>
+        /// <param name="y1">y-coordinate of 1</param>
+        /// <param name="z1">z-coordinate of 1</param>
+        /// <param name="x2">x-coordinate of 2</param>
+        /// <param name="y2">y-coordinate of 2</param>
+        /// <param name="z2">z-coordinate of 2</param>
+        /// <returns></returns>
+        public bool CheckCollision(float x1, float y1, float z1, float x2, float y2, float z2)
         {
-            return GetMember<bool>("CheckCollision",X1.ToString(),Y1.ToString(),Z1.ToString(),X2.ToString(),Y2.ToString(),Z2.ToString());
+            return this.GetBoolFromLSO("CheckCollision",
+                x1.ToString(CultureInfo.InvariantCulture), y1.ToString(CultureInfo.InvariantCulture), z1.ToString(CultureInfo.InvariantCulture),
+                x2.ToString(CultureInfo.InvariantCulture), y2.ToString(CultureInfo.InvariantCulture), z2.ToString(CultureInfo.InvariantCulture));
         }
 
-        public float HeadingTo(float From_X, float From_Y, float From_Z, float To_X, float To_Y, float To_Z)
+        /// <summary>
+        /// Returns the true heading from the "from" point (1) to the "to" point (2).
+        /// </summary>
+        /// <param name="fromX">x-coordinate of 1</param>
+        /// <param name="fromY">y-coordinate of 1</param>
+        /// <param name="fromZ">z-coordinate of 1</param>
+        /// <param name="toX">x-coordinate of 2</param>
+        /// <param name="toY">y-coordinate of 2</param>
+        /// <param name="toZ">z-coordinate of 2</param>
+        /// <returns></returns>
+        public float HeadingTo(float fromX, float fromY, float fromZ, float toX, float toY, float toZ)
         {
-            return GetMember<float>("HeadingTo",From_X.ToString(),From_Y.ToString(),From_Z.ToString(),To_X.ToString(),To_Y.ToString(),To_Z.ToString());
+            return this.GetFloatFromLSO("HeadingTo",
+                fromX.ToString(CultureInfo.InvariantCulture), fromY.ToString(CultureInfo.InvariantCulture), fromZ.ToString(CultureInfo.InvariantCulture),
+                toX.ToString(CultureInfo.InvariantCulture), toY.ToString(CultureInfo.InvariantCulture), toZ.ToString(CultureInfo.InvariantCulture));
         }
+
 
         public List<Actor> GetActors()
         {
-            LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");
+            return Util.GetListFromMethod<Actor>(this, "GetActors", "actor");
 
-            int Count = GetMember<int>("GetActors", Index.GetLSReference());
-            List<Actor> List = new List<Actor>(Count);
+            //LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");
 
-            for (int i = 1; i < Count; i++)
-            {
-                List.Add(new Actor(Index.GetIndex(i.ToString())));
-            }
+            //int Count = GetMember<int>("GetActors", Index.GetLSReference());
+            //List<Actor> List = new List<Actor>(Count);
 
-            return List;
+            //for (int i = 1; i < Count; i++)
+            //{
+            //    List.Add(new Actor(Index.GetIndex(i.ToString())));
+            //}
+
+            //return List;
         }
 
-        public List<Actor> GetActors(params string[] Args)
+// ReSharper disable MethodOverloadWithOptionalParameter
+        public List<Actor> GetActors(params string[] args)
+// ReSharper restore MethodOverloadWithOptionalParameter
         {
-            LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");
+            return Util.GetListFromMethod<Actor>(this, "GetActors", "actor", args);
+            //LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");
 
-            string[] allargs = new string[Args.Length + 1];
+            //string[] allargs = new string[Args.Length + 1];
 
-            allargs[0] = Index.GetLSReference();
-            for (int i = 0; i < Args.Length; i++)
-            {
-                allargs[i + 1] = Args[i];
-            }
+            //allargs[0] = Index.GetLSReference();
+            //for (int i = 0; i < Args.Length; i++)
+            //{
+            //    allargs[i + 1] = Args[i];
+            //}
 
-            int Count = GetMember<int>("GetActors", allargs);
-            List<Actor> List = new List<Actor>(Count);
+            //int Count = GetMember<int>("GetActors", allargs);
+            //List<Actor> List = new List<Actor>(Count);
 
-            for (int i = 1; i < Count; i++)
-            {
-                List.Add(new Actor(Index.GetIndex(i.ToString())));
-            }
+            //for (int i = 1; i < Count; i++)
+            //{
+            //    List.Add(new Actor(Index.GetIndex(i.ToString())));
+            //}
 
-            return List;
+            //return List;
         }
 
-        public void CreateCustomActorArray(params string[] Args)
+        /// <summary>
+        /// Creates an array of actors based on the sort criteria submitted
+        /// </summary>
+        /// <param name="args">sort method, radius, type</param>
+        public void CreateCustomActorArray(params string[] args)
         {
-            ExecuteMethod("CreateCustomActorArray", Args);
+            ExecuteMethod("CreateCustomActorArray", args);
         }
 
-        public void SetMasterVolume(float VolPct)
+        /// <summary>
+        /// Sets the master sound volume
+        /// </summary>
+        /// <param name="volPct">float value between 0 and 100</param>
+        public void SetMasterVolume(float volPct)
         {
-            ExecuteMethod("SetMasterVolume", VolPct.ToString());
+            ExecuteMethod("SetMasterVolume", volPct.ToString(CultureInfo.InvariantCulture));
         }
 
+        /// <summary>
+        /// Accepts the pending quest
+        /// </summary>
         public void AcceptPendingQuest()
         {
             ExecuteMethod("AcceptPendingQuest");
         }
 
+        /// <summary>
+        /// Declines the pending quest
+        /// </summary>
         public void DeclinePendingQuest()
         {
             ExecuteMethod("DeclinePendingQuest");
         }
 
-        public void SetAmbientLight(float AmbientPct)
+        /// <summary>
+        /// Sets the ambient light to the requested amount
+        /// </summary>
+        /// <param name="ambientPct">float value between 0 and 100</param>
+        public void SetAmbientLight(float ambientPct)
         {
-            ExecuteMethod("SetAmbientLight", AmbientPct.ToString());
+            ExecuteMethod("SetAmbientLight", ambientPct.ToString(CultureInfo.InvariantCulture));
         }
 
+        /// <summary>
+        /// Accepts the current reward
+        /// </summary>
         public void AcceptReward()
         {
             ExecuteMethod("AcceptReward");
         }
 
+        /// <summary>
+        /// Confirms the highlighted teleporter destination
+        /// </summary>
         public void ConfirmZoneTeleporterDestination()
         {
             ExecuteMethod("ConfirmZoneTeleporterDestination");
         }
 
+        /// <summary>
+        /// Toggles the onscreen announcment that combat xp is disabled (if it is disabled)
+        /// </summary>
         public void ShowAllOnScreenAnnouncements()
         {
             ExecuteMethod("ShowAllOnScreenAnnouncements");
         }
+
+        /// <summary>
+        /// Returns the Persistent Zone ID for a given zone name
+        /// </summary>
+        /// <param name="zoneName">The zone name</param>
+        /// <returns></returns>
+        public uint PersistentZoneID(string zoneName)
+        {
+            return GetMember<uint>("PersistentZoneID", zoneName);
+        }
+
 
     }
 }

@@ -12,6 +12,7 @@
 /ContainerWindowItem.cs -text
 /EQ2.ISXEQ2.csproj -text
 /EQ2.ISXEQ2.sln -text
+/EQ2.ISXEQ2.v11.suo -text
 /EQ2.cs -text
 /EQ2Event.cs -text
 /EQ2Location.cs -text
@@ -20,6 +21,8 @@
 /EQ2UIPage.cs -text
 /Effect.cs -text
 /Extension.cs -text
+Extensions/LavishScriptObjectExtensions.cs -text
+Extensions/Utils.cs -text
 /GroupMember.cs -text
 /ISXEQ2.cs -text
 /Item.cs -text
