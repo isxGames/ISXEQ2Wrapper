@@ -1,6 +1,7 @@
 ﻿// Credit for this entire class goes to GliderPro //
 
 using System.Collections.Generic;
+using System.Globalization;
 using LavishScriptAPI;
 using LavishScriptAPI.Interfaces;
 
@@ -38,7 +39,7 @@ namespace EQ2.ISXEQ2.Extensions
 
             for (var i = 1; i <= count; i++)
             {
-                var objectLso = index.GetIndex(i.ToString());
+                var objectLso = index.GetIndex(i.ToString(CultureInfo.InvariantCulture));
 
                 if (LavishScriptObject.IsNullOrInvalid(objectLso))
                 {
@@ -58,8 +59,11 @@ namespace EQ2.ISXEQ2.Extensions
                 }
 
                 var lsObject = LavishScript.Objects.NewObject(lsTypeName, objectId);
-                var item = (T)constructor.Invoke(new object[] { lsObject });
-                list.Add(item);
+                if (constructor != null)
+                {
+                    var item = (T)constructor.Invoke(new object[] { lsObject });
+                    list.Add(item);
+                }
             }
 
             return list;
@@ -71,7 +75,7 @@ namespace EQ2.ISXEQ2.Extensions
             var count = index.GetMember<int>("Used");
 
             for (var i = 1; i <= count; i++)
-                list.Add(index.GetIndex<T>(i.ToString()));
+                list.Add(index.GetIndex<T>(i.ToString(CultureInfo.InvariantCulture)));
 
             return list;
         }
@@ -85,14 +89,19 @@ namespace EQ2.ISXEQ2.Extensions
         {
             var constructor = typeof(T).GetConstructor(new[] { typeof(LavishScriptObject) });
 
-            return (T)constructor.Invoke(new object[] { index.GetIndex(number.ToString()) });
+            if (constructor != null) return (T)constructor.Invoke(new object[] { index.GetIndex(number.ToString(CultureInfo.InvariantCulture)) });
+            return default(T);
         }
 
         public static T GetIndexMember<T>(LavishScriptObject index, int number)
         {
             if (typeof(T).IsSubclassOf(typeof(LavishScriptObject)))
-                return (T)typeof(T).GetConstructor(new[] { typeof(LavishScriptObject) }).Invoke(new object[] { index.GetIndex(number.ToString()) });
-            return index.GetIndex<T>(number.ToString());
+            {
+                var constructorInfo = typeof (T).GetConstructor(new[] {typeof (LavishScriptObject)});
+                if (constructorInfo != null)
+                    return (T)constructorInfo.Invoke(new object[] { index.GetIndex(number.ToString(CultureInfo.InvariantCulture)) });
+            }
+            return index.GetIndex<T>(number.ToString(CultureInfo.InvariantCulture));
         }
 
         internal static List<T> GetListFromMethod<T>(ILSObject obj, string methodName, string lsTypeName, params string[] args)

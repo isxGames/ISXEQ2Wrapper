@@ -28,6 +28,8 @@ namespace EQ2.ISXEQ2
         }
         #endregion
 
+        #region Zone and Server Data
+
         /// <summary>
         /// Returns the name of the server. This is only available when in the game proper.
         /// </summary>
@@ -40,6 +42,20 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
+        /// Returns the Persistent Zone ID for a given zone name
+        /// </summary>
+        /// <param name="zoneName">The zone name</param>
+        /// <returns></returns>
+        public uint PersistentZoneID(string zoneName)
+        {
+            return GetMember<uint>("PersistentZoneID", zoneName);
+        }
+
+        #endregion
+
+        #region Actor List/Array Related
+
+        /// <summary>
         /// Returns the size of the custom actor array.
         /// </summary>
         public int CustomActorArraySize
@@ -47,16 +63,31 @@ namespace EQ2.ISXEQ2
             get { return this.GetIntFromLSO("CustomActorArraySize"); }
         }
 
-        /// <summary>
-        /// Returns an integer indicating the zoning status of the character. -1 = unsure, 0 = not zoning, 1 = zoning
-        /// </summary>
-        public int Zoning
+        public List<Actor> GetActors()
         {
-            get
-            {
-                return this.GetIntFromLSO("Zoning");
-            }
+            return Util.GetListFromMethod<Actor>(this, "GetActors", "actor");
+
         }
+
+        // ReSharper disable MethodOverloadWithOptionalParameter
+        public List<Actor> GetActors(params string[] args)
+        // ReSharper restore MethodOverloadWithOptionalParameter
+        {
+            return Util.GetListFromMethod<Actor>(this, "GetActors", "actor", args);
+        }
+
+        /// <summary>
+        /// Creates an array of actors based on the sort criteria submitted
+        /// </summary>
+        /// <param name="args">sort method, radius, type</param>
+        public void CreateCustomActorArray(params string[] args)
+        {
+            ExecuteMethod("CreateCustomActorArray", args);
+        }
+
+        #endregion      
+       
+        #region Heroic Opportunity Data
 
         /// <summary>
         /// Returns a boolean indicating whether or not the Heroic Opportunity window is active
@@ -245,15 +276,17 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        #endregion
+
+        #region Lighting and Volume
+
         /// <summary>
-        /// Returns the number of active radars
+        /// Sets the ambient light to the requested amount
         /// </summary>
-        public int NumRadars
+        /// <param name="ambientPct">float value between 0 and 100</param>
+        public void SetAmbientLight(float ambientPct)
         {
-            get
-            {
-                return this.GetIntFromLSO("NumRadars");
-            }
+            ExecuteMethod("SetAmbientLight", ambientPct.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -266,6 +299,19 @@ namespace EQ2.ISXEQ2
                 return this.GetFloatFromLSO("MasterVolume");
             }
         }
+
+        /// <summary>
+        /// Sets the master sound volume
+        /// </summary>
+        /// <param name="volPct">float value between 0 and 100</param>
+        public void SetMasterVolume(float volPct)
+        {
+            ExecuteMethod("SetMasterVolume", volPct.ToString(CultureInfo.InvariantCulture));
+        }
+
+        #endregion
+
+        #region Quest Information and Manipulation
 
         /// <summary>
         /// Returns the name of the quest currently being offered.
@@ -291,18 +337,8 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Returns the number of mail items in the character's inbox.
-        /// The mailbox must have been opened at least once.
+        /// Returns a boolean identifying whether or not a reward is pending
         /// </summary>
-        public int InboxMailCount
-        {
-            get
-            {
-                return this.GetIntFromLSO("InboxMailCount");
-            }
-        }
-
-
         public bool RewardPending
         {
             get
@@ -310,6 +346,34 @@ namespace EQ2.ISXEQ2
                 return this.GetBoolFromLSO("RewardPending");
             }
         }
+
+        /// <summary>
+        /// Accepts the pending quest
+        /// </summary>
+        public void AcceptPendingQuest()
+        {
+            ExecuteMethod("AcceptPendingQuest");
+        }
+
+        /// <summary>
+        /// Declines the pending quest
+        /// </summary>
+        public void DeclinePendingQuest()
+        {
+            ExecuteMethod("DeclinePendingQuest");
+        }
+
+        /// <summary>
+        /// Accepts the current reward
+        /// </summary>
+        public void AcceptReward()
+        {
+            ExecuteMethod("AcceptReward");
+        }
+
+        #endregion
+
+        #region LOS/Collision and Heading Methods
 
         /// <summary>
         /// Returns a boolean stating whether or not two points (1 and 2) have Line of Sight.
@@ -349,98 +413,42 @@ namespace EQ2.ISXEQ2
         }
 
 
-        public List<Actor> GetActors()
+        #endregion
+
+        #region Miscellaneous
+
+        /// <summary>
+        /// Returns an integer indicating the zoning status of the character. -1 = unsure, 0 = not zoning, 1 = zoning
+        /// </summary>
+        public int Zoning
         {
-            return Util.GetListFromMethod<Actor>(this, "GetActors", "actor");
-
-            //LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");
-
-            //int Count = GetMember<int>("GetActors", Index.GetLSReference());
-            //List<Actor> List = new List<Actor>(Count);
-
-            //for (int i = 1; i < Count; i++)
-            //{
-            //    List.Add(new Actor(Index.GetIndex(i.ToString())));
-            //}
-
-            //return List;
-        }
-
-// ReSharper disable MethodOverloadWithOptionalParameter
-        public List<Actor> GetActors(params string[] args)
-// ReSharper restore MethodOverloadWithOptionalParameter
-        {
-            return Util.GetListFromMethod<Actor>(this, "GetActors", "actor", args);
-            //LavishScriptObject Index = LavishScript.Objects.NewObject("index:actor");
-
-            //string[] allargs = new string[Args.Length + 1];
-
-            //allargs[0] = Index.GetLSReference();
-            //for (int i = 0; i < Args.Length; i++)
-            //{
-            //    allargs[i + 1] = Args[i];
-            //}
-
-            //int Count = GetMember<int>("GetActors", allargs);
-            //List<Actor> List = new List<Actor>(Count);
-
-            //for (int i = 1; i < Count; i++)
-            //{
-            //    List.Add(new Actor(Index.GetIndex(i.ToString())));
-            //}
-
-            //return List;
+            get
+            {
+                return this.GetIntFromLSO("Zoning");
+            }
         }
 
         /// <summary>
-        /// Creates an array of actors based on the sort criteria submitted
+        /// Returns the number of active radars
         /// </summary>
-        /// <param name="args">sort method, radius, type</param>
-        public void CreateCustomActorArray(params string[] args)
+        public int NumRadars
         {
-            ExecuteMethod("CreateCustomActorArray", args);
+            get
+            {
+                return this.GetIntFromLSO("NumRadars");
+            }
         }
 
         /// <summary>
-        /// Sets the master sound volume
+        /// Returns the number of mail items in the character's inbox.
+        /// The mailbox must have been opened at least once.
         /// </summary>
-        /// <param name="volPct">float value between 0 and 100</param>
-        public void SetMasterVolume(float volPct)
+        public int InboxMailCount
         {
-            ExecuteMethod("SetMasterVolume", volPct.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Accepts the pending quest
-        /// </summary>
-        public void AcceptPendingQuest()
-        {
-            ExecuteMethod("AcceptPendingQuest");
-        }
-
-        /// <summary>
-        /// Declines the pending quest
-        /// </summary>
-        public void DeclinePendingQuest()
-        {
-            ExecuteMethod("DeclinePendingQuest");
-        }
-
-        /// <summary>
-        /// Sets the ambient light to the requested amount
-        /// </summary>
-        /// <param name="ambientPct">float value between 0 and 100</param>
-        public void SetAmbientLight(float ambientPct)
-        {
-            ExecuteMethod("SetAmbientLight", ambientPct.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Accepts the current reward
-        /// </summary>
-        public void AcceptReward()
-        {
-            ExecuteMethod("AcceptReward");
+            get
+            {
+                return this.GetIntFromLSO("InboxMailCount");
+            }
         }
 
         /// <summary>
@@ -459,16 +467,7 @@ namespace EQ2.ISXEQ2
             ExecuteMethod("ShowAllOnScreenAnnouncements");
         }
 
-        /// <summary>
-        /// Returns the Persistent Zone ID for a given zone name
-        /// </summary>
-        /// <param name="zoneName">The zone name</param>
-        /// <returns></returns>
-        public uint PersistentZoneID(string zoneName)
-        {
-            return GetMember<uint>("PersistentZoneID", zoneName);
-        }
-
+        #endregion
 
     }
 }
