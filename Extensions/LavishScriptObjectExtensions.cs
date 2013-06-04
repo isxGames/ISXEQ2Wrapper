@@ -421,5 +421,15 @@ namespace EQ2.ISXEQ2.Extensions
                            : lavishScriptObject.GetValue<Actor>();
             }
         }
+
+        public static Class GetClassFromLSO(this ILSObject obj, string member)
+        {
+            using (var lavishScriptObject = obj.GetMember(member))
+            {
+                return LavishScriptObject.IsNullOrInvalid(lavishScriptObject)
+                           ? null
+                           : lavishScriptObject.GetValue<Class>();
+            }
+        }
     }
 }

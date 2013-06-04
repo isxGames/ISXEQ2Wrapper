@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using EQ2.ISXEQ2.Extensions;
 using InnerSpaceAPI;
 using LavishScriptAPI;
 
@@ -12,61 +12,78 @@ namespace EQ2.ISXEQ2
 {
     public class Item : LavishScriptObject
     {
-        public Item(LavishScriptObject Obj)
-            : base(Obj)
+        #region Constructor
+
+        public Item(LavishScriptObject obj)
+            : base(obj)
         {
         }
-/*
-        public Item()
-            : base(LavishScript.Objects.GetObject("Item"))
-        {
-        }
-*/
+
+        #endregion
+
+        /// <summary>
+        /// Identifies if the item is in a bag or actual inventory slot
+        /// </summary>
         public bool InInventory
         {
             get
             {
-                return GetMember<bool>("InInventory");
+                return this.GetBoolFromLSO("InInventory");
             }
         }
 
+        /// <summary>
+        /// Identifies if the item is in one of your 6 actual inventory slots
+        /// </summary>
         public bool InInventorySlot
         {
             get
             {
-                return GetMember<bool>("InInventorySlot");
+                return this.GetBoolFromLSO("InInventorySlot");
             }
         }
 
+        /// <summary>
+        /// Identifies if the item is a container placed in one of your 6 actual inventory slots
+        /// </summary>
         public bool IsInventoryContainer
         {
             get
             {
-                return GetMember<bool>("IsInventoryContainer");
+                return this.GetBoolFromLSO("IsInventoryContainer");
             }
         }
 
+        /// <summary>
+        /// Identifies if the item is a container placed in one of your 8 actual bank slots
+        /// </summary>
         public bool IsBankContainer
         {
             get
             {
-                return GetMember<bool>("IsBankContainer");
+                return this.GetBoolFromLSO("IsBankContainer");
             }
         }
 
+        /// <summary>
+        /// Identifies if the item is a container placed in one of your 4 actual shared bank slots
+        /// </summary>
         public bool IsSharedBankContainer
         {
             get
             {
-                return GetMember<bool>("IsSharedBankContainer");
+                return this.GetBoolFromLSO("IsSharedBankContainer");
             }
         }
 
+        /// <summary>
+        /// Identifies the number of free slots in a container
+        /// </summary>
         public int NumSlotsFree
         {
             get
             {
-                return GetMember<int>("NumSlotsFree");
+                return this.GetIntFromLSO("NumSlotsFree");
             }
         }
 
@@ -110,19 +127,25 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        /// <summary>
+        /// The name of the item
+        /// </summary>
         public string Name
         {
             get
             {
-                return GetMember<string>("Name");
+                return this.GetStringFromLSO("Name");
             }
         }
 
+        /// <summary>
+        /// The tier of the item
+        /// </summary>
         public string Tier
         {
             get
             {
-                return GetMember<string>("Tier");
+                return this.GetStringFromLSO("Tier");
             }
         }
 
@@ -217,11 +240,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        /// <summary>
+        /// The description of the item. Not all items have a description.
+        /// </summary>
         public string Description
         {
             get
             {
-                return GetMember<string>("Description");
+                return this.GetStringFromLSO("Description");
             }
         }
 
@@ -599,11 +625,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        /// <summary>
+        /// The ID of the item
+        /// </summary>
         public int ID
         {
             get
             {
-                return GetMember<int>("ID");
+                return this.GetIntFromLSO("ID");
             }
         }
 

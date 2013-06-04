@@ -3,17 +3,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 using InnerSpaceAPI;
 using LavishScriptAPI;
+using EQ2.ISXEQ2.Extensions;
 
 namespace EQ2.ISXEQ2
 {
     public class Ability : LavishScriptObject
     {
-        public Ability(LavishScriptObject Obj)
-            : base(Obj)
+
+        #region Constructor
+
+        public Ability(LavishScriptObject obj)
+            : base(obj)
         {
         }
 
@@ -22,131 +27,181 @@ namespace EQ2.ISXEQ2
         {
         }
 
+        #endregion
+
+        /// <summary>
+        /// The name of the ability
+        /// </summary>
         public string Name
         {
             get
             {
-                return GetMember<string>("Name");
+                return this.GetStringFromLSO("Name");
             }
         }
 
+        /// <summary>
+        /// The ability description
+        /// </summary>
         public string Description
         {
             get
             {
-                return GetMember<string>("Description");
+                return this.GetStringFromLSO("Description");
             }
         }
 
+        /// <summary>
+        /// The ability tier
+        /// </summary>
         public string Tier
         {
             get
             {
-                return GetMember<string>("Tier");
+                return this.GetStringFromLSO("Tier");
             }
         }
 
+        /// <summary>
+        /// The health cost of the ability
+        /// </summary>
         public int HealthCost
         {
             get
             {
-                return GetMember<int>("HealthCost");
+                return this.GetIntFromLSO("HealthCost");
             }
         }
 
+        /// <summary>
+        /// The power cost of the ability
+        /// </summary>
         public int PowerCost
         {
             get
             {
-                return GetMember<int>("PowerCost");
+                return this.GetIntFromLSO("PowerCost");
             }
         }
 
+        /// <summary>
+        /// The concentration cost of the ability
+        /// </summary>
         public int ConcentrationCost
         {
             get
             {
-                return GetMember<int>("ConcentrationCost");
+                return this.GetIntFromLSO("ConcentrationCost");
             }
         }
 
+        /// <summary>
+        /// The savagery cost of the ability
+        /// </summary>
         public int SavageryCost
         {
             get
             {
-                return GetMember<int>("SavageryCost");
+                return this.GetIntFromLSO("SavageryCost");
             }
         }
 
+        /// <summary>
+        /// The savagery cost per tick of the ability
+        /// </summary>
         public int SavageryCostPerTick
         {
             get
             {
-                return GetMember<int>("SavageryCostPerTick");
+                return this.GetIntFromLSO("SavageryCostPerTick");
             }
         }
 
+        /// <summary>
+        /// The main icon ID of the ability
+        /// </summary>
         public int MainIconID
         {
             get
             {
-                return GetMember<int>("MainIconID");
+                return this.GetIntFromLSO("MainIconID");
             }
         }
 
+        /// <summary>
+        /// The heroic opportunity icon ID of the ability. -1 indicates no icon.
+        /// </summary>
         public int HOIconID
         {
             get
             {
-                return GetMember<int>("HOIconID");
+                return this.GetIntFromLSO("HOIconID");
             }
         }
 
+        /// <summary>
+        /// The casting time of the ability
+        /// </summary>
         public float CastingTime
         {
             get
             {
-                return GetMember<float>("CastingTime");
+                return this.GetFloatFromLSO("CastingTime");
             }
         }
 
+        /// <summary>
+        /// The recovery time of the abilitys
+        /// </summary>
         public float RecoveryTime
         {
             get
             {
-                return GetMember<float>("RecoveryTime");
+                return this.GetFloatFromLSO("RecoveryTime");
             }
         }
 
+        /// <summary>
+        /// The recast time of the ability
+        /// </summary>
         public float RecastTime
         {
             get
             {
-                return GetMember<float>("RecastTime");
+                return this.GetFloatFromLSO("RecastTime");
             }
         }
 
+        /// <summary>
+        /// The maximum duration of the ability
+        /// </summary>
         public float MaxDuration
         {
             get
             {
-                return GetMember<float>("MaxDuration");
+                return this.GetFloatFromLSO("MaxDuration");
             }
         }
 
+        /// <summary>
+        /// The time remaining on the ability
+        /// </summary>
         public float TimeRemaining
         {
             get
             {
-                return GetMember<float>("TimeRemaining");
+                return this.GetFloatFromLSO("TimeRemaining");
             }
         }
 
+        /// <summary>
+        /// True if the ability is ready
+        /// </summary>
         public bool IsReady
         {
             get
             {
-                return GetMember<bool>("IsReady");
+                return this.GetBoolFromLSO("IsReady");
             }
         }
 
@@ -166,24 +221,35 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        /// <summary>
+        /// The number of classes that can use an ability
+        /// </summary>
         public int NumClasses
         {
             get
             {
-                return GetMember<int>("NumClasses");
+                return this.GetIntFromLSO("NumClasses");
             }
         }
 
-        public Class Class(int ClassNum)
+        /// <summary>
+        /// Returns the class entered. Can be used to determine at what level an ability is available.
+        /// </summary>
+        /// <param name="classNum">the desired class</param>
+        /// <returns>the class</returns>
+        public Class Class(int classNum)
         {
-            LavishScriptObject Obj = GetMember("Class", ClassNum.ToString());
-            return new Class(Obj);
+            return this.GetClassFromLSO(classNum.ToString(CultureInfo.InvariantCulture));
         }
 
-        public Class Class(string ClassName)
+        /// <summary>
+        /// Returns the class entered. Can be used to determine at what level an ability is available.
+        /// </summary>
+        /// <param name="className">the desired class</param>
+        /// <returns>the class</returns>
+        public Class Class(string className)
         {
-            LavishScriptObject Obj = GetMember("Class", ClassName);
-            return new Class(Obj);
+            return this.GetClassFromLSO(className);
         }
 
         public int HealthCostPerTick
@@ -288,11 +354,14 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        /// <summary>
+        /// The time until the ability is ready
+        /// </summary>
         public float TimeUntilReady
         {
             get
             {
-                return GetMember<float>("TimeUntilReady");
+                return this.GetFloatFromLSO("TimeUntilReady");
             }
         }
 
@@ -320,11 +389,14 @@ namespace EQ2.ISXEQ2
             }
         }
 /* State? */
+        /// <summary>
+        /// True if the ability is queued
+        /// </summary>
         public bool IsQueued
         {
             get
             {
-                return GetMember<bool>("IsQueued");
+                return this.GetBoolFromLSO("IsQueued");
             }
         }
 
