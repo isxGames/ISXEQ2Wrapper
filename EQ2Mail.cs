@@ -1,12 +1,8 @@
 // Disable all XML Comment warnings in this file // 
 #pragma warning disable 1591 
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using EQ2.ISXEQ2.Extensions;
-using InnerSpaceAPI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
@@ -97,6 +93,7 @@ namespace EQ2.ISXEQ2
             }
         }
 
+        /// TODO: Identify Gift member datatype as Int or Item
         /// <summary>
         /// Amount of platinum attached to the email. Only works if mail is opened or omposing.
         /// </summary>
@@ -126,7 +123,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<string>("Recipient");
+                return this.GetStringFromLSO("Recipient");
             }
         }
 
