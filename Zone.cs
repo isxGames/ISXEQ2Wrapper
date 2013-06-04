@@ -7,13 +7,14 @@ using System.Text;
 
 using InnerSpaceAPI;
 using LavishScriptAPI;
+using EQ2.ISXEQ2.Extensions;
 
 namespace EQ2.ISXEQ2
 {
     public class Zone : LavishScriptObject
     {
-        public Zone(LavishScriptObject Obj)
-            : base(Obj)
+        public Zone(LavishScriptObject obj)
+            : base(obj)
         {
         }
 
@@ -22,27 +23,36 @@ namespace EQ2.ISXEQ2
         {
         }
 
+        /// <summary>
+        /// The name of the zone
+        /// </summary>
         public string Name
         {
             get
             {
-                return GetMember<string>("Name");
+                return this.GetStringFromLSO("Name");
             }
         }
 
+        /// <summary>
+        /// The short name of the zone
+        /// </summary>
         public string ShortName
         {
             get
             {
-                return GetMember<string>("ShortName");
+                return this.GetStringFromLSO("ShortName");
             }
         }
 
+        /// <summary>
+        /// The ID of the zone
+        /// </summary>
         public int ID
         {
             get
             {
-                return GetMember<int>("ID");
+                return this.GetIntFromLSO("ID");
             }
         }
     }
