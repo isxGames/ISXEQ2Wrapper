@@ -1,0 +1,1241 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ISXEQ2Wrapper</name>
+    </assembly>
+    <members>
+        <member name="M:EQ2.ISXEQ2.Ability.Class(System.Int32)">
+            <summary>
+            Returns the class entered. Can be used to determine at what level an ability is available.
+            </summary>
+            <param name="classNum">the desired class</param>
+            <returns>the class</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Ability.Class(System.String)">
+            <summary>
+            Returns the class entered. Can be used to determine at what level an ability is available.
+            </summary>
+            <param name="className">the desired class</param>
+            <returns>the class</returns>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.Name">
+            <summary>
+            The name of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.Description">
+            <summary>
+            The ability description
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.Tier">
+            <summary>
+            The ability tier
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.HealthCost">
+            <summary>
+            The health cost of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.PowerCost">
+            <summary>
+            The power cost of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.ConcentrationCost">
+            <summary>
+            The concentration cost of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.SavageryCost">
+            <summary>
+            The savagery cost of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.SavageryCostPerTick">
+            <summary>
+            The savagery cost per tick of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.MainIconID">
+            <summary>
+            The main icon ID of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.HOIconID">
+            <summary>
+            The heroic opportunity icon ID of the ability. -1 indicates no icon.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.CastingTime">
+            <summary>
+            The casting time of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.RecoveryTime">
+            <summary>
+            The recovery time of the abilitys
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.RecastTime">
+            <summary>
+            The recast time of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.MaxDuration">
+            <summary>
+            The maximum duration of the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.TimeRemaining">
+            <summary>
+            The time remaining on the ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.IsReady">
+            <summary>
+            True if the ability is ready
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.NumClasses">
+            <summary>
+            The number of classes that can use an ability
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.TimeUntilReady">
+            <summary>
+            The time until the ability is ready
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Ability.IsQueued">
+            <summary>
+            True if the ability is queued
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Character.BankDeposit(System.String,System.Int32,System.String)">
+            <summary>
+            August 31, 2011 -- By Amadeus
+            Updated the 'BankDeposit' METHOD of the "character" datatype to utilize an *optional* 3rd parameter "FromShared"
+            </summary>
+            <param name="CoinType"></param>
+            <param name="Amount"></param>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ContainerWindow.#ctor">
+            <summary>
+            *** Notes: 
+            *** 1.  A "ContainerWindow" is any window that says 'Container' on it's name tab.  As of right now, it refers most often to the
+            ***     'Harvest Supply Depot'.
+            *** 2.  You may only have one "ContainerWindow" open at a time.
+            *** 3.  The "ContainerWindow" TLO and related datatypes are only available when the container window is OPEN.  (However, it does 
+            ***     not matter how far away you are from said container.)
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ContainerWindow.Item(System.Int32)">
+            <summary>
+            The 'Item' MEMBER accepts either an index between 1 and ${ContainerWindow.NumItems}
+            </summary>
+            <param name="index"></param>
+            <returns>a ContainerWindowItem object</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ContainerWindow.RemoveItem(System.Int32,System.Int32)">
+            <summary>
+            Lavishscript Example: "ContainerWindow:RemoveItem[${ContainerWindow.Item[artichoke].ID},5]"
+            </summary>
+            <param name="containeritemID"></param>
+            <param name="Quantity"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ContainerWindowItem.ID">
+            <summary>
+            Note:  The 'ID' MEMBER of the 'containerwindowitem' datatype is used exlusively for the "RemoveItem" METHOD of the 'containerwindow' datatype.  
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.EQ2">
+            <summary>
+            This DataType includes miscellaneous data that is available to ISXEQ2 that does not fit into any other ISXEQ2 DataType
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.PersistentZoneID(System.String)">
+            <summary>
+            Returns the Persistent Zone ID for a given zone name
+            </summary>
+            <param name="zoneName">The zone name</param>
+            <returns></returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.CreateCustomActorArray(System.String[])">
+            <summary>
+            Creates an array of actors based on the sort criteria submitted
+            </summary>
+            <param name="args">sort method, radius, type</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.SetAmbientLight(System.Single)">
+            <summary>
+            Sets the ambient light to the requested amount
+            </summary>
+            <param name="ambientPct">float value between 0 and 100</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.SetMasterVolume(System.Single)">
+            <summary>
+            Sets the master sound volume
+            </summary>
+            <param name="volPct">float value between 0 and 100</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.AcceptPendingQuest">
+            <summary>
+            Accepts the pending quest
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.DeclinePendingQuest">
+            <summary>
+            Declines the pending quest
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.AcceptReward">
+            <summary>
+            Accepts the current reward
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.CheckCollision(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Returns a boolean stating whether or not two points (1 and 2) have Line of Sight.
+            Please note that this checks a direct line between two points for a collision.
+            This is subject to false positives or negativesdue to railings (seeing between the rails,
+            false negative) or staircases (top to bottom, false positive).
+            </summary>
+            <param name="x1">x-coordinate of 1</param>
+            <param name="y1">y-coordinate of 1</param>
+            <param name="z1">z-coordinate of 1</param>
+            <param name="x2">x-coordinate of 2</param>
+            <param name="y2">y-coordinate of 2</param>
+            <param name="z2">z-coordinate of 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.HeadingTo(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Returns the true heading from the "from" point (1) to the "to" point (2).
+            </summary>
+            <param name="fromX">x-coordinate of 1</param>
+            <param name="fromY">y-coordinate of 1</param>
+            <param name="fromZ">z-coordinate of 1</param>
+            <param name="toX">x-coordinate of 2</param>
+            <param name="toY">y-coordinate of 2</param>
+            <param name="toZ">z-coordinate of 2</param>
+            <returns></returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.ConfirmZoneTeleporterDestination">
+            <summary>
+            Confirms the highlighted teleporter destination
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.ShowAllOnScreenAnnouncements">
+            <summary>
+            Toggles the onscreen announcment that combat xp is disabled (if it is disabled)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.ServerName">
+            <summary>
+            Returns the name of the server. This is only available when in the game proper.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.CustomActorArraySize">
+            <summary>
+            Returns the size of the custom actor array.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWindowActive">
+            <summary>
+            Returns a boolean indicating whether or not the Heroic Opportunity window is active
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HoName">
+            <summary>
+            Returns the name of the Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HODescription">
+            <summary>
+            Returns the description of the Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWheelID">
+            <summary>
+            Returns the ID# of the wheel
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWindowState">
+            <summary>
+            Current state of the Heroic Opportunity window
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeLimit">
+            <summary>
+            Returns the total time allowed for the cuurent Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeElapsed">
+            <summary>
+            Returns the total time elapsed on the current Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeRemaining">
+            <summary>
+            Returns the time remaining on the current Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOLastManipulator">
+            <summary>
+            Returns the last actor to initialize/manipulate the Heroic Opportunity window/wheel
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOCurrentWheelSlot">
+            <summary>
+            Returns the last known active Heroic Opportunity wheel slot
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWheelState">
+            <summary>
+            Returns the last known state of the Heroic Opportunity wheel
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOIconID1">
+            <summary>
+            Returns the IconID of slot 1
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOIconID2">
+            <summary>
+            Returns the IconID of slot 2
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOIconID3">
+            <summary>
+            Returns the IconID of slot 3
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOIconID4">
+            <summary>
+            Returns the IconID of slot 4
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOIconID5">
+            <summary>
+            Returns the IconID of slot 5
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOIconID6">
+            <summary>
+            Returns the IconID of slot 6
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.MasterVolume">
+            <summary>
+            Returns the current master volume as a percentage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.PendingQuestName">
+            <summary>
+            Returns the name of the quest currently being offered.
+            Returns "none" if no quest is currently being offered.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.PendingQuestDescription">
+            <summary>
+            Returns the description of the quest currently being offered
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.RewardPending">
+            <summary>
+            Returns a boolean identifying whether or not a reward is pending
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.Zoning">
+            <summary>
+            Returns an integer indicating the zoning status of the character. -1 = unsure, 0 = not zoning, 1 = zoning
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.NumRadars">
+            <summary>
+            Returns the number of active radars
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.InboxMailCount">
+            <summary>
+            Returns the number of mail items in the character's inbox.
+            The mailbox must have been opened at least once.
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.EQ2Location">
+            <summary>
+            Datatype returned by the EQ2Loc TLO
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Location.Delete">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Location.WaypointTo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Location.Face">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Location.Label">
+            <summary>
+            The label appended to the location
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Location.Notes">
+            <summary>
+            Notes associated with this location
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Location.Zone">
+            <summary>
+            The zone of the eq2location
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Location.X">
+            <summary>
+            x-coordinate
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Location.Y">
+            <summary>
+            y-coordinate
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Location.Z">
+            <summary>
+            z-coordinate
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.EQ2LocationAllZones">
+            <summary>
+            Functions as the EQ2Loc TLO
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.EQ2Mail">
+            <summary>
+            All of the available data for an individual in-game email
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.Open">
+            <summary>
+            Opens the email. Does not require the email to be opened or composing.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.Delete">
+            <summary>
+            Deletes the email. Does not require the email to be opened or composing.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.ReceiveGifts">
+            <summary>
+            Extracts the attached gift from the email. Does not require the email to be opened or composing.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AppendRecipient(System.String)">
+            <summary>
+            Adds an additional recipient to an email. Requires email to be composing.
+            </summary>
+            <param name="text">text to append</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AppendSubject(System.String)">
+            <summary>
+            Adds additional text to the subject of an email. Requires email to be composing.
+            </summary>
+            <param name="text">text to append</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AppendBody(System.String)">
+            <summary>
+            Adds additional text to the body of an email. Requires email to be composing.
+            </summary>
+            <param name="text">text to append</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.RemoveGift">
+            <summary>
+            Removes the gift from an email. Requires email to be composing.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AddCopper(System.Int32)">
+            <summary>
+            Adds copper to an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of ccopper to add</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AddSilver(System.Int32)">
+            <summary>
+            Adds silver to an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of silver to add</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AddGold(System.Int32)">
+            <summary>
+            Add gold to an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of gold to add</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.AddPlatinum(System.Int32)">
+            <summary>
+            Adds platinum to an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of platinum to add</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.RemoveCopper(System.Int32)">
+            <summary>
+            Removes copper from an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of copper to remove</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.RemoveSilver(System.Int32)">
+            <summary>
+            Removes silver from an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of silver to remove</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.RemoveGold(System.Int32)">
+            <summary>
+            Removes gold from an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of gold to remove</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.RemovePlatinum(System.Int32)">
+            <summary>
+            Removes platinum from an email. Requires email to be composing.
+            </summary>
+            <param name="value">the amount of platinum to remove</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.Cancel">
+            <summary>
+            Cancels the email.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2Mail.Send">
+            <summary>
+            Sends the email. Requires email to be composing.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Sender">
+            <summary>
+            Returns the name of the sender
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Subject">
+            <summary>
+            The subject of the email
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Body">
+            <summary>
+            The body of the email
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Copper">
+            <summary>
+            Amount of copper attached to the email. Only works if mail is opened or composing.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Silver">
+            <summary>
+            Amount of silver attached to the email. Only works if mail is opened or composing.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Gold">
+            <summary>
+            Amount of gold attached to the email. Only works if mail is opened or composing.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Platinum">
+            TODO: Identify Gift member datatype as Int or Item
+            <summary>
+            Amount of platinum attached to the email. Only works if mail is opened or omposing.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Gift">
+            <summary>
+            Should return the item datatype for the attachment, returns an int instead
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2Mail.Recipient">
+            <summary>
+            Returns the name of the recipient
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.Extensions.Util">
+            <summary>
+            Utilities to facilitate manipulation of the LavishScriptObject index into C# datatypes
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.ISXEQ2">
+            <summary>
+            Represents all of the data available about ISXEQ2 itself
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.AddLoc(System.String)">
+            <summary>
+            Used to add an Eq2Location
+            </summary>
+            <param name="label">Eq2Location label</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.AddLoc(System.String,System.String)">
+            <summary>
+            Used to add an Eq2Location
+            </summary>
+            <param name="label">Eq2location label</param>
+            <param name="notes">Eq2Location notes</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsRange(System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="range"></param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsTimeInterval(System.Single)">
+            <summary>
+            Sets the time interval used to check for Actor events
+            </summary>
+            <param name="time">the desired time interval</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnableAfflictionEvents">
+            <summary>
+            Enables Affliction Events
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.DisableAfflictionEvents">
+            <summary>
+            Disables Affliction Events
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetAfflictionEventsTimeInterval(System.Int32)">
+            <summary>
+            Sets the time period used to check for Affliction Events
+            </summary>
+            <param name="milliseconds">time in ms</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnableActorEvents">
+            <summary>
+            Enables Actor Events
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.DisableActorEvents">
+            <summary>
+            Disables Actor Events
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnduringBreath(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
+            <summary>
+            Used to enable or disable Enduring Breath
+            </summary>
+            <param name="benefits">Enable or Disable</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SafeFall(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
+            <summary>
+            Used to enable or disable Safe Fall
+            </summary>
+            <param name="benefits">Enable or Disable</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.NoFog(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
+            <summary>
+            Used to Enable or Disable No Fog
+            </summary>
+            <param name="benefits">Enable or Disable</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.IsValidEQ2PressKey(System.String)">
+            <summary>
+            Returns a boolean indicating whether or not a key board key is a valid eq2press key
+            </summary>
+            <param name="keyName"></param>
+            <returns>boolean indicating whether or not the key is valid</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.ResetInternalVendingSystem">
+            <summary>
+            This should be called in your script before doing any calls to the vendingcontainer datatype 
+            that would be occurring after any user manipulation of the system within the game.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.Popup(System.String[])">
+            <summary>
+            Creates an ISXEQ2 popup window (LGUI window). Title and Status are optional.
+            </summary>
+            <param name="args">Title and/or Status</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.ClearAbilitiesCache">
+            <summary>
+            Clears the abilities cache which means it will be rebuilt automatically when abilities are next used
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.Version">
+            <summary>
+            The ISXEQ2 version
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.IsReady">
+            <summary>
+            Returns TRUE when the authentication and patching routines are complete and ISXEQ2 is truly ready.FTN_40_eaos
+            
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.EQ2LocsCount">
+            <summary>
+            Returns the total amount of EQ2Locations in the current zone
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.EQ2LocsCountAllZones">
+            <summary>
+            Returns the total amount of EQ2Locations across all zones
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.InitializingActorEffects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.AfflictionEventsOn">
+            <summary>
+            Indicates whether or not Affliction Events are on or off
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.ISXEQ2.BenefitToggle">
+            <summary>
+            Enum used as argument to toggle certain client based effects on or off
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.InInventory">
+            <summary>
+            Identifies if the item is in a bag or actual inventory slot
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.InInventorySlot">
+            <summary>
+            Identifies if the item is in one of your 6 actual inventory slots
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsInventoryContainer">
+            <summary>
+            Identifies if the item is a container placed in one of your 6 actual inventory slots
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsBankContainer">
+            <summary>
+            Identifies if the item is a container placed in one of your 8 actual bank slots
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsSharedBankContainer">
+            <summary>
+            Identifies if the item is a container placed in one of your 4 actual shared bank slots
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumSlotsFree">
+            <summary>
+            Identifies the number of free slots in a container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Name">
+            <summary>
+            The name of the item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Tier">
+            <summary>
+            The tier of the item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Description">
+            <summary>
+            The description of the item. Not all items have a description.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.ID">
+            <summary>
+            The ID of the item
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions">
+            <summary>
+            Extensions to the LavishScriptObject Class
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetStringFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Returns the requested string member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject string member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetStringFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Returns the requested string member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of the arguments to pass to the member</param>
+            <returns>LavishScriptObject string member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetInt64FromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Returns the requested Int64 member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject Int64 member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetUInt64FromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Returns the requested UInt64 member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject UInt64 member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetInt64FromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Returns the requested Int64 member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject Int64 member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetFloatFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested float member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject float member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetFloatFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested float member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject float member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetDoubleFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested double member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject double member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetDoubleFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested double member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject double member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested integer member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject integer member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested integer member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject integer member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetBoolFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retireves the requested boolean member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject boolean member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetBoolFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested boolean member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args"></param>
+            <returns>LavishScriptObject boolean member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableInt64FromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Returns the requested Int64 member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject Int64 member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableInt64FromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Returns the requested Int64 member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject Int64 member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableFloatFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested float member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject float member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableFloatFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested float member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject float member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableDoubleFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested double member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject double member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableDoubleFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested double member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject double member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested integer member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject integer member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested integer member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject integer member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableBoolFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retireves the requested boolean member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject boolean member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetNullableBoolFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested boolean member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args"></param>
+            <returns>LavishScriptObject boolean member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetActorFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested Actor member based
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject Actor member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.IsCustomFilter(System.String)">
+            <summary>
+            Returns true if the if the selected custom filter is active
+            </summary>
+            <param name="text">Custom Filter Name</param>
+            <returns>If the custom filter is active</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.CustomFilter(System.Int32)">
+            <summary>
+            Returns the filter at the selected index
+            </summary>
+            <param name="index">the index</param>
+            <returns>custom filter</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterMe">
+            <summary>
+            Toggles the custom filter "Show Me"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterNPCs">
+            <summary>
+            Toggles the custom filter "Show NPCs"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterPCs">
+            <summary>
+            Toggles the custom filter "Show PCs"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterSpecials">
+            <summary>
+            Toggles the custom filter "Show Specials"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterResources">
+            <summary>
+            Toggles the custome filter "Show Resources"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterNoKillNPCs">
+            <summary>
+            Toggles the custom filter "Show No Kill NPCs"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterCorpses">
+            <summary>
+            Toggles the custom filter "Show Corpses"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.SetSize(System.Int32)">
+            <summary>
+            Sets the "zoom" of the radar
+            </summary>
+            <param name="newSize">the new zoom</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.ShowLabels">
+            <summary>
+            Toggles the custom filter "Show Labels"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.YAxisClipping">
+            <summary>
+            Toggles the custom filter "Y-axis Clipping"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.ClipText">
+            <summary>
+            Toggles the custom filter "Show Text"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.ClipRadius">
+            <summary>
+            Toggles the custom filter "Clip Radius"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.Rotation">
+            <summary>
+            Toggles radar rotation
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.SetCustomFilter(System.String)">
+            <summary>
+            Used to toggle a specific custom filter
+            </summary>
+            <param name="filter">The selected filter to toggle</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterTSUnits">
+            <summary>
+            Toggles the custom filter "Show Tradeskill"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterAggroNPCs">
+            <summary>
+            Toggles the custom filter "Show Aggro"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterNamedNPCs">
+            <summary>
+            Toggles the custom filter "Show Named"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterPets">
+            <summary>
+            Toggles the custom filter "Show Pets"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterMyPet">
+            <summary>
+            Toggles the custom filter "Show My Pet"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterChests">
+            <summary>
+            Toggles the custom filter "Show Chests"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterDoors">
+            <summary>
+            Toggles the custom filter "Show Doors"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.FilterUnknowns">
+            <summary>
+            Toggles the custom filter "Show Unknowns"
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Radar.ColorizeLabels">
+            <summary>
+            Toggles the custom filter "Show Con Color"
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingMe">
+            <summary>
+            True if the radar is showing the client
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingNPCs">
+            <summary>
+            True if the radar is showing NPCs
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingPCs">
+            <summary>
+            True if the radar is displaying PCs
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingSpecials">
+            <summary>
+            True if the radar is showing Specials
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingResources">
+            <summary>
+            True if the radar is showing Resources
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingNoKillNPCs">
+            <summary>
+            True if the radar is displaying NPCs that cannot be attacked
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingCorpses">
+            <summary>
+            True if the radar is displaying corpses
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingLabels">
+            <summary>
+            True if the radar is showing labels
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.Name">
+            <summary>
+            The name of the object on the radar
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingTSUnits">
+            <summary>
+            True if the radar is displaying Tradeskill units
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingAggroNPCs">
+            <summary>
+            True if the radar is displaying Aggro NPCs
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingNamedNPCs">
+            <summary>
+            True if the radar is showing Named NPCs
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingPets">
+            <summary>
+            True if the radar is displaying pets
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingChests">
+            <summary>
+            True if the radar is displating chests
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingDoors">
+            <summary>
+            True if the radar is showing doors
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingUnknowns">
+            <summary>
+            True if the radar is displaying unknowns
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ShowingMyPet">
+            <summary>
+            True if the radar is displaying client's pet
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.NumCustomFilters">
+            <summary>
+            Returns the number of filters active on the radar
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.CustomFiltersList">
+            <summary>
+            A list of the custom filters in effect
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.Size">
+            <summary>
+            The value used for "zooming"
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.YAxisClippingOn">
+            <summary>
+            True if Y Axis Clipping is on
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ClipRadiusOn">
+            <summary>
+            True if radius clipping is on
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ClippingTextOn">
+            <summary>
+            True if text clipping is on
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.RotationOn">
+            <summary>
+            True if radar rotation is on
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Radar.ColorizingLabels">
+            <summary>
+            True if labels are colorized
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Zone.Name">
+            <summary>
+            The name of the zone
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Zone.ShortName">
+            <summary>
+            The short name of the zone
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Zone.ID">
+            <summary>
+            The ID of the zone
+            </summary>
+        </member>
+    </members>
+</doc>

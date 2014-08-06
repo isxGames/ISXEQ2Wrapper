@@ -1,0 +1,23 @@
+﻿<Window x:Name="MainForm" x:Class="ISXEQ2WrapperTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ISXEQ2Wrapper Test" Height="479" Width="640">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="449" VerticalAlignment="Top" Width="632">
+            <TabItem x:Name="TabItemTopLevelObjects" Header="TLOs">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox x:Name="GroupBoxResults" Header="Results" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Height="158" Width="606">
+                        <TextBox x:Name="TextBoxISXEQ2TLOResult" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center" IsEnabled="False"/>
+                    </GroupBox>
+                    <Label x:Name="LabelISXEQ2TLOResult" Content="ISXEQ2 TLO" HorizontalAlignment="Left" Margin="146,278,0,0" VerticalAlignment="Top" Width="87"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItemLog" Header="Log">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="TextBoxLog" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="606" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
