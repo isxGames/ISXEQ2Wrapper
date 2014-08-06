@@ -527,5 +527,14 @@ namespace EQ2.ISXEQ2
             ExecuteMethod("ColorizeLabels");
         }
 
+        public void FilterMercenaries()
+        {
+            ExecuteMethod("FilterMercenaries");
+        }
+
+        public bool ShowingMercenaries
+        {
+            get { return GetMember<bool>("ShowingMercenaries"); }
+        }
     }
 }

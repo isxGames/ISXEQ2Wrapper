@@ -744,5 +744,10 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("InitializeEffects");
         }
 
+        public bool InMyGroup
+        {
+            get { return GetMember<Boolean>("InMyGroup"); }
+        }
+
     }
 }

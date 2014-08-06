@@ -330,7 +330,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<string>("PetName");
+                return GetGameData("PetName").Label;
             }
         }
 
@@ -475,7 +475,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<float>("PetHealth");
+                return Convert.ToSingle(GetGameData("PetHealth").ShortLabel.Remove(' ').Remove('%'));
             }
         }
 
@@ -483,7 +483,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<float>("PetPower");
+                return Convert.ToSingle(GetGameData("PetPower").ShortLabel.Remove(' ').Remove('%'));
             }
         }
 
@@ -1347,5 +1347,10 @@ namespace EQ2.ISXEQ2
             return new Consignment(Obj);
         }
 */
+
+        public void DepositIntoHouseEscrow(int copper, int status)
+        {
+            ExecuteMethod("DepositIntoHouseEscrow", copper.ToString(), status.ToString());
+        }
     }
 }

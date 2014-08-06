@@ -87,5 +87,10 @@ namespace EQ2.ISXEQ2
         {
             return ExecuteMethod("Examine");
         }
+
+        public int CurrentIncrements
+        {
+            get { return GetMember<int>("CurrentIncrements"); }
+        }
     }
 }
