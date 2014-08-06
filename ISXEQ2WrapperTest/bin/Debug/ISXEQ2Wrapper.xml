@@ -579,50 +579,40 @@
             Represents all of the data available about ISXEQ2 itself
             </summary>
         </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.#ctor(LavishScriptAPI.LavishScriptObject)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="copy">LS Object</param>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.IsValidEQ2PressKey(System.String)">
+            <summary>
+            Returns a boolean indicating whether or not a key board key is a valid eq2press key
+            </summary>
+            <param name="keyName"></param>
+            <returns>boolean indicating whether or not the key is valid</returns>
+        </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.AddLoc(System.String)">
             <summary>
-            Used to add an Eq2Location
+            Used to add an EQ2Location
             </summary>
-            <param name="label">Eq2Location label</param>
+            <param name="label">EQ2Location label</param>
         </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.AddLoc(System.String,System.String)">
             <summary>
-            Used to add an Eq2Location
+            Used to add an EQ2Location
             </summary>
-            <param name="label">Eq2location label</param>
-            <param name="notes">Eq2Location notes</param>
+            <param name="label">EQ2location label</param>
+            <param name="notes">EQ2Location notes</param>
         </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsRange(System.Single)">
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.ClearAbilitiesCache">
             <summary>
-            
-            </summary>
-            <param name="range"></param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsTimeInterval(System.Single)">
-            <summary>
-            Sets the time interval used to check for Actor events
-            </summary>
-            <param name="time">the desired time interval</param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnableAfflictionEvents">
-            <summary>
-            Enables Affliction Events
-            </summary>
-        </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.DisableAfflictionEvents">
-            <summary>
-            Disables Affliction Events
-            </summary>
-        </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetAfflictionEventsTimeInterval(System.Int32)">
-            <summary>
-            Sets the time period used to check for Affliction Events
-            </summary>
-            <param name="milliseconds">time in ms</param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnableActorEvents">
-            <summary>
-            Enables Actor Events
+            Clears the abilities cache which means it will be rebuilt automatically when abilities are next used
             </summary>
         </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.DisableActorEvents">
@@ -630,15 +620,24 @@
             Disables Actor Events
             </summary>
         </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.DisableAfflictionEvents">
+            <summary>
+            Disables Affliction Events
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnableActorEvents">
+            <summary>
+            Enables Actor Events
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.EnableAfflictionEvents">
+            <summary>
+            Enables Affliction Events
+            </summary>
+        </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.EnduringBreath(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
             <summary>
             Used to enable or disable Enduring Breath
-            </summary>
-            <param name="benefits">Enable or Disable</param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.SafeFall(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
-            <summary>
-            Used to enable or disable Safe Fall
             </summary>
             <param name="benefits">Enable or Disable</param>
         </member>
@@ -648,12 +647,11 @@
             </summary>
             <param name="benefits">Enable or Disable</param>
         </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.IsValidEQ2PressKey(System.String)">
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.Popup(System.String[])">
             <summary>
-            Returns a boolean indicating whether or not a key board key is a valid eq2press key
+            Creates an ISXEQ2 popup window (LGUI window). Title and Status are optional.
             </summary>
-            <param name="keyName"></param>
-            <returns>boolean indicating whether or not the key is valid</returns>
+            <param name="args">Title and/or Status</param>
         </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.ResetInternalVendingSystem">
             <summary>
@@ -661,26 +659,33 @@
             that would be occurring after any user manipulation of the system within the game.
             </summary>
         </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.Popup(System.String[])">
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SafeFall(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
             <summary>
-            Creates an ISXEQ2 popup window (LGUI window). Title and Status are optional.
+            Used to enable or disable Safe Fall
             </summary>
-            <param name="args">Title and/or Status</param>
+            <param name="benefits">Enable or Disable</param>
         </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.ClearAbilitiesCache">
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsRange(System.Single)">
             <summary>
-            Clears the abilities cache which means it will be rebuilt automatically when abilities are next used
+            Sets the range for Actor events
             </summary>
+            <param name="range">range</param>
         </member>
-        <member name="P:EQ2.ISXEQ2.ISXEQ2.Version">
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsTimeInterval(System.Single)">
             <summary>
-            The ISXEQ2 version
+            Sets the time interval used to check for Actor events
             </summary>
+            <param name="time">the desired time interval</param>
         </member>
-        <member name="P:EQ2.ISXEQ2.ISXEQ2.IsReady">
+        <member name="M:EQ2.ISXEQ2.ISXEQ2.SetAfflictionEventsTimeInterval(System.Int32)">
             <summary>
-            Returns TRUE when the authentication and patching routines are complete and ISXEQ2 is truly ready.FTN_40_eaos
-            
+            Sets the time period used to check for Affliction Events
+            </summary>
+            <param name="milliseconds">time in ms</param>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.AfflictionEventsOn">
+            <summary>
+            Indicates whether or not Affliction Events are on or off
             </summary>
         </member>
         <member name="P:EQ2.ISXEQ2.ISXEQ2.EQ2LocsCount">
@@ -695,12 +700,17 @@
         </member>
         <member name="P:EQ2.ISXEQ2.ISXEQ2.InitializingActorEffects">
             <summary>
-            
+            Indicates whether or not Actor Effects are initializing
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.ISXEQ2.AfflictionEventsOn">
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.IsReady">
             <summary>
-            Indicates whether or not Affliction Events are on or off
+            Returns TRUE when the authentication and patching routines are complete and ISXEQ2 is truly ready.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.ISXEQ2.Version">
+            <summary>
+            The ISXEQ2 version
             </summary>
         </member>
         <member name="T:EQ2.ISXEQ2.ISXEQ2.BenefitToggle">
