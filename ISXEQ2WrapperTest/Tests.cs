@@ -327,34 +327,6 @@ namespace ISXEQ2WrapperTest
                         }
                     }
                     dummybool = false;
-                    Log(item + "Testing SafeFall...");
-                    using (new FrameLock(true))
-                    {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
-                        dummybool = isxeq2.SafeFall(ISXEQ2.BenefitToggle.Enable);
-                        if (dummybool)
-                            Log(item + dummybool.ToString());
-                        else
-                        {
-                            Log(item + "SafeFall FAILED!");
-                            success = false;
-                        }
-                    }
-                    dummybool = false;
-                    Log(item + "Testing SafeFall...");
-                    using (new FrameLock(true))
-                    {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
-                        dummybool = isxeq2.SafeFall(ISXEQ2.BenefitToggle.Disable);
-                        if (dummybool)
-                            Log(item + dummybool.ToString());
-                        else
-                        {
-                            Log(item + "SafeFall FAILED!");
-                            success = false;
-                        }
-                    }
-                    dummybool = false;
                     Log(item + "Testing NoFog...");
                     using (new FrameLock(true))
                     {

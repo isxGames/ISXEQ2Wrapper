@@ -62,11 +62,21 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
+        /// Cached value of IsReady
+        /// </summary>
+        private bool? _isReady;
+
+        /// <summary>
         /// Returns TRUE when the authentication and patching routines are complete and ISXEQ2 is truly ready.
         /// </summary>
         public bool IsReady
         {
-            get { return this.GetBoolFromLSO("IsReady"); }
+            get
+            {
+                if(!_isReady.HasValue)
+                    _isReady = this.GetBoolFromLSO("IsReady");
+                return _isReady.Value;
+            }
         }
 
         /// <summary>
@@ -80,11 +90,16 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
+        /// Cached value of Version
+        /// </summary>
+        private string _version;
+
+        /// <summary>
         /// The ISXEQ2 version
         /// </summary>
         public string Version
         {
-            get { return this.GetStringFromLSO("Version"); }
+            get { return _version ?? (_version = this.GetStringFromLSO("Version")); }
         }
         #endregion
 
@@ -235,5 +250,6 @@ namespace EQ2.ISXEQ2
         }
 
         #endregion
+
     }
 }

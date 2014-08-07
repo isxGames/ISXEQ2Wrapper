@@ -1,6 +1,7 @@
 // Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
 
+using System.Globalization;
+#pragma warning disable 1591 
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,13 +14,329 @@ namespace EQ2.ISXEQ2
     public class Item : LavishScriptObject
     {
         #region Constructor
-
-        public Item(LavishScriptObject obj)
-            : base(obj)
-        {
-        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public Item(LavishScriptObject copy) : base(copy) { }
 
         #endregion
+
+        /// <summary>
+        /// Cache of IsQuestItemUsable
+        /// </summary>
+        private bool? _isQuestItemUsable;
+
+        /// <summary>
+        /// Returns TRUE if the item is a usable quest item
+        /// </summary>
+        public bool IsQuestItemUsable
+        {
+            get
+            {
+                if (!_isQuestItemUsable.HasValue)
+                    _isQuestItemUsable = this.GetBoolFromLSO("IsQuestItemUsable");
+                return _isQuestItemUsable.Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns true if all of this item's datatype members are available
+        /// (i.e., if information has been cached from the server.)
+        /// </summary>
+        public bool IsInitialized
+        {
+            get { return this.GetBoolFromLSO("IsInitialized"); }
+        }
+
+        /// <summary>
+        /// Cache of ID
+        /// </summary>
+        private int? _iD;
+
+        /// <summary>
+        /// The ID of the item
+        /// </summary>
+        public int ID
+        {
+            get
+            {
+                if(!_iD.HasValue)
+                    _iD = this.GetIntFromLSO("ID");
+                return _iD.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of Name
+        /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// The name of the item
+        /// </summary>
+        public string Name
+        {
+            get { return _name ?? (_name = this.GetStringFromLSO("Name")); }
+        }
+
+        /// <summary>
+        /// Cache of tier
+        /// </summary>
+        private string _tier;
+
+        /// <summary>
+        /// The tier of the item (FABLED, LEGENDARY, TREASURED, MASTERCRAFTED, HANDCRAFTED, or UNCOMMON)
+        /// </summary>
+        public string Tier
+        {
+            get { return _tier ?? (_tier = this.GetStringFromLSO("Tier")); }
+        }
+
+        /// <summary>
+        /// Cache of description
+        /// </summary>
+        private string _description;
+
+        /// <summary>
+        /// The description of the item. Not all items have a description.
+        /// </summary>
+        public string Description
+        {
+            get { return _description ?? (_description = this.GetStringFromLSO("Description")); }
+        }
+
+        /// <summary>
+        /// Cache of Adornment Description
+        /// </summary>
+        private string _adornmentDescription;
+
+        /// <summary>
+        /// Adornment Description
+        /// </summary>
+        public string AdornmentDescription
+        {
+            get { return _adornmentDescription ?? (_adornmentDescription = this.GetStringFromLSO("AdornmentDescription")); }
+        }
+
+        /// <summary>
+        /// Cache of NumModifiers
+        /// </summary>
+        private int? _numModifiers;
+
+        /// <summary>
+        /// The number of item modifiers
+        /// </summary>
+        public int NumModifiers
+        {
+            get
+            {
+                if(!_numModifiers.HasValue)
+                    _numModifiers = this.GetIntFromLSO("NumModifiers");
+                return _numModifiers.Value;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the modifier at index between 1 and NumModifiers
+        /// </summary>
+        /// <param name="Index">index</param>
+        /// <returns>item modifier</returns>
+        public ItemModifier Modifier(int index)
+        {
+            return new ItemModifier(this.GetMember("Modifier", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Cache of ExamineText
+        /// </summary>
+        private string _examineText;
+
+        /// <summary>
+        /// This is the text that appears in the examine window while 'examining' an item.
+        /// </summary>
+        public string ExamineText
+        {
+            get { return _examineText ?? (_examineText = this.GetStringFromLSO("ExamineText")); }
+        }
+
+        /// <summary>
+        /// Cache of Type
+        /// </summary>
+        private string _type;
+
+        /// <summary>
+        /// Item type (Weapon, Armor, Shield, Container, Spell Scroll, Recipe Book, House Item, Food, Drink, or Activateable)
+        /// </summary>
+        public string Type
+        {
+            get { return _type ?? (_type = this.GetStringFromLSO("Type")); }
+        }
+
+        /// <summary>
+        /// Cache of Crafter
+        /// </summary>
+        private string _crafter;
+
+        /// <summary>
+        /// The name of the crafter (if crafted item)
+        /// </summary>
+        public string Crafter
+        {
+            get { return _crafter ?? (_crafter = this.GetStringFromLSO("Crafter")); }
+        }
+
+        /// <summary>
+        /// Cache of LinkID
+        /// </summary>
+        private int? _linkID;
+
+        /// <summary>
+        /// The item LinkID
+        /// </summary>
+        public int LinkID
+        {
+            get 
+            { 
+                if(!_linkID.HasValue)
+                    _linkID = this.GetIntFromLSO("LinkID");
+                return _linkID.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of RentStatusReduction
+        /// </summary>
+        private int? _rentStatusReduction;
+
+        /// <summary>
+        /// Rent Status Reduction
+        /// </summary>
+        public int RentStatusReduction
+        {
+            get
+            {
+                if (!_rentStatusReduction.HasValue)
+                    _rentStatusReduction = this.GetIntFromLSO("RentStatusReduction");
+                return _rentStatusReduction.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of Condition
+        /// </summary>
+        private int? _condition;
+
+        /// <summary>
+        /// Item condition (%)
+        /// </summary>
+        public int Condition
+        {
+            get
+            {
+                if(!_condition.HasValue)
+                    _condition = this.GetIntFromLSO("Condition");
+                return _condition.Value;
+            }
+        }
+
+        /// <summary>
+        /// Item Charges (-1 indicates unlimited)
+        /// </summary>
+        public int Charges
+        {
+            get
+            {
+                return this.GetIntFromLSO("Charges");
+            }
+        }
+
+        /// <summary>
+        /// Cache of MaxCharges
+        /// </summary>
+        private int? _maxCharges;
+
+        /// <summary>
+        /// Max Charges (-1 indicates unlimited)
+        /// </summary>
+        public int MaxCharges
+        {
+            get
+            {
+                if(!_maxCharges.HasValue)
+                    _maxCharges = this.GetIntFromLSO("MaxCharges");
+                return _maxCharges.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of Index
+        /// </summary>
+        private int? _index;
+
+        /// <summary>
+        /// A number that represents a unique item number for an item.
+        /// e.g. eq2execute "inventory equip <ItemIndex> <SlotNumber>"
+        /// </summary>
+        public int Index
+        {
+            get
+            {
+                if(!_index.HasValue)
+                    _index = this.GetIntFromLSO("Index");
+                return _index.Value;
+            }
+        }
+
+        /// <summary>
+        /// Item Quantity
+        /// </summary>
+        public int Quantity
+        {
+            get { return this.GetIntFromLSO("Quantity"); }
+        }
+
+        /// <summary>
+        /// Returns the current slot position for the item within its container, or within your inventory.
+        /// So, if the item is in a bag that has 20 slots, it will return a number between 0 and 19.
+        /// If the item (or container) is sitting in one of your six "real" inventory slots, it will return 0 to 5.
+        /// </summary>
+        public int Slot
+        {
+            get { return this.GetIntFromLSO("Slot"); }
+        }
+
+        /// <summary>
+        /// Returns true if the IsActivatable == TRUE and the item is ready for use
+        /// </summary>
+        public bool IsReady
+        {
+            get { return this.GetBoolFromLSO("IsReady"); }
+        }
+
+        /// <summary>
+        /// Returns the time in seconds until the item is ready for use
+        /// </summary>
+        public float TimeUntilReady
+        {
+            get { return this.GetFloatFromLSO("TimeUntilReady"); }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is in the bank
+        /// </summary>
+        public bool InBank
+        {
+            get { return this.GetBoolFromLSO("InBank"); }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is in the shared bank
+        /// </summary>
+        public bool InSharedBank
+        {
+            get { return this.GetBoolFromLSO("InSharedBank"); }
+        }
 
         /// <summary>
         /// Identifies if the item is in a bag or actual inventory slot
@@ -48,33 +365,410 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool IsInventoryContainer
         {
-            get
-            {
-                return this.GetBoolFromLSO("IsInventoryContainer");
-            }
+            get { return this.GetBoolFromLSO("IsInventoryContainer"); }
         }
 
         /// <summary>
-        /// Identifies if the item is a container placed in one of your 8 actual bank slots
+        /// Identifies if the item is a container placed in one of your 12 actual bank slots
         /// </summary>
         public bool IsBankContainer
         {
+            get { return this.GetBoolFromLSO("IsBankContainer"); }
+        }
+
+        /// <summary>
+        /// Identifies if the item is a container placed in one of your 8 actual shared bank slots
+        /// </summary>
+        public bool IsSharedBankContainer
+        {
+            get { return this.GetBoolFromLSO("IsSharedBankContainer"); }
+        }
+
+        /// <summary>
+        /// The item is being used in a recipe, being offered to an altar, etc.
+        /// Anything that makes it "unavailable."
+        /// </summary>
+        public bool IsReserved
+        {
+            get { return this.GetBoolFromLSO("IsReserved"); }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is Ornate
+        /// </summary>
+        public bool Ornate
+        {
+            get { return this.GetBoolFromLSO("Ornate"); }
+        }
+
+        /// <summary>
+        /// Cache of Good
+        /// </summary>
+        private bool? _good;
+
+        /// <summary>
+        /// Returns TRUE if item only usable by Good characters
+        /// </summary>
+        public bool Good
+        {
             get
             {
-                return this.GetBoolFromLSO("IsBankContainer");
+                if(!_good.HasValue)
+                    _good = this.GetBoolFromLSO("Good");
+                return _good.Value;
             }
         }
 
         /// <summary>
-        /// Identifies if the item is a container placed in one of your 4 actual shared bank slots
+        /// Cache of Evil
         /// </summary>
-        public bool IsSharedBankContainer
+        private bool? _evil;
+
+        /// <summary>
+        /// Returns TRUE if item only usable by Evil characters
+        /// </summary>
+        public bool Evil
         {
             get
             {
-                return this.GetBoolFromLSO("IsSharedBankContainer");
+                if(!_evil.HasValue)
+                    _evil = this.GetBoolFromLSO("Evil");
+                return _evil.Value;
             }
         }
+
+        /// <summary>
+        /// Cache of Heirloom
+        /// </summary>
+        private bool? _heirloom;
+
+        /// <summary>
+        /// Returns TRUE if the item is Heirloom
+        /// </summary>
+        public bool Heirloom
+        {
+            get
+            {
+                if(!_heirloom.HasValue)
+                    _heirloom = this.GetBoolFromLSO("Heirloom");
+                return _heirloom.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of AppearanceOnly
+        /// </summary>
+        private bool? _appearanceOnly;
+
+        /// <summary>
+        /// Returns TRUE if the item is an Appearance Only item
+        /// </summary>
+        public bool AppearanceOnly
+        {
+            get
+            {
+                if(!_appearanceOnly.HasValue)
+                    _appearanceOnly = this.GetBoolFromLSO("AppearanceOnly");
+                return _appearanceOnly.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of LoreOnEquip
+        /// </summary>
+        private bool? _loreOnEquip;
+
+        /// <summary>
+        /// Returns TRUE if the item becomes Lore if equipped
+        /// </summary>
+        public bool LoreOnEquip
+        {
+            get
+            {
+                if(!_loreOnEquip.HasValue)
+                    _loreOnEquip = this.GetBoolFromLSO("LoreOnEquip");
+                return _loreOnEquip.Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is in a nosale container
+        /// </summary>
+        public bool InNoSaleContainer
+        {
+            get { return this.GetBoolFromLSO("InNoSaleContainer"); }
+        }
+
+        /// <summary>
+        /// Containers Only. Returns TRUE if the contents of the container are for sale.
+        /// </summary>
+        public bool ContentsForSale
+        {
+            get { return this.GetBoolFromLSO("ContentsForSale"); }
+        }
+
+        /// <summary>
+        /// Containers only. The number of empty slots in the container.
+        /// </summary>
+        public int EmptySlots
+        {
+            get { return this.GetIntFromLSO("EmptySlots"); }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the collectible has already been collected.
+        /// </summary>
+        public bool AlreadyCollected
+        {
+            get { return this.GetBoolFromLSO("AlreadyCollected"); }
+        }
+
+        /// <summary>
+        /// Cache of IsCollectible
+        /// </summary>
+        private bool? _isCollectible;
+
+        /// <summary>
+        /// Returns TRUE if the item is a collectible
+        /// </summary>
+        public bool IsCollectible
+        {
+            get
+            {
+                if(!_isCollectible.HasValue)
+                    _isCollectible = this.GetBoolFromLSO("IsCollectible");
+                return _isCollectible.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of RequiredByQuest
+        /// </summary>
+        private bool? _requiredByQuest;
+
+        /// <summary>
+        /// Returns TRUE if the item is required by a quest
+        /// </summary>
+        public bool RequiredByQuest
+        {
+            get
+            {
+                if(!_requiredByQuest.HasValue)
+                    _requiredByQuest = this.GetBoolFromLSO("RequiredByQuest");
+                return _requiredByQuest.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of OffersQuest
+        /// </summary>
+        private bool? _offersQuest;
+
+        /// <summary>
+        /// Returns TRUE if the item offers a quest
+        /// </summary>
+        public bool OffersQuest
+        {
+            get
+            {
+                if(!_offersQuest.HasValue)
+                    _offersQuest = this.GetBoolFromLSO("OffersQuest");
+                return _offersQuest.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of DamageRating
+        /// </summary>
+        private float? _damageRating;
+
+        /// <summary>
+        /// Weapon Damage Rating
+        /// </summary>
+        public float DamageRating
+        {
+            get
+            {
+                if(!_damageRating.HasValue)
+                    _damageRating = this.GetFloatFromLSO("DamageRating");
+                return _damageRating.Value;
+            }
+        }
+
+        /// <summary>
+        /// Weapon Min Damage
+        /// </summary>
+        public int MyMinDamage
+        {
+            get { return this.GetIntFromLSO("MyMinDamage"); }
+        }
+
+        /// <summary>
+        /// Weapon Max Damage
+        /// </summary>
+        public int MyMaxDamage
+        {
+            get { return this.GetIntFromLSO("MyMaxDamage"); }
+        }
+
+        /// <summary>
+        /// Cache of BaseMinDamage
+        /// </summary>
+        private int? _baseMinDamage;
+
+        /// <summary>
+        /// Base Minimum Weapon Damage
+        /// </summary>
+        public int BaseMinDamage
+        {
+            get
+            {
+                if(!_baseMinDamage.HasValue)
+                    _baseMinDamage = this.GetIntFromLSO("BaseMinDamage");
+                return _baseMinDamage.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of BaseMaxDamage
+        /// </summary>
+        private int? _baseMaxDamage;
+
+        /// <summary>
+        /// Base Maximum Weapon Damage
+        /// </summary>
+        public int BaseMaxDamage
+        {
+            get
+            {
+                if(!_baseMaxDamage.HasValue)
+                    _baseMaxDamage = this.GetIntFromLSO("BaseMaxDamage");
+                return _baseMaxDamage.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of MasteryMinDamage
+        /// </summary>
+        private int? _masteryMinDamage;
+
+        /// <summary>
+        /// Minimum Mastery Weapon Damage
+        /// </summary>
+        public int MasteryMinDamage
+        {
+            get
+            {
+                if(!_masteryMinDamage.HasValue)
+                    _masteryMinDamage = this.GetIntFromLSO("MasteryMinDamage");
+                return _masteryMinDamage.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of MasteryMaxDamage
+        /// </summary>
+        private int? _masteryMaxDamage;
+
+        /// <summary>
+        /// Maximum Mastery Weapon Damage
+        /// </summary>
+        public int MasteryMaxDamage
+        {
+            get
+            {
+                if(!_masteryMaxDamage.HasValue)
+                    _masteryMaxDamage = this.GetIntFromLSO("MasteryMaxDamage");
+                return _masteryMaxDamage.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of Delay
+        /// </summary>
+        private float? _delay;
+
+        /// <summary>
+        /// Weapon Delay
+        /// </summary>
+        public float Delay
+        {
+            get
+            {
+                if(!_delay.HasValue)
+                    _delay = this.GetFloatFromLSO("Delay");
+                return _delay.Value;
+            }
+        }
+
+        public int MaxRange
+        {
+            get
+            {
+                return GetMember<int>("MaxRange");
+            }
+        }
+
+        public int MinRange
+        {
+            get
+            {
+                return GetMember<int>("MinRange");
+            }
+        }
+
+        public int Range
+        {
+            get
+            {
+                return GetMember<int>("Range");
+            }
+        }
+
+        public string WieldStyle
+        {
+            get
+            {
+                return GetMember<string>("WieldStyle");
+            }
+        }
+
+        public string SubType
+        {
+            get
+            {
+                return GetMember<string>("SubType");
+            }
+        }
+
+        public string DamageType
+        {
+            get
+            {
+                return GetMember<string>("DamageType");
+            }
+        }
+
+        public string DamageTypeVerb
+        {
+            get
+            {
+                return GetMember<string>("DamageTypeVerb");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Identifies the number of free slots in a container
@@ -87,67 +781,15 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool RequiredByQuest
-        {
-            get
-            {
-                return GetMember<bool>("RequiredByQuest");
-            }
-        }
+        
 
-        public bool OffersQuest
-        {
-            get
-            {
-                return GetMember<bool>("OffersQuest");
-            }
-        }
+        
 
-        public bool AlreadyCollected
-        {
-            get
-            {
-                return GetMember<bool>("AlreadyCollected");
-            }
-        }
+        
 
-        public bool IsCollectible
-        {
-            get
-            {
-                return GetMember<bool>("IsCollectible");
-            }
-        }
+        
 
-        public int Index
-        {
-            get
-            {
-                return GetMember<int>("Index");
-            }
-        }
-
-        /// <summary>
-        /// The name of the item
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return this.GetStringFromLSO("Name");
-            }
-        }
-
-        /// <summary>
-        /// The tier of the item
-        /// </summary>
-        public string Tier
-        {
-            get
-            {
-                return this.GetStringFromLSO("Tier");
-            }
-        }
+        
 
         public bool IsContainer
         {
@@ -165,21 +807,8 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int Quantity
-        {
-            get
-            {
-                return GetMember<int>("Quantity");
-            }
-        }
+        
 
-        public int Slot
-        {
-            get
-            {
-                return GetMember<int>("Slot");
-            }
-        }
 
         public bool InContainer
         {
@@ -205,21 +834,7 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public bool InBank
-        {
-            get
-            {
-                return GetMember<bool>("InBank");
-            }
-        }
-
-        public bool InSharedBank
-        {
-            get
-            {
-                return GetMember<bool>("InSharedBank");
-            }
-        }
+        
 
         public Item ItemInSlot(int ItemInSlotNum)
         {
@@ -240,40 +855,13 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        /// <summary>
-        /// The description of the item. Not all items have a description.
-        /// </summary>
-        public string Description
-        {
-            get
-            {
-                return this.GetStringFromLSO("Description");
-            }
-        }
+        
 
-        public string ExamineText
-        {
-            get
-            {
-                return GetMember<string>("ExamineText");
-            }
-        }
+        
 
-        public string WieldStyle
-        {
-            get
-            {
-                return GetMember<string>("WieldStyle");
-            }
-        }
+        
 
-        public string Type
-        {
-            get
-            {
-                return GetMember<string>("Type");
-            }
-        }
+        
 
         public int Protection
         {
@@ -291,53 +879,15 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int RentStatusReduction
-        {
-            get
-            {
-                return GetMember<int>("RentStatusReduction");
-            }
-        }
+        
 
-        public string Crafter
-        {
-            get
-            {
-                return GetMember<string>("Crafter");
-            }
-        }
+        
 
-        public int Condition
-        {
-            get
-            {
-                return GetMember<int>("Condition");
-            }
-        }
+        
 
-        public int Charges
-        {
-            get
-            {
-                return GetMember<int>("Charges");
-            }
-        }
+        
 
-        public int MaxCharges
-        {
-            get
-            {
-                return GetMember<int>("MaxCharges");
-            }
-        }
-
-        public int LinkID
-        {
-            get
-            {
-                return GetMember<int>("LinkID");
-            }
-        }
+        
 
         public string ToLink(string LinkName)
         {
@@ -403,93 +953,7 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float DamageRating
-        {
-            get
-            {
-                return GetMember<float>("DamageRating");
-            }
-        }
-
-        public int MyMinDamage
-        {
-            get
-            {
-                return GetMember<int>("MyMinDamage");
-            }
-        }
-
-        public int MyMaxDamage
-        {
-            get
-            {
-                return GetMember<int>("MyMaxDamage");
-            }
-        }
-
-        public int BaseMinDamage
-        {
-            get
-            {
-                return GetMember<int>("BaseMinDamage");
-            }
-        }
-
-        public int BaseMaxDamage
-        {
-            get
-            {
-                return GetMember<int>("BaseMaxDamage");
-            }
-        }
-
-        public int MasteryMinDamage
-        {
-            get
-            {
-                return GetMember<int>("MasteryMinDamage");
-            }
-        }
-
-        public int MasteryMaxDamage
-        {
-            get
-            {
-                return GetMember<int>("MasteryMaxDamage");
-            }
-        }
-
-        public float Delay
-        {
-            get
-            {
-                return GetMember<float>("Delay");
-            }
-        }
-
-        public int MaxRange
-        {
-            get
-            {
-                return GetMember<int>("MaxRange");
-            }
-        }
-
-        public int MinRange
-        {
-            get
-            {
-                return GetMember<int>("MinRange");
-            }
-        }
-
-        public int Range
-        {
-            get
-            {
-                return GetMember<int>("Range");
-            }
-        }
+        
 
         public int Mitigation
         {
@@ -539,19 +1003,7 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public int NumModifiers
-        {
-            get
-            {
-                return GetMember<int>("NumModifiers");
-            }
-        }
-
-        public ItemModifier Modifier(int Index)
-        {
-            LavishScriptObject Obj = GetMember("Modifier", Index.ToString());
-            return new ItemModifier(Obj);
-        }
+        
 
         public bool Attuned
         {
@@ -625,24 +1077,9 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        /// <summary>
-        /// The ID of the item
-        /// </summary>
-        public int ID
-        {
-            get
-            {
-                return this.GetIntFromLSO("ID");
-            }
-        }
+        
 
-        public bool IsReady
-        {
-            get
-            {
-                return GetMember<bool>("IsReady");
-            }
-        }
+        
 
         public bool IsActivatable
         {
@@ -652,21 +1089,9 @@ namespace EQ2.ISXEQ2
             }
         }
 
-        public float TimeUntilReady
-        {
-            get
-            {
-                return GetMember<float>("TimeUntilReady");
-            }
-        }
+        
 
-        public string SubType
-        {
-            get
-            {
-                return GetMember<string>("SubType");
-            }
-        }
+        
 
         public int NumEffects
         {
@@ -686,109 +1111,19 @@ namespace EQ2.ISXEQ2
             return GetMember<bool>("EffectDescription", EffectNum.ToString());
         }
 
-        public string DamageType
-        {
-            get
-            {
-                return GetMember<string>("DamageType");
-            }
-        }
+        
 
-        public string DamageTypeVerb
-        {
-            get
-            {
-                return GetMember<string>("DamageTypeVerb");
-            }
-        }
+        
 
-        public string AdornmentDescription
-        {
-            get
-            {
-                return GetMember<string>("AdornmentDescription");
-            }
-        }
+        
 
-        public bool InNoSaleContainer
-        {
-            get
-            {
-                return GetMember<bool>("InNoSaleContainer");
-            }
-        }
+        
 
-        public bool ContentsForSale
-        {
-            get
-            {
-                return GetMember<bool>("ContentsForSale");
-            }
-        }
+        
 
-        public int EmptySlots
-        {
-            get
-            {
-                return GetMember<int>("EmptySlots");
-            }
-        }
+        
 
-        public bool Ornate
-        {
-            get
-            {
-                return GetMember<bool>("Ornate");
-            }
-        }
-
-        public bool Good
-        {
-            get
-            {
-                return GetMember<bool>("Good");
-            }
-        }
-
-        public bool Evil
-        {
-            get
-            {
-                return GetMember<bool>("Evil");
-            }
-        }
-
-        public bool Heirloom
-        {
-            get
-            {
-                return GetMember<bool>("Heirloom");
-            }
-        }
-
-        public bool AppearanceOnly
-        {
-            get
-            {
-                return GetMember<bool>("AppearanceOnly");
-            }
-        }
-
-        public bool LoreOnEquip
-        {
-            get
-            {
-                return GetMember<bool>("LoreOnEquip");
-            }
-        }
-
-        public bool IsReserved
-        {
-            get
-            {
-                return GetMember<bool>("IsReserved");
-            }
-        }
+        
 
         public bool IsScribeable
         {
@@ -844,6 +1179,19 @@ namespace EQ2.ISXEQ2
             {
                 return GetMember<bool>("IsEquipped");
             }
+        }
+
+        /// <summary>
+        /// Asks the server for information about the given item. Usually takes less than a second for the information to be cached to the client.
+        /// (Note:  Most of the item datatype members require this.  The only exceptions are: Name, ID, IsEquipped, LinkID,
+	    /// ToLink, Index, InContainer, InContainerID, NumSlots, Slot, Quantity, IsContainer, ContainerID, InSharedBank, InBank, NumSlotsFree,
+	    /// IsSlotOpen, ItemInSlot, NextSlotOpen, InInventory, InInventorySlot, IsInventoryContainer, IsBankContainer, IsSharedBankContainer,
+	    /// InNoSaleContainer, IsAutoConsumeable, CanBeRedeemed, IsFoodOrDrink, CanScribeNow, IsScribeable, IsActivatable, IsReady, TimeUntilReady.)
+        /// </summary>
+        /// <returns>Function call success</returns>
+        public bool Initialize()
+        {
+            return ExecuteMethod("Initialize");
         }
 
         public bool DestroyWithConf()
