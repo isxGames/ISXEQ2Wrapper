@@ -44,8 +44,10 @@ namespace ISXEQ2WrapperTest
             var result = String.Empty;
             TextBoxToggle(TLO, Testing, Brushes.Yellow);
             Log(item + "Starting test of " + TLO +" Top Level Object.");
+
             switch (TLO)
             {
+                #region ISXEQ2
                 case "ISXEQ2":
                     Log(item + "Testing Version...");
                     using (new FrameLock(true))
@@ -242,34 +244,34 @@ namespace ISXEQ2WrapperTest
                             success = false;
                         }
                     }
-                    dummybool = false;
-                    Log(item + "Testing EnableActorEvents...");
-                    using (new FrameLock(true))
-                    {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
-                        dummybool = isxeq2.EnableActorEvents();
-                        if (dummybool)
-                            Log(item + dummybool.ToString());
-                        else
-                        {
-                            Log(item + "EnableActorEvents FAILED!");
-                            success = false;
-                        }
-                    }
-                    dummybool = false;
-                    Log(item + "Testing DisableActorEvents...");
-                    using (new FrameLock(true))
-                    {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
-                        dummybool = isxeq2.DisableActorEvents();
-                        if (dummybool)
-                            Log(item + dummybool.ToString());
-                        else
-                        {
-                            Log(item + "DisableActorEvents FAILED!");
-                            success = false;
-                        }
-                    }
+                    //dummybool = false;
+                    //Log(item + "Testing EnableActorEvents...");
+                    //using (new FrameLock(true))
+                    //{
+                    //    var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                    //    dummybool = isxeq2.EnableActorEvents();
+                    //    if (dummybool)
+                    //        Log(item + dummybool.ToString());
+                    //    else
+                    //    {
+                    //        Log(item + "EnableActorEvents FAILED!");
+                    //        success = false;
+                    //    }
+                    //}
+                    //dummybool = false;
+                    //Log(item + "Testing DisableActorEvents...");
+                    //using (new FrameLock(true))
+                    //{
+                    //    var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                    //    dummybool = isxeq2.DisableActorEvents();
+                    //    if (dummybool)
+                    //        Log(item + dummybool.ToString());
+                    //    else
+                    //    {
+                    //        Log(item + "DisableActorEvents FAILED!");
+                    //        success = false;
+                    //    }
+                    //}
                     dummybool = false;
                     Log(item + "Testing SetActorEventsRange...");
                     using (new FrameLock(true))
@@ -369,6 +371,25 @@ namespace ISXEQ2WrapperTest
                         }
                     }
                     break;
+                #endregion
+                #region EQ2
+                case "EQ2":
+                    Log(item + "Testing CheckCollision");
+                    using (new FrameLock(true))
+                    {
+                        var eq2 = new EQ2.ISXEQ2.EQ2();
+                        var me = new EQ2.ISXEQ2.Extension().Me(); 
+                        bool? check = eq2.CheckCollision(me.X, me.Y, me.Z, me.X + 5f, me.Y, me.Z);
+                        if(check.HasValue)
+                            Log(item + check.Value.ToString());
+                        else
+                        {
+                            Log(item + "CheckCollision FAILED!");
+                            success = false;
+                        }
+                    }
+                    break;
+                #endregion
                 default:
                     break;
             }
@@ -391,6 +412,10 @@ namespace ISXEQ2WrapperTest
                 case "ISXEQ2":
                     TextBoxISXEQ2TLOResult.Text = condition;
                     TextBoxISXEQ2TLOResult.Foreground = color;
+                    break;
+                case "EQ2":
+                    TextBoxEQ2TLOResult.Text = condition;
+                    TextBoxEQ2TLOResult.Foreground = color;
                     break;
                 default:
                     break;

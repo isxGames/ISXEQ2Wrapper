@@ -6,11 +6,10 @@
         <TabControl HorizontalAlignment="Left" Height="449" VerticalAlignment="Top" Width="632" Margin="0,0,0,-1">
             <TabItem x:Name="TabItemTopLevelObjects" Header="TLOs">
                 <Grid Background="#FFE5E5E5">
-                    <GroupBox x:Name="GroupBoxResults" Header="Results" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Height="158" Width="606">
-                        <TextBox x:Name="TextBoxISXEQ2TLOResult" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" TextAlignment="Center" IsEnabled="False"/>
-                    </GroupBox>
-                    <Label x:Name="LabelISXEQ2TLOResult" Content="ISXEQ2 TLO" HorizontalAlignment="Left" Margin="99,278,0,0" VerticalAlignment="Top" Width="74"/>
-                    <Button x:Name="ButtonTestISXEQ2TLO" Content="Test ISXEQ2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="ButtonTestISXEQ2TLO_Click"/>
+                    <TextBox x:Name="TextBoxISXEQ2TLOResult" HorizontalAlignment="Left" Height="23" Margin="90,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" TextAlignment="Center" IsEnabled="False"/>
+                    <Button x:Name="ButtonTestISXEQ2TLO" Content="Test ISXEQ2" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="75" Click="ButtonTestISXEQ2TLO_Click"/>
+                    <Button x:Name="ButtonTestEQ2" Content="Test EQ2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="75" Click="ButtonTestEQ2_Click"/>
+                    <TextBox x:Name="TextBoxEQ2TLOResult" HorizontalAlignment="Left" Height="23" Margin="90,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" TextAlignment="Center" IsEnabled="False" RenderTransformOrigin="2.611,5.087"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItemLog" Header="Log">

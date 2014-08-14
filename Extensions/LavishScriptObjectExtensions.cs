@@ -184,6 +184,20 @@ namespace EQ2.ISXEQ2.Extensions
         }
 
         /// <summary>
+        /// Retrieves the requested unsigned integer member
+        /// </summary>
+        /// <param name="obj">this</param>
+        /// <param name="member">the member to retrieve</param>
+        /// <returns>LavishScriptObject integer member value</returns>
+        public static uint GetUIntFromLSO(this ILSObject obj, string member)
+        {
+            using (var lavishScriptObject = obj.GetMember(member))
+            {
+                return LavishScriptObject.IsNullOrInvalid(lavishScriptObject) ? 0 : lavishScriptObject.GetValue<uint>();
+            }
+        }
+
+        /// <summary>
         /// Retrieves the requested integer member based on the arguments provided
         /// </summary>
         /// <param name="obj">this</param>
@@ -197,6 +211,23 @@ namespace EQ2.ISXEQ2.Extensions
             using (var lavishScriptObject = obj.GetMember(member, args))
             {
                 return LavishScriptObject.IsNullOrInvalid(lavishScriptObject) ? -1 : lavishScriptObject.GetValue<int>();
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the requested unsigned integer member based on the arguments provided
+        /// </summary>
+        /// <param name="obj">this</param>
+        /// <param name="member">the member to retrieve</param>
+        /// <param name="args">string array of arguments to pass to the member</param>
+        /// <returns>LavishScriptObject integer member value</returns>
+        // ReSharper disable MethodOverloadWithOptionalParameter
+        public static uint GetUIntFromLSO(this ILSObject obj, string member, params string[] args)
+        // ReSharper restore MethodOverloadWithOptionalParameter
+        {
+            using (var lavishScriptObject = obj.GetMember(member, args))
+            {
+                return LavishScriptObject.IsNullOrInvalid(lavishScriptObject) ? 0 : lavishScriptObject.GetValue<uint>();
             }
         }
 

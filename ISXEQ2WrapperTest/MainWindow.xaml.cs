@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LavishScriptAPI;
 using LavishVMAPI;
+using EQ2.ISXEQ2;
 
 
 namespace ISXEQ2WrapperTest
@@ -37,7 +39,7 @@ namespace ISXEQ2WrapperTest
 
         private const string Failed = "FAILED";
 
-        private void Log(string entry)
+        public void Log(string entry)
         {
             if (!File.Exists(LogFile))
             {
@@ -62,6 +64,10 @@ namespace ISXEQ2WrapperTest
 
         public MainWindow()
         {
+            Trace.Listeners.Add(new TextWriterTraceListener(File.AppendText("Trace.log")));
+            Trace.Listeners.Add(new MyTraceListener(this));
+            Trace.AutoFlush = true;
+            Trace.IndentLevel = 0;
             InitializeComponent();
             logBuilder = new StringBuilder();
             TextBoxLog.Text = logBuilder.ToString();
@@ -72,6 +78,11 @@ namespace ISXEQ2WrapperTest
         private void ButtonTestISXEQ2TLO_Click(object sender, RoutedEventArgs e)
         {
             TestTLO("ISXEQ2");
+        }
+
+        private void ButtonTestEQ2_Click(object sender, RoutedEventArgs e)
+        {
+            TestTLO("EQ2");
         }
     }
 

@@ -1,7 +1,7 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
+using System;
 using System.Globalization;
+using System.Diagnostics;
+using System.Linq;
 using EQ2.ISXEQ2.Extensions;
 using LavishScriptAPI;
 
@@ -34,7 +34,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool AfflictionEventsOn
         {
-            get { return this.GetBoolFromLSO("AfflictionEventsOn"); }
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:AfflictionEventsOn"));
+                return this.GetBoolFromLSO("AfflictionEventsOn");
+            }
         }
 
         /// <summary>
@@ -42,7 +46,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int EQ2LocsCount
         {
-            get { return this.GetIntFromLSO("EQ2LocsCount"); }
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:EQ2LocsCount"));
+                return this.GetIntFromLSO("EQ2LocsCount");
+            }
         }
 
         /// <summary>
@@ -50,7 +58,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int EQ2LocsCountAllZones
         {
-            get { return this.GetIntFromLSO("EQ2LocsCount", "AllZones"); }
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:EQ2LocsCount"));
+                return this.GetIntFromLSO("EQ2LocsCount", "AllZones");
+            }
         }
 
         /// <summary>
@@ -58,7 +70,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool InitializingActorEffects
         {
-            get { return this.GetBoolFromLSO("InitializingActorEffects"); }
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:InitializingActorEffects"));
+                return this.GetBoolFromLSO("InitializingActorEffects");
+            }
         }
 
         /// <summary>
@@ -73,6 +89,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("ISXEQ2:IsReady"));
                 if(!_isReady.HasValue)
                     _isReady = this.GetBoolFromLSO("IsReady");
                 return _isReady.Value;
@@ -86,6 +103,7 @@ namespace EQ2.ISXEQ2
         /// <returns>boolean indicating whether or not the key is valid</returns>
         public bool IsValidEQ2PressKey(string keyName)
         {
+            Trace.WriteLine(String.Format("ISXEQ2:IsValidEQ2PressKey({0})", keyName));
             return this.GetBoolFromLSO("IsValidEQ2PressKey", keyName);
         }
 
@@ -99,7 +117,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string Version
         {
-            get { return _version ?? (_version = this.GetStringFromLSO("Version")); }
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:Version"));
+                return _version ?? (_version = this.GetStringFromLSO("Version"));
+            }
         }
         #endregion
 
@@ -111,7 +133,8 @@ namespace EQ2.ISXEQ2
         /// <param name="label">EQ2Location label</param>
         public bool AddLoc(string label)
         {
-            return ExecuteMethod("AddLoc", label);
+            Trace.WriteLine(String.Format("ISXEQ2:AddLoc({0})", label));
+            return this.ExecuteMethod("AddLoc", label);
         }
 
         /// <summary>
@@ -121,7 +144,8 @@ namespace EQ2.ISXEQ2
         /// <param name="notes">EQ2Location notes</param>
         public bool AddLoc(string label, string notes)
         {
-            return ExecuteMethod("AddLoc", label, notes);
+            Trace.WriteLine(String.Format("ISXEQ2:AddLoc({0}, {1})", label, notes));
+            return this.ExecuteMethod("AddLoc", label, notes);
         }
 
         /// <summary>
@@ -129,7 +153,8 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool ClearAbilitiesCache()
         {
-            return ExecuteMethod("ClearAbilitiesCache");
+            Trace.WriteLine(String.Format("ISXEQ:ClearAbilitiesCache()"));
+            return this.ExecuteMethod("ClearAbilitiesCache");
         }
 
         /// <summary>
@@ -137,7 +162,8 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool DisableActorEvents()
         {
-            return ExecuteMethod("DisableActorEvents");
+            Trace.WriteLine(String.Format("ISXEQ2:DisableActorEvents()"));
+            return this.ExecuteMethod("DisableActorEvents");
         }
 
         /// <summary>
@@ -145,7 +171,8 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool DisableAfflictionEvents()
         {
-            return ExecuteMethod("DisableAfflictionEvents");
+            Trace.WriteLine(String.Format("DisableAfflictionEvents()"));
+            return this.ExecuteMethod("DisableAfflictionEvents");
         }
 
         /// <summary>
@@ -153,7 +180,8 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool EnableActorEvents()
         {
-            return ExecuteMethod("EnableActorEvents");
+            Trace.WriteLine(String.Format("ISXEQ2:EnableActorEvents()"));
+            return this.ExecuteMethod("EnableActorEvents");
         }
 
         /// <summary>
@@ -161,7 +189,8 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool EnableAfflictionEvents()
         {
-            return ExecuteMethod("EnableAfflictionEvents");
+            Trace.WriteLine(String.Format("ISXEQ2:EnableAfflictionEvents()"));
+            return this.ExecuteMethod("EnableAfflictionEvents");
         }
 
         /// <summary>
@@ -170,7 +199,8 @@ namespace EQ2.ISXEQ2
         /// <param name="benefits">Enable or Disable</param>
         public bool EnduringBreath(BenefitToggle benefits)
         {
-            return ExecuteMethod("EnduringBreath", benefits.ToString());
+            Trace.WriteLine(String.Format("ISXEQ2:EnduringBreath({0})", benefits.ToString()));
+            return this.ExecuteMethod("EnduringBreath", benefits.ToString());
         }
 
         /// <summary>
@@ -179,7 +209,8 @@ namespace EQ2.ISXEQ2
         /// <param name="benefits">Enable or Disable</param>
         public bool NoFog(BenefitToggle benefits)
         {
-            return ExecuteMethod("NoFog", benefits.ToString());
+            Trace.WriteLine(String.Format("ISXEQ2:NoFog({0})", benefits.ToString()));
+            return this.ExecuteMethod("NoFog", benefits.ToString());
         }
 
         /// <summary>
@@ -188,7 +219,8 @@ namespace EQ2.ISXEQ2
         /// <param name="args">Title and/or Status</param>
         public bool Popup(params string[] args)
         {
-            return ExecuteMethod("Popup", args);
+            Trace.WriteLine("ISXEQ2:Popup({0})", String.Join(" ", args));
+            return this.ExecuteMethod("Popup", args);
         }
 
         /// <summary>
@@ -197,16 +229,8 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool ResetInternalVendingSystem()
         {
-            return ExecuteMethod("ResetInternalVendingSystem");
-        }
-
-        /// <summary>
-        /// Used to enable or disable Safe Fall
-        /// </summary>
-        /// <param name="benefits">Enable or Disable</param>
-        public bool SafeFall(BenefitToggle benefits)
-        {
-            return ExecuteMethod("SafeFall", benefits.ToString());
+            Trace.WriteLine(String.Format("ISXEQ2:ResetInternalVendingSystem()"));
+            return this.ExecuteMethod("ResetInternalVendingSystem");
         }
 
         /// <summary>
@@ -215,25 +239,31 @@ namespace EQ2.ISXEQ2
         /// <param name="range">range</param>
         public bool SetActorEventsRange(float range)
         {
-            return ExecuteMethod("SetActorEventsRange", range.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("ISXEQ2:SetActorEventsRange({0})", 
+                range.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("SetActorEventsRange", range.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
         /// Sets the time interval used to check for Actor events
         /// </summary>
-        /// <param name="time">the desired time interval</param>
+        /// <param name="time">time in ms</param>
         public bool SetActorEventsTimeInterval(float time)
         {
-            return ExecuteMethod("SetActorEventsTimeInterval", time.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("ISXEQ2:SetActorEventsTimeInterval({0})", 
+                time.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("SetActorEventsTimeInterval", time.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
-        /// Sets the time period used to check for Affliction Events
+        /// Sets the time period used to check for Affliction events
         /// </summary>
-        /// <param name="milliseconds">time in ms</param>
-        public bool SetAfflictionEventsTimeInterval(int milliseconds)
+        /// <param name="time">time in ms</param>
+        public bool SetAfflictionEventsTimeInterval(int time)
         {
-            return ExecuteMethod("SetAfflictionEventsTimeInterval", milliseconds.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("ISXEQ2:SetAfflictionEventsTimeInterval({0})",
+                time.ToString(CultureInfo.InvariantCulture)));
+            return ExecuteMethod("SetAfflictionEventsTimeInterval", time.ToString(CultureInfo.InvariantCulture));
         }
 
         #endregion

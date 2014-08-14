@@ -158,45 +158,16 @@
             This DataType includes miscellaneous data that is available to ISXEQ2 that does not fit into any other ISXEQ2 DataType
             </summary>
         </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.PersistentZoneID(System.String)">
+        <member name="M:EQ2.ISXEQ2.EQ2.#ctor">
             <summary>
-            Returns the Persistent Zone ID for a given zone name
-            </summary>
-            <param name="zoneName">The zone name</param>
-            <returns></returns>
-        </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.CreateCustomActorArray(System.String[])">
-            <summary>
-            Creates an array of actors based on the sort criteria submitted
-            </summary>
-            <param name="args">sort method, radius, type</param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.SetAmbientLight(System.Single)">
-            <summary>
-            Sets the ambient light to the requested amount
-            </summary>
-            <param name="ambientPct">float value between 0 and 100</param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.SetMasterVolume(System.Single)">
-            <summary>
-            Sets the master sound volume
-            </summary>
-            <param name="volPct">float value between 0 and 100</param>
-        </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.AcceptPendingQuest">
-            <summary>
-            Accepts the pending quest
+            Constructor
             </summary>
         </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.DeclinePendingQuest">
+        <member name="M:EQ2.ISXEQ2.EQ2.#ctor(LavishScriptAPI.LavishScriptObject)">
             <summary>
-            Declines the pending quest
+            Constructor
             </summary>
-        </member>
-        <member name="M:EQ2.ISXEQ2.EQ2.AcceptReward">
-            <summary>
-            Accepts the current reward
-            </summary>
+            <param name="copy">LS Object</param>
         </member>
         <member name="M:EQ2.ISXEQ2.EQ2.CheckCollision(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
@@ -211,7 +182,6 @@
             <param name="x2">x-coordinate of 2</param>
             <param name="y2">y-coordinate of 2</param>
             <param name="z2">z-coordinate of 2</param>
-            <returns></returns>
         </member>
         <member name="M:EQ2.ISXEQ2.EQ2.HeadingTo(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
@@ -223,21 +193,81 @@
             <param name="toX">x-coordinate of 2</param>
             <param name="toY">y-coordinate of 2</param>
             <param name="toZ">z-coordinate of 2</param>
-            <returns></returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.PersistentZoneID(System.String)">
+            <summary>
+            Returns the Persistent Zone ID for a given zone name
+            </summary>
+            <param name="zoneName">zone name</param>
+            <returns>zone id</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.AcceptPendingQuest">
+            <summary>
+            Accepts the pending quest
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.AcceptReward">
+            <summary>
+            Accepts the current reward
+            </summary>
+            <returns>call success</returns>
         </member>
         <member name="M:EQ2.ISXEQ2.EQ2.ConfirmZoneTeleporterDestination">
             <summary>
             Confirms the highlighted teleporter destination
             </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.CreateCustomActorArray(System.String[])">
+            <summary>
+            Creates an array of actors based on the sort criteria submitted
+            </summary>
+            <param name="args">sort method, radius, type</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.DeclinePendingQuest">
+            <summary>
+            Declines the pending quest
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.GetActors">
+            <summary>
+            Gets all actors in range
+            </summary>
+            <returns>Enumerable sorted by distance</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.GetActors(System.String[])">
+            <summary>
+            Gets all actors in range that meet the search criteria
+            </summary>
+            <param name="args"></param>
+            <returns>Enumerable</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.GetPersistentZones">
+            <summary>
+            Returns a list of Persistent Zones
+            </summary>
+            <returns>Enumerable</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.SetAmbientLight(System.Single)">
+            <summary>
+            Sets the ambient light to the requested amount
+            </summary>
+            <param name="ambientPct">float value between 0 and 100</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.EQ2.SetMasterVolume(System.Single)">
+            <summary>
+            Sets the master sound volume
+            </summary>
+            <param name="volPct">float value between 0 and 100</param>
+            <returns>call success</returns>
         </member>
         <member name="M:EQ2.ISXEQ2.EQ2.ShowAllOnScreenAnnouncements">
             <summary>
             Toggles the onscreen announcment that combat xp is disabled (if it is disabled)
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.ServerName">
-            <summary>
-            Returns the name of the server. This is only available when in the game proper.
             </summary>
         </member>
         <member name="P:EQ2.ISXEQ2.EQ2.CustomActorArraySize">
@@ -245,59 +275,14 @@
             Returns the size of the custom actor array.
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOWindowActive">
-            <summary>
-            Returns a boolean indicating whether or not the Heroic Opportunity window is active
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HoName">
-            <summary>
-            Returns the name of the Heroic Opportunity
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HODescription">
-            <summary>
-            Returns the description of the Heroic Opportunity
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOWheelID">
-            <summary>
-            Returns the ID# of the wheel
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOWindowState">
-            <summary>
-            Current state of the Heroic Opportunity window
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeLimit">
-            <summary>
-            Returns the total time allowed for the cuurent Heroic Opportunity
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeElapsed">
-            <summary>
-            Returns the total time elapsed on the current Heroic Opportunity
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeRemaining">
-            <summary>
-            Returns the time remaining on the current Heroic Opportunity
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOLastManipulator">
-            <summary>
-            Returns the last actor to initialize/manipulate the Heroic Opportunity window/wheel
-            </summary>
-        </member>
         <member name="P:EQ2.ISXEQ2.EQ2.HOCurrentWheelSlot">
             <summary>
             Returns the last known active Heroic Opportunity wheel slot
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.HOWheelState">
+        <member name="P:EQ2.ISXEQ2.EQ2.HODescription">
             <summary>
-            Returns the last known state of the Heroic Opportunity wheel
+            Returns the description of the Heroic Opportunity
             </summary>
         </member>
         <member name="P:EQ2.ISXEQ2.EQ2.HOIconID1">
@@ -330,9 +315,70 @@
             Returns the IconID of slot 6
             </summary>
         </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOLastManipulator">
+            <summary>
+            Returns the last actor to initialize/manipulate the Heroic Opportunity window/wheel
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOName">
+            <summary>
+            Returns the name of the Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeElapsed">
+            <summary>
+            Returns the total time elapsed on the current Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeLimit">
+            <summary>
+            Returns the total time allowed for the cuurent Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOTimeRemaining">
+            <summary>
+            Returns the time remaining on the current Heroic Opportunity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWheelID">
+            <summary>
+            Returns the ID# of the wheel
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWheelState">
+            <summary>
+            Returns the last known state of the Heroic Opportunity wheel
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWindowActive">
+            <summary>
+            Returns a boolean indicating whether or not the Heroic Opportunity window is active
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.HOWindowState">
+            <summary>
+            Current state of the Heroic Opportunity window
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.InboxMailCount">
+            <summary>
+            Returns the number of mail items in the character's inbox.
+            The mailbox must have been opened at least once.
+            </summary>
+        </member>
         <member name="P:EQ2.ISXEQ2.EQ2.MasterVolume">
             <summary>
             Returns the current master volume as a percentage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.NumRadars">
+            <summary>
+            Returns the number of active radars
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.PendingQuestDescription">
+            <summary>
+            Returns the description of the quest currently being offered
             </summary>
         </member>
         <member name="P:EQ2.ISXEQ2.EQ2.PendingQuestName">
@@ -341,30 +387,19 @@
             Returns "none" if no quest is currently being offered.
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.PendingQuestDescription">
-            <summary>
-            Returns the description of the quest currently being offered
-            </summary>
-        </member>
         <member name="P:EQ2.ISXEQ2.EQ2.RewardPending">
             <summary>
             Returns a boolean identifying whether or not a reward is pending
             </summary>
         </member>
+        <member name="P:EQ2.ISXEQ2.EQ2.ServerName">
+            <summary>
+            Returns the name of the server. This is only available when in the game proper.
+            </summary>
+        </member>
         <member name="P:EQ2.ISXEQ2.EQ2.Zoning">
             <summary>
             Returns an integer indicating the zoning status of the character. -1 = unsure, 0 = not zoning, 1 = zoning
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.NumRadars">
-            <summary>
-            Returns the number of active radars
-            </summary>
-        </member>
-        <member name="P:EQ2.ISXEQ2.EQ2.InboxMailCount">
-            <summary>
-            Returns the number of mail items in the character's inbox.
-            The mailbox must have been opened at least once.
             </summary>
         </member>
         <member name="T:EQ2.ISXEQ2.EQ2Location">
@@ -590,12 +625,22 @@
             Constructor
             </summary>
         </member>
+        <member name="F:EQ2.ISXEQ2.ISXEQ2._isReady">
+            <summary>
+            Cached value of IsReady
+            </summary>
+        </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.IsValidEQ2PressKey(System.String)">
             <summary>
             Returns a boolean indicating whether or not a key board key is a valid eq2press key
             </summary>
             <param name="keyName"></param>
             <returns>boolean indicating whether or not the key is valid</returns>
+        </member>
+        <member name="F:EQ2.ISXEQ2.ISXEQ2._version">
+            <summary>
+            Cached value of Version
+            </summary>
         </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.AddLoc(System.String)">
             <summary>
@@ -659,12 +704,6 @@
             that would be occurring after any user manipulation of the system within the game.
             </summary>
         </member>
-        <member name="M:EQ2.ISXEQ2.ISXEQ2.SafeFall(EQ2.ISXEQ2.ISXEQ2.BenefitToggle)">
-            <summary>
-            Used to enable or disable Safe Fall
-            </summary>
-            <param name="benefits">Enable or Disable</param>
-        </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.SetActorEventsRange(System.Single)">
             <summary>
             Sets the range for Actor events
@@ -675,13 +714,13 @@
             <summary>
             Sets the time interval used to check for Actor events
             </summary>
-            <param name="time">the desired time interval</param>
+            <param name="time">time in ms</param>
         </member>
         <member name="M:EQ2.ISXEQ2.ISXEQ2.SetAfflictionEventsTimeInterval(System.Int32)">
             <summary>
-            Sets the time period used to check for Affliction Events
+            Sets the time period used to check for Affliction events
             </summary>
-            <param name="milliseconds">time in ms</param>
+            <param name="time">time in ms</param>
         </member>
         <member name="P:EQ2.ISXEQ2.ISXEQ2.AfflictionEventsOn">
             <summary>
@@ -718,6 +757,741 @@
             Enum used as argument to toggle certain client based effects on or off
             </summary>
         </member>
+        <member name="T:EQ2.ISXEQ2.Item">
+            <summary>
+            This DataType includes all of the data available to ISXEQ2 that is related to inventory and equipped items.
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.#ctor(LavishScriptAPI.LavishScriptObject)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="copy">LS Object</param>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._appearanceOnly">
+            <summary>
+            Cache of AppearanceOnly
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._artifact">
+            <summary>
+            Cache of Artifact
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._attuneable">
+            <summary>
+            Cache of Attuneable
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._baseMaxDamage">
+            <summary>
+            Cache of BaseMaxDamage
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._baseMinDamage">
+            <summary>
+            Cache of BaseMinDamage
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._canBeRedeemed">
+            <summary>
+            Cache of CanBeRedeemed
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Class(System.Int32)">
+            <summary>
+            Returns a 'class' datatype -- # is the class number within the array 
+            Abilities that are usable by ALL will have one class in the array, which will have the name "commoner".
+            Remember, 'commoner' is a class of which everyone is a member 
+            </summary>
+            <param name="index">class index</param>
+            <returns>class at index</returns>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._condition">
+            <summary>
+            Cache of Condition
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._containerID">
+            <summary>
+            Cache of ContainerID
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._crafter">
+            <summary>
+            Cache of Crafter
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._damageRating">
+            <summary>
+            Cache of DamageRating
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._damageType">
+            <summary>
+            Cache of DamageType
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._damageTypeVerb">
+            <summary>
+            Cache of DamageTypeVerb
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._delay">
+            <summary>
+            Cache of Delay
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._description">
+            <summary>
+            Cache of description
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.EffectName(System.Int32)">
+            <summary>
+            Name of Effect at index
+            </summary>
+            <param name="index">effect index</param>
+            <returns>effect name</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.EffectDescription(System.Int32)">
+            <summary>
+            Description of the effect at index
+            </summary>
+            <param name="index">effect index</param>
+            <returns>effect description</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.EquipSlot(System.Int32)">
+            <summary>
+            Returns the name of the equipslot at the index
+            </summary>
+            <param name="index">equipslot index</param>
+            <returns>equipslot name</returns>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._evil">
+            <summary>
+            Cache of Evil
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._examineText">
+            <summary>
+            Cache of ExamineText
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._good">
+            <summary>
+            Cache of Good
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._heirloom">
+            <summary>
+            Cache of Heirloom
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._iD">
+            <summary>
+            Cache of ID
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._index">
+            <summary>
+            Cache of Index
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isActivatable">
+            <summary>
+            Cache of IsActivatable
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isAutoConsumeable">
+            <summary>
+            Cache of IsAutoConsumeable
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isCollectible">
+            <summary>
+            Cache of IsCollectible
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isContainer">
+            <summary>
+            Cache of IsContainer
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isItemFoodOrDrink">
+            <summary>
+            Cache of IsItemFoodOrDrink
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isQuestItemUsable">
+            <summary>
+            Cache of IsQuestItemUsable
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._isScribeable">
+            <summary>
+            Cache of IsScribeable
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.IsSlotOpen(System.Int32)">
+            <summary>
+            Returns TRUE if the slot is open
+            </summary>
+            <param name="slot">slot number</param>
+            <returns>TRUE if the slot is open</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.ItemInSlot(System.Int32)">
+            <summary>
+            Returns the item in the slot
+            </summary>
+            <param name="slot">slot number</param>
+            <returns>item in the slot</returns>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._label">
+            <summary>
+            Cache of Label
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._level">
+            <summary>
+            Cache of Level
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._linkID">
+            <summary>
+            Cache of LinkID
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._lore">
+            <summary>
+            Cache of Lore
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._loreOnEquip">
+            <summary>
+            Cache of LoreOnEquip
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._masteryMinDamage">
+            <summary>
+            Cache of MasteryMinDamage
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._masteryMaxDamage">
+            <summary>
+            Cache of MasteryMaxDamage
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._maxCharges">
+            <summary>
+            Cache of MaxCharges
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._maxMitigation">
+            <summary>
+            Cache of MaxMitigation
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._maxProtection">
+            <summary>
+            Cache of MaxProtection
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._maxRange">
+            <summary>
+            Cache of MaxRange
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._minRange">
+            <summary>
+            Cache of MinRange
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._mitigation">
+            <summary>
+            Cache of Mitigation
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Modifier(System.Int32)">
+            <summary>
+            Retrieves the modifier at index between 1 and NumModifiers
+            </summary>
+            <param name="Index">index</param>
+            <returns>item modifier</returns>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._name">
+            <summary>
+            Cache of Name
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._noDestroy">
+            <summary>
+            Cache of NoDestroy
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._noTrade">
+            <summary>
+            Cache of NoTrade
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._noValue">
+            <summary>
+            Cache of NoValue
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._noZone">
+            <summary>
+            Cache of NoZone
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._numClasses">
+            <summary>
+            Cache of NumClasses
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._numEquipSlots">
+            <summary>
+            Cache of NumEquipSlots
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._numModifiers">
+            <summary>
+            Cache of NumModifiers
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._numSlots">
+            <summary>
+            Cache for NumSlots
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._offersQuest">
+            <summary>
+            Cache of OffersQuest
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._ornate">
+            <summary>
+            Cache of Ornate
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._protection">
+            <summary>
+            Cache of Protection
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._rentStatusReduction">
+            <summary>
+            Cache of RentStatusReduction
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._requiredByQuest">
+            <summary>
+            Cache of RequiredByQuest
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._satiation">
+            <summary>
+            Cache of Satiation
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._serialNumber">
+            <summary>
+            Cache of SerialNumber
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._subType">
+            <summary>
+            Cache of SubType
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._temporary">
+            <summary>
+            Cache of Temporary
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._tier">
+            <summary>
+            Cache of tier
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.ToLink(System.String)">
+            <summary>
+            This will recreate the actual link used with in game chat channels (used typically with eq2echo or eq2execute). 
+            If you provide an argument, it will create the link with the argument as the link text. 
+            (ie, ${Me.Equipment[primary].ToLink[Amadeus' Special Sword]}
+            </summary>
+            <param name="link">name</param>
+            <returns>link</returns>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._type">
+            <summary>
+            Cache of Type
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item._wieldStyle">
+            <summary>
+            Cache of WieldStyle
+            </summary>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Activate">
+            <summary>
+            Activates the item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.AddToConsignment">
+            <summary>
+            Moves the entire item/stack to the first available vendor 
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.AddToConsignment(System.Int32)">
+            <summary>
+            Moves the quantity of the stack to the first available vendor 
+            </summary>
+            <param name="quantity">quantity</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.AddToConsignment(System.Int32,System.Int32)">
+            <summary>
+            Moves the quantity of the stack to the vendor/vending container (1 to 6)
+            </summary>
+            <param name="quantity">quantity</param>
+            <param name="vendorindex">index</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.AddToConsignment(System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Moves the quantity of the stack to the vendor/vending container (1 to 6) to the stack with
+            the stack serial number consignment
+            </summary>
+            <param name="quantity">quantity</param>
+            <param name="vendorindex">index</param>
+            <param name="stackwithserialnumber">serial number of target stack</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.AddToDepot(System.Int32)">
+            <summary>
+            Adds the item to a depot
+            </summary>
+            <param name="depotID">depot ID</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.AddToDepot(System.Int32,System.Int32)">
+            <summary>
+            Adds the quantity of the item to the depot
+            </summary>
+            <param name="depotID">depot ID</param>
+            <param name="quantity">quantity</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.ApplyToItem(System.Int32)">
+            <summary>
+            Used to apply an item to another item
+            </summary>
+            <param name="itemID">target item id</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Consume">
+            <summary>
+            Consumes the item (Food/Drink)
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Destroy">
+            <summary>
+            Destroys Item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Destroy(System.Int32)">
+            <summary>
+            Destroys the quantity of an item if it is in a stack
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.DestroyWithConf">
+            <summary>
+            Destroys Item with Confirm On
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.EnchantItem(System.Int32)">
+            <summary>
+            Applies temporary enchantments after use
+            </summary>
+            <param name="itemID">target item ID</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Equip">
+            <summary>
+            Auto Equips the item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Examine">
+            <summary>
+            Examines the item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Initialize">
+            <summary>
+            Asks the server for information about the given item. Usually takes less than a second for the information to be cached to the client.
+            (Note:  Most of the item datatype members require this.  The only exceptions are: Name, ID, IsEquipped, LinkID,
+            ToLink, Index, InContainer, InContainerID, NumSlots, Slot, Quantity, IsContainer, ContainerID, InSharedBank, InBank, NumSlotsFree,
+            IsSlotOpen, ItemInSlot, NextSlotOpen, InInventory, InInventorySlot, IsInventoryContainer, IsBankContainer, IsSharedBankContainer,
+            InNoSaleContainer, IsAutoConsumeable, CanBeRedeemed, IsFoodOrDrink, CanScribeNow, IsScribeable, IsActivatable, IsReady, TimeUntilReady.)
+            </summary>
+            <returns>Function call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.InstallAsVendingContainer">
+            <summary>
+            Adds the item (which must be a vending container and must be in your inventory) to 
+            your consignment system.  It will place the vending container into the first 
+            free slot that is available.
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Move(System.Int32,System.Int32)">
+            <summary>
+            Moves an item to a particular slot in a bag
+            </summary>
+            <param name="bagslot">slot</param>
+            <param name="bagID">bag id</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Move(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Moves a quantity of a stackable item to a particular slot in a container
+            </summary>
+            <param name="bagslot">slot</param>
+            <param name="bagID">bag id</param>
+            <param name="quantity">quantity</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Move(EQ2.ISXEQ2.Item.NextFreeType,System.Int32)">
+            <summary>
+            Moves the item(s) to the next free inventory slot of the selected type.
+            (Use quantity = 0 for non-stackable items.)
+            </summary>
+            <param name="invtype">inventory type</param>
+            <param name="quantity">quantity</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Open">
+            <summary>
+            Opens a container
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Sacrifice(System.Boolean)">
+            <summary>
+            Sacrifices the item
+            </summary>
+            <param name="withconfirm">with confirmation</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Scribe">
+            <summary>
+            Scribes the item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.SendAsGift">
+            <summary>
+            Attaches the item as a gift. Must be in a mail transaction.
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.SendAsGift(System.Int32)">
+            <summary>
+            Attaches the quantity of a stackable item as a gift. Must be in a mail transaction.
+            </summary>
+            <param name="quantity">quantity</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.ToggleAutoConsume">
+            <summary>
+            Toggles auto consume on and off. Check with AutoConsumeOn
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Transmute(System.Boolean)">
+            <summary>
+            Transmutes the item
+            </summary>
+            <param name="withconfirm">with confirmation</param>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.UnEquip">
+            <summary>
+            UnEquips the item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Item.Use">
+            <summary>
+            Uses the item
+            </summary>
+            <returns>call success</returns>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.AlreadyCollected">
+            <summary>
+            Returns TRUE if the collectible has already been collected.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.AppearanceOnly">
+            <summary>
+            Returns TRUE if the item is an Appearance Only item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Artifact">
+            <summary>
+            Returns TRUE if the item is an artifact
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Attuneable">
+            <summary>
+            Returns TRUE if the item is attuneable
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Attuned">
+            <summary>
+            Returns TRUE if the item is attuned
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.AutoConsumeOn">
+            <summary>
+            Returns TRUE if Auto Consume is on
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.BaseMaxDamage">
+            <summary>
+            Base Maximum Weapon Damage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.BaseMinDamage">
+            <summary>
+            Base Minimum Weapon Damage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.CanBeRedeemed">
+            <summary>
+            Returns TRUE if the item can be redeemed
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.CanScribeNow">
+            <summary>
+            Returns TRUE if the item can be scribed right now
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.CastingTime">
+            <summary>
+            Item casting time
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Charges">
+            <summary>
+            Item Charges (-1 indicates unlimited)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Condition">
+            <summary>
+            Item condition (%)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.ContainerID">
+            <summary>
+            The Container ID of the container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.ContentsForSale">
+            <summary>
+            Containers Only. Returns TRUE if the contents of the container are for sale.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Crafter">
+            <summary>
+            The name of the crafter (if crafted item)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.DamageRating">
+            <summary>
+            Weapon Damage Rating
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.DamageType">
+            <summary>
+            Weapon Damage Type
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.DamageTypeVerb">
+            <summary>
+            Weapon Damage Type Verb (Slashing, etc...)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Delay">
+            <summary>
+            Weapon Delay
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Description">
+            <summary>
+            The description of the item. Not all items have a description.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Duration">
+            <summary>
+            Food or Drink Duration
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.EmptySlots">
+            <summary>
+            Containers only. The number of empty slots in the container.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Evil">
+            <summary>
+            Returns TRUE if item only usable by Evil characters
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.ExamineText">
+            <summary>
+            This is the text that appears in the examine window while 'examining' an item.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Good">
+            <summary>
+            Returns TRUE if item only usable by Good characters
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Heirloom">
+            <summary>
+            Returns TRUE if the item is Heirloom
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.ID">
+            <summary>
+            The ID of the item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.InBank">
+            <summary>
+            Returns TRUE if the item is in the bank
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.InContainer">
+            <summary>
+            Returns TRUE if the item is in a container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.InContainerID">
+            <summary>
+            ID of parent container
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:EQ2.ISXEQ2.Item.Index" -->
         <member name="P:EQ2.ISXEQ2.Item.InInventory">
             <summary>
             Identifies if the item is in a bag or actual inventory slot
@@ -728,24 +1502,155 @@
             Identifies if the item is in one of your 6 actual inventory slots
             </summary>
         </member>
+        <member name="P:EQ2.ISXEQ2.Item.InNoSaleContainer">
+            <summary>
+            Returns TRUE if the item is in a nosale container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.InSharedBank">
+            <summary>
+            Returns TRUE if the item is in the shared bank
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsActivatable">
+            <summary>
+            Returns TRUE if the item is activatable
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsAutoConsumeable">
+            <summary>
+            Returns TRUE if the item is auto consumeable
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsBankContainer">
+            <summary>
+            Identifies if the item is a container placed in one of your 12 actual bank slots
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsCollectible">
+            <summary>
+            Returns TRUE if the item is a collectible
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsContainer">
+            <summary>
+            Returns TRUE if the item is a container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsEquipped">
+            <summary>
+            Returns TRUE if the item is equipped
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsFoodOrDrink">
+            <summary>
+            Returns TRUE if the item is a food or drink
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsInitialized">
+            <summary>
+            Returns true if all of this item's datatype members are available
+            (i.e., if information has been cached from the server.)
+            </summary>
+        </member>
         <member name="P:EQ2.ISXEQ2.Item.IsInventoryContainer">
             <summary>
             Identifies if the item is a container placed in one of your 6 actual inventory slots
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.Item.IsBankContainer">
+        <member name="P:EQ2.ISXEQ2.Item.IsQuestItemUsable">
             <summary>
-            Identifies if the item is a container placed in one of your 8 actual bank slots
+            Returns TRUE if the item is a usable quest item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsReady">
+            <summary>
+            Returns true if the IsActivatable == TRUE and the item is ready for use
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.IsScribeable">
+            <summary>
+            Returns TRUE if the item is scribeable
             </summary>
         </member>
         <member name="P:EQ2.ISXEQ2.Item.IsSharedBankContainer">
             <summary>
-            Identifies if the item is a container placed in one of your 4 actual shared bank slots
+            Identifies if the item is a container placed in one of your 8 actual shared bank slots
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.Item.NumSlotsFree">
+        <member name="P:EQ2.ISXEQ2.Item.Label">
             <summary>
-            Identifies the number of free slots in a container
+            Item Label (Container)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Level">
+            <summary>
+            Food/Drink Level
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.LinkID">
+            <summary>
+            The item LinkID
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Lore">
+            <summary>
+            Returns TRUE if the item is lore
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.LoreOnEquip">
+            <summary>
+            Returns TRUE if the item becomes Lore if equipped
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MasteryMinDamage">
+            <summary>
+            Minimum Mastery Weapon Damage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MasteryMaxDamage">
+            <summary>
+            Maximum Mastery Weapon Damage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MaxCharges">
+            <summary>
+            Max Charges (-1 indicates unlimited)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MaxMitigation">
+            <summary>
+            Max Mitigation
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MaxProtection">
+            <summary>
+            MaxProtection
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MaxRange">
+            <summary>
+            Max Weapon Range
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MinRange">
+            <summary>
+            Min Weapon Range
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Mitigation">
+            <summary>
+            Mitigation
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MyMinDamage">
+            <summary>
+            Weapon Min Damage
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.MyMaxDamage">
+            <summary>
+            Weapon Max Damage
             </summary>
         </member>
         <member name="P:EQ2.ISXEQ2.Item.Name">
@@ -753,19 +1658,171 @@
             The name of the item
             </summary>
         </member>
+        <member name="P:EQ2.ISXEQ2.Item.NextSlotOpen">
+            <summary>
+            The next open slot in the container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NoDestroy">
+            <summary>
+            Returns TRUE if the item is no destroy
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NoTrade">
+            <summary>
+            Returns TRUE if the item is no trade
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NoValue">
+            <summary>
+            Returns TRUE if the item is no value
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NoZone">
+            <summary>
+            Returns TRUE if the item is no zone
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumClasses">
+            <summary>
+            Returns the number of classes that can use the item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumEffects">
+            <summary>
+            The number of effects on the item
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumEquipSlots">
+            <summary>
+            Returns the number of slots in which this item can be equipped 
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumModifiers">
+            <summary>
+            The number of item modifiers
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumSlots">
+            <summary>
+            The number of slots in the container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.NumSlotsFree">
+            <summary>
+            Identifies the number of free slots in a container
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.OffersQuest">
+            <summary>
+            Returns TRUE if the item offers a quest
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Ornate">
+            <summary>
+            Returns TRUE if the item is Ornate
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Protection">
+            <summary>
+            Protection
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Quantity">
+            <summary>
+            Item Quantity
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Range">
+            <summary>
+            Return MaxRange
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.RecastTime">
+            <summary>
+            Item Recast Time
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.RecoveryTime">
+            <summary>
+            Item Recovery Time
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.RentStatusReduction">
+            <summary>
+            Rent Status Reduction
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.RequiredByQuest">
+            <summary>
+            Returns TRUE if the item is required by a quest
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Satiation">
+            <summary>
+            Food or Drink satiation level
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.SerialNumber">
+            <summary>
+            Item Serial Number
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Slot">
+            <summary>
+            Returns the current slot position for the item within its container, or within your inventory.
+            So, if the item is in a bag that has 20 slots, it will return a number between 0 and 19.
+            If the item (or container) is sitting in one of your six "real" inventory slots, it will return 0 to 5.
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.State">
+            <summary>
+            Item State
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.SubType">
+            <summary>
+            Weapon Sub Type
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.Temporary">
+            <summary>
+            Returns TRUE if the item is Temporary
+            </summary>
+        </member>
         <member name="P:EQ2.ISXEQ2.Item.Tier">
             <summary>
-            The tier of the item
+            The tier of the item (FABLED, LEGENDARY, TREASURED, MASTERCRAFTED, HANDCRAFTED, or UNCOMMON)
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.Item.Description">
+        <member name="P:EQ2.ISXEQ2.Item.TimeUntilReady">
             <summary>
-            The description of the item. Not all items have a description.
+            Returns the time in seconds until the item is ready for use
             </summary>
         </member>
-        <member name="P:EQ2.ISXEQ2.Item.ID">
+        <member name="P:EQ2.ISXEQ2.Item.Type">
             <summary>
-            The ID of the item
+            Item type (Weapon, Armor, Shield, Container, Spell Scroll, Recipe Book, House Item, Food, Drink, or Activateable)
+            </summary>
+        </member>
+        <member name="P:EQ2.ISXEQ2.Item.WieldStyle">
+            <summary>
+            Wield Style (Returns: Dual Wield, Two-Handed, or One-Handed.)
+            </summary>
+        </member>
+        <member name="T:EQ2.ISXEQ2.Item.NextFreeType">
+            <summary>
+            Inventory Types for the Move() Method
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item.NextFreeType.NextFreeNonBank">
+            <summary>
+            Non Bank Inventory
+            </summary>
+        </member>
+        <member name="F:EQ2.ISXEQ2.Item.NextFreeType.NextFreeInBank">
+            <summary>
+            Bank Inventory
             </summary>
         </member>
         <member name="T:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions">
@@ -857,9 +1914,26 @@
             <param name="member">the member to retrieve</param>
             <returns>LavishScriptObject integer member value</returns>
         </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetUIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String)">
+            <summary>
+            Retrieves the requested unsigned integer member
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <returns>LavishScriptObject integer member value</returns>
+        </member>
         <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
             <summary>
             Retrieves the requested integer member based on the arguments provided
+            </summary>
+            <param name="obj">this</param>
+            <param name="member">the member to retrieve</param>
+            <param name="args">string array of arguments to pass to the member</param>
+            <returns>LavishScriptObject integer member value</returns>
+        </member>
+        <member name="M:EQ2.ISXEQ2.Extensions.LavishScriptObjectExtensions.GetUIntFromLSO(LavishScriptAPI.Interfaces.ILSObject,System.String,System.String[])">
+            <summary>
+            Retrieves the requested unsigned integer member based on the arguments provided
             </summary>
             <param name="obj">this</param>
             <param name="member">the member to retrieve</param>
