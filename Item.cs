@@ -47,6 +47,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:AppearanceOnly"));
                 if (!_appearanceOnly.HasValue)
                     _appearanceOnly = this.GetBoolFromLSO("AppearanceOnly");
                 return _appearanceOnly.Value;
@@ -65,6 +66,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Artifact"));
                 if (!_artifact.HasValue)
                     _artifact = this.GetBoolFromLSO("Artifact");
                 return _artifact.Value;
@@ -83,6 +85,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Attuneable"));
                 if (!_attuneable.HasValue)
                     _attuneable = this.GetBoolFromLSO("Attuneable");
                 return _attuneable.Value;
@@ -96,6 +99,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Attuned"));
                 return this.GetBoolFromLSO("Attuned");
             }
         }
@@ -107,6 +111,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:AutoConsumeOn"));
                 return this.GetBoolFromLSO("AutoConsumeOn");
             }
         }
@@ -123,6 +128,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:BaseMaxDamage"));
                 if (!_baseMaxDamage.HasValue)
                     _baseMaxDamage = this.GetIntFromLSO("BaseMaxDamage");
                 return _baseMaxDamage.Value;
@@ -141,6 +147,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:BaseMinDamage"));
                 if (!_baseMinDamage.HasValue)
                     _baseMinDamage = this.GetIntFromLSO("BaseMinDamage");
                 return _baseMinDamage.Value;
@@ -159,6 +166,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:CanBeRedeemed"));
                 if (!_canBeRedeemed.HasValue)
                     _canBeRedeemed = this.GetBoolFromLSO("CanBeRedeemed");
                 return _canBeRedeemed.Value;
@@ -172,6 +180,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:CanScribeNow"));
                 return this.GetBoolFromLSO("CanScribeNow");
             }
         }
@@ -183,6 +192,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:CastingTime"));
                 return this.GetFloatFromLSO("CastingTime");
             }
         }
@@ -194,6 +204,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Charges"));
                 return this.GetIntFromLSO("Charges");
             }
         }
@@ -207,6 +218,7 @@ namespace EQ2.ISXEQ2
         /// <returns>class at index</returns>
         public Class Class(int index)
         {
+            Trace.WriteLine(String.Format("Item:Class({0})", index.ToString(CultureInfo.InvariantCulture)));
             return new Class(GetMember("Class", index.ToString(CultureInfo.InvariantCulture)));
         }
 
@@ -222,6 +234,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Condition"));
                 if (!_condition.HasValue)
                     _condition = this.GetIntFromLSO("Condition");
                 return _condition.Value;
@@ -240,6 +253,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:ContainerID"));
                 if (!_containerID.HasValue)
                     _containerID = this.GetIntFromLSO("ContainerID");
                 return _containerID.Value;
@@ -251,7 +265,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool ContentsForSale
         {
-            get { return this.GetBoolFromLSO("ContentsForSale"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:ContentsForSale"));
+                return this.GetBoolFromLSO("ContentsForSale");
+            }
         }
 
         /// <summary>
@@ -264,7 +282,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string Crafter
         {
-            get { return _crafter ?? (_crafter = this.GetStringFromLSO("Crafter")); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Crafter"));
+                return _crafter ?? (_crafter = this.GetStringFromLSO("Crafter"));
+            }
         }
 
         /// <summary>
@@ -279,6 +301,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:DamageRating"));
                 if (!_damageRating.HasValue)
                     _damageRating = this.GetFloatFromLSO("DamageRating");
                 return _damageRating.Value;
@@ -297,6 +320,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:DamageType"));
                 return _damageType ?? (_damageType = this.GetStringFromLSO("DamageType"));
             }
         }
@@ -313,6 +337,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:DamageTypeVerb"));
                 return _damageTypeVerb ?? (_damageTypeVerb = this.GetStringFromLSO("DamageTypeVerb"));
             }
         }
@@ -329,6 +354,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Delay"));
                 if (!_delay.HasValue)
                     _delay = this.GetFloatFromLSO("Delay");
                 return _delay.Value;
@@ -345,7 +371,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string Description
         {
-            get { return _description ?? (_description = this.GetStringFromLSO("Description")); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Description"));
+                return _description ?? (_description = this.GetStringFromLSO("Description"));
+            }
         }
 
         /// <summary>
@@ -355,6 +385,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Duration"));
                 return this.GetFloatFromLSO("Duration");
             }
         }
@@ -366,6 +397,7 @@ namespace EQ2.ISXEQ2
         /// <returns>effect name</returns>
         public string EffectName(int index)
         {
+            Trace.WriteLine(String.Format("Item:EffectName({0})", index.ToString(CultureInfo.InvariantCulture)));
             return this.GetStringFromLSO("EffectName", index.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -376,6 +408,7 @@ namespace EQ2.ISXEQ2
         /// <returns>effect description</returns>
         public string EffectDescription(int index)
         {
+            Trace.WriteLine(String.Format("Item:EffectDescription({0})", index.ToString(CultureInfo.InvariantCulture)));
             return this.GetStringFromLSO("EffectDescription", index.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -384,7 +417,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int EmptySlots
         {
-            get { return this.GetIntFromLSO("EmptySlots"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:EmptySlots"));
+                return this.GetIntFromLSO("EmptySlots");
+            }
         }
 
         /// <summary>
@@ -394,6 +431,7 @@ namespace EQ2.ISXEQ2
         /// <returns>equipslot name</returns>
         public string EquipSlot(int index)
         {
+            Trace.WriteLine(String.Format("Item:EquipSlot({0})", index.ToString(CultureInfo.InvariantCulture)));
             return this.GetStringFromLSO("EquipSlot", index.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -409,6 +447,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Evil"));
                 if (!_evil.HasValue)
                     _evil = this.GetBoolFromLSO("Evil");
                 return _evil.Value;
@@ -425,7 +464,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string ExamineText
         {
-            get { return _examineText ?? (_examineText = this.GetStringFromLSO("ExamineText")); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:ExamineText"));
+                return _examineText ?? (_examineText = this.GetStringFromLSO("ExamineText"));
+            }
         }
 
         /// <summary>
@@ -440,6 +483,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Good"));
                 if (!_good.HasValue)
                     _good = this.GetBoolFromLSO("Good");
                 return _good.Value;
@@ -458,6 +502,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Heirloom"));
                 if (!_heirloom.HasValue)
                     _heirloom = this.GetBoolFromLSO("Heirloom");
                 return _heirloom.Value;
@@ -476,6 +521,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:ID"));
                 if (!_iD.HasValue)
                     _iD = this.GetIntFromLSO("ID");
                 return _iD.Value;
@@ -487,7 +533,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool InBank
         {
-            get { return this.GetBoolFromLSO("InBank"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:InBank"));
+                return this.GetBoolFromLSO("InBank");
+            }
         }
 
         /// <summary>
@@ -497,6 +547,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:InContainer"));
                 return this.GetBoolFromLSO("InContainer");
             }
         }
@@ -508,6 +559,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:InContainerID"));
                 return this.GetIntFromLSO("InContainerID");
             }
         }
@@ -525,6 +577,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Index"));
                 if (!_index.HasValue)
                     _index = this.GetIntFromLSO("Index");
                 return _index.Value;
@@ -538,6 +591,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:InInventory"));
                 return this.GetBoolFromLSO("InInventory");
             }
         }
@@ -549,6 +603,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:InInventorySlot"));
                 return this.GetBoolFromLSO("InInventorySlot");
             }
         }
@@ -558,7 +613,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool InNoSaleContainer
         {
-            get { return this.GetBoolFromLSO("InNoSaleContainer"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:InNoSaleContainer"));
+                return this.GetBoolFromLSO("InNoSaleContainer");
+            }
         }
 
         /// <summary>
@@ -566,7 +625,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool InSharedBank
         {
-            get { return this.GetBoolFromLSO("InSharedBank"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:InSharedBank"));
+                return this.GetBoolFromLSO("InSharedBank");
+            }
         }
 
         /// <summary>
@@ -581,6 +644,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsActivatable"));
                 if (!_isActivatable.HasValue)
                     _isActivatable = this.GetBoolFromLSO("IsActivatable");
                 return _isActivatable.Value;
@@ -599,6 +663,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsAutoConsumeable"));
                 if (!_isAutoConsumeable.HasValue)
                     _isAutoConsumeable = this.GetBoolFromLSO("IsAutoConsumeOn");
                 return _isAutoConsumeable.Value;
@@ -610,7 +675,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool IsBankContainer
         {
-            get { return this.GetBoolFromLSO("IsBankContainer"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsBankContainer"));
+                return this.GetBoolFromLSO("IsBankContainer");
+            }
         }
 
         /// <summary>
@@ -625,6 +694,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsCollectible"));
                 if (!_isCollectible.HasValue)
                     _isCollectible = this.GetBoolFromLSO("IsCollectible");
                 return _isCollectible.Value;
@@ -643,6 +713,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsContainer"));
                 if(!_isContainer.HasValue)
                     _isContainer = this.GetBoolFromLSO("IsContainer");
                 return _isContainer.Value;
@@ -656,6 +727,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsEquipped"));
                 return this.GetBoolFromLSO("IsEquipped");
             }
         }
@@ -663,7 +735,7 @@ namespace EQ2.ISXEQ2
         /// <summary>
         /// Cache of IsItemFoodOrDrink
         /// </summary>
-        private bool? _isItemFoodOrDrink;
+        private bool? _isFoodOrDrink;
 
         /// <summary>
         /// Returns TRUE if the item is a food or drink
@@ -672,9 +744,10 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                if (!_isItemFoodOrDrink.HasValue)
-                    _isItemFoodOrDrink = this.GetBoolFromLSO("IsFoodOrDrink");
-                return _isItemFoodOrDrink.Value;
+                Trace.WriteLine(String.Format("Item:IsFoodOrDrink"));
+                if (!_isFoodOrDrink.HasValue)
+                    _isFoodOrDrink = this.GetBoolFromLSO("IsFoodOrDrink");
+                return _isFoodOrDrink.Value;
             }
         }
 
@@ -684,7 +757,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool IsInitialized
         {
-            get { return this.GetBoolFromLSO("IsInitialized"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsInitialized"));
+                return this.GetBoolFromLSO("IsInitialized");
+            }
         }
 
         /// <summary>
@@ -692,7 +769,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool IsInventoryContainer
         {
-            get { return this.GetBoolFromLSO("IsInventoryContainer"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsInventoryContainer"));
+                return this.GetBoolFromLSO("IsInventoryContainer");
+            }
         }
 
         /// <summary>
@@ -707,6 +788,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsQuestItemUsable"));
                 if (!_isQuestItemUsable.HasValue)
                     _isQuestItemUsable = this.GetBoolFromLSO("IsQuestItemUsable");
                 return _isQuestItemUsable.Value;
@@ -718,7 +800,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool IsReady
         {
-            get { return this.GetBoolFromLSO("IsReady"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsReady"));
+                return this.GetBoolFromLSO("IsReady");
+            }
         }
 
         /// <summary>
@@ -733,6 +819,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:IsScribeable"));
                 if (!_isScribeable.HasValue)
                     _isScribeable = this.GetBoolFromLSO("IsScribeable");
                 return _isScribeable.Value;
@@ -744,7 +831,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public bool IsSharedBankContainer
         {
-            get { return this.GetBoolFromLSO("IsSharedBankContainer"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsSharedBankContainer"));
+                return this.GetBoolFromLSO("IsSharedBankContainer");
+            }
         }
 
         /// <summary>
@@ -754,6 +845,7 @@ namespace EQ2.ISXEQ2
         /// <returns>TRUE if the slot is open</returns>
         public bool IsSlotOpen(int slot)
         {
+            Trace.WriteLine(String.Format("Item:IsOpenSlot({0})", slot.ToString(CultureInfo.InvariantCulture)));
             return this.GetBoolFromLSO("IsSlotOpen", slot.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -764,6 +856,7 @@ namespace EQ2.ISXEQ2
         /// <returns>item in the slot</returns>
         public Item ItemInSlot(int slot)
         {
+            Trace.WriteLine(String.Format("Item:ItemInSlot({0})", slot.ToString(CultureInfo.InvariantCulture)));
             return new Item(this.GetMember("ItemInSlot", slot.ToString(CultureInfo.InvariantCulture)));
         }
 
@@ -779,6 +872,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Label"));
                 return _label ?? (_label = this.GetStringFromLSO("Label"));
             }
         }
@@ -795,6 +889,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Level"));
                 if (!_level.HasValue)
                     _level = this.GetIntFromLSO("Level");
                 return _level.Value;
@@ -813,6 +908,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:LinkID"));
                 if (!_linkID.HasValue)
                     _linkID = this.GetIntFromLSO("LinkID");
                 return _linkID.Value;
@@ -831,6 +927,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Lore"));
                 if (!_lore.HasValue)
                     _lore = this.GetBoolFromLSO("Lore");
                 return _lore.Value;
@@ -849,6 +946,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:LoreOnEquip"));
                 if (!_loreOnEquip.HasValue)
                     _loreOnEquip = this.GetBoolFromLSO("LoreOnEquip");
                 return _loreOnEquip.Value;
@@ -867,6 +965,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MasteryMinDamage"));
                 if (!_masteryMinDamage.HasValue)
                     _masteryMinDamage = this.GetIntFromLSO("MasteryMinDamage");
                 return _masteryMinDamage.Value;
@@ -885,6 +984,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MasteryMaxDamage"));
                 if (!_masteryMaxDamage.HasValue)
                     _masteryMaxDamage = this.GetIntFromLSO("MasteryMaxDamage");
                 return _masteryMaxDamage.Value;
@@ -903,6 +1003,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MaxCharges"));
                 if (!_maxCharges.HasValue)
                     _maxCharges = this.GetIntFromLSO("MaxCharges");
                 return _maxCharges.Value;
@@ -921,6 +1022,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MaxMitigation"));
                 if (!_maxMitigation.HasValue)
                     _maxMitigation = this.GetIntFromLSO("MaxMitigation");
                 return _maxMitigation.Value;
@@ -939,6 +1041,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MaxProtection"));
                 if (!_maxProtection.HasValue)
                     _maxProtection = this.GetIntFromLSO("MaxProtection");
                 return _maxProtection.Value;
@@ -957,6 +1060,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MaxRange"));
                 if (!_maxRange.HasValue)
                     _maxRange = this.GetIntFromLSO("MaxRange");
                 return _maxRange.Value;
@@ -975,6 +1079,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:MinRange"));
                 if (!_minRange.HasValue)
                     _minRange = this.GetIntFromLSO("MinRange");
                 return _minRange.Value;
@@ -993,6 +1098,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Mitigation"));
                 if (!_mitigation.HasValue)
                     _mitigation = this.GetIntFromLSO("Mitigation");
                 return _mitigation.Value;
@@ -1002,10 +1108,11 @@ namespace EQ2.ISXEQ2
         /// <summary>
         /// Retrieves the modifier at index between 1 and NumModifiers
         /// </summary>
-        /// <param name="Index">index</param>
+        /// <param name="index">index</param>
         /// <returns>item modifier</returns>
         public ItemModifier Modifier(int index)
         {
+            Trace.WriteLine(String.Format("Item:Modifier({0})", index.ToString(CultureInfo.InvariantCulture)));
             return new ItemModifier(this.GetMember("Modifier", index.ToString(CultureInfo.InvariantCulture)));
         }
 
@@ -1014,7 +1121,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int MyMinDamage
         {
-            get { return this.GetIntFromLSO("MyMinDamage"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:MyMinDamage"));
+                return this.GetIntFromLSO("MyMinDamage");
+            }
         }
 
         /// <summary>
@@ -1022,7 +1133,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int MyMaxDamage
         {
-            get { return this.GetIntFromLSO("MyMaxDamage"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:MyMaxDamage"));
+                return this.GetIntFromLSO("MyMaxDamage");
+            }
         }
 
         /// <summary>
@@ -1035,7 +1150,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string Name
         {
-            get { return _name ?? (_name = this.GetStringFromLSO("Name")); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Name"));
+                return _name ?? (_name = this.GetStringFromLSO("Name"));
+            }
         }
 
         /// <summary>
@@ -1045,6 +1164,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NextSlotOpen"));
                 return this.GetIntFromLSO("NextSlotOpen");
             }
         }
@@ -1061,6 +1181,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NoDestroy"));
                 if (!_noDestroy.HasValue)
                     _noDestroy = this.GetBoolFromLSO("NoDestroy");
                 return _noDestroy.Value;
@@ -1079,6 +1200,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Notrade"));
                 if (!_noTrade.HasValue)
                     _noTrade = this.GetBoolFromLSO("NoTrade");
                 return _noTrade.Value;
@@ -1097,6 +1219,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NoValue"));
                 if (!_noValue.HasValue)
                     _noValue = this.GetBoolFromLSO("NoValue");
                 return _noValue.Value;
@@ -1115,6 +1238,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NoZone"));
                 if (!_noZone.HasValue)
                     _noZone = this.GetBoolFromLSO("NoZone");
                 return _noZone.Value;
@@ -1133,6 +1257,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NumClasses"));
                 if (!_numClasses.HasValue)
                     _numClasses = this.GetIntFromLSO("NumClasses");
                 return _numClasses.Value;
@@ -1146,6 +1271,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NumEffects"));
                 return this.GetIntFromLSO("NumEffects");
             }
         }
@@ -1162,6 +1288,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NumEquipSlots"));
                 if (!_numEquipSlots.HasValue)
                     _numEquipSlots = this.GetIntFromLSO("NumEquipSlots");
                 return _numEquipSlots.Value;
@@ -1180,6 +1307,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NumModifiers"));
                 if (!_numModifiers.HasValue)
                     _numModifiers = this.GetIntFromLSO("NumModifiers");
                 return _numModifiers.Value;
@@ -1198,6 +1326,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NumSlots"));
                 if (!_numSlots.HasValue)
                     _numSlots = this.GetIntFromLSO("NumSlots");
                 return _numSlots.Value;
@@ -1211,6 +1340,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:NumSlotsFree"));
                 return this.GetIntFromLSO("NumSlotsFree");
             }
         }
@@ -1227,6 +1357,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:OffersQuest"));
                 if (!_offersQuest.HasValue)
                     _offersQuest = this.GetBoolFromLSO("OffersQuest");
                 return _offersQuest.Value;
@@ -1245,6 +1376,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Ornate"));
                 if (!_ornate.HasValue)
                     _ornate = this.GetBoolFromLSO("Ornate");
                 return _ornate.Value;
@@ -1263,6 +1395,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Protection"));
                 if (!_protection.HasValue)
                     _protection = this.GetIntFromLSO("Protection");
                 return _protection.Value;
@@ -1274,7 +1407,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int Quantity
         {
-            get { return this.GetIntFromLSO("Quantity"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Quantity"));
+                return this.GetIntFromLSO("Quantity");
+            }
         }
 
         /// <summary>
@@ -1284,6 +1421,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Range"));
                 return this.MaxRange;
             }
         }
@@ -1295,6 +1433,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:RecastTime"));
                 return this.GetFloatFromLSO("RecastTime");
             }
         }
@@ -1306,6 +1445,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:RecoveryTime"));
                 return this.GetFloatFromLSO("RecoveryTime");
             }
         }
@@ -1322,6 +1462,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:RentStatusReduction"));
                 if (!_rentStatusReduction.HasValue)
                     _rentStatusReduction = this.GetIntFromLSO("RentStatusReduction");
                 return _rentStatusReduction.Value;
@@ -1340,6 +1481,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:RequiredByQuest"));
                 if (!_requiredByQuest.HasValue)
                     _requiredByQuest = this.GetBoolFromLSO("RequiredByQuest");
                 return _requiredByQuest.Value;
@@ -1358,6 +1500,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Satiation"));
                 return _satiation ?? (_satiation = this.GetStringFromLSO("Satiation"));
             }
         }
@@ -1374,6 +1517,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:SerialNumber"));
                 if (!_serialNumber.HasValue)
                     _serialNumber = this.GetInt64FromLSO("SerialNumber");
                 return _serialNumber.Value;
@@ -1387,15 +1531,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public int Slot
         {
-            get { return this.GetIntFromLSO("Slot"); }
-        }
-
-        /// <summary>
-        /// Item State
-        /// </summary>
-        public string State
-        {
-            get { return this.GetStringFromLSO("State"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Slot"));
+                return this.GetIntFromLSO("Slot");
+            }
         }
 
         /// <summary>
@@ -1410,6 +1550,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:SubType"));
                 return _subType ?? (_subType = this.GetStringFromLSO("SubType"));
             }
         }
@@ -1426,6 +1567,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:Temporary"));
                 if (!_temporary.HasValue)
                     _temporary = this.GetBoolFromLSO("Temporary");
                 return _temporary.Value;
@@ -1442,7 +1584,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string Tier
         {
-            get { return _tier ?? (_tier = this.GetStringFromLSO("Tier")); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Tier"));
+                return _tier ?? (_tier = this.GetStringFromLSO("Tier"));
+            }
         }
 
         /// <summary>
@@ -1450,7 +1596,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public float TimeUntilReady
         {
-            get { return this.GetFloatFromLSO("TimeUntilReady"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:TimeUntilReady"));
+                return this.GetFloatFromLSO("TimeUntilReady");
+            }
         }
 
         /// <summary>
@@ -1459,7 +1609,11 @@ namespace EQ2.ISXEQ2
         /// <returns>link</returns>
         public string ToLink
         {
-            get { return this.GetStringFromLSO("ToLink"); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:ToLink"));
+                return this.GetStringFromLSO("ToLink");
+            }
         }
 
         /// <summary>
@@ -1472,7 +1626,11 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public string Type
         {
-            get { return _type ?? (_type = this.GetStringFromLSO("Type")); }
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Type"));
+                return _type ?? (_type = this.GetStringFromLSO("Type"));
+            }
         }
 
         /// <summary>
@@ -1487,35 +1645,10 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Item:WieldStyle"));
                 return _wieldStyle ?? (_wieldStyle = this.GetStringFromLSO("WieldStyle"));
             }
         }
-
-        #endregion
-
-        #region Removed Members
-
-        /// <summary>
-        /// Cache of Adornment Description
-        /// </summary>
-        //private string _adornmentDescription;
-
-        /// <summary>
-        /// Adornment Description
-        /// </summary>
-        //public string AdornmentDescription
-        //{
-        //    get { return _adornmentDescription ?? (_adornmentDescription = this.GetStringFromLSO("AdornmentDescription")); }
-        //}
- 
-        /// <summary>
-        /// The item is being used in a recipe, being offered to an altar, etc.
-        /// Anything that makes it "unavailable."
-        /// </summary>
-        //public bool IsReserved
-        //{
-        //    get { return this.GetBoolFromLSO("IsReserved"); }
-        //}
 
         #endregion
 
