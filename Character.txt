@@ -1,0 +1,43 @@
+Test                           NoxiousResistPct               Grouped                        Cursed                      
+Dissonance                     ArcaneResistPct                CustomInventory                Elemental                   
+DissonanceRemaining            Copper                         CustomInventoryArraySize       Trauma                      
+MaxDissonance                  Silver                         NextFreeInvContainer           IsAfflicted                 
+Dissipation                    Gold                           ToActor                        APExp                       
+Name                           Platinum                       AutoAttackOn                   TotalEarnedAPs              
+Race                           X                              RangedAutoAttackOn             MaxAPs                      
+Level                          Z                              CursorActor                    Achievement                 
+Gender                         Y                              Merchandise                    Vending                     
+Archetype                      CombatExpEnabled               NumItemsICanSell               TotalVendingCapacity        
+Class                          ExpPoints                      NumAbilities                   VendingCapacityUsed         
+SubClass                       ExpPointsToLevel               Ability                        VendingCapacityFree         
+TSArchetype                    TSExpPoints                    NumRecipes                     IgnoringAll                 
+TSClass                        TSExpPointsToLevel             Recipe                         GetInventory                
+TSSubClass                     Exp                            IsMoving                       GetInventoryAtHand          
+EffectiveLevel                 ExpDebt                        In1stPersonView                GetEquipment                
+TSLevel                        TSExp                          In3rdPersonView                NumVendingContainers        
+Health                         TSExpDebt                      IsSitting                      NumVendors                  
+MaxHealth                      Vitality                       InWater                        GetAbilities                
+Power                          TSVitality                     InCombat                       InventorySlotsFree          
+MaxPower                       MentoringXPAdj                 TargetLOS                      BankSlotsFree               
+UsedConc                       Breath                         WaterDepth                     SharedBankSlotsFree         
+MaxConc                        CountEffects                   IsLFG                          Pet                         
+Strength                       CountMaintained                IsAFK                          IsInPVP                     
+Stamina                        Heading                        IsLFW                          IsHated                     
+Agility                        Maintained                     IsAnonymous                    PowerRegen                  
+Wisdom                         Effect                         IsRolePlaying                  HealthRegen                 
+Intelligence                   InGameWorld                    IsDecliningGroupInvites        CheckCollision              
+BaseStrength                   AtCharSelect                   IsDecliningTradeInvites        HeadingTo                   
+BaseStamina                    CastingSpell                   IsDecliningDuelInvites         RaidGroupNum                
+BaseAgility                    ID                             IsCamping                      IsDecliningGuildInvites     
+BaseWisdom                     Inv                            TimeToCampOut                  IsDecliningRaidInvites      
+BaseIntelligence               Inventory                      RaidCount                      GuildPrivacyOn              
+ElementalResist                Equip                          InRaid                         InitializingEffects         
+NoxiousResist                  Equipment                      Raid                           GetGameData                 
+ArcaneResist                   Group                          Arcane                         NumEffects                  
+ElementalResistPct             GroupCount                     Noxious                        
+
+Face                           GuildBankDeposit               ResetZoneTimer                           
+CreateCustomInventoryArray     GuildBankWithdraw              DepositIntoHouseEscrow                   
+TakeAllVendingCoin             SharedBankDeposit                        
+BankDeposit                    SharedBankWithdraw                       
+BankWithdraw                   InitializeEffects                        

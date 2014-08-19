@@ -1,0 +1,4 @@
+Name                IsBeneficial        MaxDuration         Target              
+Type                ConcentrationCost   Duration            CurrentIncrements   
+
+Cancel              Examine     

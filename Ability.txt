@@ -1,0 +1,12 @@
+Name                           RecoveryTime                   SavageryCostPerTick            SpellBookType             
+Description                    RecastTime                     DissonanceCostPerTick          EffectRadius              
+Tier                           MaxDuration                    MaxAOETargets                  TimeUntilReady            
+HealthCost                     TimeRemaining                  MinDuration                    Range                     
+PowerCost                      IsReady                        DoesNotExpire                  MinRange                  
+SavageryCost                   ToLink                         BackDropIconID                 MaxRange                  
+DissonanceCost                 ID                             Effect                         State                     
+ConcentrationCost              NumClasses                     NumEffects                     IsQueued                  
+MainIconID                     Class                          GroupRestricted                IsBeneficial              
+HOIconID                       HealthCostPerTick              AllowRaid                      
+CastingTime                    PowerCostPerTick               TargetType                     
+Use         				   Examine     

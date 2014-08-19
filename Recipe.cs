@@ -1,151 +1,313 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
+using System.Diagnostics;
+using System.Globalization;
+using EQ2.ISXEQ2.Extensions;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes all of the data available to ISXEQ2 that is related to tradeskill recipes.
+    /// </summary>
     public class Recipe : LavishScriptObject
     {
-        public Recipe(LavishScriptObject Obj)
-            : base(Obj)
-        {
-        }
-/*
-        public Recipe()
-            : base(LavishScript.Objects.GetObject("Recipe"))
-        {
-        }
-*/
-        public string Name
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public Recipe(LavishScriptObject copy) : base(copy) { }
+
+        #endregion
+        
+        #region Members
+
+        /// <summary>
+        /// A recipe component
+        /// </summary>
+        public Component BuildComponent1
         {
             get
             {
-                return GetMember<string>("Name");
+                Trace.WriteLine(String.Format("Recipe:BuildComponent1"));
+                return new Component(this.GetMember("BuildComponent1"));
             }
         }
 
+        /// <summary>
+        /// A recipe component
+        /// </summary>
+        public Component BuildComponent2
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:BuildComponent2"));
+                return new Component(this.GetMember("BuildComponent2"));
+            }
+        }
+
+        /// <summary>
+        /// A recipe component
+        /// </summary>
+        public Component BuildComponent3
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:BuildComponent3"));
+                return new Component(this.GetMember("BuildComponent3"));
+            }
+        }
+
+        /// <summary>
+        /// A recipe component
+        /// </summary>
+        public Component BuildComponent4
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:BuildComponent4"));
+                return new Component(this.GetMember("BuildComponent4"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the class at the specified index
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <returns>Class</returns>
+        public Class Class(int index)
+        {
+            Trace.WriteLine(String.Format("Recipe:Class({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new Class(this.GetMember("Class", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Cache of description
+        /// </summary>
+        private string _description;
+
+        /// <summary>
+        /// Recipe Description
+        /// </summary>
         public string Description
         {
             get
             {
-                return GetMember<string>("Description");
+                Trace.WriteLine(String.Format("Recipe:Description"));
+                return _description ?? (_description = this.GetStringFromLSO("Description"));
             }
         }
 
+        /// <summary>
+        /// Cache of Device
+        /// </summary>
+        private string _device;
+
+        /// <summary>
+        /// Tradeskill device to craft
+        /// </summary>
         public string Device
         {
             get
             {
-                return GetMember<string>("Device");
+                Trace.WriteLine(String.Format("Recipe:Device"));
+                return _device ?? (_device = this.GetStringFromLSO("Device"));
             }
         }
 
-        public string RecipeBook
+        /// <summary>
+        /// Fuel Component
+        /// </summary>
+        public Component Fuel
         {
             get
             {
-                return GetMember<string>("RecipeBook");
+                Trace.WriteLine(String.Format("Recipe:Fuel"));
+                return new Component(this.GetMember("Fuel"));
             }
         }
 
-        public int Level
+        /// <summary>
+        /// Cache of ID
+        /// </summary>
+        private uint? _iD;
+
+        /// <summary>
+        /// Recipe ID
+        /// </summary>
+        public uint ID
         {
             get
             {
-                return GetMember<int>("Level");
+                Trace.WriteLine(String.Format("Recipe:ID"));
+                if (!_iD.HasValue)
+                    _iD = this.GetUIntFromLSO("ID");
+                return _iD.Value;
             }
         }
 
-        public long ID
-        {
-            get
-            {
-                return GetMember<long>("ID");
-            }
-        }
+        /// <summary>
+        /// Cache of Knowledge
+        /// </summary>
+        private string _knowledge;
 
-        public string Technique
-        {
-            get
-            {
-                return GetMember<string>("Technique");
-            }
-        }
-
+        /// <summary>
+        /// Recipe knowledge
+        /// </summary>
         public string Knowledge
         {
             get
             {
-                return GetMember<string>("Knowledge");
+                Trace.WriteLine(String.Format("Recipe:Knowledge"));
+                return _knowledge ?? (_knowledge = this.GetStringFromLSO("Knowledge"));
             }
         }
 
+        /// <summary>
+        /// Cache of level
+        /// </summary>
+        private int? _level;
+
+        /// <summary>
+        /// Recipe level
+        /// </summary>
+        public int Level
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:Level"));
+                if(!_level.HasValue)
+                    _level = this.GetIntFromLSO("Level");
+                return _level.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of Name
+        /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// Recipe name
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:Name"));
+                return _name ?? (_name = this.GetStringFromLSO("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of NumClasses
+        /// </summary>
+        private int? _numClasses;
+
+        /// <summary>
+        /// The number of classes that can use (used in Class(int index))
+        /// </summary>
         public int NumClasses
         {
             get
             {
-                return GetMember<int>("NumClasses");
+                Trace.WriteLine(String.Format("Recipe:NumClasses"));
+                if(!_numClasses.HasValue)
+                    _numClasses = this.GetIntFromLSO("NumClasses");
+                return _numClasses.Value;
             }
         }
 
-        public Class Class(int ClassNum)
-        {
-            LavishScriptObject Obj = GetMember("Class", ClassNum.ToString());
-            return new Class(Obj);
-        }
+        /// <summary>
+        /// Cache of PrimaryComponent
+        /// </summary>
+        private string _primaryComponent;
 
+        /// <summary>
+        /// The name of the primary component of the recipe
+        /// </summary>
         public string PrimaryComponent
         {
             get
             {
-                return GetMember<string>("PrimaryComponent");
+                Trace.WriteLine(String.Format("Recipe:PrimaryComponent"));
+                return _primaryComponent ?? (_primaryComponent = this.GetStringFromLSO("PrimaryComponent"));
             }
         }
 
-        public Component BuildComponent1()
+        /// <summary>
+        /// Then quantity of primary component on hand
+        /// </summary>
+        public int PrimaryComponentQuantityOnHand
         {
-            LavishScriptObject Obj = GetMember("BuildComponent1");
-            return new Component(Obj);
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:PrimaryComponentOnHand"));
+                return this.GetIntFromLSO("PrimaryComponentQuantityOnHand");
+            }
         }
 
-        public Component BuildComponent2()
+        /// <summary>
+        /// Cache of RecipeBook
+        /// </summary>
+        private string _recipeBook;
+
+        /// <summary>
+        /// The name of the recipe book for the recipe
+        /// </summary>
+        public string RecipeBook
         {
-            LavishScriptObject Obj = GetMember("BuildComponent2");
-            return new Component(Obj);
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:RecipeBook"));
+                return _recipeBook ?? (_recipeBook = this.GetStringFromLSO("RecipeBook"));
+            }
         }
 
-        public Component BuildComponent3()
+        /// <summary>
+        /// Cache of Technique
+        /// </summary>
+        private string _technique;
+
+        /// <summary>
+        /// Tradeskill technique needed
+        /// </summary>
+        public string Technique
         {
-            LavishScriptObject Obj = GetMember("BuildComponent3");
-            return new Component(Obj);
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:Technique"));
+                return _technique ?? (_technique = this.GetStringFromLSO("Technique"));
+            }
         }
 
-        public Component BuildComponent4()
-        {
-            LavishScriptObject Obj = GetMember("BuildComponent4");
-            return new Component(Obj);
-        }
+        #endregion
 
-        public Component Fuel()
-        {
-            LavishScriptObject Obj = GetMember("Fuel");
-            return new Component(Obj);
-        }
+        #region Methods
 
+        /// <summary>
+        /// Begins creation of the recipe
+        /// </summary>
+        /// <returns>call success</returns>
         public bool Create()
         {
-            return ExecuteMethod("Create");
+            Trace.WriteLine(String.Format("Recipe:Create()"));
+            return this.ExecuteMethod("Create");
         }
 
+        /// <summary>
+        /// Examines the recipe
+        /// </summary>
+        /// <returns>call success</returns>
         public bool Examine()
         {
-            return ExecuteMethod("Examine");
+            Trace.WriteLine(String.Format("Recipe:Examine()"));
+            return this.ExecuteMethod("Examine");
         }
+
+        #endregion
+        
     }
 }

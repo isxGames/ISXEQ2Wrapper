@@ -1454,15 +1454,12 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// This will recreate the actual link used with in game chat channels (used typically with eq2echo or eq2execute). 
-        /// If you provide an argument, it will create the link with the argument as the link text. 
-        /// (ie, ${Me.Equipment[primary].ToLink[Amadeus' Special Sword]}
+        /// This will recreate the actual link used with in game chat channels (used typically with eq2echo or eq2execute).
         /// </summary>
-        /// <param name="link">name</param>
         /// <returns>link</returns>
-        public string ToLink(string link)
+        public string ToLink
         {
-            return this.GetStringFromLSO("ToLink", link);
+            get { return this.GetStringFromLSO("ToLink"); }
         }
 
         /// <summary>

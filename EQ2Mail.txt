@@ -1,0 +1,6 @@
+ID               Subject          Copper           Gold             Gift        
+Sender           Body             Silver           Platinum         Recipient   
+
+Open             AppendRecipient  RemoveGift       AddGold          RemoveSilver     Cancel 
+Delete           AppendSubject    AddCopper        AddPlatinum      RemoveGold       Send   
+ReceiveGifts     AppendBody       AddSilver        RemoveCopper     RemovePlatinum   

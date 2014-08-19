@@ -1,0 +1,3 @@
+Label       Notes       Zone        X           Y           Z           
+
+Delete      WaypointTo  Face        

@@ -1,0 +1,12 @@
+ShowingMe                ShowingCorpses           YAxisClippingOn          ShowingAggroNPCs         ColorizingLabels     
+ShowingNPCs              NumCustomFilters         ClipRadiusOn             ShowingNamedNPCs         ShowingUnknowns      
+ShowingPCs               CustomFilter             ClippingTextOn           ShowingPets              ShowingMercenaries   
+ShowingSpecials          CustomFiltersList        RotationOn               ShowingMyPet             
+ShowingResources         ShowingLabels            Name                     ShowingChests            
+ShowingNoKillNPCs        Size                     ShowingTSUnits           ShowingDoors             
+
+FilterMe                 FilterNoKillNPCs         ClipText                 FilterAggroNPCs          FilterDoors         
+FilterNPCs               FilterCorpses            ClipRadius               FilterNamedNPCs          ColorizeLabels      
+FilterPCs                SetSize                  Rotation                 FilterPets               FilterUnknowns      
+FilterSpecials           ShowLabels               SetCustomFilter          FilterMyPet              FilterMercenaries   
+FilterResources          YAxisClipping            FilterTSUnits            FilterChests        
