@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,8 +72,8 @@ namespace ISXEQ2WrapperTest
             InitializeComponent();
             logBuilder = new StringBuilder();
             TextBoxLog.Text = logBuilder.ToString();
-            TextBoxISXEQ2TLOResult.Text = "UNTESTED";
-            TextBoxISXEQ2TLOResult.Foreground = Brushes.Magenta;
+            TextBoxToggle("ISXEQ2", "UNTESTED", Brushes.Magenta);
+            TextBoxToggle("EQ2", "UNTESTED", Brushes.Magenta);
         }
 
         private void ButtonTestISXEQ2TLO_Click(object sender, RoutedEventArgs e)
@@ -82,7 +83,21 @@ namespace ISXEQ2WrapperTest
 
         private void ButtonTestEQ2_Click(object sender, RoutedEventArgs e)
         {
-            TestTLO("EQ2");
+            using (new FrameLock(true))
+            {
+                foreach (Ability ability in new EQ2.ISXEQ2.Extension().Me().GetAbilities())
+                {
+                    Log(String.Format("ID: {0}", ability.ID));
+                }
+            }
+            Thread.Sleep(1000);
+            using (new FrameLock(true))
+            {
+                foreach (Ability ability in new EQ2.ISXEQ2.Extension().Me().GetAbilities())
+                {
+                    Log(String.Format("Name: {0}", ability.Name));
+                }
+            }
         }
     }
 
