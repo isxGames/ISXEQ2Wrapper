@@ -1,0 +1,4 @@
+NumItemsForSale     CurrentSearchPage   Merchant            IsBroker            Item 
+Commission          TotalSearchPages    Broker              IsMerchant          
+
+GotoSearchPage   

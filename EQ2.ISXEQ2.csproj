@@ -81,6 +81,7 @@
     <Compile Include="RewardWindow.cs" />
     <Compile Include="VendingContainer.cs" />
     <Compile Include="Vendor.cs" />
+    <Compile Include="VendorItem.cs" />
     <Compile Include="Zone.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,122 +1,213 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
+using System.Diagnostics;
+using System.Globalization;
+using EQ2.ISXEQ2.Extensions;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes all of the data available to ISXEQ2 that is related to 
+    /// containers/vending machines/actors that are held within the consignment system. 
+    /// </summary>
     public class VendingContainer : LavishScriptObject
     {
-         public VendingContainer(LavishScriptObject Obj)
-            : base(Obj)
-        {
-        }
-/*
-        public VendingContainer()
-            : base(LavishScript.Objects.GetObject("VendingContainer"))
-        {
-        }
-*/
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+         public VendingContainer(LavishScriptObject copy) : base(copy) { }
+
+        #endregion
+
+        #region Members
+
+        /// <summary>
+        /// Retrieves the consignment matching the supplied name
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <returns>Consignment</returns>
+            public Consignment Consignment(string name)
+            {
+                Trace.WriteLine(String.Format("VendingContainer:Consignment({0})", name));
+                return new Consignment(this.GetMember("Consignment", name));
+            }
+
+        /// <summary>
+        /// Retrieves the consignment at the specified index (1 to NumItems)
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <returns>Consignment</returns>
+            public Consignment Consignment(int index)
+            {
+                Trace.WriteLine(String.Format("VendingContainer:Consignment({0})", index.ToString(CultureInfo.InvariantCulture)));
+                return new Consignment(this.GetMember("Consignment", index.ToString(CultureInfo.InvariantCulture)));
+            }
+
+        /// <summary>
+            /// Current value in silver pieces on container
+        /// </summary>
+            public float CurrentCoin
+            {
+                get
+                {
+                    Trace.WriteLine(String.Format("VendingContainer:CurrentCoin"));
+                    return this.GetFloatFromLSO("CurrentCoin");
+                }
+            }
+
+        /// <summary>
+            /// Possible values: "Qeynos" "Freeport" "Kelethin" "Haven" "Neriak" (or "Unknown" which should not be possible)
+        /// </summary>
+            public string Market
+            {
+                get
+                {
+                    Trace.WriteLine(String.Format("VendingContainer:Market"));
+                    return this.GetStringFromLSO("Market");
+                }
+            }
+
+        /// <summary>
+        /// Cache of Name
+        /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// Container Name
+        /// </summary>
         public string Name
         {
             get
             {
-                return GetMember<string>("Name");
+                Trace.WriteLine(String.Format("VendingContainer:Name"));
+                return _name ?? (_name = this.GetStringFromLSO("Name"));
             }
         }
 
-        public int UsedCapacity
-        {
-            get
-            {
-                return GetMember<int>("UsedCapacity");
-            }
-        }
-
-        public int TotalCapacity
-        {
-            get
-            {
-                return GetMember<int>("TotalCapacity");
-            }
-        }
-
-        public float CurrentCoin
-        {
-            get
-            {
-                return GetMember<float>("CurrentCoin");
-            }
-        }
-
-        public float TotalCoin
-        {
-            get
-            {
-                return GetMember<float>("TotalCoin");
-            }
-        }
-
-        public Consignment Consignment(int Index)
-        {
-            LavishScriptObject Obj = GetMember("Consignment", Index.ToString());
-            return new Consignment(Obj);
-        }
-
-        public Consignment Consignment(string Name)
-        {
-            LavishScriptObject Obj = GetMember("Consignment", Name);
-            return new Consignment(Obj);
-        }
-
+        /// <summary>
+        /// Number of Consignments in container
+        /// </summary>
         public int NumItems
         {
             get
             {
-                return GetMember<int>("NumItems");
+                Trace.WriteLine(String.Format("VendingContainer:NumItems"));
+                return this.GetIntFromLSO("NumItems");
             }
         }
 
-        public string Market
-        {
-            get
-            {
-                return GetMember<string>("Market");
-            }
-        }
+        /// <summary>
+        /// Cache of SerialNumber
+        /// </summary>
+        private long? _serialNumber;
 
+        /// <summary>
+        /// Container Serial Number
+        /// </summary>
         public long SerialNumber
         {
             get
             {
-                return GetMember<long>("SerialNumber");
+                Trace.WriteLine(String.Format("VendingContainer:SerialNumber"));
+                if(!_serialNumber.HasValue)
+                    _serialNumber = this.GetInt64FromLSO("SerialNumber");
+                return _serialNumber.Value;
             }
         }
 
-        public bool TakeCoin()
+        /// <summary>
+        /// Cache of TotalCapacity
+        /// </summary>
+        private int? _totalCapacity;
+
+        /// <summary>
+        /// Total Capacity of the container
+        /// </summary>
+        public int TotalCapacity
         {
-            return ExecuteMethod("TakeCoin");
+            get
+            {
+                Trace.WriteLine(String.Format("VendingContainer:TotalCapacity"));
+                if(!_totalCapacity.HasValue)
+                    _totalCapacity = this.GetIntFromLSO("TotalCapacity");
+                return _totalCapacity.Value;
+            }
         }
 
-        public bool TakeCoin(float CoinQuantity)
+        /// <summary>
+        /// All time value in silver pieces
+        /// </summary>
+        public float TotalCoin
         {
-            return ExecuteMethod("TakeCoin", CoinQuantity.ToString());
+            get
+            {
+                Trace.WriteLine(String.Format("VendingContainer:TotalCoin"));
+                return this.GetFloatFromLSO("TotalCoin");
+            }
         }
 
-        public bool Remove()
+        /// <summary>
+        /// Used Capacity (Free slots = Total - Used)
+        /// </summary>
+        public int UsedCapacity
         {
-            return ExecuteMethod("Remove");
+            get
+            {
+                Trace.WriteLine(String.Format("VendingContainer:UsedCapacity"));
+                return this.GetIntFromLSO("UsedCapacity");
+            }
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Selects this vending container
+        /// </summary>
+        /// <returns>call success</returns>
         public bool ChangeTo()
         {
-            return ExecuteMethod("ChangeTo");
+            Trace.WriteLine(String.Format("VendingContainer:ChangeTo()"));
+            return this.ExecuteMethod("ChangeTo");
         }
+
+        /// <summary>
+        /// Removes this vending container from the consignment system. 
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Remove()
+        {
+            Trace.WriteLine(String.Format("VendingContainer:Remove()"));
+            return this.ExecuteMethod("Remove");
+        }
+
+        /// <summary>
+        /// Retrieves all of the money currently housed in that vendor.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool TakeCoin()
+        {
+            Trace.WriteLine(String.Format("VendingContainer:TakeCoin()"));
+            return this.ExecuteMethod("TakeCoin");
+        }
+
+        /// <summary>
+        /// Retrieves the amount of coin specified (in silver pieces) from the vending container. 
+        /// </summary>
+        /// <param name="quantity">quantity</param>
+        /// <returns>call success</returns>
+        public bool TakeCoin(int quantity)
+        {
+            Trace.WriteLine(String.Format("VendingContainer:TakeCoin({0})", quantity.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("TakeCoin", quantity.ToString(CultureInfo.InvariantCulture));
+        }
+
+        #endregion
 
     }
 }

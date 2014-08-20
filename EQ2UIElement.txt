@@ -1,0 +1,5 @@
+Type             Parent           ChildType        ShortLabel       RowHighlighted   
+Text             IsChecked        Child            IsSet            Percent          
+Label            NumChildren      GetDynamicData   ToAbility        IsEnabled        
+
+ClickButton      RightClick       LeftClick        DoubleLeftClick  AddToTextBox     HighlightRow   

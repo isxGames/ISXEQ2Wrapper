@@ -1,44 +1,184 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
-using System.Text;
-
-using InnerSpaceAPI;
 using LavishScriptAPI;
 using EQ2.ISXEQ2.Extensions;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes all of the data available through ISXEQ2 that is related to your radar. 
+    /// </summary>
     public class Radar : LavishScriptObject
     {
+
         #region Construct
 
-        public Radar(LavishScriptObject obj)
-            : base(obj)
-        {
-        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public Radar(LavishScriptObject copy) : base(copy) { }
 
-        public Radar(params string[] args)
-            : base(LavishScript.Objects.GetObject("Radar", args))
-        {
-        }
-
-        public Radar(int index)
-            : base(LavishScript.Objects.GetObject("Radar", index.ToString(CultureInfo.InvariantCulture)))
-        {
-        }
-
-        public Radar()
-            : base(LavishScript.Objects.GetObject("Radar", "1"))
-        {
-        }
 
         #endregion
 
-        #region "Showing" Booleans
+        #region Members
+
+        /// <summary>
+        /// True if text clipping is on
+        /// </summary>
+        public bool ClippingTextOn
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ClippingTextOn"));
+                return this.GetBoolFromLSO("ClippingTextOn");
+            }
+        }
+
+        /// <summary>
+        /// True if radius clipping is on
+        /// </summary>
+        public bool ClipRadiusOn
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ClipRadiusOn"));
+                return this.GetBoolFromLSO("ClipRadiusOn");
+            }
+        }
+
+        /// <summary>
+        /// True if labels are colorized
+        /// </summary>
+        public bool ColorizingLabels
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ColorizingLabels"));
+                return this.GetBoolFromLSO("ColorizingLabels");
+            }
+        }
+
+        /// <summary>
+        /// Returns the filter at the selected index
+        /// </summary>
+        /// <param name="index">the index</param>
+        /// <returns>custom filter</returns>
+        public string CustomFilter(int index)
+        {
+            Trace.WriteLine(String.Format("Radar:CustomFilter"));
+            return this.GetStringFromLSO("CustomFilter", index.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// A list of the custom filters in effect
+        /// </summary>
+        public string CustomFiltersList
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:CustomFiltersList"));
+                return this.GetStringFromLSO("CustomFiltersList");
+            }
+        }
+
+        /// <summary>
+        /// The name of the object on the radar
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:Name"));
+                return this.GetStringFromLSO("Name");
+            }
+        }
+
+        /// <summary>
+        /// Returns the number of filters active on the radar
+        /// </summary>
+        public int NumCustomFilters
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:NumCustomFilters"));
+                return this.GetIntFromLSO("NumCustomFilters");
+            }
+        }
+
+        /// <summary>
+        /// True if radar rotation is on
+        /// </summary>
+        public bool RotationOn
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:RotationOn"));
+                return this.GetBoolFromLSO("RotationOn");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is displaying Aggro NPCs
+        /// </summary>
+        public bool ShowingAggroNPCs
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingAggroNPCs"));
+                return this.GetBoolFromLSO("ShowingAggroNPCs");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is displating chests
+        /// </summary>
+        public bool ShowingChests
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingChests"));
+                return this.GetBoolFromLSO("ShowingChests");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is displaying corpses
+        /// </summary>
+        public bool ShowingCorpses
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingCorpses"));
+                return this.GetBoolFromLSO("ShowingCorpses");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is showing doors
+        /// </summary>
+        public bool ShowingDoors
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingDoors"));
+                return this.GetBoolFromLSO("ShowingDoors");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is showing labels
+        /// </summary>
+        public bool ShowingLabels
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingLabels"));
+                return this.GetBoolFromLSO("ShowingLabels");
+            }
+        }
 
         /// <summary>
         /// True if the radar is showing the client
@@ -47,7 +187,56 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:ShowingMe"));
                 return this.GetBoolFromLSO("ShowingMe");
+            }
+        }
+
+        /// <summary>
+        /// True if Showing Mercenaries
+        /// </summary>
+        public bool ShowingMercenaries
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingMercenaries"));
+                return this.GetBoolFromLSO("ShowingMercenaries");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is displaying client's pet
+        /// </summary>
+        public bool ShowingMyPet
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingMyPet"));
+                return this.GetBoolFromLSO("ShowingMyPet");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is showing Named NPCs
+        /// </summary>
+        public bool ShowingNamedNPCs
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingNamedNPCs"));
+                return this.GetBoolFromLSO("ShowingNamedNPCs");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is displaying NPCs that cannot be attacked
+        /// </summary>
+        public bool ShowingNoKillNPCs
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingNoKillNPCs"));
+                return this.GetBoolFromLSO("ShowingNoKillNPCs");
             }
         }
 
@@ -58,6 +247,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:ShowingNPCs"));
                 return this.GetBoolFromLSO("ShowingNPCs");
             }
         }
@@ -69,106 +259,8 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:ShowingPCs"));
                 return this.GetBoolFromLSO("ShowingPCs");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is showing Specials
-        /// </summary>
-        public bool ShowingSpecials
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingSpecials");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is showing Resources
-        /// </summary>
-        public bool ShowingResources
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingResources");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is displaying NPCs that cannot be attacked
-        /// </summary>
-        public bool ShowingNoKillNPCs
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingNoKillNPCs");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is displaying corpses
-        /// </summary>
-        public bool ShowingCorpses
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingCorpses");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is showing labels
-        /// </summary>
-        public bool ShowingLabels
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingLabels");
-            }
-        }
-
-        /// <summary>
-        /// The name of the object on the radar
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return this.GetStringFromLSO("Name");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is displaying Tradeskill units
-        /// </summary>
-        public bool ShowingTSUnits
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingTSUnits");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is displaying Aggro NPCs
-        /// </summary>
-        public bool ShowingAggroNPCs
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingAggroNPCs");
-            }
-        }
-
-        /// <summary>
-        /// True if the radar is showing Named NPCs
-        /// </summary>
-        public bool ShowingNamedNPCs
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ShowingNamedNPCs");
             }
         }
 
@@ -179,29 +271,44 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:ShowingPets"));
                 return this.GetBoolFromLSO("ShowingPets");
             }
         }
 
         /// <summary>
-        /// True if the radar is displating chests
+        /// True if the radar is showing Resources
         /// </summary>
-        public bool ShowingChests
+        public bool ShowingResources
         {
             get
             {
-                return this.GetBoolFromLSO("ShowingChests");
+                Trace.WriteLine(String.Format("Radar:ShowingResources"));
+                return this.GetBoolFromLSO("ShowingResources");
             }
         }
 
         /// <summary>
-        /// True if the radar is showing doors
+        /// True if the radar is showing Specials
         /// </summary>
-        public bool ShowingDoors
+        public bool ShowingSpecials
         {
             get
             {
-                return this.GetBoolFromLSO("ShowingDoors");
+                Trace.WriteLine(String.Format("Radar:ShowingSpecials"));
+                return this.GetBoolFromLSO("ShowingSpecials");
+            }
+        }
+
+        /// <summary>
+        /// True if the radar is displaying Tradeskill units
+        /// </summary>
+        public bool ShowingTSUnits
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Radar:ShowingTSUnits"));
+                return this.GetBoolFromLSO("ShowingTSUnits");
             }
         }
 
@@ -212,68 +319,10 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:ShowingUnknowns"));
                 return this.GetBoolFromLSO("ShowingUnknowns");
             }
         }
-
-        /// <summary>
-        /// True if the radar is displaying client's pet
-        /// </summary>
-        public bool ShowingMyPet
-        {
-            get
-            {
-                return GetMember<bool>("ShowingMyPet");
-            }
-        }
-
-        #endregion
-
-        #region Custom Filter Data
-
-        /// <summary>
-        /// Returns the number of filters active on the radar
-        /// </summary>
-        public int NumCustomFilters
-        {
-            get
-            {
-                return GetMember<int>("NumCustomFilters");
-            }
-        }
-
-        /// <summary>
-        /// Returns true if the if the selected custom filter is active
-        /// </summary>
-        /// <param name="text">Custom Filter Name</param>
-        /// <returns>If the custom filter is active</returns>
-        public bool IsCustomFilter(string text)
-        {
-            return this.GetBoolFromLSO("CustomFilter", text);
-        }
-
-        /// <summary>
-        /// Returns the filter at the selected index
-        /// </summary>
-        /// <param name="index">the index</param>
-        /// <returns>custom filter</returns>
-        public string CustomFilter(int index)
-        {
-            return this.GetStringFromLSO("CustomFilter", index.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// A list of the custom filters in effect
-        /// </summary>
-        public string CustomFiltersList
-        {
-            get
-            {
-                return this.GetStringFromLSO("CustomFiltersList");
-            }
-        }
-
-        #endregion
 
         /// <summary>
         /// The value used for "zooming"
@@ -282,6 +331,7 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:Size"));
                 return this.GetIntFromLSO("Size");
             }
         }
@@ -293,248 +343,258 @@ namespace EQ2.ISXEQ2
         {
             get
             {
+                Trace.WriteLine(String.Format("Radar:YAvisClippingOn"));
                 return this.GetBoolFromLSO("YAxisClippingOn");
             }
         }
 
-        /// <summary>
-        /// True if radius clipping is on
-        /// </summary>
-        public bool ClipRadiusOn
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ClipRadiusOn");
-            }
-        }
+        #endregion
+
+        #region Methods
 
         /// <summary>
-        /// True if text clipping is on
+        /// Toggles the custom filter "Clip Radius"
         /// </summary>
-        public bool ClippingTextOn
+        /// <returns>call success</returns>
+        public bool ClipRadius()
         {
-            get
-            {
-                return this.GetBoolFromLSO("ClippingTextOn");
-            }
-        }
-
-        /// <summary>
-        /// True if radar rotation is on
-        /// </summary>
-        public bool RotationOn
-        {
-            get
-            {
-                return this.GetBoolFromLSO("RotationOn");
-            }
-        }
-
-        /// <summary>
-        /// True if labels are colorized
-        /// </summary>
-        public bool ColorizingLabels
-        {
-            get
-            {
-                return this.GetBoolFromLSO("ColorizingLabels");
-            }
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Me"
-        /// </summary>
-        public void FilterMe()
-        {
-            ExecuteMethod("FilterMe");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show NPCs"
-        /// </summary>
-        public void FilterNPCs()
-        {
-            ExecuteMethod("FilterNPCs");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show PCs"
-        /// </summary>
-        public void FilterPCs()
-        {
-            ExecuteMethod("FilterPCs");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Specials"
-        /// </summary>
-        public void FilterSpecials()
-        {
-            ExecuteMethod("FilterSpecials");
-        }
-
-        /// <summary>
-        /// Toggles the custome filter "Show Resources"
-        /// </summary>
-        public void FilterResources()
-        {
-            ExecuteMethod("FilterResources");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show No Kill NPCs"
-        /// </summary>
-        public void FilterNoKillNPCs()
-        {
-            ExecuteMethod("FilterNoKillNPCs");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Corpses"
-        /// </summary>
-        public void FilterCorpses()
-        {
-            ExecuteMethod("FilterCorpses");
-        }
-
-        /// <summary>
-        /// Sets the "zoom" of the radar
-        /// </summary>
-        /// <param name="newSize">the new zoom</param>
-        public void SetSize(int newSize)
-        {
-            ExecuteMethod("SetSize", newSize.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Labels"
-        /// </summary>
-        public void ShowLabels()
-        {
-            ExecuteMethod("ShowLabels");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Y-axis Clipping"
-        /// </summary>
-        public void YAxisClipping()
-        {
-            ExecuteMethod("YAxisClipping");
+            Trace.WriteLine(String.Format("Radar:ClipRadius()"));
+            return this.ExecuteMethod("ClipRadius");
         }
 
         /// <summary>
         /// Toggles the custom filter "Show Text"
         /// </summary>
-        public void ClipText()
+        /// <returns>call success</returns>
+        public bool ClipText()
         {
-            ExecuteMethod("ClipText");
+            Trace.WriteLine(String.Format("Radar:ClipText()"));
+            return this.ExecuteMethod("ClipText");
         }
 
         /// <summary>
-        /// Toggles the custom filter "Clip Radius"
+        /// Toggles the custom filter "Show Con Color"
         /// </summary>
-        public void ClipRadius()
+        /// <returns>call success</returns>
+        public bool ColorizeLabels()
         {
-            ExecuteMethod("ClipRadius");
+            Trace.WriteLine(String.Format("Radar:ColorizeLabels()"));
+            return this.ExecuteMethod("ColorizeLabels");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Aggro"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterAggroNPCs()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterAggroNPCs()"));
+            return this.ExecuteMethod("FilterAggroNPCs");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Chests"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterChests()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterChests()"));
+            return this.ExecuteMethod("FilterChests");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Corpses"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterCorpses()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterCorpses()"));
+            return this.ExecuteMethod("FilterCorpses");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Doors"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterDoors()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterDoors()"));
+            return this.ExecuteMethod("FilterDoors");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Me"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterMe()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterMe()"));
+            return this.ExecuteMethod("FilterMe");
+        }
+
+        /// <summary>
+        /// Toggle the "Show Mercenaries" filter
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterMercenaries()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterMercenaries()"));
+            return this.ExecuteMethod("FilterMercenaries");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show My Pet"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterMyPet()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterMyPet()"));
+            return this.ExecuteMethod("FilterMyPet");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Named"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterNamedNPCs()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterNamedNPCs()"));
+            return this.ExecuteMethod("FilterNamedNPCs");
+        }
+
+        /// <summary>
+        /// Toggles the "Show NoKillNPCs" filter
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterNoKillNPCs()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterNoKillNPCs()"));
+            return this.ExecuteMethod("FilterNoKillNPCs");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show NPCs"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterNPCs()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterNPCs()"));
+            return this.ExecuteMethod("FilterNPCs");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show PCs"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterPCs()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterNPCs()"));
+            return this.ExecuteMethod("FilterPCs");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Pets"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterPets()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterPets()"));
+            return this.ExecuteMethod("FilterPets");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Resources"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterResources()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterResources()"));
+            return this.ExecuteMethod("FilterResources");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Specials"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterSpecials()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterSpecials()"));
+            return this.ExecuteMethod("FilterSpecials");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Tradeskill"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterTSUnits()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterTSUnits()"));
+            return this.ExecuteMethod("FilterTSUnits");
+        }
+
+        /// <summary>
+        /// Toggles the custom filter "Show Unknowns"
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool FilterUnknowns()
+        {
+            Trace.WriteLine(String.Format("Radar:FilterUnknowns()"));
+            return this.ExecuteMethod("FilterUnknowns");
         }
 
         /// <summary>
         /// Toggles radar rotation
         /// </summary>
-        public void Rotation()
+        /// <returns>call success</returns>
+        public bool Rotation()
         {
-            ExecuteMethod("Rotation");
+            Trace.WriteLine(String.Format("Radar:Rotation()"));
+            return this.ExecuteMethod("Rotation");
         }
 
         /// <summary>
         /// Used to toggle a specific custom filter
         /// </summary>
         /// <param name="filter">The selected filter to toggle</param>
-        public void SetCustomFilter(string filter)
+        /// <returns>call success</returns>
+        public bool SetCustomFilter(string filter)
         {
-            ExecuteMethod("SetCustomFilter", filter);
+            Trace.WriteLine(String.Format("Radar:SetCustomFilter({0})", filter));
+            return this.ExecuteMethod("SetCustomFilter", filter);
         }
 
         /// <summary>
-        /// Toggles the custom filter "Show Tradeskill"
+        /// Sets the "zoom" of the radar
         /// </summary>
-        public void FilterTSUnits()
+        /// <param name="size">the new zoom</param>
+        /// <returns>call success</returns>
+        public bool SetSize(int size)
         {
-            ExecuteMethod("FilterTSUnits");
+            Trace.WriteLine(String.Format("Radar:SetSize({0})", size.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("SetSize", size.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
-        /// Toggles the custom filter "Show Aggro"
+        /// Toggles the custom filter "Show Labels"
         /// </summary>
-        public void FilterAggroNPCs()
+        /// <returns>call success</returns>
+        public bool ShowLabels()
         {
-            ExecuteMethod("FilterAggroNPCs");
+            Trace.WriteLine(String.Format("Radar:ShowLabels()"));
+            return this.ExecuteMethod("ShowLabels");
         }
 
         /// <summary>
-        /// Toggles the custom filter "Show Named"
+        /// Toggles the custom filter "Y-axis Clipping"
         /// </summary>
-        public void FilterNamedNPCs()
+        /// <returns>call success</returns>
+        public bool YAxisClipping()
         {
-            ExecuteMethod("FilterNamedNPCs");
+            Trace.WriteLine(String.Format("Radar:YAxisClipping()"));
+            return this.ExecuteMethod("YAxisClipping");
         }
 
-        /// <summary>
-        /// Toggles the custom filter "Show Pets"
-        /// </summary>
-        public void FilterPets()
-        {
-            ExecuteMethod("FilterPets");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show My Pet"
-        /// </summary>
-        public void FilterMyPet()
-        {
-            ExecuteMethod("FilterMyPet");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Chests"
-        /// </summary>
-        public void FilterChests()
-        {
-            ExecuteMethod("FilterChests");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Doors"
-        /// </summary>
-        public void FilterDoors()
-        {
-            ExecuteMethod("FilterDoors");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Unknowns"
-        /// </summary>
-        public void FilterUnknowns()
-        {
-            ExecuteMethod("FilterUnknowns");
-        }
-
-        /// <summary>
-        /// Toggles the custom filter "Show Con Color"
-        /// </summary>
-        public void ColorizeLabels()
-        {
-            ExecuteMethod("ColorizeLabels");
-        }
-
-        public void FilterMercenaries()
-        {
-            ExecuteMethod("FilterMercenaries");
-        }
-
-        public bool ShowingMercenaries
-        {
-            get { return GetMember<bool>("ShowingMercenaries"); }
-        }
+        #endregion
+   
     }
 }

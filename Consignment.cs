@@ -120,7 +120,7 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// he price of the item, including broker commission, in silver pieces. 
+        /// The price of the item, including broker commission, in silver pieces. 
         /// </summary>
         public float Price
         {

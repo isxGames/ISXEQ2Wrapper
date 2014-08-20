@@ -1,49 +1,32 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
+using System.Diagnostics;
 using LavishScriptAPI;
 using EQ2.ISXEQ2.Extensions;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes all of the data available to ISXEQ2 that is related to the current zone. 
+    /// </summary>
     public class Zone : LavishScriptObject
     {
-        public Zone(LavishScriptObject obj)
-            : base(obj)
-        {
-        }
 
-        public Zone()
-            : base(LavishScript.Objects.GetObject("Zone"))
-        {
-        }
+        #region Constructor
 
         /// <summary>
-        /// The name of the zone
+        /// Constructor
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return this.GetStringFromLSO("Name");
-            }
-        }
+        /// <param name="copy">LS Object</param>
+        public Zone(LavishScriptObject copy) : base(copy) { }
+
+        #endregion
+
+        #region Members
 
         /// <summary>
-        /// The short name of the zone
+        /// Cache of ID
         /// </summary>
-        public string ShortName
-        {
-            get
-            {
-                return this.GetStringFromLSO("ShortName");
-            }
-        }
+        private int? _iD;
 
         /// <summary>
         /// The ID of the zone
@@ -52,9 +35,49 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return this.GetIntFromLSO("ID");
+                Trace.WriteLine(String.Format("Zone:ID"));
+                if(!_iD.HasValue)
+                    _iD = this.GetIntFromLSO("ID");
+                return _iD.Value;
             }
         }
+
+        /// <summary>
+        /// Cache of Name
+        /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// The name of the zone
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Zone:Name"));
+                return _name ?? (_name = this.GetStringFromLSO("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of ShortName
+        /// </summary>
+        private string _shortName;
+
+        /// <summary>
+        /// The short name of the zone
+        /// </summary>
+        public string ShortName
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Zone:ShortName"));
+                return _shortName ?? (_shortName = this.GetStringFromLSO("ShortName"));
+            }
+        }
+
+        #endregion
+       
     }
 
 

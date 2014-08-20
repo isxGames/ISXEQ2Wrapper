@@ -1,6 +1,5 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
+using System;
+using System.Diagnostics;
 using System.Globalization;
 using EQ2.ISXEQ2.Extensions;
 using LavishScriptAPI;
@@ -8,46 +7,27 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2
 {
     /// <summary>
-    /// All of the available data for an individual in-game email
+    /// This DataType includes all of the data available to ISXEQ2 that is related to an individual email
     /// </summary>
     public class EQ2Mail : LavishScriptObject
     {
 
         #region Constructor
 
-        public EQ2Mail(LavishScriptObject obj)
-            : base(obj)
-        {
-        }
-
-        public int ID
-        {
-            get { return GetMember<int>("ID"); }
-        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public EQ2Mail(LavishScriptObject copy) : base(copy) { }
 
         #endregion
 
-        /// <summary>
-        /// Returns the name of the sender
-        /// </summary>
-        public string Sender
-        {
-            get
-            {
-                return this.GetStringFromLSO("Sender");
-            }
-        }
+        #region Members
 
         /// <summary>
-        /// The subject of the email
+        /// Cache of Body
         /// </summary>
-        public string Subject
-        {
-            get
-            {
-                return this.GetStringFromLSO("Subject");
-            }
-        }
+        private string _body;
 
         /// <summary>
         /// The body of the email
@@ -56,9 +36,15 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return this.GetStringFromLSO("Body");
+                Trace.WriteLine(String.Format("EQ2Mail:Body"));
+                return _body ?? (_body = this.GetStringFromLSO("Body"));
             }
         }
+
+        /// <summary>
+        /// Cache of Copper
+        /// </summary>
+        private int? _copper;
 
         /// <summary>
         /// Amount of copper attached to the email. Only works if mail is opened or composing.
@@ -67,20 +53,29 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return this.GetIntFromLSO("Copper");
+                Trace.WriteLine(String.Format("EQ2Mail:Copper"));
+                if(!_copper.HasValue)
+                    _copper = this.GetIntFromLSO("Copper");
+                return _copper.Value;
             }
         }
 
         /// <summary>
-        /// Amount of silver attached to the email. Only works if mail is opened or composing.
+        /// Should return the item datatype for the attachment
         /// </summary>
-        public int Silver
+        public Item Gift
         {
             get
             {
-                return this.GetIntFromLSO("Silver");
+                Trace.WriteLine(String.Format("EQ2Mail:Gift"));
+                return new Item(this.GetMember("Gift"));
             }
         }
+
+        /// <summary>
+        /// Cache of Gold
+        /// </summary>
+        private int? _gold;
 
         /// <summary>
         /// Amount of gold attached to the email. Only works if mail is opened or composing.
@@ -89,190 +84,307 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return this.GetIntFromLSO("Gold");
+                Trace.WriteLine(String.Format("EQ2Mail:Gold"));
+                if(!_gold.HasValue)
+                    _gold = this.GetIntFromLSO("Gold");
+                return _gold.Value;
+            }
+        }
+        
+        /// <summary>
+        /// Cache of ID
+        /// </summary>
+        private int? _iD;
+
+        /// <summary>
+        /// Mail ID
+        /// </summary>
+        public int ID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Mail:ID"));
+                if(!_iD.HasValue)
+                    _iD = this.GetIntFromLSO("ID");
+                return _iD.Value;
             }
         }
 
-        /// TODO: Identify Gift member datatype as Int or Item
         /// <summary>
-        /// Amount of platinum attached to the email. Only works if mail is opened or omposing.
+        /// Cache of Platinum
+        /// </summary>
+        private int? _platinum;
+
+        /// <summary>
+        /// Amount of platinum attached to the email. Only works if mail is opened or composing.
         /// </summary>
         public int Platinum
         {
             get
             {
-                return this.GetIntFromLSO("Platinum");
+                Trace.WriteLine(String.Format("EQ2Mail:Platinum"));
+                if(!_platinum.HasValue)
+                    _platinum = this.GetIntFromLSO("Platinum");
+                return _platinum.Value;
             }
         }
 
         /// <summary>
-        /// Should return the item datatype for the attachment, returns an int instead
+        /// Cache of recipient
         /// </summary>
-        public int Gift
-        {
-            get
-            {
-                return this.GetIntFromLSO("Gift");
-            }
-        }
+        private string _recipient;
 
         /// <summary>
-        /// Returns the name of the recipient
+        /// Name of the recipient
         /// </summary>
         public string Recipient
         {
             get
             {
-                return this.GetStringFromLSO("Recipient");
+                Trace.WriteLine(String.Format("EQ2Mail:Recipient"));
+                return _recipient ?? (_recipient = this.GetStringFromLSO("Recipient"));
             }
         }
 
         /// <summary>
-        /// Opens the email. Does not require the email to be opened or composing.
+        /// Cache of Sender
         /// </summary>
-        public void Open()
+        private string _sender;
+
+        /// <summary>
+        /// Returns the name of the sender
+        /// </summary>
+        public string Sender
         {
-            ExecuteMethod("Open");
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Mail:Sender"));
+                return _sender ?? (_sender = this.GetStringFromLSO("Sender"));
+            }
         }
 
         /// <summary>
-        /// Deletes the email. Does not require the email to be opened or composing.
+        /// Cache of Silver
         /// </summary>
-        public void Delete()
+        private int? _silver;
+
+        /// <summary>
+        /// Amount of silver attached to the email. Only works if mail is opened or composing.
+        /// </summary>
+        public int Silver
         {
-            ExecuteMethod("Delete");
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Mail:Silver"));
+                if(!_silver.HasValue)
+                    _silver = this.GetIntFromLSO("Silver");
+                return _silver.Value;
+            }
         }
 
         /// <summary>
-        /// Extracts the attached gift from the email. Does not require the email to be opened or composing.
+        /// Cache of Subject
         /// </summary>
-        public void ReceiveGifts()
-        {
-            ExecuteMethod("ReceiveGifts");
-        }
-        
-        /// <summary>
-        /// Adds an additional recipient to an email. Requires email to be composing.
-        /// </summary>
-        /// <param name="text">text to append</param>
-        public void AppendRecipient(string text)
-        {
-            ExecuteMethod("AppendRecipient",text);
-        }
+        private string _subject;
 
         /// <summary>
-        /// Adds additional text to the subject of an email. Requires email to be composing.
+        /// The subject of the email
         /// </summary>
-        /// <param name="text">text to append</param>
-        public void AppendSubject(string text)
+        public string Subject
         {
-            ExecuteMethod("AppendSubject",text);
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Mail:Subject"));
+                return _subject ?? (_subject = this.GetStringFromLSO("Subject"));
+            }
         }
 
-        /// <summary>
-        /// Adds additional text to the body of an email. Requires email to be composing.
-        /// </summary>
-        /// <param name="text">text to append</param>
-        public void AppendBody(string text)
-        {
-            ExecuteMethod("AppendBody",text);
-        }
+        #endregion
 
-        /// <summary>
-        /// Removes the gift from an email. Requires email to be composing.
-        /// </summary>
-        public void RemoveGift()
-        {
-            ExecuteMethod("RemoveGift");
-        }
+        #region Methods
 
         /// <summary>
         /// Adds copper to an email. Requires email to be composing.
         /// </summary>
         /// <param name="value">the amount of ccopper to add</param>
-        public void AddCopper(int value)
+        /// <returns>call success</returns>
+        public bool AddCopper(int value)
         {
-            ExecuteMethod("AddCopper",value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Adds silver to an email. Requires email to be composing.
-        /// </summary>
-        /// <param name="value">the amount of silver to add</param>
-        public void AddSilver(int value)
-        {
-            ExecuteMethod("AddSilver",value.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("EQ2Mail:AddCopper({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddCopper", value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
         /// Add gold to an email. Requires email to be composing.
         /// </summary>
         /// <param name="value">the amount of gold to add</param>
-        public void AddGold(int value)
+        /// <returns>call success</returns>
+        public bool AddGold(int value)
         {
-            ExecuteMethod("AddGold",value.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("EQ2Mail:AddGold({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddGold", value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
         /// Adds platinum to an email. Requires email to be composing.
         /// </summary>
         /// <param name="value">the amount of platinum to add</param>
-        public void AddPlatinum(int value)
+        /// <returns>call success</returns>
+        public bool AddPlatinum(int value)
         {
-            ExecuteMethod("AddPlatinum",value.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("EQ2Mail:AddPlatinum({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddPlatinum", value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Adds silver to an email. Requires email to be composing.
+        /// </summary>
+        /// <param name="value">the amount of silver to add</param>
+        /// <returns>call success</returns>
+        public bool AddSilver(int value)
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:AddSilver({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddSilver", value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Adds additional text to the body of an email. Requires email to be composing.
+        /// </summary>
+        /// <param name="text">text to append</param>
+        /// <returns>call success</returns>
+        public bool AppendBody(string text)
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:AppendBody({0})", text));
+            return this.ExecuteMethod("AppendBody", text);
+        }
+
+        /// <summary>
+        /// Adds an additional recipient to an email. Requires email to be composing.
+        /// </summary>
+        /// <param name="text">text to append</param>
+        /// <returns>call success</returns>
+        public bool AppendRecipient(string text)
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:AppendRecipient({0})", text));
+            return this.ExecuteMethod("AppendRecipient", text);
+        }
+
+        /// <summary>
+        /// Adds additional text to the subject of an email. Requires email to be composing.
+        /// </summary>
+        /// <param name="text">text to append</param>
+        /// <returns>call success</returns>
+        public bool AppendSubject(string text)
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:AppendSubject({0})", text));
+            return this.ExecuteMethod("AppendSubject", text);
+        }
+
+        /// <summary>
+        /// Cancels the email.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Cancel()
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:Cancel()"));
+            return this.ExecuteMethod("Cancel");
+        }
+
+        /// <summary>
+        /// Deletes the email. Does not require the email to be opened or composing.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Delete()
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:Delete()"));
+            return this.ExecuteMethod("Delete");
+        }
+
+        /// <summary>
+        /// Opens the email. Does not require the email to be opened or composing.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Open()
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:Open()"));
+            return this.ExecuteMethod("Open");
+        }
+
+        /// <summary>
+        /// Extracts the attached gift from the email. Does not require the email to be opened or composing.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool ReceiveGifts()
+        {
+            Trace.WriteLine(String.Format("EQ2Mail:ReceiveGifts()"));
+            return this.ExecuteMethod("ReceiveGifts");
         }
 
         /// <summary>
         /// Removes copper from an email. Requires email to be composing.
         /// </summary>
         /// <param name="value">the amount of copper to remove</param>
-        public void RemoveCopper(int value)
+        /// <returns>call success</returns>
+        public bool RemoveCopper(int value)
         {
-            ExecuteMethod("RemoveCopper",value.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("EQ2Mail:RemoveCopper({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("RemoveCopper", value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
-        /// Removes silver from an email. Requires email to be composing.
+        /// Removes the gift from an email. Requires email to be composing.
         /// </summary>
-        /// <param name="value">the amount of silver to remove</param>
-        public void RemoveSilver(int value)
+        /// <returns>call success</returns>
+        public bool RemoveGift()
         {
-            ExecuteMethod("RemoveSilver",value.ToString());
+            Trace.WriteLine(String.Format("EQ2Mail:RemoveGift()"));
+            return this.ExecuteMethod("RemoveGift");
         }
 
         /// <summary>
         /// Removes gold from an email. Requires email to be composing.
         /// </summary>
         /// <param name="value">the amount of gold to remove</param>
-        public void RemoveGold(int value)
+        /// <returns>call success</returns>
+        public bool RemoveGold(int value)
         {
-            ExecuteMethod("RemoveGold",value.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("EQ2Mail:RemoveGold({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("RemoveGold", value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
         /// Removes platinum from an email. Requires email to be composing.
         /// </summary>
         /// <param name="value">the amount of platinum to remove</param>
-        public void RemovePlatinum(int value)
+        /// <returns>call success</returns>
+        public bool RemovePlatinum(int value)
         {
-            ExecuteMethod("RemovePlatinum",value.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("EQ2Mail:RemovePlatinum({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("RemovePlatinum", value.ToString(CultureInfo.InvariantCulture));
         }
-        
+
         /// <summary>
-        /// Cancels the email.
+        /// Removes silver from an email. Requires email to be composing.
         /// </summary>
-        public void Cancel()
+        /// <param name="value">the amount of silver to remove</param>
+        /// <returns>call success</returns>
+        public bool RemoveSilver(int value)
         {
-            ExecuteMethod("Cancel");
+            Trace.WriteLine(String.Format("EQ2Mail:RemoveSilver({0})", value.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("RemoveSilver", value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
         /// Sends the email. Requires email to be composing.
         /// </summary>
-        public void Send()
+        /// <returns>call success</returns>
+        public bool Send()
         {
-            ExecuteMethod("Send");
+            Trace.WriteLine(String.Format("EQ2Mail:Send()"));
+            return this.ExecuteMethod("Send");
         }
+
+        #endregion
 
     }
 }

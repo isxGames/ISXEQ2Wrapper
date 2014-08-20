@@ -168,7 +168,7 @@ namespace EQ2.ISXEQ2
         /// <summary>
         /// Will try to buy the quantity of an item.
         /// Quantity only works for items that are stackable. 
-        /// f you try to buy more than MaxQuantity, Quantity will default to MaxQuantity.
+        /// If you try to buy more than MaxQuantity, Quantity will default to MaxQuantity.
         /// </summary>
         /// <param name="quantity">quantity</param>
         /// <returns>call success</returns>
