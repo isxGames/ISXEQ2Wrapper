@@ -1,26 +1,23 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes all of the data available to ISXEQ2 that is related to entities within the world.
+    /// </summary>
     public class Actor : LavishScriptObject
     {
-        public Actor(LavishScriptObject Obj)
-            : base(Obj)
-        {
-        }
 
-        public Actor(params string[] Args)
-            : base(LavishScript.Objects.GetObject("Actor", Args))
-        {
-        }
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public Actor(LavishScriptObject copy) : base(copy) { }
+
+        #endregion
 
         public string Name
         {

@@ -1,45 +1,74 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
+using System.Diagnostics;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// Allows interaction with Reward Windows. 
+    /// </summary>
     public class RewardWindow : LavishScriptObject
     {
-        public RewardWindow(LavishScriptObject Obj)
-            : base(Obj)
-        {
-        }
 
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public RewardWindow(LavishScriptObject copy) : base(copy) { }
+
+        #endregion
+
+        #region Members
+
+        /// <summary>
+        /// Returns the RewardWindow as an EQ2UIPage
+        /// </summary>
         public EQ2UIPage ToEQ2UIPage
         {
             get
             {
-                LavishScriptObject Obj = GetMember("ToEQ2UIPage");
-                return new EQ2UIPage(Obj);
+                Trace.WriteLine(String.Format("RewardWindow:ToEQ2UIPage"));
+                return new EQ2UIPage(this.GetMember("ToEQ2UIPage"));
             }
         }
 
-        public void Receive()
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Accepts the reward
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Accept()
         {
-            ExecuteMethod("Receive");
+            Trace.WriteLine(String.Format("RewardWindow:Accept()"));
+            return this.ExecuteMethod("Accept");
         }
 
-        public void Accept()
+        /// <summary>
+        /// Cancels the reward window
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Cancel()
         {
-            ExecuteMethod("Accept");
+            Trace.WriteLine(String.Format("RewardWindow:Cancel()"));
+            return this.ExecuteMethod("Cancel");
         }
 
-        public void Cancel()
+        /// <summary>
+        /// Receives the reward
+        /// </summary>
+        /// <returns></returns>
+        public bool Receive()
         {
-            ExecuteMethod("Cancel");
+            Trace.WriteLine(String.Format("RewardWindow:Receive()"));
+            return this.ExecuteMethod("Receive");
         }
+
+        #endregion
 
     }
 }

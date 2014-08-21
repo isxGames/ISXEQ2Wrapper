@@ -1,0 +1,12 @@
+Name                   X                      IsEpic                 IsLocked               SwimmingSpeedMod       IsRunning              Effect                 IsDead                 Velocity              
+LastName               Y                      IsEncounterBroken      WhoFollowingID         EncounterSize          IsWalking              IsInvis                Faction                Distance2D            
+Gender                 Z                      FactionStanding        WhoFollowing           Difficulty             IsSprinting            IsStealthed            IsRooted               ThreatToPet           
+Race                   Distance               ConColor               Speed                  InCombatMode           IsBackingUp            IsBanker               CanTurn                ThreatToMe            
+Class                  HeadingTo              IsLFG                  Guild                  IsCrouching            IsStrafingLeft         IsMerchant             IsFD                   ThreatToNext          
+Health                 Heading                IsLFW                  SuffixTitle            IsSitting              IsStrafingRight        IsChest                ToActor                Interactable          
+Power                  Type                   IsAFK                  IsAPet                 OnCarpet               IsIdle                 IsClimbing             CheckCollision         HighlightOnMouseHover 
+Level                  IsAggro                IsLinkdead             IsMyPet                OnHorse                IsInSameEncounter      IsJumping              TargetRingRadius       InMyGroup             
+EffectiveLevel         IsSolo                 IsCamping              IsNamed                OnGriffin              Pet                    IsFalling              CollisionRadius        FlyingUsingMount      
+ID                     IsHeroic               Target                 IsSwimming             OnGriffon              NumEffects             Loc                    CollisionScale         OnFlyingMount         
+
+DoubleClick            WaypointTo             DoFace                 DoTarget               Location               InitializeEffects      

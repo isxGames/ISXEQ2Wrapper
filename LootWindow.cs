@@ -1,108 +1,191 @@
-// Disable all XML Comment warnings in this file // 
-#pragma warning disable 1591 
-
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using InnerSpaceAPI;
+using System.Diagnostics;
+using System.Globalization;
+using EQ2.ISXEQ2.Extensions;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This DataType includes all of the data available to ISXEQ2 that is related to the "loot" window. 
+    /// </summary>
 	public class LootWindow : LavishScriptObject
-	{
-		public LootWindow(LavishScriptObject Obj)
-			: base(Obj)
-		{
-		}
+    {
 
-		public int NumItems
-		{
-			get
-			{
-				return GetMember<int>("NumItems");
-			}
-		}
+        #region Constructor
 
-		public EQ2UIPage ToEQ2UIPage
-		{
-			get
-			{
-				LavishScriptObject Obj = GetMember("ToEQ2UIPage");
-				return new EQ2UIPage(Obj);
-			}
-		}
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public LootWindow(LavishScriptObject copy) : base(copy) { }
 
-		public bool IsLotto
-		{
-			get
-			{
-				return GetMember<bool>("IsLotto");
-			}
-		}
+        #endregion
 
-		public string Type
-		{
-			get
-			{
-				return GetMember<string>("Type");
-			}
-		}
+        #region Members
 
-		public Item Item(int ItemIndex)
-		{
-			LavishScriptObject Obj = GetMember("Item", ItemIndex.ToString());
-			return new Item(Obj);
-		}
+        /// <summary>
+        /// Returns TRUE if Lotto Loot
+        /// </summary>
+        public bool IsLotto
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:IsLotto"));
+                return this.GetBoolFromLSO("IsLotto");
+            }
+        }
 
-		public Item Item(string Label)
-		{
-			LavishScriptObject Obj = GetMember("Item", Label);
-			return new Item(Obj);
-		}
+        /// <summary>
+        /// Returns the item at the index provided. (From 1 to NumItems)
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <returns>Item</returns>
+        public Item Item(int index)
+        {
+            Trace.WriteLine(String.Format("LootWindow:Item({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new Item(this.GetMember("Item", index.ToString(CultureInfo.InvariantCulture)));
+        }
 
-		public bool LootAll()
-		{
-			return ExecuteMethod("LootAll");
-		}
+        /// <summary>
+        /// Returns the item that matches the substring name
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <returns>call success</returns>
+        public Item Item(string name)
+        {
+            Trace.WriteLine(String.Format("LootWindow:Item({0})", name));
+            return new Item(this.GetMember("Item", name));
+        }
 
-		public bool RequestAll()
-		{
-			return ExecuteMethod("RequestAll");
-		}
+        /// <summary>
+        /// The number of items in the loot window
+        /// </summary>
+        public int NumItems
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:NumItems"));
+                return this.GetIntFromLSO("NumItems");
+            }
+        }
 
-		public bool DeclineLotto()
-		{
-			return ExecuteMethod("DeclineLotto");
-		}
+        /// <summary>
+        /// Returns the LootWindow as an EQ2UIPage
+        /// </summary>
+        public EQ2UIPage ToEQ2UIPage
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:ToEQ2UIPage"));
+                return new EQ2UIPage(this.GetMember("ToEQ2UIPage"));
+            }
+        }
 
-		public bool LootItem()
-		{
-			return ExecuteMethod("LootItem");
-		}
+        /// <summary>
+        /// Returns "Free For All" "Lottery" "Need Before Greed" or "Unknown" 
+        /// </summary>
+        public string Type
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:Type"));
+                return this.GetStringFromLSO("Type");
+            }
+        }
 
-		public bool LootItem(int ID, bool LootNoTrade)
-		{
-			if (LootNoTrade)
-				return ExecuteMethod("LootItem", ID.ToString());
-			return ExecuteMethod("LootItem", ID.ToString(), "0");
-		}
+        #endregion
 
-		public bool SelectNeed()
-		{
-			return ExecuteMethod("SelectNeed");
-		}
+        #region Methods
 
-		public bool SelectGreed()
-		{
-			return ExecuteMethod("SelectGreed");
-		}
+        /// <summary>
+        /// Declines the Lotto
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool DeclineLotto()
+        {
+            Trace.WriteLine(String.Format("LootWindow:DeclineLotto()"));
+            return this.ExecuteMethod("DeclineLotto");
+        }
 
-		public bool DeclineNBG()
-		{
-			return ExecuteMethod("DeclineNBG");
-		}
+        /// <summary>
+        /// Decline Need Before Greed
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool DeclineNBG()
+        {
+            Trace.WriteLine(String.Format("LootWindow:DeclineLotto()"));
+            return this.ExecuteMethod("DeclineNBG");
+        }
+
+        /// <summary>
+        /// Loots all items in loot window
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool LootAll()
+        {
+            Trace.WriteLine(String.Format("LootWindow:LootAll()"));
+            return this.ExecuteMethod("LootAll");
+        }
+
+        /// <summary>
+        /// Loots the single item in the loot window. This method does
+        /// not work for Lotto loot window, only for FreeForAll, LeaderOnly, or Solo.
+        /// </summary>
+        /// <returns></returns>
+        public bool LootItem()
+        {
+            Trace.WriteLine(String.Format("LootWindow:LootItem()"));
+            return this.ExecuteMethod("LootItem");
+        }
+
+        /// <summary>
+        /// Attempts to loot the item with ID provided
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="lootNoTrade">Loot No Trade Items</param>
+        /// <returns>call success</returns>
+        public bool LootItem(int id, bool lootNoTrade = false)
+        {
+            Trace.WriteLine(String.Format("LootWindow:LootItem({0}, {1})", id.ToString(CultureInfo.InvariantCulture),
+                lootNoTrade.ToString(CultureInfo.InvariantCulture)));
+            return lootNoTrade
+                ? this.ExecuteMethod("LootItem", id.ToString(CultureInfo.InvariantCulture))
+                : this.ExecuteMethod("LootItem", id.ToString(CultureInfo.InvariantCulture), 
+                0.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Click Request All Button. Defaults to LootAll if no RequestAll button.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool RequestAll()
+        {
+            Trace.WriteLine(String.Format("LootWindow:RequestAll()"));
+            return this.ExecuteMethod("RequestAll");
+        }
+
+        /// <summary>
+        /// Selects the greed button
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool SelectGreed()
+        {
+            Trace.WriteLine(String.Format("LootWindow:SelectGreed()"));
+            return this.ExecuteMethod("SelectGreed");
+        }
+
+        /// <summary>
+        /// Selects the need button
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool SelectNeed()
+        {
+            Trace.WriteLine(String.Format("LootWindow:SelectNeed()"));
+            return this.ExecuteMethod("SelectNeed");
+        }
+
+        #endregion	
 
 	}
 }

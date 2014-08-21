@@ -1,0 +1,3 @@
+ToEQ2UIPage            Text              
+
+Choose                 Select            
