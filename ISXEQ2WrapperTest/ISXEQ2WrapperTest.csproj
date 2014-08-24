@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ISXEQ2Wrapper">
-      <HintPath>D:\Program Files (x86)\InnerSpace\.NET Programs\ISXEQ2Wrapper.dll</HintPath>
-    </Reference>
     <Reference Include="Lavish.InnerSpace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Program Files (x86)\InnerSpace\Lavish.InnerSpace.dll</HintPath>
@@ -105,6 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EQ2.ISXEQ2.csproj">
+      <Project>{faafb01c-c8f3-4ad7-a4a6-6f4fca7cba71}</Project>
+      <Name>EQ2.ISXEQ2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

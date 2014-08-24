@@ -275,7 +275,13 @@ namespace EQ2.ISXEQ2
         /// </summary>
         public enum BenefitToggle
         {
+            /// <summary>
+            /// Enable
+            /// </summary>
             Enable,
+            /// <summary>
+            /// Disable
+            /// </summary>
             Disable
         }
 

@@ -56,3 +56,5 @@ C:\Users\raymond\Source\Repos\ISXEQ2Wrapper\ISXEQ2WrapperTest\obj\Debug\ISXEQ2Wr
 C:\Users\raymond\Source\Repos\ISXEQ2Wrapper\ISXEQ2WrapperTest\obj\Debug\ISXEQ2WrapperTest.csproj.GenerateResource.Cache
 C:\Users\raymond\Source\Repos\ISXEQ2Wrapper\ISXEQ2WrapperTest\obj\Debug\ISXEQ2WrapperTest.exe
 C:\Users\raymond\Source\Repos\ISXEQ2Wrapper\ISXEQ2WrapperTest\obj\Debug\ISXEQ2WrapperTest.pdb
+C:\Users\raymond\Source\Repos\ISXEQ2Wrapper\ISXEQ2WrapperTest\bin\Debug\ISXEQ2Wrapper.dll
+C:\Users\raymond\Source\Repos\ISXEQ2Wrapper\ISXEQ2WrapperTest\bin\Debug\ISXEQ2Wrapper.pdb

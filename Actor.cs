@@ -260,25 +260,6 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Cache of OnFlyingMount
-        /// </summary>
-        private bool? _onFlyingMount;
-
-        /// <summary>
-        /// Returns TRUE if currently on a flying mount, whether on the ground or in the air
-        /// </summary>
-        public bool OnFlyingMount
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:OnFlyingMount"));
-                if (!_onFlyingMount.HasValue)
-                    _onFlyingMount = this.GetBoolFromLSO("OnFlyingMount");
-                return _onFlyingMount.Value;
-            }
-        }
-
-        /// <summary>
         /// Cache of FlyingUsingMount
         /// </summary>
         private bool? _flyingUseMount;
@@ -1002,6 +983,9 @@ namespace EQ2.ISXEQ2
         /// </summary>
         private string _lastName;
 
+        /// <summary>
+        /// Last Name
+        /// </summary>
         public string LastName
         {
             get
@@ -1055,7 +1039,7 @@ namespace EQ2.ISXEQ2
             get
             {
                 Trace.WriteLine(String.Format("Actor:Name"));
-                return GetMember<string>("Name");
+                return _name ?? (_name = this.GetStringFromLSO("Name"));
             }
         }
 
@@ -1066,361 +1050,439 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<int>("NumEffects");
+                Trace.WriteLine(String.Format("Actor:NumEffects"));
+                return this.GetIntFromLSO("NumEffects");
             }
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        #endregion
-
-
-
-
-
-
-
-        
-
-        
-
-        
-
-        public string Race
-        {
-            get
-            {
-                return GetMember<string>("Race");
-            }
-        }
-
-        
-
-        
-
-        public int Power
-        {
-            get
-            {
-                return GetMember<int>("Power");
-            }
-        }
-
-        
-
-        
-
-        
-
-        public float X
-        {
-            get
-            {
-                return GetMember<float>("X");
-            }
-        }
-
-        public float Y
-        {
-            get
-            {
-                return GetMember<float>("Y");
-            }
-        }
-
-        public float Z
-        {
-            get
-            {
-                return GetMember<float>("Z");
-            }
-        }
-
-        
-
-        
-
-        
-
-        public string Type
-        {
-            get
-            {
-                return GetMember<string>("Type");
-            }
-        }
-
-        
-
-        
-
-        
-
-        
-
-
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        public Actor Target()
-        {
-            LavishScriptObject Obj = GetMember("Target");
-            return new Actor(Obj);
-        }
-
-        
-
-        public int WhoFollowingID
-        {
-            get
-            {
-                return GetMember<int>("WhoFollowingID");
-            }
-        }
-
-        public string WhoFollowing
-        {
-            get
-            {
-                return GetMember<string>("WhoFollowing");
-            }
-        }
-
-        public float Speed
-        {
-            get
-            {
-                return GetMember<float>("Speed");
-            }
-        }
-
-        
-
-        public string SuffixTitle
-        {
-            get
-            {
-                return GetMember<string>("SuffixTitle");
-            }
-        }
-
-        
-
-        
-
-        
-
-        
-
-        public float SwimmingSpeedMod
-        {
-            get
-            {
-                return GetMember<float>("SwimmingSpeedMod");
-            }
-        }
-
-        
-
-        
-
-        
-
-
-
-        
-
+        /// <summary>
+        /// Returns TRUE if the actor is on a carpet. Mutually exclusive
+        /// with OnHorse and OnGriffin.
+        /// </summary>
         public bool OnCarpet
         {
             get
             {
-                return GetMember<bool>("OnCarpet");
+                Trace.WriteLine(String.Format("Actor:OnCarpet"));
+                return this.GetBoolFromLSO("OnCarpet");
             }
         }
 
-        public bool OnHorse
+        /// <summary>
+        /// Cache of OnFlyingMount
+        /// </summary>
+        private bool? _onFlyingMount;
+
+        /// <summary>
+        /// Returns TRUE if currently on a flying mount, whether on the ground or in the air
+        /// </summary>
+        public bool OnFlyingMount
         {
             get
             {
-                return GetMember<bool>("OnHorse");
+                Trace.WriteLine(String.Format("Actor:OnFlyingMount"));
+                if (!_onFlyingMount.HasValue)
+                    _onFlyingMount = this.GetBoolFromLSO("OnFlyingMount");
+                return _onFlyingMount.Value;
             }
         }
 
+        /// <summary>
+        /// Returns TRUE if the actor is flying on a griffin. (Old World, intra zone travel like horses and sokokar)
+        /// </summary>
         public bool OnGriffin
         {
             get
             {
-                return GetMember<bool>("OnGriffin");
+                Trace.WriteLine(String.Format("Actor:OnGriffin"));
+                return this.GetBoolFromLSO("OnGriffin");
             }
         }
 
+        /// <summary>
+        /// Returns TRUE if the actor is flying on a griffon. (Old World, intra zone travel, e.g. Thundering Steppes)
+        /// </summary>
         public bool OnGriffon
         {
             get
             {
-                return GetMember<bool>("OnGriffon");
+                Trace.WriteLine(String.Format("Actor:OnGriffon"));
+                return this.GetBoolFromLSO("OnGriffon");
             }
         }
 
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        public Actor Pet()
-        {
-            LavishScriptObject Obj = GetMember("Pet");
-            return new Actor(Obj);
-        }
-
-        
-
-
-
-        
-
-        
-
-        
-
-
-
-
-        public Point3f Velocity
+        /// <summary>
+        /// Returns TRUE if the actor is on a horse. (Old World, intra zone travel. e.g. in G Fay)
+        /// </summary>
+        public bool OnHorse
         {
             get
             {
-                LavishScriptObject Obj = GetMember("Velocity");
-                return new Point3f(Obj);
+                Trace.WriteLine(String.Format("Actor:OnHorse"));
+                return this.GetBoolFromLSO("OnHorse");
             }
         }
 
-        
-
-        
-
-        
-
-        
-
-
-
-        
-
-        public Actor ToActor
+        /// <summary>
+        /// Actor's pet, if any.
+        /// </summary>
+        public Actor Pet
         {
             get
             {
-                LavishScriptObject Obj = GetMember("ToActor");
-                return new Actor(Obj);
+                Trace.WriteLine(String.Format("Actor:Pet"));
+                return new Actor(this.GetMember("Pet"));
+            }           
+        }
+
+        /// <summary>
+        /// Returns power as a percentage.
+        /// </summary>
+        public int Power
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Power"));
+                return this.GetIntFromLSO("Power");
             }
         }
 
+        /// <summary>
+        /// Cache of Race
+        /// </summary>
+        private string _race;
 
-        
+        /// <summary>
+        /// Race
+        /// </summary>
+        public string Race
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Race"));
+                return _race ?? (_race = this.GetStringFromLSO("Race"));
+            }
+        }
 
+        /// <summary>
+        /// Cache of Speed
+        /// </summary>
+        private float? _speed;
+
+        /// <summary>
+        /// Returns the run speed percent enhancement on the actor.
+        /// </summary>
+        public float Speed
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Speed"));
+                if(!_speed.HasValue)
+                    _speed = this.GetFloatFromLSO("Speed");
+                return _speed.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of SuffixTitle
+        /// </summary>
+        private string _suffixTitle;
+
+        /// <summary>
+        /// Returns the suffix title of the actor if it exists, or NULL if it does not.
+        /// </summary>
+        public string SuffixTitle
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:SuffixTitle"));
+                return _suffixTitle ?? (_suffixTitle = this.GetStringFromLSO("SuffixTitle"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of SwimmingSpeedMod
+        /// </summary>
+        private float? _swimmingSpeedMod;
+
+        /// <summary>
+        /// Swimming Speed Modifier
+        /// </summary>
+        public float SwimmingSpeedMod
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:SwimmingSpeedMod"));
+                if(!_swimmingSpeedMod.HasValue)
+                    _swimmingSpeedMod = this.GetFloatFromLSO("SwimmingSpeedMod");
+                return _swimmingSpeedMod.Value;
+            }
+        }
+
+        /// <summary>
+        /// Target, if any.
+        /// </summary>
+        public Actor Target
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Target"));
+                return new Actor(this.GetMember("Target"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of TargetRingRadius
+        /// </summary>
+        private float? _targetRingRadius;
+
+        /// <summary>
+        /// Target Ring Radius
+        /// </summary>
         public float TargetRingRadius
         {
             get
             {
-                return GetMember<float>("TargetRingRadius");
+                Trace.WriteLine(String.Format("Actor:TargetRingRadius"));
+                if(!_targetRingRadius.HasValue)
+                    _targetRingRadius = this.GetFloatFromLSO("TargetRingRadius");
+                return _targetRingRadius.Value;
             }
         }
 
-        
-
-        
-
-        
-
+        /// <summary>
+        /// Actor's threat to me.
+        /// </summary>
         public int ThreatToMe
         {
             get
             {
-                return GetMember<int>("ThreatToMe");
+                Trace.WriteLine(String.Format("Actor:ThreatToMe"));
+                return this.GetIntFromLSO("ThreatToMe");
             }
         }
 
+        /// <summary>
+        /// Threat to next person down on the hate list.
+        /// </summary>
         public int ThreatToNext
         {
             get
             {
-                return GetMember<int>("ThreatToNext");
+                Trace.WriteLine(String.Format("Actor:ThreatToNext"));
+                return this.GetIntFromLSO("ThreatToNext");
             }
         }
 
-        public bool DoubleClick()
+        /// <summary>
+        /// Threat to actor's pet.
+        /// </summary>
+        public int ThreatToPet
         {
-            return ExecuteMethod("DoubleClick");
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:ThreatToPet"));
+                return this.GetIntFromLSO("ThreatToPet");
+            }
         }
 
+        /// <summary>
+        /// Useful for iterating the character.Group array.
+        /// </summary>
+        public Actor ToActor
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:ToActor"));
+                return new Actor(this.GetMember("ToActor"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of Type
+        /// </summary>
+        private string _type;
+
+        /// <summary>
+        /// Actor type.
+        /// </summary>
+        public string Type
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Type"));
+                return _type ?? (_type = this.GetStringFromLSO("Type"));
+            }
+        }
+
+        /// <summary>
+        /// Velocity
+        /// </summary>
+        public Point3f Velocity
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Velocity"));
+                return new Point3f(this.GetMember("Velocity"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the name of the actor that the actor is following.
+        /// </summary>
+        public string WhoFollowing
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:WhoFollowing"));
+                return this.GetStringFromLSO("WhoFollowing");
+            }
+        }
+
+        /// <summary>
+        /// Returns the ID of the actor the actor is following.
+        /// </summary>
+        public int WhoFollowingID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:WhoFollowingID"));
+                return this.GetIntFromLSO("WhoFollowingID");
+            }
+        }
+
+        /// <summary>
+        /// Position X-coordinate
+        /// </summary>
+        public float X
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:X"));
+                return this.GetFloatFromLSO("X");
+            }
+        }
+
+        /// <summary>
+        /// Position Y-coordinate
+        /// </summary>
+        public float Y
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Y"));
+                return this.GetFloatFromLSO("Y");
+            }
+        }
+
+        /// <summary>
+        /// Position Z-coordinate
+        /// </summary>
+        public float Z
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Z"));
+                return this.GetFloatFromLSO("Z");
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Faces the actor.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool DoFace()
+        {
+            Trace.WriteLine(String.Format("Actor:DoFace()"));
+            return this.ExecuteMethod("DoFace");
+        }
+
+        /// <summary>
+        /// Targets the actor.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool DoTarget()
+        {
+            Trace.WriteLine(String.Format("Actor:DoTarget()"));
+            return this.ExecuteMethod("DoTarget");
+        }
+
+        /// <summary>
+        /// Excellent for activating doors.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool DoubleClick()
+        {
+            Trace.WriteLine(String.Format("Actor:DoubleClick()"));
+            return this.ExecuteMethod("DoubleClick");
+        }
+
+        /// <summary>
+        /// Used to retrieve effects data for this actor.
+        /// </summary>
+        /// <returns></returns>
+        public bool InitializeEffects()
+        {
+            Trace.WriteLine(String.Format("Actor:InitializeEffects()"));
+            return this.ExecuteMethod("InitializeEffects");
+        }
+
+        /// <summary>
+        /// This method will create a location in your locations database 
+        /// (which will save to your isxeq2locations.xml file) creating a label for you.
+        /// Please understand that this only works well for stationary actors.
+        /// </summary>
+        /// <param name="action">add or delete</param>
+        /// <param name="notes">notes</param>
+        /// <returns>call success</returns>
+        public bool Location(CommandType action, string notes = null)
+        {
+            switch (action)
+            {
+                case CommandType.Add:
+                    return notes == null ? this.ExecuteMethod("Location", action.ToString()) : this.ExecuteMethod("Location", action.ToString(), notes);
+                case CommandType.Delete:
+                    return ExecuteMethod("Location", action.ToString());
+                default:
+                    return false;
+            }
+            
+        }
+
+        /// <summary>
+        /// Creates a waypoint to the actor.
+        /// </summary>
+        /// <returns>call success</returns>
         public bool WaypointTo()
         {
             return ExecuteMethod("WaypointTo");
         }
 
-        public bool DoFace()
-        {
-            return ExecuteMethod("DoFace");
-        }
+        #endregion
 
-        public bool DoTarget()
-        {
-            return ExecuteMethod("DoTarget");
-        }
+        #region Enums
 
+        /// <summary>
+        /// Command Type
+        /// </summary>
         public enum CommandType
         {
+            /// <summary>
+            /// Command Type Add
+            /// </summary>
             Add,
+            /// <summary>
+            /// Command Type Delete
+            /// </summary>
             Delete
         }
 
-        public bool Location(CommandType Action)
-        {
-            return ExecuteMethod("Location", Action.ToString());
-        }
-
-        public bool Location(string AddNotes)
-        {
-            return ExecuteMethod("Location", "Add", AddNotes);
-        }
-
-        public bool InitializeEffects()
-        {
-            return ExecuteMethod("InitializeEffects");
-        }
-
-        
+        #endregion
 
     }
 }

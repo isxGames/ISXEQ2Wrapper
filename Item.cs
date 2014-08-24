@@ -571,7 +571,7 @@ namespace EQ2.ISXEQ2
 
         /// <summary>
         /// A number that represents a unique item number for an item.
-        /// e.g. eq2execute "inventory equip <ItemIndex> <SlotNumber>"
+        /// e.g. eq2execute "inventory equip 'ItemIndex' 'SlotNumber'"
         /// </summary>
         public int Index
         {

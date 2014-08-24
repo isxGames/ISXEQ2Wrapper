@@ -437,7 +437,7 @@ namespace EQ2.ISXEQ2
         /// <returns>call success</returns>
         public bool CreateCustomActorArray(params string[] args)
         {
-            Trace.WriteLine(String.Format("EQ2:CreateCustomActorArray({0})", String.Join(" ", args)));
+            Trace.WriteLine(String.Format("EQ2:CreateCustomActorArray({0})", String.Join(", ", args)));
             return this.ExecuteMethod("CreateCustomActorArray", args);
         }
 
@@ -469,7 +469,7 @@ namespace EQ2.ISXEQ2
         /// <returns>Enumerable</returns>
         public IEnumerable<Actor> GetActors(params string[] args)
         {
-            Trace.WriteLine(String.Format("EQ2:GetActors({0})", String.Join(" ", args)));
+            Trace.WriteLine(String.Format("EQ2:GetActors({0})", String.Join(", ", args)));
             return Util.GetListFromMethod<Actor>(this, "GetActors", "actor", args);
         }
 

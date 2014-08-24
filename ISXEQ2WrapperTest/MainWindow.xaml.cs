@@ -85,17 +85,9 @@ namespace ISXEQ2WrapperTest
         {
             using (new FrameLock(true))
             {
-                foreach (Ability ability in new EQ2.ISXEQ2.Extension().Me().GetAbilities())
+                foreach (var item in new EQ2.ISXEQ2.Extension().Me().GetEquipment())
                 {
-                    Log(String.Format("ID: {0}", ability.ID));
-                }
-            }
-            Thread.Sleep(1000);
-            using (new FrameLock(true))
-            {
-                foreach (Ability ability in new EQ2.ISXEQ2.Extension().Me().GetAbilities())
-                {
-                    Log(String.Format("Name: {0}", ability.Name));
+                    Log(String.Format("ID: {0}", item.ID));
                 }
             }
         }

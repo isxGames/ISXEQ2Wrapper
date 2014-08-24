@@ -13,15 +13,11 @@ namespace EQ2.ISXEQ2
 
         #region Constructor
 
-        public EQ2Location(LavishScriptObject Obj)
-            : base(Obj)
-        {
-        }
-
-        public EQ2Location(Int32 Index)
-            : base(LavishScript.Objects.GetObject("EQ2Loc", Index.ToString()))
-        {
-        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="copy">LS Object</param>
+        public EQ2Location(LavishScriptObject copy) : base(copy) { }
 
         #endregion
 
