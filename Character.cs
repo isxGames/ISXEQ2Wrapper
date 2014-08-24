@@ -299,7 +299,8 @@ namespace EQ2.ISXEQ2
         private string _class;
 
         /// <summary>
-        /// Class
+        /// Class (warrior, brawler, crusader, sorcerer, enchanter, summoner, druid,
+        /// cleric, shaman, shaper, bard, predator, rogue, animalist)
         /// </summary>
         public string Class
         {
@@ -456,7 +457,7 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Retrieves the effect of the given type at the specified index (1-30). (Beneficial, Detrimental, All)
+        /// Retrieves the effect of the given type at the specified index. (Beneficial, Detrimental, All)
         /// </summary>
         /// <param name="type">effect type</param>
         /// <param name="index">index</param>
@@ -1029,739 +1030,947 @@ namespace EQ2.ISXEQ2
         {
             get
             {
-                return GetMember<bool>("IsDecliningTradeInvites");
+                Trace.WriteLine(String.Format("Character:IsDecliningTradeInvites"));
+                return this.GetBoolFromLSO("IsDecliningTradeInvites");
             }
         }
 
- 
-        #endregion
-
-        public string Name
-        {
-            get
-            {
-                return GetMember<string>("Name");
-            }
-        }
-
-        public string Race
-        {
-            get
-            {
-                return GetMember<string>("Race");
-            }
-        }
-
-        public int Level
-        {
-            get
-            {
-                return GetMember<int>("Level");
-            }
-        }
-
-        
-
-        
-
-        
-
-        public string SubClass
-        {
-            get
-            {
-                return GetMember<string>("SubClass");
-            }
-        }
-
-        public string TSArchetype
-        {
-            get
-            {
-                return GetMember<string>("TSArchetype");
-            }
-        }
-
-        public string TSClass
-        {
-            get
-            {
-                return GetMember<string>("TSClass");
-            }
-        }
-
-        public string TSSubClass
-        {
-            get
-            {
-                return GetMember<string>("TSSubClass");
-            }
-        }
-
-        
-
-        public int TSLevel
-        {
-            get
-            {
-                return GetMember<int>("TSLevel");
-            }
-        }
-
-        
-
-        public int MaxHealth
-        {
-            get
-            {
-                return GetMember<int>("MaxHealth");
-            }
-        }
-
-        public int Power
-        {
-            get
-            {
-                return GetMember<int>("Power");
-            }
-        }
-
-        public int MaxPower
-        {
-            get
-            {
-                return GetMember<int>("MaxPower");
-            }
-        }
-
-        public int UsedConc
-        {
-            get
-            {
-                return GetMember<int>("UsedConc");
-            }
-        }
-
-        public int MaxConc
-        {
-            get
-            {
-                return GetMember<int>("MaxConc");
-            }
-        }
-
-        public int Strength
-        {
-            get
-            {
-                return GetMember<int>("Strength");
-            }
-        }
-
-        public int Stamina
-        {
-            get
-            {
-                return GetMember<int>("Stamina");
-            }
-        }
-
-        
-
-        public int Wisdom
-        {
-            get
-            {
-                return GetMember<int>("Wisdom");
-            }
-        }
-
-        
-
-        
-
-        
-
-        public int NoxiousResist
-        {
-            get
-            {
-                return GetMember<int>("NoxiousResist");
-            }
-        }
-
-        
-
-        
-
-        public int NoxiousResistPct
-        {
-            get
-            {
-                return GetMember<int>("NoxiousResistPct");
-            }
-        }
-
-        
-
-        
-
-        public int Silver
-        {
-            get
-            {
-                return GetMember<int>("Silver");
-            }
-        }
-
-        
-
-        public int Platinum
-        {
-            get
-            {
-                return GetMember<int>("Platinum");
-            }
-        }
-
-        public string PetName
-        {
-            get
-            {
-                return GetGameData("PetName").Label;
-            }
-        }
-
-        public float X
-        {
-            get
-            {
-                return GetMember<float>("X");
-            }
-        }
-
-        public float Z
-        {
-            get
-            {
-                return GetMember<float>("Z");
-            }
-        }
-
-        public float Y
-        {
-            get
-            {
-                return GetMember<float>("Y");
-            }
-        }
-
-        public float VeteranBonus
-        {
-            get
-            {
-                return GetMember<int>("VeteranBonus");
-            }
-        }
-
-        
-
-        
-
-        public float TSExpPoints
-        {
-            get
-            {
-                return GetMember<float>("TSExpPoints");
-            }
-        }
-
-        public float TSExpPointsToLevel
-        {
-            get
-            {
-                return GetMember<float>("TSExpPointsToLevel");
-            }
-        }
-
-
-        
-
-        
-
-        
-
-        public float TSExp
-        {
-            get
-            {
-                return GetMember<float>("TSExp");
-            }
-        }
-
-        public float TSExpDebt
-        {
-            get
-            {
-                return GetMember<float>("TSExpDebt");
-            }
-        }
-
-        public float Vitality
-        {
-            get
-            {
-                return GetMember<float>("Vitality");
-            }
-        }
-
-        public float TSVitality
-        {
-            get
-            {
-                return GetMember<float>("TSVitality");
-            }
-        }
-
-        public float MentoringXPAdj
-        {
-            get
-            {
-                return GetMember<float>("MentoringXPAdj");
-            }
-        }
-
-        
-
-        public float PetHealth
-        {
-            get
-            {
-                return Convert.ToSingle(GetGameData("PetHealth").ShortLabel.Remove(' ').Remove('%'));
-            }
-        }
-
-        public float PetPower
-        {
-            get
-            {
-                return Convert.ToSingle(GetGameData("PetPower").ShortLabel.Remove(' ').Remove('%'));
-            }
-        }
-
-        
-
-        public int CountBeneficialEffects
-        {
-            get
-            {
-                return GetMember<int>("CountEffects", "Beneficial");
-            }
-        }
-
-        public int CountDetrimentalEffects
-        {
-            get
-            {
-                return GetMember<int>("CountEffects", "Detrimental");
-            }
-        }
-
-        
-
-        
-
-        
-
-        public Maintained Maintained(int MaintainedNum)
-        {
-            LavishScriptObject Obj = GetMember("Maintained", MaintainedNum.ToString());
-            return new Maintained(Obj);
-        }
-
-        public Maintained Maintained(string MaintainedName)
-        {
-            LavishScriptObject Obj = GetMember("Maintained", MaintainedName);
-            return new Maintained(Obj);
-        }
-
-        
-
-       
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-       
-
-        
-
-        
-
-        public int NextFreeInvContainer
-        {
-            get
-            {
-                return GetMember<int>("NextFreeInvContainer");
-            }
-        }
-
-        public Actor ToActor()
-        {
-            LavishScriptObject Obj = GetMember("ToActor");
-            return new Actor(Obj);
-        }
-
-        
-
-        public bool RangedAutoAttackOn
-        {
-            get
-            {
-                return GetMember<bool>("RangedAutoAttackOn");
-            }
-        }
-
-        
-
-        public Merchandise Merchandise(int Index)
-        {
-            LavishScriptObject Obj = GetMember("Merchandise", Index.ToString());
-            return new Merchandise(Obj);
-        }
-
-        public Merchandise Merchandise(string ItemName)
-        {
-            LavishScriptObject Obj = GetMember("Merchandise", ItemName);
-            return new Merchandise(Obj);
-        }
-
-        public int NumItemsICanSell
-        {
-            get
-            {
-                return GetMember<int>("NumItemsICanSell");
-            }
-        }
-
-        public int NumAbilities
-        {
-            get
-            {
-                return GetMember<int>("NumAbilities");
-            }
-        }
-
-        
-
-        public int NumRecipes
-        {
-            get
-            {
-                return GetMember<int>("NumRecipes");
-            }
-        }
-
-        public Recipe Recipe(int RecipeNum)
-        {
-            LavishScriptObject Obj = GetMember("Recipe", RecipeNum.ToString());
-            return new Recipe(Obj);
-        }
-
-        public Recipe Recipe(long RecipeID)
-        {
-            LavishScriptObject Obj = GetMember("Recipe","id", RecipeID.ToString());
-            return new Recipe(Obj);
-        }
-
-        public Recipe Recipe(string Recipename)
-        {
-            LavishScriptObject Obj = GetMember("Recipe", Recipename);
-            return new Recipe(Obj);
-        }
-
-        
-
-        
-
-
-        public bool IsMoving
-        {
-            get
-            {
-                return GetMember<bool>("IsMoving");
-            }
-        }
-
-        
-
-        
-
-        public bool IsSitting
-        {
-            get
-            {
-                return GetMember<bool>("IsSitting");
-            }
-        }
-   
-
-        public bool TargetLOS
-        {
-            get
-            {
-                return GetMember<bool>("TargetLOS");
-            }
-        }
-
-        public float WaterDepth
-        {
-            get
-            {
-                return GetMember<float>("WaterDepth");
-            }
-        }
-
-        public bool IsLFG
-        {
-            get
-            {
-                return GetMember<bool>("IsLFG");
-            }
-        }
-
-        
-
-        public bool IsLFW
-        {
-            get
-            {
-                return GetMember<bool>("IsLFW");
-            }
-        }
-
-        
-
-        public bool IsRolePlaying
-        {
-            get
-            {
-                return GetMember<bool>("IsRolePlaying");
-            }
-        }
-
-        
-
-        
-
-        public float TimeToCampOut
-        {
-            get
-            {
-                return GetMember<float>("TimeToCampOut");
-            }
-        }
-
-        public int RaidCount
-        {
-            get
-            {
-                return GetMember<int>("RaidCount");
-            }
-        }
-
-        
-
-        public int Raid()
-        {
-            return GetMember<int>("Raid");
-        }
-
-        public GroupMember Raid(int Num, bool ByID)
-        {
-            LavishScriptObject Obj;
-            if (ByID)
-            {
-                Obj = GetMember("Raid", "id",Num.ToString());
-            }
-            else
-            {
-                Obj = GetMember("Raid", Num.ToString());
-            }
-            return new GroupMember(Obj);
-        }
-
-        public GroupMember Raid(int GroupNum, int MemberNum)
-        {
-            LavishScriptObject Obj = GetMember("Raid",GroupNum.ToString(),MemberNum.ToString());
-            return new GroupMember(Obj);
-        }
-
-        public GroupMember Raid(string RaidName)
-        {
-            LavishScriptObject Obj = GetMember("Raid", RaidName);
-            return new GroupMember(Obj);
-        }
-
-        
-
-        public int Noxious
-        {
-            get
-            {
-                return GetMember<int>("Noxious");
-            }
-        }
-
-        
-
-        
-
-        public int Trauma
-        {
-            get
-            {
-                return GetMember<int>("Trauma");
-            }
-        }
-
-        
-
-        
-
-        public int TotalEarnedAPs
-        {
-            get
-            {
-                return GetMember<int>("TotalEarnedAPs");
-            }
-        }
-
-        public int MaxAPs
-        {
-            get
-            {
-                return GetMember<int>("MaxAPs");
-            }
-        }
-
-        
-
-        public VendingContainer Vending(int VendingNum)
-        {
-            LavishScriptObject Obj = GetMember("Vending", VendingNum.ToString());
-            return new VendingContainer(Obj);
-        }
-
-        public VendingContainer Vending(string VendingName)
-        {
-            LavishScriptObject Obj = GetMember("Vending", VendingName);
-            return new VendingContainer(Obj);
-        }
-
-        public int TotalVendingCapacity
-        {
-            get
-            {
-                return GetMember<int>("TotalVendingCapacity");
-            }
-        }
-
-        public int VendingCapacityUsed
-        {
-            get
-            {
-                return GetMember<int>("VendingCapacityUsed");
-            }
-        }
-
-        public int VendingCapacityFree
-        {
-            get
-            {
-                return GetMember<int>("VendingCapacityFree");
-            }
-        }
-
-        
-
-
-
-        public int NumVendingContainers
-        {
-            get
-            {
-                return GetMember<int>("NumVendingContainers");
-            }
-        }
-
-        
-
-        
-
-        
-
-        public int SharedBankSlotsFree
-        {
-            get
-            {
-                return GetMember<int>("SharedBankSlotsFree");
-            }
-        }
-
-        public Actor Pet()
-        {
-            LavishScriptObject Obj = GetMember("Pet");
-            return new Actor(Obj);
-        }
-
-        public bool IsInPVP
-        {
-            get
-            {
-                return GetMember<bool>("IsInPVP");
-            }
-        }
-
+        /// <summary>
+        /// Returns TRUE if the character is on a hate list
+        /// </summary>
         public bool IsHated
         {
             get
             {
-                return GetMember<bool>("IsHated");
+                Trace.WriteLine(String.Format("Character:IsHated"));
+                return this.GetBoolFromLSO("IsHated");
             }
         }
 
+        /// <summary>
+        /// Returns TRUE if the character is engaged in PvP combat
+        /// </summary>
+        public bool IsInPVP
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsInPvP"));
+                return this.GetBoolFromLSO("IsInPVP");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the character is looking for group
+        /// </summary>
+        public bool IsLFG
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsLFG"));
+                return this.GetBoolFromLSO("IsLFG");
+            }
+        }
+
+
+        /// <summary>
+        /// Returns TRUE if the character is looking for work
+        /// </summary>
+        public bool IsLFW
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsLFW"));
+                return this.GetBoolFromLSO("IsLFW");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the character is moving
+        /// </summary>
+        public bool IsMoving
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsMoving"));
+                return this.GetBoolFromLSO("IsMoving");
+            }
+        }
+
+
+        /// <summary>
+        /// Returns TRUE if the character is roleplaying
+        /// </summary>
+        public bool IsRolePlaying
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsRoleplaying"));
+                return this.GetBoolFromLSO("IsRolePlaying");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the character is sitting
+        /// </summary>
+        public bool IsSitting
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsSitting"));
+                return this.GetBoolFromLSO("IsSitting");
+            }
+        }
+
+        /// <summary>
+        /// Cache of Level
+        /// </summary>
+        private int? _level;
+
+        /// <summary>
+        /// Level
+        /// </summary>
+        public int Level
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Level"));
+                if(!_level.HasValue)
+                    _level = this.GetIntFromLSO("Level");
+                return _level.Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns the maintained effect at the index
+        /// </summary>
+        /// <param name="index">index</param>
+        public Maintained Maintained(int index)
+        {
+            Trace.WriteLine(String.Format("Character:Maintained({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new Maintained(this.GetMember("Maintained", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the maintained effect by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Maintained Maintained(string name)
+        {
+            Trace.WriteLine(String.Format("Character:Maintained({0})", name));
+            return new Maintained(this.GetMember("Maintained", name));
+        }
+
+        /// <summary>
+        /// Maximum Achievement Points
+        /// </summary>
+        public int MaxAPs
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MaxAPs"));
+                return this.GetIntFromLSO("MaxAPs");
+            }
+        }
+
+        /// <summary>
+        /// Cache of MaxConc
+        /// </summary>
+        private int? _maxConc;
+
+        /// <summary>
+        /// Max Concentration
+        /// </summary>
+        public int MaxConc
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MaxConc"));
+                if(!_maxConc.HasValue)
+                    _maxConc = this.GetIntFromLSO("MaxConc");
+                return _maxConc.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of MaxDissonance
+        /// </summary>
+        private int? _maxDissonance;
+
+        /// <summary>
+        /// Max Dissonance
+        /// </summary>
+        public int MaxDissonance
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MaxDissonance"));
+                if (!_maxDissonance.HasValue)
+                    _maxDissonance = this.GetIntFromLSO("MaxDissonance");
+                return _maxDissonance.Value;
+            }
+        }
+
+        /// <summary>
+        /// Max Health
+        /// </summary>
+        public int MaxHealth
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MaxHealth"));
+                return this.GetIntFromLSO("MaxHealth");
+            }
+        }
+
+        /// <summary>
+        /// Max Power
+        /// </summary>
+        public int MaxPower
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MaxPower"));
+                return this.GetIntFromLSO("MaxPower");
+            }
+        }
+
+        /// <summary>
+        /// Cache of MentoringXPAdj
+        /// </summary>
+        private float? _mentoringXPAdj;
+
+        /// <summary>
+        /// Mentoring XP Adjustment
+        /// </summary>
+        public float MentoringXPAdj
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MentoringXPAdj"));
+                if(!_mentoringXPAdj.HasValue)
+                    _mentoringXPAdj = this.GetFloatFromLSO("MentoringXPAdj");
+                return _mentoringXPAdj.Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns the object the character is capable of selling at the specified index. (1 to NumItemsICanSell)
+        /// </summary>
+        /// <param name="index">index</param>
+
+        public Merchandise Merchandise(int index)
+        {
+            Trace.WriteLine(String.Format("Character:Merchandise({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new Merchandise(this.GetMember("Merchandise", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the object the character is capable of selling based on name.
+        /// </summary>
+        /// <param name="name">name</param>
+        public Merchandise Merchandise(string name)
+        {
+            Trace.WriteLine(String.Format("Character:Merchandise({0})", name));
+            return new Merchandise(this.GetMember("Merchandise", name));
+        }
+
+        /// <summary>
+        /// Cache of Name
+        /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Name"));
+                return _name ?? (_name = this.GetStringFromLSO("Name"));
+            }
+        }
+
+        /// <summary>
+        /// Returns an integer which is the ID of the first available container in the inventory that has an open slot 
+        /// </summary>
+        public int NextFreeInvContainer
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NextFreeInvContainer"));
+                return this.GetIntFromLSO("NextFreeInvContainer");
+            }
+        }
+
+        /// <summary>
+        /// Noxious Affliction Counter
+        /// </summary>
+        public int Noxious
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Noxious"));
+                return this.GetIntFromLSO("Noxious");
+            }
+        }
+
+        /// <summary>
+        /// Noxious Resist
+        /// </summary>
+        public int NoxiousResist
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NoxiousResist"));
+                return this.GetIntFromLSO("NoxiousResist");
+            }
+        }
+
+        /// <summary>
+        /// Noxious Resist Percent
+        /// </summary>
+        public float NoxiousResistPct
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NoxiousResistPct"));
+                return this.GetFloatFromLSO("NoxiousResistPct");
+            }
+        }
+
+        /// <summary>
+        /// Returns the number of abilities your character currently has in his/her knowledge book. 
+        /// </summary>
+        public int NumAbilities
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NumAbilities"));
+                return this.GetIntFromLSO("NumAbilities");
+            }
+        }
+
+        /// <summary>
+        /// The number of effects. (Beneficial, Detrimental, All)
+        /// </summary>
+        /// <param name="type">type</param>
+        public int NumEffects(EffectType type = EffectType.All)
+        {
+            Trace.WriteLine(String.Format("Character:NumEffects({0})", type));
+            switch (type)
+            {
+                case EffectType.Beneficial:
+                case EffectType.Detrimental:
+                    return this.GetIntFromLSO("NumEffects", type.ToString());
+                default:
+                    return this.GetIntFromLSO("NumEffects");
+            }
+        }
+
+        /// <summary>
+        /// Returns the number of items that the character is capable of selling 
+        /// (ie, the number of items in the inventory minus the number of NO VALUE and NO TRADE items.) 
+        /// </summary>
+        public int NumItemsICanSell
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NumItemsICanSell"));
+                return this.GetIntFromLSO("NumItemsICanSell");
+            }
+        }
+
+        /// <summary>
+        /// Returns the number of recipes your character currently has in his/her recipe book. 
+        /// </summary>
+        public int NumRecipes
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NumRecipes"));
+                return this.GetIntFromLSO("NumRecipes");
+            }
+        }
+
+        /// <summary>
+        /// Returns the number of vending containers
+        /// </summary>
+        public int NumVendingContainers
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NumVendingContainers"));
+                return this.GetIntFromLSO("NumVendingContainers");
+            }
+        }
+
+        /// <summary>
+        /// Returns the number of vending containers
+        /// </summary>
+        public int NumVendors
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:NumVendors"));
+                return this.GetIntFromLSO("NumVendors");
+            }
+        }
+
+        /// <summary>
+        /// Returns the character's pet, if any.
+        /// </summary>
+        public Actor Pet
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Pet"));
+                return new Actor(this.GetMember("Pet"));
+            }
+        }
+
+        /// <summary>
+        /// Platinum
+        /// </summary>
+        public int Platinum
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Platinum"));
+                return this.GetIntFromLSO("Platinum");
+            }
+        }
+
+        /// <summary>
+        /// Power
+        /// </summary>
+        public int Power
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Power"));
+                return this.GetIntFromLSO("Power");
+            }
+        }
+
+        /// <summary>
+        /// Power Regen
+        /// </summary>
         public int PowerRegen
         {
             get
             {
-                return GetMember<int>("PowerRegen");
+                Trace.WriteLine(String.Format("Character:PowerRegen"));
+                return this.GetIntFromLSO("PowerRegen");
             }
         }
 
-        
+        /// <summary>
+        /// Cache of Race
+        /// </summary>
+        private string _race;
 
+        /// <summary>
+        /// Race
+        /// </summary>
+        public string Race
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Race"));
+                return _race ?? (_race = this.GetStringFromLSO("Race"));
+            }
+        }
 
-        
+        /// <summary>
+        /// Number of people in the raid. If you are not in a raid, this returns 0.
+        /// </summary>
+        public int Raid()
+        {
+            Trace.WriteLine(String.Format("Character:Raid()"));
+            return this.GetIntFromLSO("Raid");
+        }
 
+        /// <summary>
+        /// Returns the raid member by Actor ID or Raid Member number
+        /// </summary>
+        /// <param name="number">ID or member number</param>
+        public GroupMember Raid(int number)
+        {
+            Trace.WriteLine(String.Format("Character:Raid({0})", number.ToString(CultureInfo.InvariantCulture)));
+            return number < 25 ? new GroupMember(this.GetMember("Raid", number.ToString(CultureInfo.InvariantCulture))) 
+                : new GroupMember(this.GetMember("Raid", "id", number.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the raid member by group and member numbers
+        /// </summary>
+        /// <param name="group">group number</param>
+        /// <param name="member">member number</param>
+        public GroupMember Raid(int group, int member)
+        {
+            Trace.WriteLine(String.Format("Character:Raid({0}, {1})", group.ToString(CultureInfo.InvariantCulture),
+                member.ToString(CultureInfo.InvariantCulture)));
+            return new GroupMember(this.GetMember("Raid", group.ToString(CultureInfo.InvariantCulture),
+                member.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Number of people in the raid. If you are not in a raid, this returns 0.
+        /// </summary>
+        public int RaidCount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:RaidCount"));
+                return this.GetIntFromLSO("RaidCount");
+            }
+        }
+
+        /// <summary>
+        /// Returns the character's raid group number
+        /// </summary>
         public int RaidGroupNum
         {
             get
             {
-                return GetMember<int>("RaidGroupNum");
+                Trace.WriteLine(String.Format("Character:RaidGroupNum"));
+                return this.GetIntFromLSO("RaidGroupNum");
             }
         }
+
+        /// <summary>
+        /// Returns TRUE if the ranged auto attack is on
+        /// </summary>
+        public bool RangedAutoAttackOn
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:RangedAutoAttackOn"));
+                return this.GetBoolFromLSO("RangedAutoAttackOn");
+            }
+        }
+
+        /// <summary>
+        /// Returns the recipe at the specified index
+        /// </summary>
+        /// <param name="index">index</param>
+        public Recipe Recipe(int index)
+        {
+            Trace.WriteLine(String.Format("Character:Recipe({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new Recipe(this.GetMember("Recipe", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the recipe with the ID provided
+        /// </summary>
+        /// <param name="id">ID</param>
+        public Recipe Recipe(uint id)
+        {
+            Trace.WriteLine(String.Format("Character:Recipe({0})", id.ToString(CultureInfo.InvariantCulture)));
+            return new Recipe(this.GetMember("Recipe", "id", id.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the recipe with the name provided
+        /// </summary>
+        /// <param name="name"></param>
+        public Recipe Recipe(string name)
+        {
+            Trace.WriteLine(String.Format("Character:Recipe({0})", name));
+            return new Recipe(this.GetMember("Recipe", name));
+        }
+
+        /// <summary>
+        /// Returns the number of shared bank slots free
+        /// </summary>
+        public int SharedBankSlotsFree
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:SharedBankSlotsFree)"));
+                return this.GetIntFromLSO("SharedBankSlotsFree");
+            }
+        }
+
+        /// <summary>
+        /// Silver
+        /// </summary>
+        public int Silver
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Silver)"));
+                return this.GetIntFromLSO("Silver");
+            }
+        }
+
+        /// <summary>
+        /// Stamina
+        /// </summary>
+        public int Stamina
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Stamina)"));
+                return this.GetIntFromLSO("Stamina");
+            }
+        }
+
+        /// <summary>
+        /// Strength
+        /// </summary>
+        public int Strength
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Strength)"));
+                return this.GetIntFromLSO("Strength");
+            }
+        }
+
+        /// <summary>
+        /// Cache of SubClass
+        /// </summary>
+        private string _subClass;
+
+        /// <summary>
+        /// Sub Class. What we normally think of as Class. (Guardian, Mystic, etc...)
+        /// </summary>
+        public string SubClass
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:SubClass)"));
+                return _subClass ?? (_subClass = this.GetStringFromLSO("SubClass"));
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if you have Line of Sight to your current target.
+        /// </summary>
+        public bool TargetLOS
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TargetLOS"));
+                return this.GetBoolFromLSO("TargetLOS");
+            }
+        }
+
+        /// <summary>
+        /// Returns the time until camp out. Starts at 20, and updates every 5 seconds.
+        /// </summary>
+        public float TimeToCampOut
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TimeToCampout"));
+                return this.GetFloatFromLSO("TimeToCampOut");
+            }
+        }
+
+
+        /// <summary>
+        /// Returns as Actor
+        /// </summary>
+        public Actor ToActor
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:ToActor"));
+                return new Actor(this.GetMember("ToActor"));
+            }
+            
+        }
+
+        /// <summary>
+        /// Total Earned APs
+        /// </summary>
+        public int TotalEarnedAPs
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TotalEarnedAPs"));
+                return this.GetIntFromLSO("TotalEarnedAPs");
+            }
+        }
+
+        /// <summary>
+        /// Total slot capacity of all the characters vending containers combined. 
+        /// </summary>
+        public int TotalVendingCapacity
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TotalVendingCapacity"));
+                return this.GetIntFromLSO("TotalVendingCapacity");
+            }
+        }
+
+
+        /// <summary>
+        /// Trauma Affliction Counter
+        /// </summary>
+        public int Trauma
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Trauma"));
+                return this.GetIntFromLSO("Trauma");
+            }
+        }
+
+        /// <summary>
+        /// Cache of TSArchetype
+        /// </summary>
+        private string _tSArchetype;
+
+        /// <summary>
+        /// Trade Skill Archetype (artisan, etc.)
+        /// </summary>
+        public string TSArchetype
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSArcheype"));
+                return _tSArchetype ?? (_tSArchetype = this.GetStringFromLSO("TSArchetype"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of TSClass
+        /// </summary>
+        private string _tSClass;
+
+        /// <summary>
+        /// Trade Skill Class (outfitter, etc.)
+        /// </summary>
+        public string TSClass
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSClass"));
+                return _tSClass ?? (_tSClass = this.GetStringFromLSO("TSClass"));
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill Experience
+        /// </summary>
+        public float TSExp
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSExp"));
+                return this.GetFloatFromLSO("TSExp");
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill Experience Debt
+        /// </summary>
+        public float TSExpDebt
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSExpDebt"));
+                return this.GetFloatFromLSO("TSExpDebt");
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill Experience Points
+        /// </summary>
+        public float TSExpPoints
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSExpPoints"));
+                return this.GetFloatFromLSO("TSExpPoints");
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill Experience Points Needed to Reach the Next Level
+        /// </summary>
+        public float TSExpPointsToLevel
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSExpPointsToLevel"));
+                return this.GetFloatFromLSO("TSExpPointsToLevel");
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill Level
+        /// </summary>
+        public int TSLevel
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSLevel"));
+                return this.GetIntFromLSO("TSLevel");
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill SubClass (armorer, etc.)
+        /// </summary>
+        public string TSSubClass
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSSubClass"));
+                return this.GetStringFromLSO("TSSubClass");
+            }
+        }
+
+        /// <summary>
+        /// Trade Skill Vitality
+        /// </summary>
+        public float TSVitality
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:TSVitality"));
+                return this.GetFloatFromLSO("TSVitality");
+            }
+        }
+
+        /// <summary>
+        /// Amount of Concentration Used
+        /// </summary>
+        public int UsedConc
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:UsedConc"));
+                return this.GetIntFromLSO("UsedConc");
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the vending container at the index (1 to 6)
+        /// </summary>
+        /// <param name="index">index</param>
+        public VendingContainer Vending(int index)
+        {
+            Trace.WriteLine(String.Format("Character:Vending({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new VendingContainer(this.GetMember("Vending", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Retrieves the vending container by exact name
+        /// </summary>
+        /// <param name="name">name</param>
+        public VendingContainer Vending(string name)
+        {
+            Trace.WriteLine(String.Format("Character:Vending({0})", name));
+            return new VendingContainer(this.GetMember("Vending", name));
+        }
+
+        /// <summary>
+        /// Number of vending container slots currently free for use 
+        /// </summary>
+        public int VendingCapacityFree
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:VendingCapacityFree"));
+                return this.GetIntFromLSO("VendingCapacityFree");
+            }
+        }
+
+        /// <summary>
+        /// Number of vending container slots currently being used 
+        /// </summary>
+        public int VendingCapacityUsed
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:VendingCapacityUsed"));
+                return this.GetIntFromLSO("VendingCapacityUsed");
+            }
+        }
+
+        /// <summary>
+        /// Experience Vitality
+        /// </summary>
+        public float Vitality
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Vitality"));
+                return this.GetFloatFromLSO("Vitality");
+            }
+        }
+
+        /// <summary>
+        /// Water Depth
+        /// </summary>
+        public float WaterDepth
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:WaterDepth"));
+                return this.GetFloatFromLSO("WaterDepth");
+            }
+        }
+
+        /// <summary>
+        /// Wisdom
+        /// </summary>
+        public int Wisdom
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Wisdom"));
+                return this.GetIntFromLSO("Wisdom");
+            }
+        }
+
+        /// <summary>
+        /// X-coordinate
+        /// </summary>
+        public float X
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:X"));
+                return GetMember<float>("X");
+            }
+        }
+
+        /// <summary>
+        /// Y-coordinate
+        /// </summary>
+        public float Y
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Y"));
+                return this.GetFloatFromLSO("Y");
+            }
+        }
+
+
+        /// <summary>
+        /// Z-coordinate
+        /// </summary>
+        public float Z
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Z"));
+                return this.GetFloatFromLSO("Z");
+            }
+        }
+
+        #endregion
+
 
         
 
