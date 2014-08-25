@@ -1978,15 +1978,16 @@ namespace EQ2.ISXEQ2
         /// to transfer money from the shared bank as well.
         /// </summary>
         /// <param name="type">type of coin</param>
-        /// <param name="quantity">amount of coin</param>
-        /// <param name="sharedBank">from the shared bank</param>
+        /// <param name="amount">amount of coin</param>
+        /// <param name="useSharedBank">use shared bank as source</param>
         /// <returns>call success</returns>
-        public bool BankDeposit(CoinType type, int quantity, bool sharedBank = false)
+        public bool BankDeposit(CoinType type, int amount, bool useSharedBank = false)
         {
-            Trace.WriteLine(String.Format("Character:BankDeposit({0}, {1}, {2})", type,
-                quantity.ToString(CultureInfo.InvariantCulture), sharedBank));
-            return ExecuteMethod("BankDeposit", type.ToString()[0].ToString(CultureInfo.InvariantCulture), 
-                quantity.ToString(CultureInfo.InvariantCulture), sharedBank.ToString());
+            Trace.WriteLine(String.Format("Character:BankDeposit({0}, {1}, {2})", type, 
+                amount.ToString(CultureInfo.InvariantCulture), useSharedBank));
+            return !useSharedBank ? this.ExecuteMethod("BankDeposit", type.ToString()[0].ToString(CultureInfo.InvariantCulture), 
+                amount.ToString(CultureInfo.InvariantCulture)) : this.ExecuteMethod("BankDeposit", 
+                type.ToString()[0].ToString(CultureInfo.InvariantCulture), amount.ToString(CultureInfo.InvariantCulture), "FromShared");
         }
 
 
@@ -1995,14 +1996,14 @@ namespace EQ2.ISXEQ2
         /// Withdraws the selected quantity of coin from the player's bank.
         /// </summary>
         /// <param name="type">type of coin</param>
-        /// <param name="quantity">amount of coin</param>
+        /// <param name="amount">amount of coin</param>
         /// <returns>call success</returns>
-        public bool BankWithdraw(CoinType type, int quantity)
+        public bool BankWithdraw(CoinType type, int amount)
         {
-            Trace.WriteLine(String.Format("Character:BankDeposit({0}, {1})", type,
-               quantity.ToString(CultureInfo.InvariantCulture)));
+            Trace.WriteLine(String.Format("Character:BankWithdraw({0}, {1})", type,
+               amount.ToString(CultureInfo.InvariantCulture)));
             return this.ExecuteMethod("BankWithdraw", type.ToString()[0].ToString(CultureInfo.InvariantCulture),
-                quantity.ToString(CultureInfo.InvariantCulture));
+                amount.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -2012,7 +2013,7 @@ namespace EQ2.ISXEQ2
         /// <returns>call success</returns>
         public bool CreateCustomInventoryArray(InvType type = InvType.All)
         {
-
+            Trace.WriteLine(String.Format("Character:CreateCustomInventoryArray({0})", type.ToString()));
             return ExecuteMethod("CreateCustomInventoryArray", type.ToString().ToLower());
         }
 
@@ -2021,6 +2022,7 @@ namespace EQ2.ISXEQ2
         /// </summary>
         /// <param name="coin">copper</param>
         /// <param name="status">status</param>
+        /// <returns>call success</returns>
         public void DepositIntoHouseEscrow(int coin, int status)
         {
             Trace.WriteLine(String.Format("Character:DepositIntoHouseEscrow({0}, {1})", coin.ToString(CultureInfo.InvariantCulture),
@@ -2033,7 +2035,7 @@ namespace EQ2.ISXEQ2
         /// Rotates the character to face the supplied heading (0 to 360)
         /// </summary>
         /// <param name="heading"></param>
-        /// <returns></returns>
+        /// <returns>call success</returns>
         public bool Face(float heading)
         {
             Trace.WriteLine(String.Format("Character:Face({0})", heading.ToString(CultureInfo.InvariantCulture)));
@@ -2079,48 +2081,60 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// 
+        /// Attempts to reset the time for the zone. This may require to have opened
+        /// the zone reuse window at least once in your current session before working 
+        /// properly (use /togglezonereuse)
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">zone name</param>
+        /// <returns>call success</returns>
         public bool ResetZoneTimer(string name)
         {
             Trace.WriteLine(String.Format("Character:ResetZoneTimer({0})", name));
             return this.ExecuteMethod("ResetZoneTimer", name);
         }
 
+        /// <summary>
+        /// Deposits the amount of the coin type provided into the bank. Optional third parameter will
+        /// move the coin from the regular bank to the shared bank if true.
+        /// </summary>
+        /// <param name="type">coin type</param>
+        /// <param name="amount">coin amount</param>
+        /// <param name="useBank">use bank as source</param>
+        /// <returns></returns>
+        public bool SharedBankDeposit(CoinType type, int amount, bool useBank = false)
+        {
+            Trace.WriteLine(String.Format("Character:BankDeposit({0}, {1}, {2})", type,
+                amount.ToString(CultureInfo.InvariantCulture), useBank));
+            return !useBank ? this.ExecuteMethod("BankDeposit", type.ToString()[0].ToString(CultureInfo.InvariantCulture),
+                amount.ToString(CultureInfo.InvariantCulture)) : this.ExecuteMethod("BankDeposit",
+                type.ToString()[0].ToString(CultureInfo.InvariantCulture), amount.ToString(CultureInfo.InvariantCulture), "FromBank");
+        }
+
+    
+
+        /// <summary>
+        /// Withdraws the specified coin type and amount from the shared bank.
+        /// </summary>
+        /// <param name="type">coin type</param>
+        /// <param name="amount">coin amount</param>
+        /// <returns>call success</returns>
+        public bool SharedBankWithdraw(CoinType type, int amount)
+        {
+            Trace.WriteLine(String.Format("Character:SharedBankWithdraw({0}, {1})", type,
+               amount.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("SharedBankWithdraw", type.ToString()[0].ToString(CultureInfo.InvariantCulture),
+                amount.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Removes all coin from all vendors at once.
+        /// </summary>
+        /// <returns>call success</returns>
         public bool TakeAllVendingCoin()
         {
-            return ExecuteMethod("TakeAllVendingCoin");
-        }
-
-        
-
-
-        
-
-        
-
-        public bool SharedBankDeposit(string CoinType, int Amount)
-        {
-            return ExecuteMethod("SharedBankDeposit", CoinType.ToString(), Amount.ToString());
-        }
-
-        public bool SharedBankDeposit(string CoinType, int Amount, string Source)
-        {
-            return ExecuteMethod("SharedBankDeposit", CoinType.ToString(), Amount.ToString(), Source.ToString());
-        }
-
-        
-
-        public bool SharedBankWithdrawl(string CoinType, int Amount)
-        {
-            return ExecuteMethod("SharedBankWithdrawl", CoinType.ToString(), Amount.ToString());
-        }
-
-        
-
-        
+            Trace.WriteLine(String.Format("Character:TakeAllVendingCoin()"));
+            return this.ExecuteMethod("TakeAllVendingCoin");
+        }  
 
         #endregion
 
@@ -2188,7 +2202,6 @@ namespace EQ2.ISXEQ2
         }
 
         #endregion
-
 
     }
 }
