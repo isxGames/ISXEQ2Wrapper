@@ -1971,33 +1971,122 @@ namespace EQ2.ISXEQ2
 
         #endregion
 
+        #region Methods
 
-        
-
-        public bool Face()
+        /// <summary>
+        /// Deposits the specified quantity of coin into the player's bank. May be used
+        /// to transfer money from the shared bank as well.
+        /// </summary>
+        /// <param name="type">type of coin</param>
+        /// <param name="quantity">amount of coin</param>
+        /// <param name="sharedBank">from the shared bank</param>
+        /// <returns>call success</returns>
+        public bool BankDeposit(CoinType type, int quantity, bool sharedBank = false)
         {
-            return ExecuteMethod("Face");
+            Trace.WriteLine(String.Format("Character:BankDeposit({0}, {1}, {2})", type,
+                quantity.ToString(CultureInfo.InvariantCulture), sharedBank));
+            return ExecuteMethod("BankDeposit", type.ToString()[0].ToString(CultureInfo.InvariantCulture), 
+                quantity.ToString(CultureInfo.InvariantCulture), sharedBank.ToString());
         }
 
-        public bool Face(float Angle)
+
+
+        /// <summary>
+        /// Withdraws the selected quantity of coin from the player's bank.
+        /// </summary>
+        /// <param name="type">type of coin</param>
+        /// <param name="quantity">amount of coin</param>
+        /// <returns>call success</returns>
+        public bool BankWithdraw(CoinType type, int quantity)
         {
-            return ExecuteMethod("Face", Angle.ToString());
+            Trace.WriteLine(String.Format("Character:BankDeposit({0}, {1})", type,
+               quantity.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("BankWithdraw", type.ToString()[0].ToString(CultureInfo.InvariantCulture),
+                quantity.ToString(CultureInfo.InvariantCulture));
         }
 
-        public bool CreateCustomInventoryArray()
+        /// <summary>
+        /// Creates a custom inventory array of the specified type.
+        /// </summary>
+        /// <param name="type">inventory type</param>
+        /// <returns>call success</returns>
+        public bool CreateCustomInventoryArray(InvType type = InvType.All)
         {
-            return ExecuteMethod("CreateCustomInventoryArray");
+
+            return ExecuteMethod("CreateCustomInventoryArray", type.ToString().ToLower());
         }
 
-        public enum InventoryType
+        /// <summary>
+        /// Deposits the specified amount of copper and status into house escrow
+        /// </summary>
+        /// <param name="coin">copper</param>
+        /// <param name="status">status</param>
+        public void DepositIntoHouseEscrow(int coin, int status)
         {
-            nonbankonly,
-            bankonly
+            Trace.WriteLine(String.Format("Character:DepositIntoHouseEscrow({0}, {1})", coin.ToString(CultureInfo.InvariantCulture),
+                status.ToString(CultureInfo.InvariantCulture)));
+            ExecuteMethod("DepositIntoHouseEscrow", coin.ToString(CultureInfo.InvariantCulture),
+                status.ToString(CultureInfo.InvariantCulture));
         }
 
-        public bool CreateCustomInventoryArray(InventoryType Bank)
+        /// <summary>
+        /// Rotates the character to face the supplied heading (0 to 360)
+        /// </summary>
+        /// <param name="heading"></param>
+        /// <returns></returns>
+        public bool Face(float heading)
         {
-            return ExecuteMethod("CreateCustomInventoryArray", Bank.ToString());
+            Trace.WriteLine(String.Format("Character:Face({0})", heading.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Face", heading.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Deposits the specified amount of silver in the designated guild bank
+        /// </summary>
+        /// <param name="bank">bank number (1-4)</param>
+        /// <param name="amount">amount to deposit in silver</param>
+        /// <returns>call success</returns>
+        public bool GuildBankDeposit(int bank, int amount)
+        {
+            Trace.WriteLine(String.Format("Character:GuildBankDeposit({0}, {1})", bank.ToString(CultureInfo.InvariantCulture),
+                amount.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("GuildBankDeposit", bank.ToString(CultureInfo.InvariantCulture),
+                amount.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Withdraws the specified amount of silver from the designated guild bank
+        /// </summary>
+        /// <param name="bank">bank number (1-4)</param>
+        /// <param name="amount">amount to withdraw in silver</param>
+        /// <returns>call success</returns>
+        public bool GuildBankWithdraw(int bank, int amount)
+        {
+            Trace.WriteLine(String.Format("Character:GuildBankWithdraw({0}, {1})", bank.ToString(CultureInfo.InvariantCulture),
+                amount.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("GuildBankWithdraw", bank.ToString(CultureInfo.InvariantCulture),
+                amount.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Initializes character effects
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool InitializeEffects()
+        {
+            Trace.WriteLine(String.Format("Character:InitializeEffects()"));
+            return this.ExecuteMethod("InitializeEffects");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool ResetZoneTimer(string name)
+        {
+            Trace.WriteLine(String.Format("Character:ResetZoneTimer({0})", name));
+            return this.ExecuteMethod("ResetZoneTimer", name);
         }
 
         public bool TakeAllVendingCoin()
@@ -2005,29 +2094,12 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("TakeAllVendingCoin");
         }
 
-        public bool ResetZoneTimer(string ZoneName)
-        {
-            return ExecuteMethod("ResetZoneTimer", ZoneName.ToString());
-        }
+        
 
 
-        public bool BankDeposit(string CoinType, int Amount)
-        {
-            return ExecuteMethod("BankDeposit", CoinType.ToString(), Amount.ToString());
-        }
+        
 
-        /// <summary>
-        /// August 31, 2011 -- By Amadeus
-        /// Updated the 'BankDeposit' METHOD of the "character" datatype to utilize an *optional* 3rd parameter "FromShared"
-        /// </summary>
-        /// <param name="CoinType"></param>
-        /// <param name="Amount"></param>
-        /// <param name="Source"></param>
-        /// <returns></returns>
-        public bool BankDeposit(string CoinType, int Amount, string Source)
-        {
-            return ExecuteMethod("BankDeposit", CoinType.ToString(), Amount.ToString(), Source.ToString());
-        }
+        
 
         public bool SharedBankDeposit(string CoinType, int Amount)
         {
@@ -2039,46 +2111,18 @@ namespace EQ2.ISXEQ2
             return ExecuteMethod("SharedBankDeposit", CoinType.ToString(), Amount.ToString(), Source.ToString());
         }
 
-        public bool BankWithdrawl(string CoinType, int Amount)
-        {
-            return ExecuteMethod("BankWithdrawl", CoinType.ToString(), Amount.ToString());
-        }
+        
 
         public bool SharedBankWithdrawl(string CoinType, int Amount)
         {
             return ExecuteMethod("SharedBankWithdrawl", CoinType.ToString(), Amount.ToString());
         }
 
-        public bool InitializeEffects()
-        {
-            return ExecuteMethod("InitializeEffects");
-        }
-/* gone?
-        public int NumConsignmentItems
-        {
-            get
-            {
-                return GetMember<int>("NumConsignmentItems");
-            }
-        }
+        
 
-        public Consignment Consignment(int ConsignmentNum)
-        {
-            LavishScriptObject Obj = GetMember("Consignment", ConsignmentNum.ToString());
-            return new Consignment(Obj);
-        }
+        
 
-        public Consignment Consignment(string ConsignmentName)
-        {
-            LavishScriptObject Obj = GetMember("Consignment", ConsignmentName);
-            return new Consignment(Obj);
-        }
-*/
-
-        public void DepositIntoHouseEscrow(int copper, int status)
-        {
-            ExecuteMethod("DepositIntoHouseEscrow", copper.ToString(), status.ToString());
-        }
+        #endregion
 
         #region Enums
 
@@ -2097,6 +2141,48 @@ namespace EQ2.ISXEQ2
             Detrimental,
             /// <summary>
             /// All
+            /// </summary>
+            All
+        }
+
+        /// <summary>
+        /// Coin Types
+        /// </summary>
+        public enum CoinType
+        {
+            /// <summary>
+            /// Coin Type Copper
+            /// </summary>
+            Copper,
+            /// <summary>
+            /// Coin Type Silver
+            /// </summary>
+            Silver,
+            /// <summary>
+            /// Coin Type Gold
+            /// </summary>
+            Gold,
+            /// <summary>
+            /// Coin Type Platinum
+            /// </summary>
+            Platinum
+        }
+
+        /// <summary>
+        /// Inventory Types
+        /// </summary>
+        public enum InvType
+        {
+            /// <summary>
+            /// Not in bank or shared bank
+            /// </summary>
+            NonBankOnly,
+            /// <summary>
+            /// Only in bank or shared bank
+            /// </summary>
+            BankOnly,
+            /// <summary>
+            /// All items
             /// </summary>
             All
         }
