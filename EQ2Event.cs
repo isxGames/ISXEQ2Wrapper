@@ -944,7 +944,24 @@ namespace EQ2.ISXEQ2
         #region EQ2_onTellIgnored
 
         /// <summary>
-        /// EQ2+onTellIgnored Event Args
+        /// EQ2_onTellIgnored Event Handler
+        /// </summary>
+	    public event EventHandler<TellIgnoredEventArgs> TellIgnored;
+
+        /// <summary>
+        /// EQ2_onTellIgnored Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+	    protected internal void OnTellIgnored(object sender, LSEventArgs e)
+	    {
+	        var temp = TellIgnored;
+            if(temp != null)
+                temp(sender, new TellIgnoredEventArgs(e.Args));
+	    }
+
+        /// <summary>
+        /// EQ2_onTellIgnored Event Args
         /// </summary>
 	    public class TellIgnoredEventArgs : LSEventArgs
 	    {
@@ -969,14 +986,89 @@ namespace EQ2.ISXEQ2
 
 	    }
 
+        #endregion
+
+        #region EQ2_onIncomingChatText
+
+        /// <summary>
+        /// EQ2_onIncomingChatText Event Handler
+        /// </summary>
+        public event EventHandler<IncomingChatTextEventArgs> IncomingChatText;
+
+        /// <summary>
+        /// EQ2_onIncomingChatText Event
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+	    public virtual void OnIncomingChatText(object sender, LSEventArgs e)
+	    {
+	        var temp = IncomingChatText;
+            if(temp != null)
+                temp(sender, new IncomingChatTextEventArgs(e.Args));
+	    }
+
+        /// <summary>
+        /// EQ2_onIncomingChatText
+        /// </summary>
+	    public class IncomingChatTextEventArgs : LSEventArgs
+	    {
+            internal IncomingChatTextEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Chat Type
+            /// </summary>
+	        public int ChatType
+	        {
+                get { return Convert.ToInt32(Args[0]); }
+	        }
+
+            /// <summary>
+            /// Message
+            /// </summary>
+	        public string Message
+	        {
+                get { return Args[1]; }
+	        }
+
+            /// <summary>
+            /// Speaker
+            /// </summary>
+	        public string Speaker
+	        {
+                get { return Args[2]; }
+	        }
+
+            /// <summary>
+            /// Target
+            /// </summary>
+	        public string Target
+	        {
+                get { return Args[3]; }
+	        }
+
+            /// <summary>
+            /// Returns TRUE if the speaker is an NPC
+            /// </summary>
+	        public bool SpeakerIsNPC
+	        {
+                get { return Convert.ToBoolean(Args[4]); }
+	        }
+
+            /// <summary>
+            /// Channel Name
+            /// </summary>
+	        public string ChannelName
+	        {
+                get { return Args[5]; }
+	        }
+
+	    }
 
         #endregion
 
 
 
-
-
-        public event EventHandler<LSEventArgs> IncomingChatText;
+        
 		
 		public event EventHandler<LSEventArgs> Announcement;
 	
@@ -1003,12 +1095,6 @@ namespace EQ2.ISXEQ2
 
 
 
-		protected virtual void OnIncomingChatText(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = IncomingChatText;
-			if (temp != null)
-				temp(Sender, e);
-		}
 
 		
 
@@ -1046,12 +1132,6 @@ namespace EQ2.ISXEQ2
 				temp(Sender, e);
 		}
 
-		protected virtual void OnIncomingText(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = IncomingText;
-			if (temp != null)
-				temp(Sender, e);
-		}
 
 		protected virtual void OnMeAfflicted(object Sender, LSEventArgs e)
 		{
@@ -1105,9 +1185,12 @@ namespace EQ2.ISXEQ2
             Detach("EQ2_FinishedZoning", OnFinishedZoning);
             Detach("EQ2_StartedZoning", OnStartedZoning);
             Detach("EQ2_ExamineAchievement", OnExamineAchievement);
+            Detach("EQ2_onTellIgnored", OnTellIgnored);
+            Detach("EQ2_onIncomingText", OnIncomingChatText);
 
 
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingChatText"), OnIncomingChatText);
+
+
 			
 			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onAnnouncement"), OnAnnouncement);
 			
@@ -1119,7 +1202,7 @@ namespace EQ2.ISXEQ2
 			
 			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
 			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingText"), OnIncomingText);
+			
 			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onMeAfflicted"), OnMeAfflicted);
 			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onGroupMemberAfflicted"), OnGroupMemberAfflicted);
 			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);
@@ -1152,12 +1235,12 @@ namespace EQ2.ISXEQ2
             Attach("EQ2_FinishedZoning", OnFinishedZoning);
             Attach("EQ2_StartedZoning", OnStartedZoning);
             Attach("EQ2_ExamineAchievement", OnExamineAchievement);
+		    Attach("EQ2_onTellIgnored", OnTellIgnored);
+            Attach("EQ2_onIncomingChatText", OnIncomingChatText);
 
 
 
-
-
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingChatText"), OnIncomingChatText);
+			
 			
 			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onAnnouncement"), OnAnnouncement);
 			
@@ -1169,7 +1252,7 @@ namespace EQ2.ISXEQ2
 			
 			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
 			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingText"), OnIncomingText);
+;
 			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onMeAfflicted"), OnMeAfflicted);
 			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onGroupMemberAfflicted"), OnGroupMemberAfflicted);
 			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);

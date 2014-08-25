@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using LavishScriptAPI;
 using LavishVMAPI;
 using EQ2.ISXEQ2;
+using EQ2 = EQ2.ISXEQ2.EQ2;
 
 
 namespace ISXEQ2WrapperTest
@@ -69,11 +70,15 @@ namespace ISXEQ2WrapperTest
             Trace.Listeners.Add(new MyTraceListener(this));
             Trace.AutoFlush = true;
             Trace.IndentLevel = 0;
+            LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onIncomingChatText"),
+                ChatReceived);
             InitializeComponent();
             logBuilder = new StringBuilder();
             TextBoxLog.Text = logBuilder.ToString();
             TextBoxToggle("ISXEQ2", "UNTESTED", Brushes.Magenta);
             TextBoxToggle("EQ2", "UNTESTED", Brushes.Magenta);
+            EQ2Event test = new EQ2Event();
+            test.IncomingChatText += ChatReceived;
         }
 
         private void ButtonTestISXEQ2TLO_Click(object sender, RoutedEventArgs e)
@@ -83,14 +88,14 @@ namespace ISXEQ2WrapperTest
 
         private void ButtonTestEQ2_Click(object sender, RoutedEventArgs e)
         {
-            using (new FrameLock(true))
-            {
-                foreach (var item in new EQ2.ISXEQ2.Extension().Me().GetEquipment())
-                {
-                    Log(String.Format("ID: {0}", item.ID));
-                }
-            }
+            
         }
+
+        private void ChatReceived(object sender, LSEventArgs e)
+        {
+            Trace.WriteLine("Chat Received");
+        }
+
     }
 
     
