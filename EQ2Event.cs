@@ -2,11 +2,89 @@ using System;
 using System.Collections.Generic;
 using LavishScriptAPI;
 
-
 namespace EQ2.ISXEQ2
 {
+    /// <summary>
+    /// This contains Event Handlers and Raisers for all EQ2Events
+    /// </summary>
 	public class EQ2Event
-	{
+    {
+
+        #region Constructor/Deconstructor
+
+        /// <summary>
+        /// Constructor. Attaches all events.
+        /// </summary>
+        public EQ2Event()
+        {
+            Attach("EQ2_ActorSpawned", OnActorSpawned);
+            Attach("EQ2_ActorDespawned", OnActorDespawned);
+            Attach("EQ2_CastingStarted", OnCastingStarted);
+            Attach("EQ2_CastingEnded", OnCastingEnded);
+            Attach("EQ2_ActorPowerChange", OnActorPowerChange);
+            Attach("EQ2_ActorHealthChange", OnActorHealthChange);
+            Attach("EQ2_ActorStanceChange", OnActorStanceChange);
+            Attach("EQ2_ActorTargetChange", OnActorTargetChange);
+            Attach("EQ2_OnHOWindowStateChange", OnHOWindowStateChanged);
+            Attach("EQ2_onQuestOffered", OnQuestOffered);
+            Attach("EQ2_ReplyDialogAppeared", OnReplyDialogAppeared);
+            Attach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
+            Attach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
+            Attach("EQ2_onInventoryUpdate", OnInventoryUpdate);
+            Attach("EQ2_onQuestUpdate", OnQuestOffered);
+            Attach("EQ2_FinishedZoning", OnFinishedZoning);
+            Attach("EQ2_StartedZoning", OnStartedZoning);
+            Attach("EQ2_ExamineAchievement", OnExamineAchievement);
+            Attach("EQ2_onTellIgnored", OnTellIgnored);
+            Attach("EQ2_onIncomingChatText", OnIncomingChatText);
+            Attach("EQ2_onSendMailComplete", OnSendMailComplete);
+            Attach("EQ2_onChoiceWindowAppeared", OnChoiceWindowAppeared);
+            Attach("EQ2_onAnnouncement", OnAnnouncement);
+            Attach("EQ2_onIncomingText", OnIncomingText);
+            Attach("EQ2_onRewardWindowAppeared", OnRewardWindowAppeared);
+            Attach("EQ2_onMeAfflicted", OnMeAfflicted);
+            Attach("EQ2_onGroupMemberAfflicted", OnGroupMemberAfflicted);
+            Attach("EQ2_onRaidMemberAfflicted", OnRaidMemberAfflicted);
+        }
+
+        /// <summary>
+        /// Deconstructor. Detaches all events.
+        /// </summary>
+        ~EQ2Event()
+        {
+            Detach("EQ2_ActorSpawned", OnActorSpawned);
+            Detach("EQ2_ActorDespawned", OnActorDespawned);
+            Detach("EQ2_CastingStarted", OnCastingStarted);
+            Detach("EQ2_CastingEnded", OnCastingEnded);
+            Detach("EQ2_ActorPowerChange", OnActorPowerChange);
+            Detach("EQ2_ActorHealthChange", OnActorHealthChange);
+            Detach("EQ2_ActorStanceChange", OnActorStanceChange);
+            Detach("EQ2_ActorTargetChange", OnActorTargetChange);
+            Detach("EQ2_OnHOWindowStateChange", OnHOWindowStateChanged);
+            Detach("EQ2_onQuestOffered", OnQuestOffered);
+            Detach("EQ2_ReplyDialogAppeared", OnReplyDialogAppeared);
+            Detach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
+            Detach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
+            Detach("EQ2_onInventoryUpdate", OnInventoryUpdate);
+            Detach("EQ2_onQuestUpdate", OnQuestUpdate);
+            Detach("EQ2_FinishedZoning", OnFinishedZoning);
+            Detach("EQ2_StartedZoning", OnStartedZoning);
+            Detach("EQ2_ExamineAchievement", OnExamineAchievement);
+            Detach("EQ2_onTellIgnored", OnTellIgnored);
+            Detach("EQ2_onIncomingChatText", OnIncomingChatText);
+            Detach("EQ2_onSendMailComplete", OnSendMailComplete);
+            Detach("EQ2_onChoiceWindowAppeared", OnChoiceWindowAppeared);
+            Detach("EQ2_onAnnouncement", OnAnnouncement);
+            Detach("EQ2_onIncomingText", OnIncomingText);
+            Detach("EQ2_onRewardWindowAppeared", OnRewardWindowAppeared);
+            Detach("EQ2_onMeAfflicted", OnMeAfflicted);
+            Detach("EQ2_onGroupMemberAfflicted", OnGroupMemberAfflicted);
+            Detach("EQ2_onRaidMemberAfflicted", OnRaidMemberAfflicted);
+        }
+
+        #endregion
+
+        #region Event Handlers and Raisers
 
         #region EQ2_ActorSpawned
 
@@ -16,7 +94,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<ActorSpawnedEventArgs> ActorSpawned;
 
         /// <summary>
-        /// EQ2_Actor Spawned Event
+        /// EQ2_Actor Spawned Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -78,7 +156,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<ActorDespawnedEventArgs> ActorDespawned;
 
         /// <summary>
-        /// EQ2_ActorDespawned Event
+        /// EQ2_ActorDespawned Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -124,7 +202,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<LSEventArgs> CastingStarted;
 
         /// <summary>
-        /// EQ2_CastingStarted Event
+        /// EQ2_CastingStarted Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -145,7 +223,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<LSEventArgs> CastingEnded;
 
         /// <summary>
-        /// EQ2_CastingEnded Event
+        /// EQ2_CastingEnded Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -161,12 +239,13 @@ namespace EQ2.ISXEQ2
         #region EQ2_ActorPowerChange
 
         /// <summary>
-        /// EQ2_ActorPowerChange Event Handler
+        /// EQ2_ActorPowerChange Event Handler. Requires ISXEQ2.EnableActorEvents().
+        /// Disabled by default.
         /// </summary>
         public event EventHandler<ActorPowerChangeEventArgs> ActorPowerChange;
 
         /// <summary>
-        /// EQ2_ActorPowerChange Event
+        /// EQ2_ActorPowerChange Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -255,12 +334,13 @@ namespace EQ2.ISXEQ2
         #region EQ2_ActorHealthChange
 
         /// <summary>
-        /// EQ2_ActorHealthChange Event Handler
+        /// EQ2_ActorHealthChange Event Handler. Requires ISXEQ2.EnableActorEvents().
+        /// Disabled by default.
         /// </summary>
         public event EventHandler<ActorHealthChangeEventArgs> ActorHealthChange;
 
         /// <summary>
-        /// EQ2_ActorHealthChange Event
+        /// EQ2_ActorHealthChange Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -349,12 +429,13 @@ namespace EQ2.ISXEQ2
         #region EQ2_ActorStanceChange
 
         /// <summary>
-        /// EQ2_ActorStanceChange Event Handler
+        /// EQ2_ActorStanceChange Event Handler. Requires ISXEQ2.EnableActorEvents().
+        /// Disabled by default.
         /// </summary>
         public event EventHandler<ActorStanceChangeEventArgs> ActorStanceChange;
 
         /// <summary>
-        /// EQ2_ActorStanceChange Event
+        /// EQ2_ActorStanceChange Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -451,12 +532,13 @@ namespace EQ2.ISXEQ2
         #region EQ2_ActorTargetChange
 
         /// <summary>
-        /// EQ2_ActorTargetChange Event Handler
+        /// EQ2_ActorTargetChange Event Handler. Requires ISXEQ2.EnableActorEvents().
+        /// Disabled by default.
         /// </summary>
         public event EventHandler<ActorTargetChangeEventArgs> ActorTargetChange;
 
         /// <summary>
-        /// EQ2_ActorTargetChange Event
+        /// EQ2_ActorTargetChange Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -550,7 +632,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<LSEventArgs> HOWindowStateChanged;
 
         /// <summary>
-        /// EQ2_OnHOWindowStateChanged Event
+        /// EQ2_OnHOWindowStateChanged Event Raiser
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -571,7 +653,7 @@ namespace EQ2.ISXEQ2
 	    public event EventHandler<LSEventArgs> ExamineAchievement;
 
         /// <summary>
-        /// EQ2_ExamineAchievement Event
+        /// EQ2_ExamineAchievement Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -616,7 +698,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<QuestOfferedEventArgs> QuestOffered;
 
         /// <summary>
-        /// EQ2_onQuestOffered Event
+        /// EQ2_onQuestOffered Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -637,7 +719,7 @@ namespace EQ2.ISXEQ2
             /// <summary>
             /// Quest Name
             /// </summary>
-	        public string QuestName
+	        public string Name
 	        {
                 get { return Args[0]; }
 	        }
@@ -645,9 +727,25 @@ namespace EQ2.ISXEQ2
             /// <summary>
             /// Quest Description
             /// </summary>
-            public string QuestDescription
+            public string Description
             {
                 get { return Args[1]; }
+            }
+
+            /// <summary>
+            /// Quest Level
+            /// </summary>
+            public int Level
+            {
+                get { return Convert.ToInt32(Args[2]); }
+            }
+
+            /// <summary>
+            /// Status Reward
+            /// </summary>
+            public int Status
+            {
+                get { return Convert.ToInt32(Args[3]); }
             }
 
 	    }
@@ -662,7 +760,7 @@ namespace EQ2.ISXEQ2
 	    public event EventHandler<ReplyDialogAppearedEventArgs> ReplyDialogAppeared;
 
         /// <summary>
-        /// EQ2_ReplyDialogAppeared Event
+        /// EQ2_ReplyDialogAppeared Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -700,7 +798,7 @@ namespace EQ2.ISXEQ2
 	    public event EventHandler<ExamineItemWindowAppearedEventArgs> ExamineItemWindowAppeared;
 
         /// <summary>
-        /// EQ2_ExamineItemWindowAppeared Event
+        /// EQ2_ExamineItemWindowAppeared Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -746,7 +844,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<LootWindowAppearedArgs> LootWindowAppeared;
 
         /// <summary>
-        /// EQ2_onLootWindowAppeared Event
+        /// EQ2_onLootWindowAppeared Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -783,7 +881,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<LSEventArgs> InventoryUpdate;
 
         /// <summary>
-        /// EQ2_onInventoryUpdate Event
+        /// EQ2_onInventoryUpdate Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -804,7 +902,7 @@ namespace EQ2.ISXEQ2
         public event EventHandler<QuestUpdateEventArgs> QuestUpdate;
 
         /// <summary>
-        /// EQ2_onQuestUpdate Event
+        /// EQ2_onQuestUpdate Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -891,7 +989,7 @@ namespace EQ2.ISXEQ2
 	    public event EventHandler<FinishedZoningEventArgs> FinishedZoning;
 
         /// <summary>
-        /// EQ2_FinishedZoning Event
+        /// EQ2_FinishedZoning Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -928,7 +1026,7 @@ namespace EQ2.ISXEQ2
 	    public event EventHandler<LSEventArgs> StartedZoning;
 
         /// <summary>
-        /// EQ2_StartedZoning Event
+        /// EQ2_StartedZoning Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
@@ -949,7 +1047,7 @@ namespace EQ2.ISXEQ2
 	    public event EventHandler<TellIgnoredEventArgs> TellIgnored;
 
         /// <summary>
-        /// EQ2_onTellIgnored Event
+        /// EQ2_onTellIgnored Event Raiser
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -996,11 +1094,11 @@ namespace EQ2.ISXEQ2
         public event EventHandler<IncomingChatTextEventArgs> IncomingChatText;
 
         /// <summary>
-        /// EQ2_onIncomingChatText Event
+        /// EQ2_onIncomingChatText Event Raiser
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">arguments</param>
-	    public virtual void OnIncomingChatText(object sender, LSEventArgs e)
+        protected virtual void OnIncomingChatText(object sender, LSEventArgs e)
 	    {
 	        var temp = IncomingChatText;
             if(temp != null)
@@ -1062,212 +1160,348 @@ namespace EQ2.ISXEQ2
                 get { return Args[5]; }
 	        }
 
+            /// <summary>
+            /// Speaker ID
+            /// </summary>
+            public int SpeakerID
+            {
+                get { return Convert.ToInt32(Args[6]); }
+            }
+
+            /// <summary>
+            /// Target ID
+            /// </summary>
+            public int TargetID
+            {
+                get { return Convert.ToInt32(Args[7]); }
+            }
+
 	    }
 
         #endregion
 
+        #region EQ2_onSendMailComplete
 
+        /// <summary>
+        /// EQ2_onSendMailComplete Event Handler
+        /// </summary>
+        public event EventHandler<LSEventArgs> SendMailComplete;
 
-        
-		
-		public event EventHandler<LSEventArgs> Announcement;
-	
-		public event EventHandler<LSEventArgs> RewardWindowAppeared;
-				
-		public event EventHandler<LSEventArgs> ChoiceWindowAppeared;
-		public event EventHandler<LSEventArgs> SendMailComplete;
-		public event EventHandler<LSEventArgs> IncomingText;
-		public event EventHandler<LSEventArgs> MeAfflicted;
-		public event EventHandler<LSEventArgs> GroupMemberAfflicted;
-		public event EventHandler<LSEventArgs> RaidMemberAfflicted;
-		
-		
-		
-		
+        /// <summary>
+        /// EQ2_onSendMailComplete Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnSendMailComplete(object sender, LSEventArgs e)
+        {
+            var temp = SendMailComplete;
+            if (temp != null)
+                temp(sender, e);
+        }
 
+        #endregion
 
+        #region EQ2_onChoiceWindowAppeared
 
-		
-		#region .Net Event Raisers
+        /// <summary>
+        /// EQ2_onChoiceWindowAppeared Event Handler
+        /// </summary>
+        public event EventHandler<LSEventArgs> ChoiceWindowAppeared;
 
+        /// <summary>
+        /// EQ2_onChoiceWindowAppeared Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnChoiceWindowAppeared(object sender, LSEventArgs e)
+        {
+            var temp = ChoiceWindowAppeared;
+            if (temp != null)
+                temp(sender, e);
+        }
 
+        #endregion
 
+        #region EQ2_onAnnouncement
 
+        /// <summary>
+        /// EQ2_onAnnouncement Event Handler
+        /// </summary>
+        public event EventHandler<AnnouncementEventArgs> Announcement;
 
+        /// <summary>
+        /// EQ2_onAnnouncement Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnAnnouncement(object sender, LSEventArgs e)
+        {
+            var temp = Announcement;
+            if (temp != null)
+                temp(sender, new AnnouncementEventArgs(e.Args));
+        }
 
+        /// <summary>
+        /// EQ2_onAnnouncement Event Args
+        /// </summary>
+	    public class AnnouncementEventArgs : LSEventArgs
+	    {
+            internal AnnouncementEventArgs(params string[] args) : base(args) { }
 
-		
+            /// <summary>
+            /// Announcement Text
+            /// </summary>
+            public string Text
+            { get { return Args[0]; } }
 
-		protected virtual void OnAnnouncement(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = Announcement;
-			if (temp != null)
-				temp(Sender, e);
-		}
+            /// <summary>
+            /// Sound Type
+            /// </summary>
+            public string SoundType
+            {
+                get { return Args[1]; }
+            }
 
-		
+	    }
 
-		protected virtual void OnRewardWindowAppeared(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = RewardWindowAppeared;
-			if (temp != null)
-				temp(Sender, e);
-		}
+        #endregion
 
-		
+        #region EQ2_onIncomingText
 
-		
+        /// <summary>
+        /// EQ2_onIncomingText Event Handler
+        /// </summary>
+        public event EventHandler<IncomingTextEventArgs> IncomingText;
 
-		protected virtual void OnChoiceWindowAppeared(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = ChoiceWindowAppeared;
-			if (temp != null)
-				temp(Sender, e);
-		}
+        /// <summary>
+        /// EQ2_onIncomingText Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+	    protected virtual void OnIncomingText(object sender, LSEventArgs e)
+	    {
+	        var temp = IncomingText;
+            if(temp != null)
+                temp(sender, new IncomingTextEventArgs(e.Args));
+	    }
 
-		protected virtual void OnSendMailComplete(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = SendMailComplete;
-			if (temp != null)
-				temp(Sender, e);
-		}
+        /// <summary>
+        /// EQ2_onIncomingText Event Args
+        /// </summary>
+	    public class IncomingTextEventArgs : LSEventArgs
+	    {
+            internal IncomingTextEventArgs(params string[] args) : base(args) { }
 
+            /// <summary>
+            /// Text
+            /// </summary>
+	        public string Text
+	        {
+                get { return Args[0]; }
+	        }
 
-		protected virtual void OnMeAfflicted(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = MeAfflicted;
-			if (temp != null)
-				temp(Sender, e);
-		}
+	    }
 
-		protected virtual void OnGroupMemberAfflicted(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = GroupMemberAfflicted;
-			if (temp != null)
-				temp(Sender, e);
-		}
+        #endregion
 
-		protected virtual void OnRaidMemberAfflicted(object Sender, LSEventArgs e)
-		{
-			System.EventHandler<LSEventArgs> temp = RaidMemberAfflicted;
-			if (temp != null)
-				temp(Sender, e);
-		}
+        #region EQ2_onRewardWindowAppeared
 
-		
+        /// <summary>
+        /// EQ2_onRewardWindowAppeared Event Handler
+        /// </summary>
+        public event EventHandler<LSEventArgs> RewardWindowAppeared;
 
-		
+        /// <summary>
+        /// EQ2_onRewardWindowAppeared Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnRewardWindowAppeared(object sender, LSEventArgs e)
+        {
+            var temp = RewardWindowAppeared;
+            if (temp != null)
+                temp(sender, e);
+        }
 
-		
+        #endregion
 
-		
+        #region EQ2_onMeAfflicted
 
-		#endregion
+        /// <summary>
+        /// EQ2_onMeAfflicted Event Handler
+        /// </summary>
+        public event EventHandler<MeAfflictedEventArgs> MeAfflicted;
 
-		//
-		~EQ2Event()
-		{
-            Detach("EQ2_ActorSpawned", OnActorSpawned);
-            Detach("EQ2_ActorDespawned", OnActorDespawned);
-            Detach("EQ2_CastingStarted", OnCastingStarted);
-            Detach("EQ2_CastingEnded", OnCastingEnded);
-            Detach("EQ2_ActorPowerChange", OnActorPowerChange);
-            Detach("EQ2_ActorHealthChange", OnActorHealthChange);
-            Detach("EQ2_ActorStanceChange", OnActorStanceChange);
-            Detach("EQ2_ActorTargetChange", OnActorTargetChange);
-            Detach("EQ2_OnHOWindowStateChange", OnHOWindowStateChanged);
-            Detach("EQ2_onQuestOffered", OnQuestOffered);
-            Detach("EQ2_ReplyDialogAppeared", OnReplyDialogAppeared);
-            Detach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
-            Detach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
-            Detach("EQ2_onInventoryUpdate", OnInventoryUpdate);
-            Detach("EQ2_onQuestUpdate", OnQuestUpdate);
-            Detach("EQ2_FinishedZoning", OnFinishedZoning);
-            Detach("EQ2_StartedZoning", OnStartedZoning);
-            Detach("EQ2_ExamineAchievement", OnExamineAchievement);
-            Detach("EQ2_onTellIgnored", OnTellIgnored);
-            Detach("EQ2_onIncomingText", OnIncomingChatText);
+        /// <summary>
+        /// EQ2_onMeAfflicted Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnMeAfflicted(object sender, LSEventArgs e)
+        {
+            var temp = MeAfflicted;
+            if (temp != null)
+                temp(sender, new MeAfflictedEventArgs(e.Args));
+        }
 
+        /// <summary>
+        /// EQ2_onMeAfflicted Event Args 
+        /// </summary>
+	    public class MeAfflictedEventArgs : LSEventArgs
+	    {
+            internal MeAfflictedEventArgs(params string[] args) : base(args) { }
 
+            /// <summary>
+            /// Trauma Counter
+            /// </summary>
+	        public int TraumaCounter
+	        {
+                get { return Convert.ToInt32(Args[0]); }
+	        }
 
+            /// <summary>
+            /// Arcane Counter
+            /// </summary>
+            public int ArcaneCounter
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
 
-			
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onAnnouncement"), OnAnnouncement);
-			
-			
-			
-			
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRewardWindowAppeared"), OnRewardWindowAppeared);
-			
-			
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
-			
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onMeAfflicted"), OnMeAfflicted);
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onGroupMemberAfflicted"), OnGroupMemberAfflicted);
-			LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);
-			
-			
-			
-			
+            /// <summary>
+            /// Noxious Counter
+            /// </summary>
+            public int NoxiousCounter
+            {
+                get { return Convert.ToInt32(Args[2]); }
+            }
 
+            /// <summary>
+            /// Elemental Counter
+            /// </summary>
+            public int ElementalCounter
+            {
+                get { return Convert.ToInt32(Args[3]); }
+            }
 
-		}
+            /// <summary>
+            /// Curse Counter
+            /// </summary>
+            public int CurseCounter
+            {
+                get { return Convert.ToInt32(Args[4]); }
+            }
 
-		
-		public EQ2Event()
-		{
-            Attach("EQ2_ActorSpawned", OnActorSpawned);
-            Attach("EQ2_ActorDespawned", OnActorDespawned);
-            Attach("EQ2_CastingStarted", OnCastingStarted);
-            Attach("EQ2_CastingEnded", OnCastingEnded);
-            Attach("EQ2_ActorPowerChange", OnActorPowerChange);
-            Attach("EQ2_ActorHealthChange", OnActorHealthChange);
-            Attach("EQ2_ActorStanceChange", OnActorStanceChange);
-            Attach("EQ2_ActorTargetChange", OnActorTargetChange);
-            Attach("EQ2_HOWindowStateChange", OnHOWindowStateChanged);
-            Attach("EQ2_onQuestOffered", OnQuestOffered);
-            Attach("EQ2_ReplyDialogAppeared", OnReplyDialogAppeared);
-            Attach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
-            Attach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
-            Attach("EQ2_onInventoryUpdate", OnInventoryUpdate);
-            Attach("EQ2_onQuestUpdate", OnQuestOffered);
-            Attach("EQ2_FinishedZoning", OnFinishedZoning);
-            Attach("EQ2_StartedZoning", OnStartedZoning);
-            Attach("EQ2_ExamineAchievement", OnExamineAchievement);
-		    Attach("EQ2_onTellIgnored", OnTellIgnored);
-            Attach("EQ2_onIncomingChatText", OnIncomingChatText);
+	    }
 
+        #endregion
 
+        #region EQ2_onGroupMemberAfflicted
 
-			
-			
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onAnnouncement"), OnAnnouncement);
-			
-			
-			
-			
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRewardWindowAppeared"), OnRewardWindowAppeared);
-			
-			
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onChoiceWindowAppeared"), OnChoiceWindowAppeared);
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onSendMailComplete"), OnSendMailComplete);
-;
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onMeAfflicted"), OnMeAfflicted);
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onGroupMemberAfflicted"), OnGroupMemberAfflicted);
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);
-			LavishScript.Events.AttachEventTarget(LavishScript.Events.RegisterEvent("EQ2_onRaidMemberAfflicted"), OnRaidMemberAfflicted);
-			
-			
-			
-			
-		}
+        /// <summary>
+        /// EQ2_onGroupMemberAfflicted Event Handler
+        /// </summary>
+        public event EventHandler<MemberAfflictedEventArgs> GroupMemberAfflicted;
 
+        /// <summary>
+        /// EQ2_onGroupMemberAfflicted Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnGroupMemberAfflicted(object sender, LSEventArgs e)
+        {
+            var temp = GroupMemberAfflicted;
+            if (temp != null)
+                temp(sender, new MemberAfflictedEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onGroupMemberAfflicted and EQ2_onRaidMemberAfflicted Event Args 
+        /// </summary>
+        public class MemberAfflictedEventArgs : LSEventArgs
+        {
+            internal MemberAfflictedEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Afflicted Actor ID
+            /// </summary>
+            public int ActorID
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+
+            /// <summary>
+            /// Trauma Counter
+            /// </summary>
+            public int TraumaCounter
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+
+            /// <summary>
+            /// Arcane Counter
+            /// </summary>
+            public int ArcaneCounter
+            {
+                get { return Convert.ToInt32(Args[2]); }
+            }
+
+            /// <summary>
+            /// Noxious Counter
+            /// </summary>
+            public int NoxiousCounter
+            {
+                get { return Convert.ToInt32(Args[3]); }
+            }
+
+            /// <summary>
+            /// Elemental Counter
+            /// </summary>
+            public int ElementalCounter
+            {
+                get { return Convert.ToInt32(Args[4]); }
+            }
+
+            /// <summary>
+            /// Curse Counter
+            /// </summary>
+            public int CurseCounter
+            {
+                get { return Convert.ToInt32(Args[5]); }
+            }
+
+        }
+
+        #endregion
+
+        #region EQ2_onRaidMemberAfflicted
+
+        /// <summary>
+        /// EQ2_onRaidMemberAfflicted Event Handler
+        /// </summary>
+        public event EventHandler<MemberAfflictedEventArgs> RaidMemberAfflicted;
+
+        /// <summary>
+        /// EQ2_onRaidMemberAfflicted Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnRaidMemberAfflicted(object sender, LSEventArgs e)
+        {
+            var temp = RaidMemberAfflicted;
+            if (temp != null)
+                temp(sender, new MemberAfflictedEventArgs(e.Args));
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Attaches the specified event to the specified handler.
         /// </summary>
-        /// <param name="eventToAttach">event to attach.</param>
+        /// <param name="eventToAttach">event to attach</param>
         /// <param name="handler">handler</param>
         private static void Attach(string eventToAttach, EventHandler<LSEventArgs> handler)
         {
@@ -1277,11 +1511,14 @@ namespace EQ2.ISXEQ2
         /// <summary>
         /// Detaches the specified event from the specified handler.
         /// </summary>
-        /// <param name="eventToDetach">event to detach.</param>
+        /// <param name="eventToDetach">event to detach</param>
         /// <param name="handler">handler</param>
         private static void Detach(string eventToDetach, EventHandler<LSEventArgs> handler)
         {
             LavishScript.Events.DetachEventTarget(LavishScript.Events.RegisterEvent(eventToDetach), handler);
         }
-	}
+
+        #endregion
+
+    }
 }

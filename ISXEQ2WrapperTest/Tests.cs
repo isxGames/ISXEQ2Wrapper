@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using EQ2.ISXEQ2;
+using EQ2.ISXEQ2.Utility;
 using LavishVMAPI;
 
 namespace ISXEQ2WrapperTest
@@ -23,7 +24,7 @@ namespace ISXEQ2WrapperTest
             Log(item + "Testing Version...");
             using (new FrameLock(true))
             {
-                var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                var isxeq2 = new ISXEQ2();
                 result = isxeq2.Version;
                 if(result != null)
                     Log(item + result);
@@ -52,7 +53,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing Version...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.Version;
                         if (result != String.Empty)
                             Log(item + result);
@@ -66,7 +67,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing IsReady...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.IsReady.ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -80,7 +81,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing AddLoc...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.AddLoc("Test");
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -94,7 +95,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing EQ2LocsCount...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.EQ2LocsCount.ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -108,7 +109,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing AddLoc with Notes");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.AddLoc("Test0", "Test");
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -122,7 +123,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing EQ2LocsCountAllZones...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.EQ2LocsCountAllZones.ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -136,7 +137,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing IsValidEQ2PressKey...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.IsValidEQ2PressKey("w").ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -150,7 +151,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing IsValidEQ2PressKey...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.IsValidEQ2PressKey("w").ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -164,7 +165,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing InitializingActorEffects...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.InitializingActorEffects.ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -178,7 +179,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing EnableAfflictionEvents...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.EnableAfflictionEvents();
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -192,7 +193,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing AfflictionEventsOn...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.AfflictionEventsOn.ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -206,7 +207,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing DisableAfflictionEvents...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.DisableAfflictionEvents();
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -220,7 +221,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing AfflictionEventsOn...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         result = isxeq2.AfflictionEventsOn.ToString();
                         if (result != String.Empty)
                             Log(item + result);
@@ -234,7 +235,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing SetAfflictionEventsTimeInterval...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.SetAfflictionEventsTimeInterval(250);
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -276,7 +277,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing SetActorEventsRange...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.SetActorEventsRange(30f);
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -290,7 +291,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing Popup...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.Popup("Test", "Test", "Test");
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -304,7 +305,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing EnduringBreath...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.EnduringBreath(ISXEQ2.BenefitToggle.Enable);
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -318,7 +319,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing EnduringBreath...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.EnduringBreath(ISXEQ2.BenefitToggle.Disable);
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -332,7 +333,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing NoFog...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.NoFog(ISXEQ2.BenefitToggle.Enable);
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -346,7 +347,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing NoFog...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.NoFog(ISXEQ2.BenefitToggle.Disable);
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -360,7 +361,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing ResetInternalVendingSystem...");
                     using (new FrameLock(true))
                     {
-                        var isxeq2 = new EQ2.ISXEQ2.ISXEQ2();
+                        var isxeq2 = new ISXEQ2();
                         dummybool = isxeq2.ResetInternalVendingSystem();
                         if (dummybool)
                             Log(item + dummybool.ToString());
@@ -377,7 +378,7 @@ namespace ISXEQ2WrapperTest
                     Log(item + "Testing CheckCollision");
                     using (new FrameLock(true))
                     {
-                        var eq2 = new EQ2.ISXEQ2.EQ2();
+                        var eq2 = new EQ2.ISXEQ2.Utility.EQ2();
                         var me = new EQ2.ISXEQ2.Extension().Me(); 
                         bool? check = eq2.CheckCollision(me.X, me.Y, me.Z, me.X + 5f, me.Y, me.Z);
                         if(check.HasValue)
