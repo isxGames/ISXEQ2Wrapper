@@ -1,4 +1,0 @@
-Name                MaxDuration         ID                  BackDropIconID     
-Description         Duration            MainIconID          CurrentIncrements  
-
-Cancel              Examine     

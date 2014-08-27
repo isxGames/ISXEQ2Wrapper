@@ -1,3 +1,0 @@
-Name                   HitPoints              MaxPower               ID                     EffectiveLevel         Arcane                 IsAfflicted    
-Race                   MaxHitPoints           Level                  PetID                  Noxious                Elemental              RaidRole       
-Class                  Power                  ZoneName               ToActor                Cursed                 Trauma                 RaidGroupNum   

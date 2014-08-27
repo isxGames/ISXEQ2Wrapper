@@ -1,3 +1,0 @@
-NumItems               Item                   ToEQ2UIPage            IsLotto                Type                   
-
-LootAll                RequestAll             DeclineLotto           LootItem               SelectNeed             SelectGreed            DeclineNBG      

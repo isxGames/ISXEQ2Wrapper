@@ -1,4 +1,0 @@
-Name                   Quantity               BasePriceString        ToLink                 IsListed               Value            
-Price                  BasePrice              LinkID                 Level                  Market                 SerialNumber     
-
-Buy                    Examine                SetPrice               List                   Unlist                 Remove           

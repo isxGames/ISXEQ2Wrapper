@@ -410,7 +410,12 @@ namespace EQ2.ISXEQ2
         /// TODO: Implement Broker
         /// TODO: Implement Craft
         /// TODO: Implement Dump
-
+        /// TODO: Implement EQ2Ignore
+        /// TODO: Implement InitCommands
+        /// TODO: Implement ShowStats
+        /// TODO: Implement Where
+ 
+        
         /// <summary>
         /// Activates an item that is currently equipped. (The command 
         /// activates an item in the same way as if you placed the item 
@@ -450,64 +455,253 @@ namespace EQ2.ISXEQ2
             return LavishScript.ExecuteCommand(String.Format("EQ2Execute {0}", String.Join(" ", command)));
         }
 
-
-        public void Face()
+        /// <summary>
+        /// Performs the desired keypress.
+        /// Parameters: -hold, -release
+        /// The benefit of "EQ2Press" versus "Press" (InnerSpace command) 
+        /// is that it will work even when the EQ2 session in question is 
+        /// not the one in focus.
+        /// Verify keypress is valid with ISXEQ2.IsValidEQ2PressKey().
+        /// </summary>
+        /// <param name="args">parameters and keypress</param>
+        public static int EQ2Press(string args)
         {
-            LavishScript.ExecuteCommand("Face");
+            Trace.WriteLine(String.Format("Extension:EQ2Press({0})", args));
+            return LavishScript.ExecuteCommand(String.Format("EQ2Press {0}", args));
         }
 
-        public void Face(string Args)
+        /// <summary>
+        /// This command allows you to specify particular key phrases that will cause 
+        /// isxeq2 to ignore an incoming chat channel text. If the given phrase will 
+        /// trigger an ignore if it is found in the chat text, sender name, target name, 
+        /// or customchannel name. You may also use the 'eq2ignore all' toggle to ignore 
+        /// ALL incoming chat text (e.g. if you need complete silence.) Use the 
+        /// 'eq2ignore all' command again to toggle things back to normal, which will 
+        /// again use the ignores you already had set up. 
+        /// </summary>
+        /// <param name="args">parameters</param>
+        /// <returns></returns>
+        public static int EQ2Ignore(string args)
         {
-            LavishScript.ExecuteCommand("Face " + Args);
+            Trace.WriteLine(String.Format("Extension:EQ2Ignore({0})", args));
+            return LavishScript.ExecuteCommand(String.Format("EQ2Ignore {0}", args));
         }
 
-        
-        public void EQ2Press(string Args)
+
+        /// <summary>
+        /// Faces your current target. 
+        /// </summary>
+        public static int Face()
         {
-            LavishScript.ExecuteCommand("EQ2Press " + Args);
+            Trace.WriteLine(String.Format("Extension:Face()"));
+            return LavishScript.ExecuteCommand("Face");
         }
 
-        public void EQ2Ignore(string Args)
+        /// <summary>
+        /// Faces the nearest actor of the specified type.
+        /// </summary>
+        /// <param name="type">actor type</param>
+        public static int Face(ActorType type)
         {
-            LavishScript.ExecuteCommand("EQ2Ignore " + Args);
+            Trace.WriteLine(String.Format("Extension:Face({0})", type));
+            return LavishScript.ExecuteCommand(String.Format("Face {0}", type));
         }
 
-        public void EQ2Announce(string Announcement)
+        /// <summary>
+        /// Faces the specified heading (0 to 360.0)
+        /// </summary>
+        /// <param name="heading">heading</param>
+        public static int Face(float heading)
         {
-            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\"");
+            Trace.WriteLine(String.Format("Extension:Face({0})", heading.ToString(CultureInfo.InvariantCulture)));
+            return LavishScript.ExecuteCommand(String.Format("Face {0}", heading.ToString(CultureInfo.InvariantCulture)));
         }
 
-        public void EQ2Announce(string Announcement, float Time)
+        /// <summary>
+        /// Faces the supplied location on the XZ plane
+        /// </summary>
+        /// <param name="x">x-coordinate</param>
+        /// <param name="z">z-coordinate</param>
+        public static int Face(float x, float z)
         {
-            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\" " + Time.ToString());
+            Trace.WriteLine(String.Format("Extension:Face({0}, {1})", 
+                x.ToString(CultureInfo.InvariantCulture), z.ToString(CultureInfo.InvariantCulture)));
+            return LavishScript.ExecuteCommand(String.Format("Face {0} {1}",
+                x.ToString(CultureInfo.InvariantCulture), z.ToString(CultureInfo.InvariantCulture)));
         }
 
-        public enum AnnouncementSound
+        /// <summary>
+        /// Faces the supplied location in the XZY plane.
+        /// </summary>
+        /// <param name="x">x-coordinate</param>
+        /// <param name="y">y-coordinate</param>
+        /// <param name="z">z-coordinate</param>
+        public static int Face(float x, float y, float z)
         {
-            SkillUp = 1,
-            QuestUpdate,
-            LevelDing,
-            CallForHelp,
-            HarvestRare,
-            QuestComplete,
-            LocationDiscovery,
-            SendMailFailed,
-            SendMailSuccess
+            Trace.WriteLine(String.Format("Extension:Face({0}, {1}, {2})", x.ToString(CultureInfo.InvariantCulture), 
+                y.ToString(CultureInfo.InvariantCulture), z.ToString(CultureInfo.InvariantCulture)));
+            return LavishScript.ExecuteCommand(String.Format("Face {0} {1} {2}", x.ToString(CultureInfo.InvariantCulture),
+                y.ToString(CultureInfo.InvariantCulture), z.ToString(CultureInfo.InvariantCulture)));
         }
 
-        public void EQ2Announce(string Announcement, float Time, AnnouncementSound Sound)
+        /// <summary>
+        /// Faces the nearest actor that has a name that is either a full or partial match.
+        /// Supplting the name "nocamera" allows you to decide if you want the camera to
+        /// adjust its heading or not when you are in 3rd person. By default, your camera 
+        /// will adjust when you adjust your player's heading with /face. However, if you 
+        /// type "/face nocamera", then your player will change heading, but the camera 
+        /// will remain where it was. '/face nocamera' will toggle it again if you change 
+        /// your mind. 
+        /// </summary>
+        /// <param name="name">name</param>
+        public static int Face(string name)
         {
-            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\" " + Time.ToString() + " " + ((int)Sound).ToString());
+            Trace.WriteLine(String.Format("Extension:Face({0})", name));
+            return LavishScript.ExecuteCommand(String.Format("Face {0}", name));
         }
 
-        public void EQ2Announce(string Announcement, AnnouncementSound Sound)
+        /// <summary>
+        /// Used to issue commands to the Radar. Custom radar name is 
+        /// not used for on and off and is optional for zoomin and zoomout
+        /// </summary>
+        /// <param name="command">command</param>
+        /// <param name="name">custom radar name</param>
+        public static int Radar(RadarCommand command, string name = null)
         {
-            LavishScript.ExecuteCommand("EQ2Announce \"" + Announcement + "\" 4.5 " + ((int)Sound).ToString());
+            Trace.WriteLine((name == null) ? String.Format("Extension:Radar({0})", command.ToString().ToLower())                 
+                : String.Format("Extension:Radar({0}, {1})", command, name));
+            return
+                LavishScript.ExecuteCommand((name == null) ? String.Format("Radar {0}", command.ToString().ToLower()) 
+                : String.Format("Radar {0} {1}", name, command.ToString().ToLower()));
+        }
+
+        /// <summary>
+        /// Targets the nearest actor of the supplied type
+        /// </summary>
+        /// <param name="type">target type</param>
+        public static int Target(TargetType type)
+        {
+            Trace.WriteLine(String.Format("Extension:Target({0})", type));
+            return LavishScript.ExecuteCommand(String.Format("Target {0}", type.ToString().ToLower()));
+        }
+
+        /// <summary>
+        /// Targets the entity with the matching ID.
+        /// </summary>
+        /// <param name="id">ID</param>
+        public static int Target(int id)
+        {
+            Trace.WriteLine(String.Format("Extension:Target({0})", id.ToString(CultureInfo.InvariantCulture)));
+            return LavishScript.ExecuteCommand(String.Format("Target {0}", id.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Targets the nearest entity that is a partial or full match with the name.
+        /// </summary>
+        /// <param name="name">name</param>
+        public static int Target(string name)
+        {
+            Trace.WriteLine(String.Format("Extension:Target({0})", name));
+            return LavishScript.ExecuteCommand(String.Format("Target {0}", name));
+        }
+
+        /// <summary>
+        /// Makes an in game announcement for the provided time with the specified sound. (NOT WORKING CORRECTLY)
+        /// </summary>
+        /// <param name="announcement">announcment</param>
+        /// <param name="timer">time to remain on screen</param>
+        /// <param name="sound">sound to play</param>
+        public static int EQ2Announce(string announcement, float timer, AnnouncementSound sound = AnnouncementSound.QuestComplete)
+        {
+            return LavishScript.ExecuteCommand(String.Format("EQ2Announce {0} {1} {2}", announcement, 
+                timer.ToString(CultureInfo.InvariantCulture), ((int)sound).ToString(CultureInfo.InvariantCulture) ));
         }
 
         #endregion
 
         #region Enums
+
+        /// <summary>
+        /// Actor Types
+        /// </summary>
+        public enum ActorType
+        {
+            /// <summary>
+            /// Player Character
+            /// </summary>
+            PC,
+            /// <summary>
+            /// Non Player Character
+            /// </summary>
+            NPC,
+            /// <summary>
+            /// Named Non Player Character
+            /// </summary>
+            NamedNPC,
+            /// <summary>
+            /// No Kill Non Player Character
+            /// </summary>
+            NoKillNPC,
+            /// <summary>
+            /// Special
+            /// </summary>
+            Special,
+            /// <summary>
+            /// Resource
+            /// </summary>
+            Resource,
+            /// <summary>
+            /// Trade Skill Unit
+            /// </summary>
+            TSUnit,
+            /// <summary>
+            /// Corpse
+            /// </summary>
+            Corpse
+        }
+
+        /// <summary>
+        /// Announcement Sounds
+        /// </summary>
+        public enum AnnouncementSound
+        {
+            /// <summary>
+            /// Skill Up Sound
+            /// </summary>
+            SkillUp = 1,
+            /// <summary>
+            /// Quest Update Sound
+            /// </summary>
+            QuestUpdate,
+            /// <summary>
+            /// Level Ding Sound
+            /// </summary>
+            LevelDing,
+            /// <summary>
+            /// Call For Help Sound
+            /// </summary>
+            CallForHelp,
+            /// <summary>
+            /// Rare Harvest Sound
+            /// </summary>
+            HarvestRare,
+            /// <summary>
+            /// Quest Complete Sound
+            /// </summary>
+            QuestComplete,
+            /// <summary>
+            /// Location Discovery Sound
+            /// </summary>
+            LocationDiscovery,
+            /// <summary>
+            /// Send Mail Failed Sound
+            /// </summary>
+            SendMailFailed,
+            /// <summary>
+            /// Send Mail Success Sound
+            /// </summary>
+            SendMailSuccess
+        }
 
         /// <summary>
         /// Chat Types
@@ -776,6 +970,64 @@ namespace EQ2.ISXEQ2
             /// Charm Slot 2
             /// </summary>
             Activate2
+        }
+
+        /// <summary>
+        /// Radar Commands
+        /// </summary>
+        public enum RadarCommand
+        {
+            /// <summary>
+            /// On
+            /// </summary>
+            On,
+            /// <summary>
+            /// Off
+            /// </summary>
+            Off,
+            /// <summary>
+            /// ZoomIn
+            /// </summary>
+            ZoomIn,
+            /// <summary>
+            /// ZoomOut
+            /// </summary>
+            ZoomOut
+        }
+
+        /// <summary>
+        /// Target Types
+        /// </summary>
+        public enum TargetType
+        {
+            /// <summary>
+            /// Me
+            /// </summary>
+            Me,
+            /// <summary>
+            /// Player Character
+            /// </summary>
+            PC,
+            /// <summary>
+            /// Non Player Character
+            /// </summary>
+            NPC,
+            /// <summary>
+            /// No Kill Non Player Character
+            /// </summary>
+            NoKillNPC,
+            /// <summary>
+            /// Resource
+            /// </summary>
+            Resource,
+            /// <summary>
+            /// Trade Skill Unit
+            /// </summary>
+            TradeSkillUnit,
+            /// <summary>
+            /// Special
+            /// </summary>
+            Special
         }
 
         #endregion

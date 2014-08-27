@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EQ2.ISXEQ2", "EQ2.ISXEQ2.csproj", "{FAAFB01C-C8F3-4AD7-A4A6-6F4FCA7CBA71}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISXEQ2WrapperTest", "ISXEQ2WrapperTest\ISXEQ2WrapperTest.csproj", "{FE2882F7-93E6-446D-98D1-1703C8D1C5E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{FAAFB01C-C8F3-4AD7-A4A6-6F4FCA7CBA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAAFB01C-C8F3-4AD7-A4A6-6F4FCA7CBA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAAFB01C-C8F3-4AD7-A4A6-6F4FCA7CBA71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE2882F7-93E6-446D-98D1-1703C8D1C5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE2882F7-93E6-446D-98D1-1703C8D1C5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE2882F7-93E6-446D-98D1-1703C8D1C5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE2882F7-93E6-446D-98D1-1703C8D1C5E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

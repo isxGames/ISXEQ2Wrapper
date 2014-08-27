@@ -1,3 +1,0 @@
-ToEQ2UIPage            
-
-Cancel                 Receive                Accept    

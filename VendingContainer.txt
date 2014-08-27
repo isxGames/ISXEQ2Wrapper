@@ -1,4 +1,0 @@
-Name           TotalCapacity  TotalCoin      NumItems       SerialNumber   
-UsedCapacity   CurrentCoin    Consignment    Market         
-
-TakeCoin       Remove         ChangeTo    

@@ -1,4 +1,0 @@
-ID                  Description         MaxLevel            ReqLevelToBuy       
-Name                Level               PointCostPerLevel   ToAbility           
-
-Examine     

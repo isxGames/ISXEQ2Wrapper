@@ -1,8 +1,0 @@
-Name                                     Technique                                BuildComponent1        
-Description                              Knowledge                                BuildComponent2        
-Device                                   NumClasses                               BuildComponent3        
-RecipeBook                               Class                                    BuildComponent4        
-Level                                    PrimaryComponent                         Fuel                   
-ID                                       PrimaryComponentQuantityOnHand           
-
-Create                                   Examine     

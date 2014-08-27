@@ -1,5 +1,0 @@
-Name                   PriceString            MaxQuantity            IsForSale              ToLink                 
-Price                  Quantity               StatusCost             Level                  LinkID                 
-
-Buy                    Sell                   Examine                SetPrice               ListForSale            
-UnListForSale
