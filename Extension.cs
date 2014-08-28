@@ -77,7 +77,7 @@ namespace EQ2.ISXEQ2
         /// </remarks>
         public static Actor Actor(params string[] search)
         {
-            Trace.WriteLine(String.Format("Extension:Actor({0})", String.Join(" ,", search)));
+            Trace.WriteLine(String.Format("Extension:Actor({0})", String.Join(", ", search)));
             return new Actor(LavishScript.Objects.GetObject("Actor", search));
         }
 
@@ -143,7 +143,7 @@ namespace EQ2.ISXEQ2
         /// </remarks>
         public static Actor CustomActor(params string[] search)
         {
-            Trace.WriteLine(String.Format("Extension:CustomActor({0})", String.Join(" ,", search)));
+            Trace.WriteLine(String.Format("Extension:CustomActor({0})", String.Join(", ", search)));
             return new Actor(LavishScript.Objects.GetObject("CustomActor", search));
         }
 
@@ -451,7 +451,7 @@ namespace EQ2.ISXEQ2
         /// <param name="command">command</param>
         public static int EQ2Execute(params string[] command)
         {
-            Trace.WriteLine(String.Format("Extension:EQ2Execute({0})", String.Join(" ,", command)));
+            Trace.WriteLine(String.Format("Extension:EQ2Execute({0})", String.Join(", ", command)));
             return LavishScript.ExecuteCommand(String.Format("EQ2Execute {0}", String.Join(" ", command)));
         }
 
