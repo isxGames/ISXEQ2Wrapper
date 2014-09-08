@@ -1,6 +1,7 @@
 ﻿// Credit for this entire class goes to GliderPro //
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using LavishScriptAPI;
 using LavishScriptAPI.Interfaces;
@@ -29,15 +30,14 @@ namespace EQ2.ISXEQ2.Helpers
 
             var list = new List<T>();
             var count = index.GetMember<int>("Used");
-
             if (count == 0)
             {
                 return list;
             }
 
             var constructor = typeof(T).GetConstructor(new[] { typeof(LavishScriptObject) });
-
-            for (var i = 1; i <= count; i++)
+            Trace.WriteLine(count);
+            for (var i = 1u; i <= count; i++)
             {
                 var objectLso = index.GetIndex(i.ToString(CultureInfo.InvariantCulture));
 
@@ -47,7 +47,7 @@ namespace EQ2.ISXEQ2.Helpers
                 }
 
                 var objectId = objectLso.GetStringFromLSO("ID");
-
+                Trace.WriteLine(i + " " + objectId);
                 if (objectId == null)
                 {
                     return list;
