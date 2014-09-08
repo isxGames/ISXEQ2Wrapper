@@ -20,7 +20,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="copy"></param>
+        /// <param name="copy">LS Object</param>
         public Character(LavishScriptObject copy) : base(copy) { }
 
         #endregion
@@ -28,13 +28,13 @@ namespace EQ2.ISXEQ2.CharacterActor
         #region Members
 
         /// <summary>
-        /// Returns an ability based on ID
+        /// Returns an ability based on ID or index from 1 to NumAbilities
         /// </summary>
-        /// <param name="id">ID</param>
+        /// <param name="id">ID or index</param>
         public Ability Ability(uint id)
         {
             Trace.WriteLine(String.Format("Character:Ability({0})", id.ToString(CultureInfo.InvariantCulture)));
-            return new Ability(this.GetMember("Ability", "id", id.ToString(CultureInfo.InvariantCulture)));
+            return new Ability(this.GetMember("Ability", id.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -625,6 +625,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         {
             Trace.WriteLine(String.Format("Character:GetAbilities()"));
             return Util.GetListFromMember<Ability>(this, "GetAbilities", "ability");
+
         }
 
         /// <summary>
@@ -637,7 +638,7 @@ namespace EQ2.ISXEQ2.CharacterActor
             return Util.GetListFromMember<Item>(this, "GetEquipment", "item");
         }
 
-        /// TODO: Research Me.GetGameData
+        // TODO: Research Me.GetGameData
         /// <summary>
         /// Returns the EQ2UIElement at the specified path.
         /// </summary>
