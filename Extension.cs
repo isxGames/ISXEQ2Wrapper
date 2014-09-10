@@ -4,6 +4,7 @@ using System.Globalization;
 using EQ2.ISXEQ2.AbilityEffect;
 using EQ2.ISXEQ2.CharacterActor;
 using EQ2.ISXEQ2.InventoryConsignment;
+using EQ2.ISXEQ2.UI;
 using EQ2.ISXEQ2.Utility;
 using LavishScriptAPI;
 
@@ -148,7 +149,7 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Retrieves information about that does not fit into any other datatype.
+        /// Retrieves information that does not fit into any other datatype.
         /// </summary>
         public static Utility.EQ2 EQ2
         {

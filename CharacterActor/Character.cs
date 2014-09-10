@@ -5,6 +5,7 @@ using System.Globalization;
 using EQ2.ISXEQ2.AbilityEffect;
 using EQ2.ISXEQ2.Helpers;
 using EQ2.ISXEQ2.InventoryConsignment;
+using EQ2.ISXEQ2.UI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2.CharacterActor
@@ -28,13 +29,23 @@ namespace EQ2.ISXEQ2.CharacterActor
         #region Members
 
         /// <summary>
-        /// Returns an ability based on ID or index from 1 to NumAbilities
+        /// Returns an ability based on the index from 1 to NumAbilities
         /// </summary>
-        /// <param name="id">ID or index</param>
+        /// <param name="index">index</param>
+        public Ability Ability(int index)
+        {
+            Trace.WriteLine(String.Format("Character:Ability({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new Ability(GetMember("Ability", index.ToString()));
+        }
+
+        /// <summary>
+        /// Returns an ability based on ID
+        /// </summary>
+        /// <param name="id">ID</param>
         public Ability Ability(uint id)
         {
             Trace.WriteLine(String.Format("Character:Ability({0})", id.ToString(CultureInfo.InvariantCulture)));
-            return new Ability(this.GetMember("Ability", id.ToString(CultureInfo.InvariantCulture)));
+            return new Ability(GetMember("Ability", id.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -44,7 +55,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         public Ability Ability(string name)
         {
             Trace.WriteLine(String.Format("Character:Ability({0})", name));
-            return new Ability(this.GetMember("Ability", name));
+            return new Ability(GetMember("Ability", name));
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
-using System.Diagnostics;
 using System;
+using System.Diagnostics;
 using LavishScriptAPI;
 
-namespace EQ2.ISXEQ2
+namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
     /// Allows interaction with Reward Windows. 
