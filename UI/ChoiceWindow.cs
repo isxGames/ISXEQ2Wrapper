@@ -3,7 +3,7 @@ using System.Diagnostics;
 using EQ2.ISXEQ2.Helpers;
 using LavishScriptAPI;
 
-namespace EQ2.ISXEQ2
+namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to Choice windows. 

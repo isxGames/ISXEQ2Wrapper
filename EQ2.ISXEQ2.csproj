@@ -60,7 +60,7 @@
     <Compile Include="InventoryConsignment\ContainerWindowItem.cs" />
     <Compile Include="AbilityEffect\Effect.cs" />
     <Compile Include="Utility\EQ2.cs" />
-    <Compile Include="EQ2Event.cs" />
+    <Compile Include="Events\EQ2Event.cs" />
     <Compile Include="Utility\EQ2Location.cs" />
     <Compile Include="Utility\EQ2Mail.cs" />
     <Compile Include="UI\EQ2UIElement.cs" />
