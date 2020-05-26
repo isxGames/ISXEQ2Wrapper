@@ -6,6 +6,7 @@ using EQ2.ISXEQ2.CharacterActor;
 using EQ2.ISXEQ2.InventoryConsignment;
 using EQ2.ISXEQ2.UI;
 using EQ2.ISXEQ2.Utility;
+using InnerSpaceAPI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
@@ -224,7 +225,7 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Returns the EQ2UIPage that matches the parent and page names provided.
+        /// Returns the EQ2Window that matches the parent and page names provided.
         /// </summary>
         /// <param name="parent">parent name</param>
         /// <param name="page">page name</param>
@@ -245,10 +246,10 @@ namespace EQ2.ISXEQ2
         /// (ie, eq2ui_proxyactor.xml). Then "ProxyActor" would be your ParentPageName 
         /// and then you would need to look inside the file to find your second argument. 
         /// </remarks>
-        public static EQ2UIPage EQ2UIPage(string parent, string page)
+        public static EQ2Window EQ2Window(string parent, string page)
         {
-            Trace.WriteLine(String.Format("Extension:EQ2UIPage({0}, {1})", parent, page));
-            return new EQ2UIPage(LavishScript.Objects.GetObject("EQ2UIPage", parent, page));
+            Trace.WriteLine(String.Format("Extension:EQ2Window({0}, {1})", parent, page));
+            return new EQ2Window(LavishScript.Objects.GetObject("EQ2Window", parent, page));
         }
 
         /// <summary>
@@ -404,19 +405,18 @@ namespace EQ2.ISXEQ2
                 return new Zone(LavishScript.Objects.GetObject("Zone"));
             }
         }
-
+        
         #endregion
 
         #region Commands
-        /// TODO: Implement Broker
         /// TODO: Implement Craft
         /// TODO: Implement Dump
         /// TODO: Implement EQ2Ignore
         /// TODO: Implement InitCommands
         /// TODO: Implement ShowStats
         /// TODO: Implement Where
- 
-        
+
+
         /// <summary>
         /// Activates an item that is currently equipped. (The command 
         /// activates an item in the same way as if you placed the item 
@@ -428,6 +428,16 @@ namespace EQ2.ISXEQ2
         {
             Trace.WriteLine(String.Format("Extension:Activate({0})", slot));
             return LavishScript.ExecuteCommand(String.Format("Activate {0}", slot.ToString().ToLower()));
+        }
+
+        /// <summary>
+        /// Performs a broker search because ISXEQ is stupid AF
+        /// </summary>
+        /// <param name="name">Name of broker</param>
+        public static int Broker(string name)
+        {
+            Trace.WriteLine(String.Format("Extension:Broker({0})", name));
+            return LavishScript.ExecuteCommandEx("broker","name", name);
         }
 
         /// <summary>

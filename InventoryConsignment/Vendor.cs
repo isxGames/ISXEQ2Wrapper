@@ -190,7 +190,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         #endregion
 
         #region Methods
-
+        
         /// <summary>
         /// Selects the indicated page between 1 and TotalSearchPages (Broker Only)
         /// </summary>

@@ -26,7 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ISXEQ2Wrapper.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\ISXEQ2Wrapper.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\ISXEQ2Wrapper.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\ISXEQ2Wrapper.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Lavish.InnerSpace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
@@ -52,6 +52,8 @@
     <Compile Include="AbilityEffect\Achievement.cs" />
     <Compile Include="CharacterActor\Actor.cs" />
     <Compile Include="CharacterActor\Character.cs" />
+    <Compile Include="InventoryConsignment\ItemInfo.cs" />
+    <Compile Include="InventoryConsignment\BrokerWindow.cs" />
     <Compile Include="UI\ChoiceWindow.cs" />
     <Compile Include="AbilityEffect\Class.cs" />
     <Compile Include="Recipe\Component.cs" />
@@ -64,7 +66,7 @@
     <Compile Include="Utility\EQ2Location.cs" />
     <Compile Include="Utility\EQ2Mail.cs" />
     <Compile Include="UI\EQ2UIElement.cs" />
-    <Compile Include="UI\EQ2UIPage.cs" />
+    <Compile Include="UI\EQ2Window.cs" />
     <Compile Include="UI\ExamineItemWindow.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Helpers\Utils.cs" />

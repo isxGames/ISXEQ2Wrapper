@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using EQ2.ISXEQ2.Helpers;
+using EQ2.ISXEQ2.InventoryConsignment;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2.UI
@@ -23,6 +24,15 @@ namespace EQ2.ISXEQ2.UI
         #endregion
 
         #region Members
+
+        public Item ToItem
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ExamineItemWindow:ToItem"));
+                return new Item(this.GetMember("ToItem"));
+            }
+        }
 
         /// <summary>
         /// Returns a "checkbox" eq2uielement type.
