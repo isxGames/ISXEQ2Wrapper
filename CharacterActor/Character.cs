@@ -654,10 +654,10 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// Returns the EQ2UIElement at the specified path.
         /// </summary>
         /// <param name="path">path</param>
-        public EQ2UIElement GetGameData(string path)
+        public EQ2Widget GetGameData(string path)
         {
             Trace.WriteLine(String.Format("Character:GetGameData({0})", path));
-            return new EQ2UIElement(this.GetMember("GetGameData", path));
+            return new EQ2Widget(this.GetMember("GetGameData", path));
         }
 
         /// <summary>

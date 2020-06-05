@@ -6,6 +6,7 @@ using EQ2.ISXEQ2.CharacterActor;
 using EQ2.ISXEQ2.InventoryConsignment;
 using EQ2.ISXEQ2.UI;
 using EQ2.ISXEQ2.Utility;
+using InnerSpaceAPI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2
@@ -164,10 +165,10 @@ namespace EQ2.ISXEQ2
         /// Returns an EQ2UIElement of type DataSourceContainer from the xml file named.
         /// </summary>
         /// <param name="parent">top level parent of xml file</param>
-        public static EQ2UIElement EQ2DataSourceContainer(string parent)
+        public static EQ2Widget EQ2DataSourceContainer(string parent)
         {
             Trace.WriteLine(String.Format("Extension:EQ2DataSourceContainer({0})", parent));
-            return new EQ2UIElement(LavishScript.Objects.GetObject("EQ2DataSourceContainer", parent));
+            return new EQ2Widget(LavishScript.Objects.GetObject("EQ2DataSourceContainer", parent));
         }
 
         /// <summary>
@@ -224,7 +225,7 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Returns the EQ2UIPage that matches the parent and page names provided.
+        /// Returns the EQ2Window that matches the parent and page names provided.
         /// </summary>
         /// <param name="parent">parent name</param>
         /// <param name="page">page name</param>
@@ -244,11 +245,11 @@ namespace EQ2.ISXEQ2
         /// typically be your second argument (or PageName. If a file only has two parts 
         /// (ie, eq2ui_proxyactor.xml). Then "ProxyActor" would be your ParentPageName 
         /// and then you would need to look inside the file to find your second argument. 
-        /// </remarks>
-        public static EQ2UIPage EQ2UIPage(string parent, string page)
+        /// </remarksEQ2Window
+        public static EQ2Window EQ2UIPage(string parent, string page)
         {
             Trace.WriteLine(String.Format("Extension:EQ2UIPage({0}, {1})", parent, page));
-            return new EQ2UIPage(LavishScript.Objects.GetObject("EQ2UIPage", parent, page));
+            return new EQ2Window(LavishScript.Objects.GetObject("EQ2UIPage", parent, page));
         }
 
         /// <summary>
@@ -404,19 +405,18 @@ namespace EQ2.ISXEQ2
                 return new Zone(LavishScript.Objects.GetObject("Zone"));
             }
         }
-
+        
         #endregion
 
         #region Commands
-        /// TODO: Implement Broker
         /// TODO: Implement Craft
         /// TODO: Implement Dump
         /// TODO: Implement EQ2Ignore
         /// TODO: Implement InitCommands
         /// TODO: Implement ShowStats
         /// TODO: Implement Where
- 
-        
+
+
         /// <summary>
         /// Activates an item that is currently equipped. (The command 
         /// activates an item in the same way as if you placed the item 
@@ -428,6 +428,16 @@ namespace EQ2.ISXEQ2
         {
             Trace.WriteLine(String.Format("Extension:Activate({0})", slot));
             return LavishScript.ExecuteCommand(String.Format("Activate {0}", slot.ToString().ToLower()));
+        }
+
+        /// <summary>
+        /// Performs a broker search because ISXEQ is stupid AF
+        /// </summary>
+        /// <param name="name">Name of broker</param>
+        public static int Broker(string name)
+        {
+            Trace.WriteLine(String.Format("Extension:Broker({0})", name));
+            return LavishScript.ExecuteCommandEx("broker","name", name);
         }
 
         /// <summary>

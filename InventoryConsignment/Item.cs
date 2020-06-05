@@ -25,6 +25,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         #region Members
 
         /// <summary>
+        /// Returns the RewardWindow as an EQ2Window
+        /// </summary>
+        public ItemInfo ToItemInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:ToItemInfo"));
+                return new ItemInfo(this.GetMember("ToItemInfo"));
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if the collectible has already been collected.
         /// </summary>
         public bool AlreadyCollected
@@ -174,17 +186,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             }
         }
 
-        /// <summary>
-        /// Returns TRUE if the item can be scribed right now
-        /// </summary>
-        public bool CanScribeNow
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:CanScribeNow"));
-                return this.GetBoolFromLSO("CanScribeNow");
-            }
-        }
+        
 
         /// <summary>
         /// Item casting time
@@ -261,17 +263,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             }
         }
 
-        /// <summary>
-        /// Containers Only. Returns TRUE if the contents of the container are for sale.
-        /// </summary>
-        public bool ContentsForSale
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:ContentsForSale"));
-                return this.GetBoolFromLSO("ContentsForSale");
-            }
-        }
+        
 
         /// <summary>
         /// Cache of Crafter
@@ -413,17 +405,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             return this.GetStringFromLSO("EffectDescription", index.ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <summary>
-        /// Containers only. The number of empty slots in the container.
-        /// </summary>
-        public int EmptySlots
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:EmptySlots"));
-                return this.GetIntFromLSO("EmptySlots");
-            }
-        }
+        
 
         /// <summary>
         /// Returns the name of the equipslot at the index
@@ -633,24 +615,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             }
         }
 
-        /// <summary>
-        /// Cache of IsActivatable
-        /// </summary>
-        private bool? _isActivatable;
-
-        /// <summary>
-        /// Returns TRUE if the item is activatable
-        /// </summary>
-        public bool IsActivatable
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:IsActivatable"));
-                if (!_isActivatable.HasValue)
-                    _isActivatable = this.GetBoolFromLSO("IsActivatable");
-                return _isActivatable.Value;
-            }
-        }
+        
 
         /// <summary>
         /// Cache of IsAutoConsumeable
@@ -766,6 +731,19 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns true if all of this item's datatype members are available
+        /// (i.e., if information has been cached from the server.)
+        /// </summary>
+        public bool IsItemInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsItemInfoAvailable"));
+                return this.GetBoolFromLSO("IsItemInfoAvailable");
+            }
+        }
+
+        /// <summary>
         /// Identifies if the item is a container placed in one of your 6 actual inventory slots
         /// </summary>
         public bool IsInventoryContainer
@@ -861,22 +839,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             return new Item(this.GetMember("ItemInSlot", slot.ToString(CultureInfo.InvariantCulture)));
         }
 
-        /// <summary>
-        /// Cache of Label
-        /// </summary>
-        private string _label;
-
-        /// <summary>
-        /// Item Label (Container)
-        /// </summary>
-        public string Label
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:Label"));
-                return _label ?? (_label = this.GetStringFromLSO("Label"));
-            }
-        }
+        
 
         /// <summary>
         /// Cache of Level

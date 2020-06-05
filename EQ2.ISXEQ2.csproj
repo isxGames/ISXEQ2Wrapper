@@ -26,7 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ISXEQ2Wrapper.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\ISXEQ2Wrapper.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,12 +35,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\ISXEQ2Wrapper.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\ISXEQ2Wrapper.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Lavish.InnerSpace, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\InnerSpace\Lavish.InnerSpace.dll</HintPath>
+    </Reference>
+    <Reference Include="Lavish.LavishNav, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\InnerSpace\Lavish.LavishNav.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -52,6 +56,8 @@
     <Compile Include="AbilityEffect\Achievement.cs" />
     <Compile Include="CharacterActor\Actor.cs" />
     <Compile Include="CharacterActor\Character.cs" />
+    <Compile Include="InventoryConsignment\ItemInfo.cs" />
+    <Compile Include="InventoryConsignment\BrokerWindow.cs" />
     <Compile Include="UI\ChoiceWindow.cs" />
     <Compile Include="AbilityEffect\Class.cs" />
     <Compile Include="Recipe\Component.cs" />

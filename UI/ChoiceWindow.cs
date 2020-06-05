@@ -60,14 +60,14 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the choice window as an EQ2UIPage
+        /// Returns the choice window as an EQ2Window
         /// </summary>
-        public EQ2UIPage ToEQ2UIPage
+        public EQ2Window ToEQ2UIPage
         {
             get
             {
                 Trace.WriteLine(String.Format("ChoiceWindow:ToEQ2UIPage"));
-                return new EQ2UIPage(this.GetMember("ToEQ2UIPage"));
+                return new EQ2Window(this.GetMember("ToEQ2UIPage"));
             }
         }
 

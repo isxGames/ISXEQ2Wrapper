@@ -72,14 +72,14 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the LootWindow as an EQ2UIPage
+        /// Returns the LootWindow as an EQ2Window
         /// </summary>
-        public EQ2UIPage ToEQ2UIPage
+        public EQ2Window ToEQ2UIPage
         {
             get
             {
                 Trace.WriteLine(String.Format("LootWindow:ToEQ2UIPage"));
-                return new EQ2UIPage(this.GetMember("ToEQ2UIPage"));
+                return new EQ2Window(this.GetMember("ToEQ2UIPage"));
             }
         }
 

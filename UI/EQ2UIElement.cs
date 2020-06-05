@@ -11,7 +11,7 @@ namespace EQ2.ISXEQ2.UI
     /// This DataType includes all of the data available to ISXEQ2 that is related 
     /// to UI Elements such as buttons, icons, checkboxes, UI Text, composites and others. 
     /// </summary>
-    public class EQ2UIElement : LavishScriptObject
+    public class EQ2Widget : LavishScriptObject
     {
 
         #region Constructor
@@ -20,11 +20,26 @@ namespace EQ2.ISXEQ2.UI
         /// Constructor
         /// </summary>
         /// <param name="copy">LS Object</param>
-        public EQ2UIElement(LavishScriptObject copy) : base(copy) { }
+        public EQ2Widget(LavishScriptObject copy) : base(copy) { }
+
+        /// <summary>
+        /// Constructor - Constructs a EQ2Window object based on the LavishScript object EQ2Window
+        /// </summary>
+        public EQ2Widget() : base(LavishScript.Objects.GetObject("EQ2Widget")) { }
 
         #endregion
 
         #region Members
+
+        /// <summary>
+        /// If the result of a GetProperty call is a boolean value, then it will return "TRUE" or "FALSE".
+        /// Otherwise, it will return a string unless an additional argument is provided as follows
+        /// </summary>
+        public string GetProperty(string name)
+        {
+            Trace.WriteLine(String.Format("EQ2UIElement:GetProperty({0})", name));
+            return this.GetStringFromLSO("GetProperty", name);
+        }
 
         /// <summary>
         /// Retrieves the specified Child. This data member only works for Composite UI element types.
@@ -36,10 +51,10 @@ namespace EQ2.ISXEQ2.UI
         /// <param name="type">type</param>
         /// <param name="index">index</param>
         /// <returns>EQ2UIElement</returns>
-        public EQ2UIElement Child(ElementType type, int index)
+        public EQ2Widget Child(ElementType type, int index)
         {
             Trace.WriteLine(String.Format("EQ2UIElement:Child({0}, {1})", type.ToString(), index.ToString(CultureInfo.InvariantCulture)));
-            return new EQ2UIElement(this.GetMember("ChildType", type.ToString(), index.ToString(CultureInfo.InvariantCulture)));
+            return new EQ2Widget(this.GetMember("ChildType", type.ToString(), index.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -89,10 +104,10 @@ namespace EQ2.ISXEQ2.UI
         /// </summary>
         /// <param name="path">path</param>
         /// <returns>EQ2UIElement</returns>
-        public EQ2UIElement GetDynamicData(string path)
+        public EQ2Widget GetDynamicData(string path)
         {
             Trace.WriteLine(String.Format("EQ2UIElement:GetDynamicData({0})", path));
-            return new EQ2UIElement(this.GetMember("GetDynamicData", path));
+            return new EQ2Widget(this.GetMember("GetDynamicData", path));
         }
 
         /// <summary>
@@ -164,12 +179,12 @@ namespace EQ2.ISXEQ2.UI
         /// <summary>
         /// Parent
         /// </summary>
-        public EQ2UIElement Parent
+        public EQ2Widget Parent
         {
             get
             {
                 Trace.WriteLine(String.Format("EQ2UIElement:Parent"));
-                return new EQ2UIElement(this.GetMember("Parent"));
+                return new EQ2Widget(this.GetMember("Parent"));
             }
         }
 
@@ -293,10 +308,10 @@ namespace EQ2.ISXEQ2.UI
         /// </summary>
         /// <param name="text">text</param>
         /// <returns>call success</returns>
-        public bool AddToTextBox(string text)
+        public bool SetProperty(string propertyName, string value)
         {
-            Trace.WriteLine(String.Format("EQ2UIElement:AddToTextBox({0})", text));
-            return this.ExecuteMethod("AddToTextBox", text);
+            Trace.WriteLine(String.Format("EQ2UIElement:SetProperty({0},{1})", propertyName, value));
+            return this.ExecuteMethod("SetProperty", propertyName, value);
         }
 
         /// <summary>
