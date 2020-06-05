@@ -9,7 +9,7 @@ namespace EQ2.ISXEQ2.UI
     /// This DataType includes all of the data available to ISXEQ2 that is related to User Interface Pages. 
     /// Many times, this refers to UI Windows; however, it is not restricted to that.
     /// </summary>
-    public class EQ2UIPage : LavishScriptObject
+    public class EQ2Window : LavishScriptObject
     {
 
         #region Constructor
@@ -18,7 +18,12 @@ namespace EQ2.ISXEQ2.UI
         /// Constructor
         /// </summary>
         /// <param name="copy">LS Object</param>
-        public EQ2UIPage(LavishScriptObject copy) : base(copy) { }
+        public EQ2Window(LavishScriptObject copy) : base(copy) { }
+
+        /// <summary>
+        /// Constructor - Constructs a EQ2Window object based on the LavishScript object EQ2Window
+        /// </summary>
+        public EQ2Window() : base(LavishScript.Objects.GetObject("EQ2Window")) { }
 
         #endregion
 
@@ -30,10 +35,10 @@ namespace EQ2.ISXEQ2.UI
         /// <param name="type">type</param>
         /// <param name="name">name</param>
         /// <returns>EQ2UIElement</returns>
-        public EQ2UIElement Child(EQ2UIElement.ElementType type, string name)
+        public EQ2Widget Child(EQ2Widget.ElementType type, string name)
         {
-            Trace.WriteLine(String.Format("EQ2UIPage:Child({0}, {1})", type.ToString(), name));
-            return new EQ2UIElement(this.GetMember("Child", type.ToString(), name));
+            Trace.WriteLine(String.Format("EQ2Window:Child({0}, {1})", type.ToString(), name));
+            return new EQ2Widget(this.GetMember("Child", type.ToString(), name));
         }
 
         /// <summary>
@@ -43,7 +48,7 @@ namespace EQ2.ISXEQ2.UI
         {
             get
             {
-                Trace.WriteLine(String.Format("EQ2UIPage:IsVisible"));
+                Trace.WriteLine(String.Format("EQ2Window:IsVisible"));
                 return this.GetBoolFromLSO("IsVisible");
             }
         }

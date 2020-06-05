@@ -24,7 +24,10 @@ namespace EQ2.ISXEQ2.UI
         #endregion
 
         #region Members
-
+        /// <summary>
+        /// Returns the item being examined as an item datatype object.
+        /// (Note:  All members of the item should be available without initialization when accessed via the examineitemwindow.)
+        /// </summary>
         public Item ToItem
         {
             get
@@ -37,12 +40,12 @@ namespace EQ2.ISXEQ2.UI
         /// <summary>
         /// Returns a "checkbox" eq2uielement type.
         /// </summary>
-        public EQ2UIElement GetPVPCheckbox
+        public EQ2Widget GetPVPCheckbox
         {
             get
             {
                 Trace.WriteLine(String.Format("ExamineItemWindow:GetPVPCheckbox"));
-                return new EQ2UIElement(this.GetMember("GetPVPCheckBox"));
+                return new EQ2Widget(this.GetMember("GetPVPCheckBox"));
             }
         }
 
@@ -63,10 +66,10 @@ namespace EQ2.ISXEQ2.UI
         /// </summary>
         /// <param name="index">index</param>
         /// <returns>EQ2UIElement</returns>
-        public EQ2UIElement TextVector(int index)
+        public EQ2Widget TextVector(int index)
         {
             Trace.WriteLine(String.Format("ExamineItemWindow:TextVector({0}})", index.ToString(CultureInfo.InvariantCulture)));
-            return new EQ2UIElement(this.GetMember("TextVector", index.ToString(CultureInfo.InvariantCulture)));
+            return new EQ2Widget(this.GetMember("TextVector", index.ToString(CultureInfo.InvariantCulture)));
         }
 
 

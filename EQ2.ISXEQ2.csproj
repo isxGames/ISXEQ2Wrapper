@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\InnerSpace\Lavish.InnerSpace.dll</HintPath>
     </Reference>
+    <Reference Include="Lavish.LavishNav, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9029a3ab4cbe108d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\InnerSpace\Lavish.LavishNav.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -66,7 +70,7 @@
     <Compile Include="Utility\EQ2Location.cs" />
     <Compile Include="Utility\EQ2Mail.cs" />
     <Compile Include="UI\EQ2UIElement.cs" />
-    <Compile Include="UI\EQ2Window.cs" />
+    <Compile Include="UI\EQ2UIPage.cs" />
     <Compile Include="UI\ExamineItemWindow.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Helpers\Utils.cs" />

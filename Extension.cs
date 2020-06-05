@@ -165,10 +165,10 @@ namespace EQ2.ISXEQ2
         /// Returns an EQ2UIElement of type DataSourceContainer from the xml file named.
         /// </summary>
         /// <param name="parent">top level parent of xml file</param>
-        public static EQ2UIElement EQ2DataSourceContainer(string parent)
+        public static EQ2Widget EQ2DataSourceContainer(string parent)
         {
             Trace.WriteLine(String.Format("Extension:EQ2DataSourceContainer({0})", parent));
-            return new EQ2UIElement(LavishScript.Objects.GetObject("EQ2DataSourceContainer", parent));
+            return new EQ2Widget(LavishScript.Objects.GetObject("EQ2DataSourceContainer", parent));
         }
 
         /// <summary>
@@ -245,11 +245,11 @@ namespace EQ2.ISXEQ2
         /// typically be your second argument (or PageName. If a file only has two parts 
         /// (ie, eq2ui_proxyactor.xml). Then "ProxyActor" would be your ParentPageName 
         /// and then you would need to look inside the file to find your second argument. 
-        /// </remarks>
-        public static EQ2Window EQ2Window(string parent, string page)
+        /// </remarksEQ2Window
+        public static EQ2Window EQ2UIPage(string parent, string page)
         {
-            Trace.WriteLine(String.Format("Extension:EQ2Window({0}, {1})", parent, page));
-            return new EQ2Window(LavishScript.Objects.GetObject("EQ2Window", parent, page));
+            Trace.WriteLine(String.Format("Extension:EQ2UIPage({0}, {1})", parent, page));
+            return new EQ2Window(LavishScript.Objects.GetObject("EQ2UIPage", parent, page));
         }
 
         /// <summary>
