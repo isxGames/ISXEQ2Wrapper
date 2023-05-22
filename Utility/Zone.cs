@@ -19,6 +19,11 @@ namespace EQ2.ISXEQ2.Utility
         /// <param name="copy">LS Object</param>
         public Zone(LavishScriptObject copy) : base(copy) { }
 
+        /// <summary>
+        /// Constructor - Constructs a Zone object based on the LavishScript object Zone
+        /// </summary>
+        public Zone() : base(LavishScript.Objects.GetObject("Zone")) { }
+
         #endregion
 
         #region Members

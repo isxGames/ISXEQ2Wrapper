@@ -814,7 +814,7 @@ namespace EQ2.ISXEQ2.Events
         /// </summary>
 	    public class ExamineItemWindowAppearedEventArgs : LSEventArgs
 	    {
-            internal ExamineItemWindowAppearedEventArgs(params string[] args) { }
+            internal ExamineItemWindowAppearedEventArgs(params string[] args) : base(args) { }
 
             /// <summary>
             /// Item Name

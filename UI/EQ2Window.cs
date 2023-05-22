@@ -20,11 +20,6 @@ namespace EQ2.ISXEQ2.UI
         /// <param name="copy">LS Object</param>
         public EQ2Window(LavishScriptObject copy) : base(copy) { }
 
-        /// <summary>
-        /// Constructor - Constructs a EQ2Window object based on the LavishScript object EQ2Window
-        /// </summary>
-        public EQ2Window() : base(LavishScript.Objects.GetObject("EQ2Window")) { }
-
         #endregion
 
         #region Members
@@ -35,10 +30,10 @@ namespace EQ2.ISXEQ2.UI
         /// <param name="type">type</param>
         /// <param name="name">name</param>
         /// <returns>EQ2UIElement</returns>
-        public EQ2Widget Child(EQ2Widget.ElementType type, string name)
+        public EQ2UIElement Child(EQ2UIElement.ElementType type, string name)
         {
             Trace.WriteLine(String.Format("EQ2Window:Child({0}, {1})", type.ToString(), name));
-            return new EQ2Widget(this.GetMember("Child", type.ToString(), name));
+            return new EQ2UIElement(this.GetMember("Child", type.ToString(), name));
         }
 
         /// <summary>
