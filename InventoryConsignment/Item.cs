@@ -130,6 +130,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns the slot of the parent container that holds this item, or -1 if the item is not inside a container.
+        /// </summary>
+        public int Bag
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Bag"));
+                return this.GetIntFromLSO("Bag");
+            }
+        }
+
+        /// <summary>
         /// Cache of BaseMaxDamage
         /// </summary>
         private int? _baseMaxDamage;
@@ -405,7 +417,17 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             return this.GetStringFromLSO("EffectDescription", index.ToString(CultureInfo.InvariantCulture));
         }
 
-        
+        /// <summary>
+        /// The effective level of the item.
+        /// </summary>
+        public int EffectiveLevel
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:EffectiveLevel"));
+                return this.GetIntFromLSO("EffectiveLevel");
+            }
+        }
 
         /// <summary>
         /// Returns the name of the equipslot at the index
@@ -508,6 +530,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
                 if (!_iD.HasValue)
                     _iD = this.GetIntFromLSO("ID");
                 return _iD.Value;
+            }
+        }
+
+        /// <summary>
+        /// The icon ID of the item.
+        /// </summary>
+        public int IconID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IconID"));
+                return this.GetIntFromLSO("IconID");
             }
         }
 
@@ -615,7 +649,17 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             }
         }
 
-        
+        /// <summary>
+        /// Returns TRUE if the item is an agent.
+        /// </summary>
+        public bool IsAgent
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsAgent"));
+                return this.GetBoolFromLSO("IsAgent");
+            }
+        }
 
         /// <summary>
         /// Cache of IsAutoConsumeable
@@ -695,6 +739,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Item:IsEquipped"));
                 return this.GetBoolFromLSO("IsEquipped");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is a familiar.
+        /// </summary>
+        public bool IsFamiliar
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsFamiliar"));
+                return this.GetBoolFromLSO("IsFamiliar");
             }
         }
 
@@ -829,6 +885,30 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns TRUE if the item is unpackable.
+        /// </summary>
+        public bool IsUnpackable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsUnpackable"));
+                return this.GetBoolFromLSO("IsUnpackable");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is usable (either useable, or useable when equipped).
+        /// </summary>
+        public bool IsUsable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsUsable"));
+                return this.GetBoolFromLSO("IsUsable");
+            }
+        }
+
+        /// <summary>
         /// Returns the item in the slot
         /// </summary>
         /// <param name="slot">slot number</param>
@@ -876,6 +956,30 @@ namespace EQ2.ISXEQ2.InventoryConsignment
                 if (!_linkID.HasValue)
                     _linkID = this.GetIntFromLSO("LinkID");
                 return _linkID.Value;
+            }
+        }
+
+        /// <summary>
+        /// The display location of the item (e.g., "Inventory", "Bank", or the parent container's name).
+        /// </summary>
+        public string Location
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:Location"));
+                return this.GetStringFromLSO("Location");
+            }
+        }
+
+        /// <summary>
+        /// The LocationID of the item. (Equivalent to InContainerID.)
+        /// </summary>
+        public int LocationID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:LocationID"));
+                return this.GetIntFromLSO("LocationID");
             }
         }
 
@@ -1629,7 +1733,49 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Moves the entire item/stack to the first available vendor 
+        /// Adds the item as an agent (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool AddAgent()
+        {
+            Trace.WriteLine(String.Format("Item:AddAgent()"));
+            return this.ExecuteMethod("AddAgent");
+        }
+
+        /// <summary>
+        /// Adds the item as an agent.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool AddAgent(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:AddAgent({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("AddAgent", "askmefirst") : this.ExecuteMethod("AddAgent");
+        }
+
+        /// <summary>
+        /// Adds the item as a familiar (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool AddFamiliar()
+        {
+            Trace.WriteLine(String.Format("Item:AddFamiliar()"));
+            return this.ExecuteMethod("AddFamiliar");
+        }
+
+        /// <summary>
+        /// Adds the item as a familiar.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool AddFamiliar(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:AddFamiliar({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("AddFamiliar", "askmefirst") : this.ExecuteMethod("AddFamiliar");
+        }
+
+        /// <summary>
+        /// Moves the entire item/stack to the first available vendor
         /// </summary>
         /// <returns>call success</returns>
         public bool AddToConsignment()
@@ -1727,6 +1873,27 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Converts the item as an agent (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool ConvertAgent()
+        {
+            Trace.WriteLine(String.Format("Item:ConvertAgent()"));
+            return this.ExecuteMethod("ConvertAgent");
+        }
+
+        /// <summary>
+        /// Converts the item as an agent.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool ConvertAgent(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:ConvertAgent({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("ConvertAgent", "askmefirst") : this.ExecuteMethod("ConvertAgent");
+        }
+
+        /// <summary>
         /// Destroys Item
         /// </summary>
         /// <returns>call success</returns>
@@ -1778,6 +1945,16 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Equips the item as a familiar.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool EquipFamiliar()
+        {
+            Trace.WriteLine(String.Format("Item:EquipFamiliar()"));
+            return this.ExecuteMethod("EquipFamiliar");
+        }
+
+        /// <summary>
         /// Examines the item
         /// </summary>
         /// <returns>call success</returns>
@@ -1785,6 +1962,27 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             Trace.WriteLine(String.Format("Item:Examine()"));
             return this.ExecuteMethod("Examine");
+        }
+
+        /// <summary>
+        /// Extracts the item using the currently selected target item key (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Extract()
+        {
+            Trace.WriteLine(String.Format("Item:Extract()"));
+            return this.ExecuteMethod("Extract");
+        }
+
+        /// <summary>
+        /// Extracts the item using the currently selected target item key.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool Extract(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:Extract({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("Extract", "askmefirst") : this.ExecuteMethod("Extract");
         }
 
         /// <summary>
@@ -1868,6 +2066,58 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Reads a readable item (e.g., a book).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Read()
+        {
+            Trace.WriteLine(String.Format("Item:Read()"));
+            return this.ExecuteMethod("Read");
+        }
+
+        /// <summary>
+        /// Reclaims adornments from the item using the currently selected target item key (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool ReclaimAdornments()
+        {
+            Trace.WriteLine(String.Format("Item:ReclaimAdornments()"));
+            return this.ExecuteMethod("ReclaimAdornments");
+        }
+
+        /// <summary>
+        /// Reclaims adornments from the item using the currently selected target item key.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool ReclaimAdornments(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:ReclaimAdornments({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("ReclaimAdornments", "askmefirst") : this.ExecuteMethod("ReclaimAdornments");
+        }
+
+        /// <summary>
+        /// Refines the item using the currently selected target item key (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Refine()
+        {
+            Trace.WriteLine(String.Format("Item:Refine()"));
+            return this.ExecuteMethod("Refine");
+        }
+
+        /// <summary>
+        /// Refines the item using the currently selected target item key.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool Refine(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:Refine({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("Refine", "askmefirst") : this.ExecuteMethod("Refine");
+        }
+
+        /// <summary>
         /// Sacrifices the item
         /// </summary>
         /// <param name="withconfirm">with confirmation</param>
@@ -1876,6 +2126,27 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             Trace.WriteLine(String.Format("Item:Sacrifice({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
             return withconfirm ? this.ExecuteMethod("Sacrifice", "With Confirmation") : this.ExecuteMethod("Sacrifice");
+        }
+
+        /// <summary>
+        /// Salvages the item using the currently selected target item key (without confirmation).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Salvage()
+        {
+            Trace.WriteLine(String.Format("Item:Salvage()"));
+            return this.ExecuteMethod("Salvage");
+        }
+
+        /// <summary>
+        /// Salvages the item using the currently selected target item key.
+        /// </summary>
+        /// <param name="withconfirm">with confirmation</param>
+        /// <returns>call success</returns>
+        public bool Salvage(bool withconfirm)
+        {
+            Trace.WriteLine(String.Format("Item:Salvage({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
+            return withconfirm ? this.ExecuteMethod("Salvage", "askmefirst") : this.ExecuteMethod("Salvage");
         }
 
         /// <summary>
@@ -1910,6 +2181,27 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Rebinds this Item variable to the supplied Item ID. Useful for dynamic Item lookups.
+        /// </summary>
+        /// <param name="itemID">item ID</param>
+        /// <returns>call success</returns>
+        public bool Set(long itemID)
+        {
+            Trace.WriteLine(String.Format("Item:Set({0})", itemID.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Set", itemID.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Sets the equipped familiar's appearance to this familiar.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool SetAppearanceFamiliar()
+        {
+            Trace.WriteLine(String.Format("Item:SetAppearanceFamiliar()"));
+            return this.ExecuteMethod("SetAppearanceFamiliar");
+        }
+
+        /// <summary>
         /// Toggles auto consume on and off. Check with AutoConsumeOn
         /// </summary>
         /// <returns>call success</returns>
@@ -1938,6 +2230,36 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             Trace.WriteLine(String.Format("Item:UnEquip"));
             return this.ExecuteMethod("UnEquip");
+        }
+
+        /// <summary>
+        /// Unequips the currently equipped familiar.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool UnequipFamiliar()
+        {
+            Trace.WriteLine(String.Format("Item:UnequipFamiliar()"));
+            return this.ExecuteMethod("UnequipFamiliar");
+        }
+
+        /// <summary>
+        /// Unpacks an unpackable item.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Unpack()
+        {
+            Trace.WriteLine(String.Format("Item:Unpack()"));
+            return this.ExecuteMethod("Unpack");
+        }
+
+        /// <summary>
+        /// Clears the appearance-familiar selection.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool UnsetAppearanceFamiliar()
+        {
+            Trace.WriteLine(String.Format("Item:UnsetAppearanceFamiliar()"));
+            return this.ExecuteMethod("UnsetAppearanceFamiliar");
         }
 
         /// <summary>
