@@ -103,6 +103,20 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
+        /// Returns TRUE if the effectinfo data has been loaded for this effect.
+        /// If FALSE, accessing EffectInfo members may return stale or default values
+        /// while ISXEQ2 asynchronously requests the data from the server.
+        /// </summary>
+        public bool IsEffectInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Effect:IsEffectInfoAvailable"));
+                return this.GetBoolFromLSO("IsEffectInfoAvailable");
+            }
+        }
+
+        /// <summary>
         /// Cache of MainIconID
         /// </summary>
         private int? _mainIconID;
@@ -159,6 +173,36 @@ namespace EQ2.ISXEQ2.AbilityEffect
             }
         }
 
+        /// <summary>
+        /// Returns the EffectInfo for this effect.
+        /// Use IsEffectInfoAvailable to confirm the effectinfo data has loaded.
+        /// </summary>
+        public EffectInfo ToEffectInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Effect:ToEffectInfo"));
+                return new EffectInfo(this.GetMember("ToEffectInfo"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of Type
+        /// </summary>
+        private string _type;
+
+        /// <summary>
+        /// The effect type (e.g. spell category string)
+        /// </summary>
+        public string Type
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Effect:Type"));
+                return _type ?? (_type = this.GetStringFromLSO("Type"));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -181,6 +225,16 @@ namespace EQ2.ISXEQ2.AbilityEffect
         {
             Trace.WriteLine(String.Format("Effect:Examine()"));
             return this.ExecuteMethod("Examine");
+        }
+
+        /// <summary>
+        /// Hides the effect's icon from the on-screen effect window
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Hide()
+        {
+            Trace.WriteLine(String.Format("Effect:Hide()"));
+            return this.ExecuteMethod("Hide");
         }
 
         #endregion

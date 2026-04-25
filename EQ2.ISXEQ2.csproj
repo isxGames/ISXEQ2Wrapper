@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbilityEffect\Ability.cs" />
-    <Compile Include="AbilityEffect\AbilityEffect.cs" />
     <Compile Include="AbilityEffect\Achievement.cs" />
     <Compile Include="CharacterActor\Actor.cs" />
     <Compile Include="CharacterActor\Character.cs" />
@@ -72,6 +71,8 @@
     <Compile Include="InventoryConsignment\ContainerWindow.cs" />
     <Compile Include="InventoryConsignment\ContainerWindowItem.cs" />
     <Compile Include="AbilityEffect\Effect.cs" />
+    <Compile Include="AbilityEffect\EffectInfo.cs" />
+    <Compile Include="AbilityEffect\EffectString.cs" />
     <Compile Include="Utility\EQ2.cs" />
     <Compile Include="Events\EQ2Event.cs" />
     <Compile Include="Utility\EQ2Location.cs" />

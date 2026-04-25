@@ -57,7 +57,21 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
-        /// This is the current duration of the buff/debuff in seconds. 
+        /// For wards and similar damage-absorbing maintained effects, returns the
+        /// remaining damage the ward can absorb. Returns 0 for non-ward maintained
+        /// effects or before the underlying examine data has been received.
+        /// </summary>
+        public long DamageRemaining
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Maintained:DamageRemaining"));
+                return this.GetInt64FromLSO("DamageRemaining");
+            }
+        }
+
+        /// <summary>
+        /// This is the current duration of the buff/debuff in seconds.
         /// Buffs/Debuffs that do not have a duration (ie, last forever) will return -1.
         /// </summary>
         public float Duration
@@ -142,6 +156,24 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
+        /// Cache of TargetType
+        /// </summary>
+        private string _targetType;
+
+        /// <summary>
+        /// Returns one of the following strings: self only, pet only, group, or single target.
+        /// This is the preferred replacement for the deprecated 'Type' member.
+        /// </summary>
+        public string TargetType
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Maintained:TargetType"));
+                return _targetType ?? (_targetType = this.GetStringFromLSO("TargetType"));
+            }
+        }
+
+        /// <summary>
         /// Cache of Type
         /// </summary>
         private string _type;
@@ -155,6 +187,20 @@ namespace EQ2.ISXEQ2.AbilityEffect
             {
                 Trace.WriteLine(String.Format("Maintained:Type"));
                 return _type ?? (_type = this.GetStringFromLSO("Type"));
+            }
+        }
+
+        /// <summary>
+        /// For limited-use maintained effects (e.g. some procs), returns the number
+        /// of remaining uses. Returns 0 for unlimited maintained effects or before
+        /// the underlying examine data has been received.
+        /// </summary>
+        public long UsesRemaining
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Maintained:UsesRemaining"));
+                return this.GetInt64FromLSO("UsesRemaining");
             }
         }
 

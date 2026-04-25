@@ -227,14 +227,14 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
-        /// Returns the ability effect at the specified index
+        /// Returns the ability effect string at the specified index
         /// </summary>
         /// <param name="index">index</param>
-        /// <returns>ability effect</returns>
-        public AbilityEffect Effect(int index)
+        /// <returns>effect string</returns>
+        public EffectString Effect(int index)
         {
             Trace.WriteLine(String.Format("Ability:Effect({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return new AbilityEffect(this.GetMember("Effect", index.ToString(CultureInfo.InvariantCulture)));
+            return new EffectString(this.GetMember("Effect", index.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
