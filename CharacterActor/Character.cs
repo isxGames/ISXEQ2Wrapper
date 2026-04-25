@@ -281,6 +281,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Camera pitch in degrees. 75 is looking straight down; -75 is looking straight up; 0 is straight ahead.
+        /// </summary>
+        public float CameraPitch
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CameraPitch"));
+                return this.GetFloatFromLSO("CameraPitch");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if casting a spell.
         /// </summary>
         public bool CastingSpell
@@ -374,6 +386,30 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:CountMaintained"));
                 return this.GetIntFromLSO("CountMaintained");
+            }
+        }
+
+        /// <summary>
+        /// Current raw health (Int64). Distinct from the inherited ActorType Health, which returns a percentage.
+        /// </summary>
+        public long CurrentHealth
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CurrentHealth"));
+                return this.GetInt64FromLSO("CurrentHealth");
+            }
+        }
+
+        /// <summary>
+        /// Current raw power (Int64). Distinct from the inherited ActorType Power, which returns a percentage.
+        /// </summary>
+        public long CurrentPower
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CurrentPower"));
+                return this.GetInt64FromLSO("CurrentPower");
             }
         }
 
@@ -942,6 +978,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if the character is in the current zone. (Always true for Me.)
+        /// </summary>
+        public bool InZone
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:InZone"));
+                return this.GetBoolFromLSO("InZone");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if the character is afflicted by arcane, noxious, etc.
         /// </summary>
         public bool IsAfflicted
@@ -1046,6 +1094,18 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:IsDecliningTradeInvites"));
                 return this.GetBoolFromLSO("IsDecliningTradeInvites");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the character is the group leader.
+        /// </summary>
+        public bool IsGroupLeader
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:IsGroupLeader"));
+                return this.GetBoolFromLSO("IsGroupLeader");
             }
         }
 
@@ -2095,8 +2155,62 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns the abilities matching the given query string.
+        /// </summary>
+        /// <param name="query">LavishScript query expression</param>
+        /// <returns>matching abilities</returns>
+        public IEnumerable<Ability> QueryAbilities(string query)
+        {
+            Trace.WriteLine(String.Format("Character:QueryAbilities({0})", query));
+            return Util.GetListFromMethod<Ability>(this, "QueryAbilities", "ability", query);
+        }
+
+        /// <summary>
+        /// Returns the effects matching the given query string.
+        /// </summary>
+        /// <param name="query">LavishScript query expression</param>
+        /// <returns>matching effects</returns>
+        public IEnumerable<Effect> QueryEffects(string query)
+        {
+            Trace.WriteLine(String.Format("Character:QueryEffects({0})", query));
+            return Util.GetListFromMethod<Effect>(this, "QueryEffects", "effect", query);
+        }
+
+        /// <summary>
+        /// Returns the inventory items matching the given query string.
+        /// </summary>
+        /// <param name="query">LavishScript query expression</param>
+        /// <returns>matching items</returns>
+        public IEnumerable<Item> QueryInventory(string query)
+        {
+            Trace.WriteLine(String.Format("Character:QueryInventory({0})", query));
+            return Util.GetListFromMethod<Item>(this, "QueryInventory", "item", query);
+        }
+
+        /// <summary>
+        /// Returns the recipes matching the given query string.
+        /// </summary>
+        /// <param name="query">LavishScript query expression</param>
+        /// <returns>matching recipes</returns>
+        public IEnumerable<Recipe.Recipe> QueryRecipes(string query)
+        {
+            Trace.WriteLine(String.Format("Character:QueryRecipes({0})", query));
+            return Util.GetListFromMethod<Recipe.Recipe>(this, "QueryRecipes", "recipe", query);
+        }
+
+        /// <summary>
+        /// Asynchronously requests effect info for all of the character's effects.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool RequestEffectsInfo()
+        {
+            Trace.WriteLine(String.Format("Character:RequestEffectsInfo()"));
+            return this.ExecuteMethod("RequestEffectsInfo");
+        }
+
+        /// <summary>
         /// Attempts to reset the time for the zone. This may require to have opened
-        /// the zone reuse window at least once in your current session before working 
+        /// the zone reuse window at least once in your current session before working
         /// properly (use /togglezonereuse)
         /// </summary>
         /// <param name="name">zone name</param>
@@ -2105,6 +2219,17 @@ namespace EQ2.ISXEQ2.CharacterActor
         {
             Trace.WriteLine(String.Format("Character:ResetZoneTimer({0})", name));
             return this.ExecuteMethod("ResetZoneTimer", name);
+        }
+
+        /// <summary>
+        /// Sets the camera pitch in degrees. Valid range is -75.0 to 75.0.
+        /// </summary>
+        /// <param name="pitch">pitch in degrees (-75.0 to 75.0)</param>
+        /// <returns>call success</returns>
+        public bool SetCameraPitch(float pitch)
+        {
+            Trace.WriteLine(String.Format("Character:SetCameraPitch({0})", pitch.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("SetCameraPitch", pitch.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
