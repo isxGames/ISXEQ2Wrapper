@@ -45,6 +45,42 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
+        /// Cache of AscensionClass
+        /// </summary>
+        private string _ascensionClass;
+
+        /// <summary>
+        /// The ascension class name of the ability (blank for non-ascension abilities)
+        /// </summary>
+        public string AscensionClass
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Ability:AscensionClass"));
+                return _ascensionClass ?? (_ascensionClass = this.GetStringFromLSO("AscensionClass"));
+            }
+        }
+
+        /// <summary>
+        /// Cache of AscensionLevel
+        /// </summary>
+        private int? _ascensionLevel;
+
+        /// <summary>
+        /// The ascension class level of the ability
+        /// </summary>
+        public int AscensionLevel
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Ability:AscensionLevel"));
+                if(!_ascensionLevel.HasValue)
+                    _ascensionLevel = this.GetIntFromLSO("AscensionLevel");
+                return _ascensionLevel.Value;
+            }
+        }
+
+        /// <summary>
         /// Cache of BackDropIconID
         /// </summary>
         private int? _backDropIconID;
@@ -316,6 +352,20 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
+        /// Returns TRUE if the abilityinfo data has been loaded for this ability.
+        /// If FALSE, accessing AbilityInfo members may return stale or default values
+        /// while ISXEQ2 asynchronously requests the data from the server.
+        /// </summary>
+        public bool IsAbilityInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Ability:IsAbilityInfoAvailable"));
+                return this.GetBoolFromLSO("IsAbilityInfoAvailable");
+            }
+        }
+
+        /// <summary>
         /// Cache of IsBeneficial
         /// </summary>
         private bool? _isBeneficial;
@@ -331,6 +381,25 @@ namespace EQ2.ISXEQ2.AbilityEffect
                 if (!_isBeneficial.HasValue)
                     _isBeneficial = this.GetBoolFromLSO("IsBeneficial");
                 return _isBeneficial.Value;
+            }
+        }
+
+        /// <summary>
+        /// Cache of IsConduit
+        /// </summary>
+        private bool? _isConduit;
+
+        /// <summary>
+        /// Returns TRUE if the ability is a Channeler conduit ability
+        /// </summary>
+        public bool IsConduit
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Ability:IsConduit"));
+                if(!_isConduit.HasValue)
+                    _isConduit = this.GetBoolFromLSO("IsConduit");
+                return _isConduit.Value;
             }
         }
 
@@ -355,6 +424,25 @@ namespace EQ2.ISXEQ2.AbilityEffect
             {
                 Trace.WriteLine(String.Format("Ability:IsReady"));
                 return this.GetBoolFromLSO("IsReady");
+            }
+        }
+
+        /// <summary>
+        /// Cache of Level
+        /// </summary>
+        private int? _level;
+
+        /// <summary>
+        /// The level at which the ability becomes available
+        /// </summary>
+        public int Level
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Ability:Level"));
+                if(!_level.HasValue)
+                    _level = this.GetIntFromLSO("Level");
+                return _level.Value;
             }
         }
 
@@ -719,6 +807,21 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
+        /// Returns the AbilityInfo for this ability. Because this wrapper combines
+        /// the ability and abilityinfo datatypes into a single class, this returns
+        /// the same Ability instance bound to the underlying abilityinfo object.
+        /// Use IsAbilityInfoAvailable to confirm the abilityinfo data has loaded.
+        /// </summary>
+        public Ability ToAbilityInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Ability:ToAbilityInfo"));
+                return new Ability(this.GetMember("ToAbilityInfo"));
+            }
+        }
+
+        /// <summary>
         /// This will recreate the actual link used with in game chat channels (used typically with eq2echo or eq2execute).
         /// </summary>
         /// <returns>link</returns>
@@ -736,6 +839,42 @@ namespace EQ2.ISXEQ2.AbilityEffect
         #region Methods
 
         /// <summary>
+        /// Adds the ability to the Beastlord ability bar at the specified slot.
+        /// Slot is 1-based; valid range is 1-10. Only valid for Beastlord characters.
+        /// </summary>
+        /// <param name="slot">slot (1-10)</param>
+        /// <returns>call success</returns>
+        public bool AddToBeastlordBar(int slot)
+        {
+            Trace.WriteLine(String.Format("Ability:AddToBeastlordBar({0})", slot.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddToBeastlordBar", slot.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Adds the ability to the Channeler ability bar at the specified slot.
+        /// Slot is 1-based; valid range is 1-10. Only valid for Channeler characters.
+        /// </summary>
+        /// <param name="slot">slot (1-10)</param>
+        /// <returns>call success</returns>
+        public bool AddToChannelerBar(int slot)
+        {
+            Trace.WriteLine(String.Format("Ability:AddToChannelerBar({0})", slot.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddToChannelerBar", slot.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Adds the ability to the Channeler conduit bar at the specified slot.
+        /// Slot is 1-based; valid range is 1-8. Only valid for Channeler characters.
+        /// </summary>
+        /// <param name="slot">slot (1-8)</param>
+        /// <returns>call success</returns>
+        public bool AddToConduitBar(int slot)
+        {
+            Trace.WriteLine(String.Format("Ability:AddToConduitBar({0})", slot.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("AddToConduitBar", slot.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
         /// Examines the ability
         /// </summary>
         /// <returns>call success</returns>
@@ -743,6 +882,18 @@ namespace EQ2.ISXEQ2.AbilityEffect
         {
             Trace.WriteLine(String.Format("Ability:Examine()"));
             return this.ExecuteMethod("Examine");
+        }
+
+        /// <summary>
+        /// Rebinds this Ability variable to the ability identified by the given AbilityID.
+        /// This is the data-mutator counterpart of the LavishScript ':Set' method.
+        /// </summary>
+        /// <param name="abilityID">ability ID</param>
+        /// <returns>call success</returns>
+        public bool Set(long abilityID)
+        {
+            Trace.WriteLine(String.Format("Ability:Set({0})", abilityID.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Set", abilityID.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
