@@ -124,6 +124,18 @@ namespace EQ2.ISXEQ2.CharacterActor
 
 
         /// <summary>
+        /// Returns TRUE if the group member is in the same zone as the player.
+        /// </summary>
+        public bool InZone
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("GroupMember:InZone"));
+                return this.GetBoolFromLSO("InZone");
+            }
+        }
+
+        /// <summary>
         /// Returns true if actor is afflicted by arcane, noxious, etc.
         /// </summary>
         public bool IsAfflicted
