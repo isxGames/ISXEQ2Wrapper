@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using EQ2.ISXEQ2.AbilityEffect;
@@ -26,8 +27,54 @@ namespace EQ2.ISXEQ2.CharacterActor
         #region Members
 
         /// <summary>
-        /// Returns TRUE if the actor can turn. NOTE: If you're 'mezzed' you are 
-        /// both rooted and you cannot turn. Use similar logic to determine other 
+        /// ID of the ability the actor is currently casting, or 0 if none.
+        /// </summary>
+        public uint AbilityCastingID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:AbilityCastingID"));
+                return this.GetUIntFromLSO("AbilityCastingID");
+            }
+        }
+
+        /// <summary>
+        /// Cast time of the ability the actor is currently casting, in seconds.
+        /// </summary>
+        public float AbilityCastingTime
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:AbilityCastingTime"));
+                return this.GetFloatFromLSO("AbilityCastingTime");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the actor has the named active state.
+        /// </summary>
+        /// <param name="name">active state name</param>
+        public bool ActiveStateExists(string name)
+        {
+            Trace.WriteLine(String.Format("Actor:ActiveStateExists({0})", name));
+            return this.GetBoolFromLSO("ActiveStateExists", name);
+        }
+
+        /// <summary>
+        /// Aura visual string applied to the actor.
+        /// </summary>
+        public string Aura
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Aura"));
+                return this.GetStringFromLSO("Aura");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the actor can turn. NOTE: If you're 'mezzed' you are
+        /// both rooted and you cannot turn. Use similar logic to determine other
         /// situations such as being 'stunned' etc.
         /// </summary>
         public bool CanTurn
@@ -124,7 +171,19 @@ namespace EQ2.ISXEQ2.CharacterActor
             return asRGB ? this.GetStringFromLSO("ConColor", "raw") : this.GetStringFromLSO("ConColor");
         }
 
-        
+        /// <summary>
+        /// Current animation name applied to the actor.
+        /// </summary>
+        public string CurrentAnimation
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:CurrentAnimation"));
+                return this.GetStringFromLSO("CurrentAnimation");
+            }
+        }
+
+
         private int? _difficulty;
 
         /// <summary>
@@ -222,6 +281,16 @@ namespace EQ2.ISXEQ2.CharacterActor
                     _encounterSize = this.GetIntFromLSO("EncounterSize");
                 return _encounterSize.Value;
             }
+        }
+
+        /// <summary>
+        /// Returns the EquipmentAppearance at the specified equipment slot (1 to 34).
+        /// </summary>
+        /// <param name="slot">equipment slot (1-34)</param>
+        public EquipmentAppearance EquipmentAppearance(int slot)
+        {
+            Trace.WriteLine(String.Format("Actor:EquipmentAppearance({0})", slot.ToString(CultureInfo.InvariantCulture)));
+            return new EquipmentAppearance(this.GetMember("EquipmentAppearance", slot.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -1028,6 +1097,30 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Mood visual string applied to the actor.
+        /// </summary>
+        public string Mood
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Mood"));
+                return this.GetStringFromLSO("Mood");
+            }
+        }
+
+        /// <summary>
+        /// EquipmentAppearance for the actor's mount (or NULL if not mounted).
+        /// </summary>
+        public EquipmentAppearance MountAppearance
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:MountAppearance"));
+                return new EquipmentAppearance(this.GetMember("MountAppearance"));
+            }
+        }
+
+        /// <summary>
         /// Cache of Name
         /// </summary>
         private string _name;
@@ -1056,6 +1149,17 @@ namespace EQ2.ISXEQ2.CharacterActor
             }
         }
 
+        /// <summary>
+        /// Returns the name of a quest the actor offers, or empty string if none.
+        /// </summary>
+        public string OffersQuest
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:OffersQuest"));
+                return this.GetStringFromLSO("OffersQuest");
+            }
+        }
 
         /// <summary>
         /// Returns TRUE if the actor is on a carpet. Mutually exclusive
@@ -1122,6 +1226,30 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Actor:OnHorse"));
                 return this.GetBoolFromLSO("OnHorse");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the actor is on a transport (mount/horse/carpet/griffin/etc.).
+        /// </summary>
+        public bool OnTransport
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:OnTransport"));
+                return this.GetBoolFromLSO("OnTransport");
+            }
+        }
+
+        /// <summary>
+        /// Overlay visual string applied to the actor.
+        /// </summary>
+        public string Overlay
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Overlay"));
+                return this.GetStringFromLSO("Overlay");
             }
         }
 
@@ -1222,6 +1350,30 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Tag target icon name (Skull, Shield, Star, Sword, Cross, Flame), or empty string.
+        /// </summary>
+        public string TagTargetIcon
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:TagTargetIcon"));
+                return this.GetStringFromLSO("TagTargetIcon");
+            }
+        }
+
+        /// <summary>
+        /// Tag target number (1-6), or empty string if none.
+        /// </summary>
+        public string TagTargetNumber
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:TagTargetNumber"));
+                return this.GetStringFromLSO("TagTargetNumber");
+            }
+        }
+
+        /// <summary>
         /// Target, if any.
         /// </summary>
         public Actor Target
@@ -1249,6 +1401,30 @@ namespace EQ2.ISXEQ2.CharacterActor
                 if(!_targetRingRadius.HasValue)
                     _targetRingRadius = this.GetFloatFromLSO("TargetRingRadius");
                 return _targetRingRadius.Value;
+            }
+        }
+
+        /// <summary>
+        /// Diagnostic string slot 1.
+        /// </summary>
+        public string TestString1
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:TestString1"));
+                return this.GetStringFromLSO("TestString1");
+            }
+        }
+
+        /// <summary>
+        /// Diagnostic string slot 2.
+        /// </summary>
+        public string TestString2
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:TestString2"));
+                return this.GetStringFromLSO("TestString2");
             }
         }
 
@@ -1289,6 +1465,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Tint flags for the actor's base appearance.
+        /// </summary>
+        public uint TintFlags
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:TintFlags"));
+                return this.GetUIntFromLSO("TintFlags");
+            }
+        }
+
+        /// <summary>
         /// Useful for iterating the character.Group array.
         /// </summary>
         public Actor ToActor
@@ -1297,6 +1485,18 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Actor:ToActor"));
                 return new Actor(this.GetMember("ToActor"));
+            }
+        }
+
+        /// <summary>
+        /// Tooltip text for the actor.
+        /// </summary>
+        public string Tooltip
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Tooltip"));
+                return this.GetStringFromLSO("Tooltip");
             }
         }
 
@@ -1318,6 +1518,30 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if interacting with this actor will update a quest for a group member.
+        /// </summary>
+        public bool UpdatesGroupMemberQuest
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:UpdatesGroupMemberQuest"));
+                return this.GetBoolFromLSO("UpdatesGroupMemberQuest");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if interacting with this actor will update one of your quests.
+        /// </summary>
+        public bool UpdatesMyQuest
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:UpdatesMyQuest"));
+                return this.GetBoolFromLSO("UpdatesMyQuest");
+            }
+        }
+
+        /// <summary>
         /// Velocity
         /// </summary>
         public Point3f Velocity
@@ -1326,6 +1550,18 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Actor:Velocity"));
                 return new Point3f(this.GetMember("Velocity"));
+            }
+        }
+
+        /// <summary>
+        /// Visual variant identifier applied to the actor's base appearance.
+        /// </summary>
+        public string VisualVariant
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:VisualVariant"));
+                return this.GetStringFromLSO("VisualVariant");
             }
         }
 
@@ -1424,6 +1660,16 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns the list of active state names for the actor.
+        /// </summary>
+        /// <returns>active state names</returns>
+        public IEnumerable<string> GetActiveStates()
+        {
+            Trace.WriteLine(String.Format("Actor:GetActiveStates()"));
+            return Util.GetListFromMethod<string>(this, "GetActiveStates", "string");
+        }
+
+        /// <summary>
         /// Used to retrieve effects data for this actor.
         /// </summary>
         /// <returns></returns>
@@ -1452,7 +1698,59 @@ namespace EQ2.ISXEQ2.CharacterActor
                 default:
                     return false;
             }
-            
+
+        }
+
+        /// <summary>
+        /// Issues an 'apply_verb &lt;id&gt; move' against the actor (used to move placed objects).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Move()
+        {
+            Trace.WriteLine(String.Format("Actor:Move()"));
+            return this.ExecuteMethod("Move");
+        }
+
+        /// <summary>
+        /// Asynchronously requests effect info for all of this actor's effects.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool RequestEffectsInfo()
+        {
+            Trace.WriteLine(String.Format("Actor:RequestEffectsInfo()"));
+            return this.ExecuteMethod("RequestEffectsInfo");
+        }
+
+        /// <summary>
+        /// Temporarily resizes the actor's visual scale.
+        /// </summary>
+        /// <param name="scale">scale multiplier</param>
+        /// <returns>call success</returns>
+        public bool Resize(float scale)
+        {
+            Trace.WriteLine(String.Format("Actor:Resize({0})", scale.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Resize", scale.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Right-clicks the actor (opens the action window).
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool RightClick()
+        {
+            Trace.WriteLine(String.Format("Actor:RightClick()"));
+            return this.ExecuteMethod("RightClick");
+        }
+
+        /// <summary>
+        /// Initializes this actor variable from an actor ID.
+        /// </summary>
+        /// <param name="actorID">actor ID</param>
+        /// <returns>call success</returns>
+        public bool Set(long actorID)
+        {
+            Trace.WriteLine(String.Format("Actor:Set({0})", actorID.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Set", actorID.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>

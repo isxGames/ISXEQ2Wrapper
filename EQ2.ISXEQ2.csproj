@@ -62,6 +62,7 @@
     <Compile Include="AbilityEffect\Achievement.cs" />
     <Compile Include="CharacterActor\Actor.cs" />
     <Compile Include="CharacterActor\Character.cs" />
+    <Compile Include="CharacterActor\EquipmentAppearance.cs" />
     <Compile Include="InventoryConsignment\ItemInfo.cs" />
     <Compile Include="InventoryConsignment\BrokerWindow.cs" />
     <Compile Include="UI\ChoiceWindow.cs" />
