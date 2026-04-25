@@ -83,8 +83,11 @@
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="CharacterActor\GroupMember.cs" />
     <Compile Include="Utility\ISXEQ2.cs" />
+    <Compile Include="InventoryConsignment\Adornment.cs" />
     <Compile Include="InventoryConsignment\Item.cs" />
+    <Compile Include="InventoryConsignment\ItemEffectString.cs" />
     <Compile Include="InventoryConsignment\ItemModifier.cs" />
+    <Compile Include="InventoryConsignment\PackagedItem.cs" />
     <Compile Include="Helpers\LavishScriptObjectExtensions.cs" />
     <Compile Include="UI\LootWindow.cs" />
     <Compile Include="AbilityEffect\Maintained.cs" />
