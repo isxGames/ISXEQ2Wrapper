@@ -48,6 +48,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             }
 
         /// <summary>
+        /// Percent commission reduction applied to sales in this container's primary market.
+        /// </summary>
+        public int CommissionReduction
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("VendingContainer:CommissionReduction"));
+                return this.GetIntFromLSO("CommissionReduction");
+            }
+        }
+
+        /// <summary>
             /// Current value in silver pieces on container
         /// </summary>
             public float CurrentCoin

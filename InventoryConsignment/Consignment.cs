@@ -48,6 +48,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns TRUE if the consignment's underlying ItemInfo (examine data) is currently available client-side.
+        /// </summary>
+        public bool IsItemInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Consignment:IsItemInfoAvailable"));
+                return this.GetBoolFromLSO("IsItemInfoAvailable");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE is the item is listed
         /// </summary>
         public bool IsListed
@@ -152,6 +164,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Consignment:SerialNumber"));
                 return this.GetInt64FromLSO("SerialNumber");
+            }
+        }
+
+        /// <summary>
+        /// Returns the ItemInfo (examine data) for this consignment. Check IsItemInfoAvailable first.
+        /// </summary>
+        public ItemInfo ToItemInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Consignment:ToItemInfo"));
+                return new ItemInfo(this.GetMember("ToItemInfo"));
             }
         }
 

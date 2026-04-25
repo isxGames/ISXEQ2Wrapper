@@ -25,7 +25,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         #region Members
 
         /// <summary>
-        /// Returns FALSE if the "not for sale" checkbox/flag is selected for this item 
+        /// Returns FALSE if the "not for sale" checkbox/flag is selected for this item
         /// </summary>
         public bool IsForSale
         {
@@ -33,6 +33,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Merchandise:IsForSale"));
                 return this.GetBoolFromLSO("IsForSale");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the merchandise's underlying ItemInfo (examine data) is currently available client-side.
+        /// </summary>
+        public bool IsItemInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Merchandise:IsItemInfoAvailable"));
+                return this.GetBoolFromLSO("IsItemInfoAvailable");
             }
         }
 
@@ -136,6 +148,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Merchandise:StatusCost"));
                 return this.GetIntFromLSO("StatusCost");
+            }
+        }
+
+        /// <summary>
+        /// Returns the ItemInfo (examine data) for this merchandise. Check IsItemInfoAvailable first.
+        /// </summary>
+        public ItemInfo ToItemInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Merchandise:ToItemInfo"));
+                return new ItemInfo(this.GetMember("ToItemInfo"));
             }
         }
 
