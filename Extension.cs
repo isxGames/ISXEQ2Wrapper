@@ -245,7 +245,7 @@ namespace EQ2.ISXEQ2
         /// typically be your second argument (or PageName. If a file only has two parts 
         /// (ie, eq2ui_proxyactor.xml). Then "ProxyActor" would be your ParentPageName 
         /// and then you would need to look inside the file to find your second argument. 
-        /// </remarksEQ2Window
+        /// </remarks>
         public static EQ2Window EQ2UIPage(string parent, string page)
         {
             Trace.WriteLine(String.Format("Extension:EQ2UIPage({0}, {1})", parent, page));

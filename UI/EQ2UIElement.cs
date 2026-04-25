@@ -306,7 +306,8 @@ namespace EQ2.ISXEQ2.UI
         /// Adds text to textbox. This should work for pretty much any "text entry" box in the EQ2 UI.
         /// Only works for Textbox type eq2uielements.
         /// </summary>
-        /// <param name="text">text</param>
+        /// <param name="propertyName">property name</param>
+        /// <param name="value">property value</param>
         /// <returns>call success</returns>
         public bool SetProperty(string propertyName, string value)
         {
