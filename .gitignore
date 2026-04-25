@@ -181,3 +181,8 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/.vs/EQ2.ISXEQ2/CopilotIndices/17.14.1653.19549/*.db
+/.vs/EQ2.ISXEQ2/CopilotIndices/17.14.1653.19549/*.db-shm
+/.vs/EQ2.ISXEQ2/CopilotIndices/17.14.1653.19549/*.db-wal
+/.vs/EQ2.ISXEQ2/FileContentIndex/*.vsidx
+/.vs/EQ2.ISXEQ2/v17
