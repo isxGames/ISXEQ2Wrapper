@@ -23,5 +23,23 @@ namespace EQ2.ISXEQ2.UI
 
         #endregion
 
+        #region Members
+
+        /// <summary>
+        /// The button's display text. Convenience for GetProperty("Text") —
+        /// source (DT-Widgets.cpp:451-470) reads the underlying CButton's Text
+        /// property directly. Added to source on 2024-01-01 [20231212.0025].
+        /// </summary>
+        public new string Text
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Button:Text"));
+                return this.GetStringFromLSO("Text");
+            }
+        }
+
+        #endregion
+
     }
 }

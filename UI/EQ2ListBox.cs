@@ -8,11 +8,11 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2dropdownbox' datatype. Source EQ2DropDownBoxType
-    /// inherits from EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers
-    /// Label as a member and Set/GetOptions as methods.
+    /// Wraps the source 'eq2listbox' datatype. EQ2ListBoxType inherits from
+    /// EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers Label as a
+    /// member and GetOptions as a method. Almost identical to EQ2DropDownBox.
     /// </summary>
-    public class EQ2DropDownBox : EQ2Widget
+    public class EQ2ListBox : EQ2Widget
     {
 
         #region Constructor
@@ -21,22 +21,22 @@ namespace EQ2.ISXEQ2.UI
         /// Constructor
         /// </summary>
         /// <param name="copy">LS Object</param>
-        public EQ2DropDownBox(LavishScriptObject copy) : base(copy) { }
+        public EQ2ListBox(LavishScriptObject copy) : base(copy) { }
 
         #endregion
 
         #region Members
 
         /// <summary>
-        /// Label of the currently selected drop-down entry (falls back to the
+        /// Label of the currently selected list-box entry (falls back to the
         /// entry's Localtext / text properties if Name is empty).
-        /// Source: DT-Widgets.cpp:602-636.
+        /// Source: DT-Widgets.cpp:1407-1441.
         /// </summary>
         public new string Label
         {
             get
             {
-                Trace.WriteLine(String.Format("EQ2DropDownBox:Label"));
+                Trace.WriteLine(String.Format("EQ2ListBox:Label"));
                 return this.GetStringFromLSO("Label");
             }
         }
@@ -46,28 +46,16 @@ namespace EQ2.ISXEQ2.UI
         #region Methods
 
         /// <summary>
-        /// Sets the selected entry to the given 0-based index.
-        /// Source: DT-Widgets.cpp:662-668.
-        /// </summary>
-        /// <param name="index">0-based selection index</param>
-        /// <returns>call success</returns>
-        public bool Set(int index)
-        {
-            Trace.WriteLine(String.Format("EQ2DropDownBox:Set({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return this.ExecuteMethod("Set", index.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Snapshots every drop-down option into a list of LavishScript maps.
+        /// Snapshots every list-box option into a list of LavishScript maps.
         /// Each returned map has a 'Name' key plus every property the source CUIData
         /// exposes for that option (read with entry.GetStringFromLSO("key")).
-        /// Source: DT-Widgets.cpp:669-724 — populates a caller-provided
+        /// Source: DT-Widgets.cpp:1467-1518 — populates a caller-provided
         /// index:map[string,string]; the wrapper manages the LS-side index.
         /// </summary>
         /// <returns>list of option maps, or null on failure</returns>
         public List<LavishScriptObject> GetOptions()
         {
-            Trace.WriteLine(String.Format("EQ2DropDownBox:GetOptions()"));
+            Trace.WriteLine(String.Format("EQ2ListBox:GetOptions()"));
 
             using (var index = LavishScript.Objects.NewObject("index:string"))
             {

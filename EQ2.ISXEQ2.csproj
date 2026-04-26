@@ -81,8 +81,15 @@
     <Compile Include="UI\EQ2BaseObject.cs" />
     <Compile Include="UI\EQ2Button.cs" />
     <Compile Include="UI\EQ2CheckBox.cs" />
+    <Compile Include="UI\EQ2DataSourceContainer.cs" />
     <Compile Include="UI\EQ2DropDownBox.cs" />
+    <Compile Include="UI\EQ2DynamicData.cs" />
+    <Compile Include="UI\EQ2Icon.cs" />
+    <Compile Include="UI\EQ2IconBank.cs" />
     <Compile Include="UI\EQ2List.cs" />
+    <Compile Include="UI\EQ2ListBox.cs" />
+    <Compile Include="UI\EQ2ScrollBar.cs" />
+    <Compile Include="UI\EQ2TabbedPane.cs" />
     <Compile Include="UI\EQ2Text.cs" />
     <Compile Include="UI\EQ2TextBox.cs" />
     <Compile Include="UI\EQ2UIElement.cs" />
