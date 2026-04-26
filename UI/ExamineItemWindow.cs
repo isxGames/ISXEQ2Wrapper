@@ -25,6 +25,18 @@ namespace EQ2.ISXEQ2.UI
 
         #region Members
         /// <summary>
+        /// Returns the base checkbox of the examine item window.
+        /// </summary>
+        public EQ2CheckBox GetBaseCheckbox
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ExamineItemWindow:GetBaseCheckbox"));
+                return new EQ2CheckBox(this.GetMember("GetBaseCheckbox"));
+            }
+        }
+
+        /// <summary>
         /// Returns the item being examined as an item datatype object.
         /// (Note:  All members of the item should be available without initialization when accessed via the examineitemwindow.)
         /// </summary>
@@ -58,6 +70,20 @@ namespace EQ2.ISXEQ2.UI
             {
                 Trace.WriteLine(String.Format("ExamineItemWindow:NumTextVector"));
                 return this.GetIntFromLSO("NumTextVector");
+            }
+        }
+
+        /// <summary>
+        /// Number of "Texts" in the TextVector. Sourced from the source-side
+        /// arg-zero form of the TextVector member (which returns the count when
+        /// invoked with no index).
+        /// </summary>
+        public int TextVectorCount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ExamineItemWindow:TextVectorCount"));
+                return this.GetIntFromLSO("TextVector");
             }
         }
 

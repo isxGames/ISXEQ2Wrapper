@@ -26,6 +26,18 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
+        /// Returns the dropdown box of group members (loot leader assignment).
+        /// </summary>
+        public EQ2DropDownBox GroupMembers
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:GroupMembers"));
+                return new EQ2DropDownBox(this.GetMember("GroupMembers"));
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if Lotto Loot
         /// </summary>
         public bool IsLotto
@@ -60,6 +72,114 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
+        /// Returns the EQ2UIPage that contains the loot items table.
+        /// </summary>
+        public EQ2UIPage ItemsPage
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:ItemsPage"));
+                return new EQ2UIPage(this.GetMember("ItemsPage"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the "Leader Assign" button (group-leader-assigned-loot mode).
+        /// </summary>
+        public EQ2Button LeaderAssign
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:LeaderAssign"));
+                return new EQ2Button(this.GetMember("LeaderAssign"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the "Loot All" button.
+        /// </summary>
+        public EQ2Button LootAllButton
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:LootAllButton"));
+                return new EQ2Button(this.GetMember("LootAllButton"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the "Loot Selected" button.
+        /// </summary>
+        public EQ2Button LootSelected
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:LootSelected"));
+                return new EQ2Button(this.GetMember("LootSelected"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the unique ID of the loot source actor (e.g. corpse).
+        /// </summary>
+        public uint LootSourceID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:LootSourceID"));
+                return this.GetUIntFromLSO("LootSourceID");
+            }
+        }
+
+        /// <summary>
+        /// Returns the "Decline" button for Lotto loot windows.
+        /// </summary>
+        public EQ2Button LottoDecline
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:LottoDecline"));
+                return new EQ2Button(this.GetMember("LottoDecline"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the Need-Before-Greed "Decline" button.
+        /// </summary>
+        public EQ2Button NBG_Decline
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:NBG_Decline"));
+                return new EQ2Button(this.GetMember("NBG_Decline"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the Need-Before-Greed "Greed" button.
+        /// </summary>
+        public EQ2Button NBG_Greed
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:NBG_Greed"));
+                return new EQ2Button(this.GetMember("NBG_Greed"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the Need-Before-Greed "Need" button.
+        /// </summary>
+        public EQ2Button NBG_Need
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:NBG_Need"));
+                return new EQ2Button(this.GetMember("NBG_Need"));
+            }
+        }
+
+        /// <summary>
         /// The number of items in the loot window
         /// </summary>
         public int NumItems
@@ -68,6 +188,18 @@ namespace EQ2.ISXEQ2.UI
             {
                 Trace.WriteLine(String.Format("LootWindow:NumItems"));
                 return this.GetIntFromLSO("NumItems");
+            }
+        }
+
+        /// <summary>
+        /// Returns the "Request Selected" button.
+        /// </summary>
+        public EQ2Button RequestSelected
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("LootWindow:RequestSelected"));
+                return new EQ2Button(this.GetMember("RequestSelected"));
             }
         }
 

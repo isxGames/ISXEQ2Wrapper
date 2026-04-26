@@ -78,9 +78,14 @@
     <Compile Include="Events\EQ2Event.cs" />
     <Compile Include="Utility\EQ2Location.cs" />
     <Compile Include="Utility\EQ2Mail.cs" />
+    <Compile Include="UI\EQ2Button.cs" />
+    <Compile Include="UI\EQ2CheckBox.cs" />
+    <Compile Include="UI\EQ2DropDownBox.cs" />
+    <Compile Include="UI\EQ2List.cs" />
     <Compile Include="UI\EQ2Text.cs" />
     <Compile Include="UI\EQ2UIElement.cs" />
     <Compile Include="UI\EQ2UIPage.cs" />
+    <Compile Include="UI\EQ2Window.cs" />
     <Compile Include="UI\ExamineItemWindow.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Helpers\Utils.cs" />
@@ -101,6 +106,7 @@
     <Compile Include="Utility\Radar.cs" />
     <Compile Include="Recipe\Recipe.cs" />
     <Compile Include="UI\ReplyDialog.cs" />
+    <Compile Include="UI\Reward.cs" />
     <Compile Include="UI\RewardWindow.cs" />
     <Compile Include="InventoryConsignment\VendingContainer.cs" />
     <Compile Include="InventoryConsignment\Vendor.cs" />

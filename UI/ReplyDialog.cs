@@ -25,6 +25,18 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
+        /// Returns the list widget that holds the dialog reply rows.
+        /// </summary>
+        public EQ2List Replies
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ReplyDialog:Replies"));
+                return new EQ2List(this.GetMember("Replies"));
+            }
+        }
+
+        /// <summary>
         /// Text
         /// </summary>
         public string Text
