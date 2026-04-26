@@ -142,44 +142,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Cache of BaseMaxDamage
-        /// </summary>
-        private int? _baseMaxDamage;
-
-        /// <summary>
-        /// Base Maximum Weapon Damage
-        /// </summary>
-        public int BaseMaxDamage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:BaseMaxDamage"));
-                if (!_baseMaxDamage.HasValue)
-                    _baseMaxDamage = this.GetIntFromLSO("BaseMaxDamage");
-                return _baseMaxDamage.Value;
-            }
-        }
-
-        /// <summary>
-        /// Cache of BaseMinDamage
-        /// </summary>
-        private int? _baseMinDamage;
-
-        /// <summary>
-        /// Base Minimum Weapon Damage
-        /// </summary>
-        public int BaseMinDamage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:BaseMinDamage"));
-                if (!_baseMinDamage.HasValue)
-                    _baseMinDamage = this.GetIntFromLSO("BaseMinDamage");
-                return _baseMinDamage.Value;
-            }
-        }
-
-        /// <summary>
         /// Cache of CanBeRedeemed
         /// </summary>
         private bool? _canBeRedeemed;
@@ -295,25 +257,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Cache of DamageRating
-        /// </summary>
-        private float? _damageRating;
-
-        /// <summary>
-        /// Weapon Damage Rating
-        /// </summary>
-        public float DamageRating
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:DamageRating"));
-                if (!_damageRating.HasValue)
-                    _damageRating = this.GetFloatFromLSO("DamageRating");
-                return _damageRating.Value;
-            }
-        }
-
-        /// <summary>
         /// Cache of DamageType
         /// </summary>
         private string _damageType;
@@ -327,23 +270,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Item:DamageType"));
                 return _damageType ?? (_damageType = this.GetStringFromLSO("DamageType"));
-            }
-        }
-
-        /// <summary>
-        /// Cache of DamageTypeVerb
-        /// </summary>
-        private string _damageTypeVerb;
-
-        /// <summary>
-        /// Weapon Damage Type Verb (Slashing, etc...)
-        /// </summary>
-        public string DamageTypeVerb
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:DamageTypeVerb"));
-                return _damageTypeVerb ?? (_damageTypeVerb = this.GetStringFromLSO("DamageTypeVerb"));
             }
         }
 
@@ -460,23 +386,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Cache of ExamineText
-        /// </summary>
-        private string _examineText;
-
-        /// <summary>
-        /// This is the text that appears in the examine window while 'examining' an item.
-        /// </summary>
-        public string ExamineText
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:ExamineText"));
-                return _examineText ?? (_examineText = this.GetStringFromLSO("ExamineText"));
-            }
-        }
-
-        /// <summary>
         /// Cache of Good
         /// </summary>
         private bool? _good;
@@ -546,18 +455,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Returns TRUE if the item is in the bank
-        /// </summary>
-        public bool InBank
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:InBank"));
-                return this.GetBoolFromLSO("InBank");
-            }
-        }
-
-        /// <summary>
         /// Returns TRUE if the item is in a container
         /// </summary>
         public bool InContainer
@@ -602,18 +499,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Identifies if the item is in a bag or actual inventory slot
-        /// </summary>
-        public bool InInventory
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:InInventory"));
-                return this.GetBoolFromLSO("InInventory");
-            }
-        }
-
-        /// <summary>
         /// Identifies if the item is in one of your 6 actual inventory slots
         /// </summary>
         public bool InInventorySlot
@@ -622,30 +507,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Item:InInventorySlot"));
                 return this.GetBoolFromLSO("InInventorySlot");
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if the item is in a nosale container
-        /// </summary>
-        public bool InNoSaleContainer
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:InNoSaleContainer"));
-                return this.GetBoolFromLSO("InNoSaleContainer");
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if the item is in the shared bank
-        /// </summary>
-        public bool InSharedBank
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:InSharedBank"));
-                return this.GetBoolFromLSO("InSharedBank");
             }
         }
 
@@ -727,18 +588,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
                 if(!_isContainer.HasValue)
                     _isContainer = this.GetBoolFromLSO("IsContainer");
                 return _isContainer.Value;
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if the item is equipped
-        /// </summary>
-        public bool IsEquipped
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:IsEquipped"));
-                return this.GetBoolFromLSO("IsEquipped");
             }
         }
 
@@ -1022,44 +871,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Cache of MasteryMinDamage
-        /// </summary>
-        private int? _masteryMinDamage;
-
-        /// <summary>
-        /// Minimum Mastery Weapon Damage
-        /// </summary>
-        public int MasteryMinDamage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:MasteryMinDamage"));
-                if (!_masteryMinDamage.HasValue)
-                    _masteryMinDamage = this.GetIntFromLSO("MasteryMinDamage");
-                return _masteryMinDamage.Value;
-            }
-        }
-
-        /// <summary>
-        /// Cache of MasteryMaxDamage
-        /// </summary>
-        private int? _masteryMaxDamage;
-
-        /// <summary>
-        /// Maximum Mastery Weapon Damage
-        /// </summary>
-        public int MasteryMaxDamage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:MasteryMaxDamage"));
-                if (!_masteryMaxDamage.HasValue)
-                    _masteryMaxDamage = this.GetIntFromLSO("MasteryMaxDamage");
-                return _masteryMaxDamage.Value;
-            }
-        }
-
-        /// <summary>
         /// Cache of MaxCharges
         /// </summary>
         private int? _maxCharges;
@@ -1094,25 +905,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
                 if (!_maxMitigation.HasValue)
                     _maxMitigation = this.GetIntFromLSO("MaxMitigation");
                 return _maxMitigation.Value;
-            }
-        }
-
-        /// <summary>
-        /// Cache of MaxProtection
-        /// </summary>
-        private int? _maxProtection;
-
-        /// <summary>
-        /// MaxProtection
-        /// </summary>
-        public int MaxProtection
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:MaxProtection"));
-                if (!_maxProtection.HasValue)
-                    _maxProtection = this.GetIntFromLSO("MaxProtection");
-                return _maxProtection.Value;
             }
         }
 
@@ -1182,30 +974,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             Trace.WriteLine(String.Format("Item:Modifier({0})", index.ToString(CultureInfo.InvariantCulture)));
             return new ItemModifier(this.GetMember("Modifier", index.ToString(CultureInfo.InvariantCulture)));
-        }
-
-        /// <summary>
-        /// Weapon Min Damage
-        /// </summary>
-        public int MyMinDamage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:MyMinDamage"));
-                return this.GetIntFromLSO("MyMinDamage");
-            }
-        }
-
-        /// <summary>
-        /// Weapon Max Damage
-        /// </summary>
-        public int MyMaxDamage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:MyMaxDamage"));
-                return this.GetIntFromLSO("MyMaxDamage");
-            }
         }
 
         /// <summary>
@@ -1448,25 +1216,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
                 if (!_ornate.HasValue)
                     _ornate = this.GetBoolFromLSO("Ornate");
                 return _ornate.Value;
-            }
-        }
-
-        /// <summary>
-        /// Cache of Protection
-        /// </summary>
-        private int? _protection;
-
-        /// <summary>
-        /// Protection
-        /// </summary>
-        public int Protection
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Item:Protection"));
-                if (!_protection.HasValue)
-                    _protection = this.GetIntFromLSO("Protection");
-                return _protection.Value;
             }
         }
 
@@ -2003,20 +1752,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             Trace.WriteLine(String.Format("Item:Extract({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
             return withconfirm ? this.ExecuteMethod("Extract", "askmefirst") : this.ExecuteMethod("Extract");
-        }
-
-        /// <summary>
-        /// Asks the server for information about the given item. Usually takes less than a second for the information to be cached to the client.
-        /// (Note:  Most of the item datatype members require this.  The only exceptions are: Name, ID, IsEquipped, LinkID,
-        /// ToLink, Index, InContainer, InContainerID, NumSlots, Slot, Quantity, IsContainer, ContainerID, InSharedBank, InBank, NumSlotsFree,
-        /// IsSlotOpen, ItemInSlot, NextSlotOpen, InInventory, InInventorySlot, IsInventoryContainer, IsBankContainer, IsSharedBankContainer,
-        /// InNoSaleContainer, IsAutoConsumeable, CanBeRedeemed, IsFoodOrDrink, CanScribeNow, IsScribeable, IsActivatable, IsReady, TimeUntilReady.)
-        /// </summary>
-        /// <returns>Function call success</returns>
-        public bool Initialize()
-        {
-            Trace.WriteLine(String.Format("Item:Initialize()"));
-            return this.ExecuteMethod("Initialize");
         }
 
         /// <summary>
