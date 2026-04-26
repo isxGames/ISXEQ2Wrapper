@@ -95,6 +95,7 @@
     <Compile Include="AbilityEffect\Maintained.cs" />
     <Compile Include="InventoryConsignment\Merchandise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quest\Quest.cs" />
     <Compile Include="Utility\Radar.cs" />
     <Compile Include="Recipe\Recipe.cs" />
     <Compile Include="UI\ReplyDialog.cs" />
