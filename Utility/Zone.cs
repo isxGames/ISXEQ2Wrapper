@@ -65,6 +65,18 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// The current room ID within the zone
+        /// </summary>
+        public uint RoomID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Zone:RoomID"));
+                return this.GetUIntFromLSO("RoomID");
+            }
+        }
+
+        /// <summary>
         /// Cache of ShortName
         /// </summary>
         private string _shortName;

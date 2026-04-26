@@ -32,6 +32,30 @@ namespace EQ2.ISXEQ2.Utility
         #region Members
 
         /// <summary>
+        /// Returns the localized name for the supplied ability tier (0-12). Returns
+        /// empty when 'tier' is greater than 12.
+        /// </summary>
+        /// <param name="tier">ability tier (0-12)</param>
+        /// <returns>tier name string</returns>
+        public string AbilityTierString(int tier)
+        {
+            Trace.WriteLine(String.Format("EQ2:AbilityTierString({0})", tier.ToString(CultureInfo.InvariantCulture)));
+            return this.GetStringFromLSO("AbilityTierString", tier.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Returns TRUE if the client is currently at the character-select screen
+        /// </summary>
+        public bool AtCharSelect
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:AtCharSelect"));
+                return this.GetBoolFromLSO("AtCharSelect");
+            }
+        }
+
+        /// <summary>
         /// Returns a boolean stating whether or not two points (1 and 2) have Line of Sight.
         /// Please note that this checks a direct line between two points for a collision.
         /// This is subject to false positives or negativesdue to railings (seeing between the rails,
@@ -302,6 +326,20 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Returns a string describing the client's current login state. One of:
+        /// "Unknown", "At Login", "At Char Select", "In Game", or "Unknown(N)" for
+        /// any other underlying state value.
+        /// </summary>
+        public string LoginState
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:LoginState"));
+                return this.GetStringFromLSO("LoginState");
+            }
+        }
+
+        /// <summary>
         /// Returns the current master volume as a percentage
         /// </summary>
         public float MasterVolume
@@ -322,6 +360,19 @@ namespace EQ2.ISXEQ2.Utility
             {
                 Trace.WriteLine(String.Format("EQ2:NumRadars"));
                 return this.GetIntFromLSO("NumRadars");
+            }
+        }
+
+        /// <summary>
+        /// Returns the object currently being moved/placed in the world via the
+        /// moveable-object placement system, or NULL when no such operation is active.
+        /// </summary>
+        public MoveableObject ObjectBeingMoved
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:ObjectBeingMoved"));
+                return new MoveableObject(this.GetMember("ObjectBeingMoved"));
             }
         }
 
@@ -374,6 +425,19 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Returns TRUE when an item has been targeted via the inventory window's
+        /// 'refine/transmute/salvage' affordance and is therefore ready to act upon.
+        /// </summary>
+        public bool ReadyToRefineTransmuteOrSalvage
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:ReadyToRefineTransmuteOrSalvage"));
+                return this.GetBoolFromLSO("ReadyToRefineTransmuteOrSalvage");
+            }
+        }
+
+        /// <summary>
         /// Returns the name of the server. This is only available when in the game proper.
         /// </summary>
         public string ServerName
@@ -422,10 +486,21 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Confirms the highlighted teleporter destination. 
-        /// NOTE: This should be used after selecting the appropriate 
-        /// destination using the 'HighlightRow' method of the 
-        /// EQ2UIElement datatype. 
+        /// Cancels the in-progress moveable-object placement operation, reverting
+        /// the object to its prior state. No-op when nothing is being moved.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool CancelMoveObject()
+        {
+            Trace.WriteLine(String.Format("EQ2:CancelMoveObject()"));
+            return this.ExecuteMethod("CancelMoveObject");
+        }
+
+        /// <summary>
+        /// Confirms the highlighted teleporter destination.
+        /// NOTE: This should be used after selecting the appropriate
+        /// destination using the 'HighlightRow' method of the
+        /// EQ2UIElement datatype.
         /// </summary>
         /// <returns>call success</returns>
         public bool ConfirmZoneTeleporterDestination()
@@ -451,6 +526,17 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Plays the named sound effect on the client.
+        /// </summary>
+        /// <param name="effectName">sound-effect name</param>
+        /// <returns>call success</returns>
+        public bool CreateSoundEffect(string effectName)
+        {
+            Trace.WriteLine(String.Format("EQ2:CreateSoundEffect({0})", effectName));
+            return this.ExecuteMethod("CreateSoundEffect", effectName);
+        }
+
+        /// <summary>
         /// Declines the pending quest
         /// </summary>
         /// <returns>call success</returns>
@@ -458,6 +544,18 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("EQ2:DeclinePendingQuest()"));
             return this.ExecuteMethod("DeclinePendingQuest");
+        }
+
+        /// <summary>
+        /// Returns the list of expansion / feature names attached to the current
+        /// account (e.g. "Visions of Vetrovia", "Mercenaries", etc.). Source iterates
+        /// the AccountHasFeature/AccountHasContent flags into a string index.
+        /// </summary>
+        /// <returns>Enumerable of feature/expansion names</returns>
+        public IEnumerable<string> GetAccountFeatures()
+        {
+            Trace.WriteLine(String.Format("EQ2:GetAccountFeatures()"));
+            return Util.GetListFromMethod<string>(this, "GetAccountFeatures", "string");
         }
 
         /// <summary>
@@ -520,6 +618,52 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("EQ2:GetPersistentZones()"));
             return Util.GetListFromMethod<string>(this, "GetPersistentZones", "string");
+        }
+
+        /// <summary>
+        /// Opens the Fast Travel window (alias of OpenTravelMapWindow). Both methods
+        /// dispatch the same underlying remote command.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool OpenFastTravelWindow()
+        {
+            Trace.WriteLine(String.Format("EQ2:OpenFastTravelWindow()"));
+            return this.ExecuteMethod("OpenFastTravelWindow");
+        }
+
+        /// <summary>
+        /// Opens the Travel Map window (alias of OpenFastTravelWindow). Both methods
+        /// dispatch the same underlying remote command.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool OpenTravelMapWindow()
+        {
+            Trace.WriteLine(String.Format("EQ2:OpenTravelMapWindow()"));
+            return this.ExecuteMethod("OpenTravelMapWindow");
+        }
+
+        /// <summary>
+        /// Commits the in-progress moveable-object placement, locking the object to
+        /// its currently-previewed location/heading/scale. No-op when nothing is being
+        /// moved.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool PlaceMoveableObject()
+        {
+            Trace.WriteLine(String.Format("EQ2:PlaceMoveableObject()"));
+            return this.ExecuteMethod("PlaceMoveableObject");
+        }
+
+        /// <summary>
+        /// Populates the supplied LavishScript actor index with all actors matching
+        /// the given query expression. Pass an empty/null query to return all actors.
+        /// </summary>
+        /// <param name="queryExpr">query expression (e.g. "Type =- \"NPC\" &amp;&amp; Distance &lt;= 50") or empty for all</param>
+        /// <returns>Enumerable of matching actors</returns>
+        public IEnumerable<Actor> QueryActors(string queryExpr)
+        {
+            Trace.WriteLine(String.Format("EQ2:QueryActors({0})", queryExpr));
+            return Util.GetListFromMethod<Actor>(this, "QueryActors", "actor", queryExpr);
         }
 
         /// <summary>

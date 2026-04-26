@@ -100,6 +100,7 @@
     <Compile Include="Extension.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="CharacterActor\GroupMember.cs" />
+    <Compile Include="CharacterActor\MoveableObject.cs" />
     <Compile Include="Utility\ISXEQ2.cs" />
     <Compile Include="InventoryConsignment\Adornment.cs" />
     <Compile Include="InventoryConsignment\Item.cs" />

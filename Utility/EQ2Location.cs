@@ -59,6 +59,18 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// The room ID associated with this saved location
+        /// </summary>
+        public uint RoomID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Location:RoomID"));
+                return this.GetUIntFromLSO("RoomID");
+            }
+        }
+
+        /// <summary>
         /// Cache of X
         /// </summary>
         private float? _x;
