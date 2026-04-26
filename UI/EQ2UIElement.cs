@@ -366,6 +366,18 @@ namespace EQ2.ISXEQ2.UI
             return this.ExecuteMethod("RightClick");
         }
 
+        /// <summary>
+        /// MiddleClicks the eq2uielement. Source: DT-Widgets.cpp:247-259.
+        /// Sends the radial-request / mouse-down / context-request /
+        /// middle-click / mouse-up message sequence to the widget.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool MiddleClick()
+        {
+            Trace.WriteLine(String.Format("EQ2UIElement:MiddleClick()"));
+            return this.ExecuteMethod("MiddleClick");
+        }
+
         #endregion
 
         #region Enums
