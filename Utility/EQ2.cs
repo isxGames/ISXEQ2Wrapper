@@ -413,18 +413,6 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Returns a boolean identifying whether or not a reward is pending
-        /// </summary>
-        public bool RewardPending
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("EQ2:RewardPending"));
-                return this.GetBoolFromLSO("RewardPending");
-            }
-        }
-
-        /// <summary>
         /// Returns TRUE when an item has been targeted via the inventory window's
         /// 'refine/transmute/salvage' affordance and is therefore ready to act upon.
         /// </summary>
@@ -473,16 +461,6 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("ISXEQ2:AcceptPendingQuest()"));
             return this.ExecuteMethod("AcceptPendingQuest");
-        }
-
-        /// <summary>
-        /// Accepts the current reward
-        /// </summary>
-        /// <returns>call success</returns>
-        public bool AcceptReward()
-        {
-            Trace.WriteLine(String.Format("EQ2:AcceptReward()"));
-            return this.ExecuteMethod("AcceptReward");
         }
 
         /// <summary>
@@ -672,22 +650,6 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("EQ2:QueryActors({0})", queryExpr));
             return Util.GetListFromMethod<Actor>(this, "QueryActors", "actor", queryExpr);
-        }
-
-        /// <summary>
-        /// Sets the ambient light to the requested amount
-        /// </summary>
-        /// <param name="ambientPct">float value between 0 and 100</param>
-        /// <returns>call success</returns>
-        /// <remarks>
-        /// It should be noted that the EQ2 in-game ambient light controls
-        /// ..when at maximum...are only at 50%, by this setting.
-        /// </remarks>
-        public bool SetAmbientLight(float ambientPct)
-        {
-            Trace.WriteLine(String.Format("EQ2:SetAmbientLight({0})",
-                ambientPct.ToString(CultureInfo.InvariantCulture)));
-            return this.ExecuteMethod("SetAmbientLight", ambientPct.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>

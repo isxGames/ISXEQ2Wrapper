@@ -270,30 +270,6 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Returns the email at the specified index. (1 to EQ2.InboxMailCount)
-        /// Allows interaction with the mail subsystem in EverQuest2.
-        /// For this TLO to function, you must be in a 'mail transaction' at a post office/box.
-        /// </summary>
-        /// <param name="index">index</param>
-        public static EQ2Mail EQ2Mail(int index)
-        {
-            Trace.WriteLine(String.Format("Extension:EQ2Mail({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return new EQ2Mail(LavishScript.Objects.GetObject("EQ2Mail", index.ToString(CultureInfo.InvariantCulture)));
-        }
-
-        /// <summary>
-        /// Returns the EQ2Mail object of the specified status (Opened or Composing)
-        /// Allows interaction with the mail subsystem in EverQuest2.
-        /// For this TLO to function, you must be in a 'mail transaction' at a post office/box.
-        /// </summary>
-        /// <param name="status">mail status</param>
-        public static EQ2Mail EQ2Mail(EQ2MailStatus status)
-        {
-            Trace.WriteLine(String.Format("Extension:EQ2Mail({0})", status));
-            return new EQ2Mail(LavishScript.Objects.GetObject("EQ2Mail", status.ToString().ToLower()));
-        }
-
-        /// <summary>
         /// Returns the EQ2Window that matches the parent and page names provided.
         /// </summary>
         /// <param name="parent">parent name</param>
@@ -551,23 +527,6 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Retrieves a vendor object from the game world. For the
-        /// purposes of ISXEQ2, a vendor is defined as any NPC or
-        /// PC that can buy or sell items. This includes brokers.
-        /// For this TLO to function, you must have the vendor
-        /// targetted and the merchant or broker window open and
-        /// populated.
-        /// </summary>
-        public static Vendor Vendor
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Extension:Vendor"));
-                return new Vendor(LavishScript.Objects.GetObject("Vendor"));
-            }
-        }
-
-        /// <summary>
         /// Retrieves information about the current zone.
         /// </summary>
         public static Zone Zone
@@ -654,22 +613,7 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Performs the desired keypress.
-        /// Parameters: -hold, -release
-        /// The benefit of "EQ2Press" versus "Press" (InnerSpace command) 
-        /// is that it will work even when the EQ2 session in question is 
-        /// not the one in focus.
-        /// Verify keypress is valid with ISXEQ2.IsValidEQ2PressKey().
-        /// </summary>
-        /// <param name="args">parameters and keypress</param>
-        public static int EQ2Press(string args)
-        {
-            Trace.WriteLine(String.Format("Extension:EQ2Press({0})", args));
-            return LavishScript.ExecuteCommand(String.Format("EQ2Press {0}", args));
-        }
-
-        /// <summary>
-        /// This command allows you to specify particular key phrases that will cause 
+        /// This command allows you to specify particular key phrases that will cause
         /// isxeq2 to ignore an incoming chat channel text. If the given phrase will 
         /// trigger an ignore if it is found in the chat text, sender name, target name, 
         /// or customchannel name. You may also use the 'eq2ignore all' toggle to ignore 
@@ -1132,21 +1076,6 @@ namespace EQ2.ISXEQ2
             /// No Chat Type
             /// </summary>
             None
-        }
-
-        /// <summary>
-        /// EQ2Mail Status
-        /// </summary>
-        public enum EQ2MailStatus
-        {
-            /// <summary>
-            /// EQ2Mail Status Opened
-            /// </summary>
-            Opened,
-            /// <summary>
-            /// EQ2Mail Status Composing
-            /// </summary>
-            Composing
         }
 
         /// <summary>

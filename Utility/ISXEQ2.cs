@@ -107,18 +107,6 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Indicates whether or not Actor Effects are initializing
-        /// </summary>
-        public bool InitializingActorEffects
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("ISXEQ2:InitializingActorEffects"));
-                return this.GetBoolFromLSO("InitializingActorEffects");
-            }
-        }
-
-        /// <summary>
         /// Cached value of IsReady
         /// </summary>
         private bool? _isReady;

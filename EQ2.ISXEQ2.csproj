@@ -138,8 +138,6 @@
     <Compile Include="UI\TravelMapWindow.cs" />
     <Compile Include="UI\TravelMapWindowLocation.cs" />
     <Compile Include="InventoryConsignment\VendingContainer.cs" />
-    <Compile Include="InventoryConsignment\Vendor.cs" />
-    <Compile Include="InventoryConsignment\VendorItem.cs" />
     <Compile Include="Utility\Zone.cs" />
   </ItemGroup>
   <ItemGroup />

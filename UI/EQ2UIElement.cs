@@ -111,18 +111,6 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns true if the element is checked. This data member only works for Checkbox and DynamicData UI element types.
-        /// </summary>
-        public bool IsChecked
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("EQ2UIElement:IsChecked"));
-                return this.GetBoolFromLSO("IsChecked");
-            }
-        }
-
-        /// <summary>
         /// This data member has only been tested to work with 'button' types thus far.
         /// </summary>
         public bool IsEnabled
@@ -197,35 +185,6 @@ namespace EQ2.ISXEQ2.UI
             {
                 Trace.WriteLine(String.Format("EQ2UIElement:Percent"));
                 return this.GetFloatFromLSO("Percent");
-            }
-        }
-
-        /// <summary>
-        /// Highlighted list row. "List" types only.
-        /// </summary>
-        public int RowHighlighted
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("EQ2UIElement:RowHighlighted"));
-                return this.GetIntFromLSO("RowHighlighted");
-            }
-        }
-
-        /// <summary>
-        /// Cache of ShortLabel
-        /// </summary>
-        private string _shortLabel;
-
-        /// <summary>
-        /// Short Label. This data member only works for DynamicData UI element types.
-        /// </summary>
-        public string ShortLabel
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("EQ2UIElement:ShortLabel"));
-                return _shortLabel ?? (_shortLabel = this.GetStringFromLSO("ShortLabel"));
             }
         }
 
@@ -313,16 +272,6 @@ namespace EQ2.ISXEQ2.UI
         {
             Trace.WriteLine(String.Format("EQ2UIElement:SetProperty({0},{1})", propertyName, value));
             return this.ExecuteMethod("SetProperty", propertyName, value);
-        }
-
-        /// <summary>
-        /// Clicks a button. Only works for Button type eq2uielements.
-        /// </summary>
-        /// <returns>call success</returns>
-        public bool ClickButton()
-        {
-            Trace.WriteLine(String.Format("EQ2UIElement:ClickButton()"));
-            return this.ExecuteMethod("ClickButton");
         }
 
         /// <summary>

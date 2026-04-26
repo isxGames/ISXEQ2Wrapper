@@ -37,7 +37,6 @@ namespace EQ2.ISXEQ2.Events
             Attach("EQ2_ExamineAchievement", OnExamineAchievement);
             Attach("EQ2_onTellIgnored", OnTellIgnored);
             Attach("EQ2_onIncomingChatText", OnIncomingChatText);
-            Attach("EQ2_onSendMailComplete", OnSendMailComplete);
             Attach("EQ2_onChoiceWindowAppeared", OnChoiceWindowAppeared);
             Attach("EQ2_onAnnouncement", OnAnnouncement);
             Attach("EQ2_onIncomingText", OnIncomingText);
@@ -87,7 +86,6 @@ namespace EQ2.ISXEQ2.Events
             Detach("EQ2_ExamineAchievement", OnExamineAchievement);
             Detach("EQ2_onTellIgnored", OnTellIgnored);
             Detach("EQ2_onIncomingChatText", OnIncomingChatText);
-            Detach("EQ2_onSendMailComplete", OnSendMailComplete);
             Detach("EQ2_onChoiceWindowAppeared", OnChoiceWindowAppeared);
             Detach("EQ2_onAnnouncement", OnAnnouncement);
             Detach("EQ2_onIncomingText", OnIncomingText);
@@ -1207,27 +1205,6 @@ namespace EQ2.ISXEQ2.Events
             }
 
 	    }
-
-        #endregion
-
-        #region EQ2_onSendMailComplete
-
-        /// <summary>
-        /// EQ2_onSendMailComplete Event Handler
-        /// </summary>
-        public event EventHandler<LSEventArgs> SendMailComplete;
-
-        /// <summary>
-        /// EQ2_onSendMailComplete Event Raiser
-        /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">arguments</param>
-        protected virtual void OnSendMailComplete(object sender, LSEventArgs e)
-        {
-            var temp = SendMailComplete;
-            if (temp != null)
-                temp(sender, e);
-        }
 
         #endregion
 
