@@ -45,6 +45,21 @@ namespace EQ2.ISXEQ2.Events
             Attach("EQ2_onMeAfflicted", OnMeAfflicted);
             Attach("EQ2_onGroupMemberAfflicted", OnGroupMemberAfflicted);
             Attach("EQ2_onRaidMemberAfflicted", OnRaidMemberAfflicted);
+            Attach("EQ2_ActorAnimationChanged", OnActorAnimationChanged);
+            Attach("EQ2_ItemAddedToAltarForSacrifice", OnItemAddedToAltarForSacrifice);
+            Attach("EQ2_onDestroyItem", OnDestroyItem);
+            Attach("EQ2_onDeleteQuest", OnDeleteQuest);
+            Attach("EQ2_onSellItem", OnSellItem);
+            Attach("EQ2_onMenderRepairAll", OnMenderRepairAll);
+            Attach("EQ2_onCraftRoundResult", OnCraftRoundResult);
+            Attach("EQ2_onCharacterSheetUpdate", OnCharacterSheetUpdate);
+            Attach("EQ2_onGroupMembershipChange", OnGroupMembershipChange);
+            Attach("EQ2_onRaidMembershipChange", OnRaidMembershipChange);
+            Attach("EQ2_onContainerWindowAppeared", OnContainerWindowAppeared);
+            Attach("EQ2_onLevelChange", OnLevelChange);
+            Attach("EQ2_onAbilityGained", OnAbilityGained);
+            Attach("EQ2_onSoundEffect", OnSoundEffect);
+            Attach("ISXEQ2_onInstanceReloadingAfterUpdate", OnInstanceReloadingAfterUpdate);
         }
 
         /// <summary>
@@ -80,6 +95,21 @@ namespace EQ2.ISXEQ2.Events
             Detach("EQ2_onMeAfflicted", OnMeAfflicted);
             Detach("EQ2_onGroupMemberAfflicted", OnGroupMemberAfflicted);
             Detach("EQ2_onRaidMemberAfflicted", OnRaidMemberAfflicted);
+            Detach("EQ2_ActorAnimationChanged", OnActorAnimationChanged);
+            Detach("EQ2_ItemAddedToAltarForSacrifice", OnItemAddedToAltarForSacrifice);
+            Detach("EQ2_onDestroyItem", OnDestroyItem);
+            Detach("EQ2_onDeleteQuest", OnDeleteQuest);
+            Detach("EQ2_onSellItem", OnSellItem);
+            Detach("EQ2_onMenderRepairAll", OnMenderRepairAll);
+            Detach("EQ2_onCraftRoundResult", OnCraftRoundResult);
+            Detach("EQ2_onCharacterSheetUpdate", OnCharacterSheetUpdate);
+            Detach("EQ2_onGroupMembershipChange", OnGroupMembershipChange);
+            Detach("EQ2_onRaidMembershipChange", OnRaidMembershipChange);
+            Detach("EQ2_onContainerWindowAppeared", OnContainerWindowAppeared);
+            Detach("EQ2_onLevelChange", OnLevelChange);
+            Detach("EQ2_onAbilityGained", OnAbilityGained);
+            Detach("EQ2_onSoundEffect", OnSoundEffect);
+            Detach("ISXEQ2_onInstanceReloadingAfterUpdate", OnInstanceReloadingAfterUpdate);
         }
 
         #endregion
@@ -1490,6 +1520,765 @@ namespace EQ2.ISXEQ2.Events
             var temp = RaidMemberAfflicted;
             if (temp != null)
                 temp(sender, new MemberAfflictedEventArgs(e.Args));
+        }
+
+        #endregion
+
+        #region EQ2_ActorAnimationChanged
+
+        /// <summary>
+        /// EQ2_ActorAnimationChanged Event Handler. Requires ISXEQ2.EnableActorEvents().
+        /// Disabled by default.
+        /// </summary>
+        public event EventHandler<ActorAnimationChangedEventArgs> ActorAnimationChanged;
+
+        /// <summary>
+        /// EQ2_ActorAnimationChanged Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnActorAnimationChanged(object sender, LSEventArgs e)
+        {
+            var temp = ActorAnimationChanged;
+            if (temp != null)
+                temp(sender, new ActorAnimationChangedEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_ActorAnimationChanged Event Args. Source emits 8 args (see Pulse.cpp:443).
+        /// </summary>
+        public class ActorAnimationChangedEventArgs : LSEventArgs
+        {
+            internal ActorAnimationChangedEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Actor ID
+            /// </summary>
+            public int ID
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+
+            /// <summary>
+            /// Actor Name
+            /// </summary>
+            public string Name
+            {
+                get { return Args[1]; }
+            }
+
+            /// <summary>
+            /// Actor Type
+            /// </summary>
+            public string Type
+            {
+                get { return Args[2]; }
+            }
+
+            /// <summary>
+            /// Animation prior to the change
+            /// </summary>
+            public string OldAnimation
+            {
+                get { return Args[3]; }
+            }
+
+            /// <summary>
+            /// Animation after the change
+            /// </summary>
+            public string NewAnimation
+            {
+                get { return Args[4]; }
+            }
+
+            /// <summary>
+            /// Distance to Actor
+            /// </summary>
+            public float Distance
+            {
+                get { return Convert.ToSingle(Args[5]); }
+            }
+
+            /// <summary>
+            /// Returns TRUE if the actor is in the characters group
+            /// </summary>
+            public bool IsInGroup
+            {
+                get { return Convert.ToBoolean(Args[6]); }
+            }
+
+            /// <summary>
+            /// Returns TRUE if the actor is in the characters raid
+            /// </summary>
+            public bool IsInRaid
+            {
+                get { return Convert.ToBoolean(Args[7]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_ItemAddedToAltarForSacrifice
+
+        /// <summary>
+        /// EQ2_ItemAddedToAltarForSacrifice Event Handler. Fires when an inventory item
+        /// is added to a deity altar for sacrifice (source emit at CommandHooks.cpp:192).
+        /// </summary>
+        public event EventHandler<ItemAddedToAltarForSacrificeEventArgs> ItemAddedToAltarForSacrifice;
+
+        /// <summary>
+        /// EQ2_ItemAddedToAltarForSacrifice Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnItemAddedToAltarForSacrifice(object sender, LSEventArgs e)
+        {
+            var temp = ItemAddedToAltarForSacrifice;
+            if (temp != null)
+                temp(sender, new ItemAddedToAltarForSacrificeEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_ItemAddedToAltarForSacrifice Event Args. Source emits 1 arg.
+        /// </summary>
+        public class ItemAddedToAltarForSacrificeEventArgs : LSEventArgs
+        {
+            internal ItemAddedToAltarForSacrificeEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Inventory index of the item placed on the altar
+            /// </summary>
+            public int ItemIndex
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onDestroyItem
+
+        /// <summary>
+        /// EQ2_onDestroyItem Event Handler. Fires when the player destroys an inventory
+        /// item via the in-game 'inventory destroy' command (source emit at CommandHooks.cpp:219).
+        /// </summary>
+        public event EventHandler<DestroyItemEventArgs> DestroyItem;
+
+        /// <summary>
+        /// EQ2_onDestroyItem Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnDestroyItem(object sender, LSEventArgs e)
+        {
+            var temp = DestroyItem;
+            if (temp != null)
+                temp(sender, new DestroyItemEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onDestroyItem Event Args. Source emits 2 args.
+        /// </summary>
+        public class DestroyItemEventArgs : LSEventArgs
+        {
+            internal DestroyItemEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Item ID (source emits pItem-&gt;ID as a uint string; wrapper exposes as int
+            /// for consistency with other ID args in this file).
+            /// </summary>
+            public int ItemID
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+
+            /// <summary>
+            /// Item Name
+            /// </summary>
+            public string ItemName
+            {
+                get { return Args[1]; }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onDeleteQuest
+
+        /// <summary>
+        /// EQ2_onDeleteQuest Event Handler. Fires when the player deletes a quest via
+        /// the in-game 'deletequest' command (source emit at CommandHooks.cpp:244).
+        /// </summary>
+        public event EventHandler<DeleteQuestEventArgs> DeleteQuest;
+
+        /// <summary>
+        /// EQ2_onDeleteQuest Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnDeleteQuest(object sender, LSEventArgs e)
+        {
+            var temp = DeleteQuest;
+            if (temp != null)
+                temp(sender, new DeleteQuestEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onDeleteQuest Event Args. Source emits 2 args parsed verbatim from the
+        /// 'deletequest &lt;Param1&gt; &lt;Param2&gt;' console command. Field names match
+        /// the source variables; the precise game-side semantics of Param1/Param2 are
+        /// not formally documented (changelog has no entry for this event), so callers
+        /// should treat them as opaque strings until verified empirically.
+        /// </summary>
+        public class DeleteQuestEventArgs : LSEventArgs
+        {
+            internal DeleteQuestEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// First positional argument from the 'deletequest' command
+            /// </summary>
+            public string Param1
+            {
+                get { return Args[0]; }
+            }
+
+            /// <summary>
+            /// Second positional argument from the 'deletequest' command
+            /// </summary>
+            public string Param2
+            {
+                get { return Args[1]; }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onSellItem
+
+        /// <summary>
+        /// EQ2_onSellItem Event Handler. Fires when the player sells an item to a
+        /// merchant (source emit at CommandHooks.cpp:278). Note: the source declares a
+        /// 4-element argv (ItemName, Quantity, LinkID, ItemLinkString) but invokes
+        /// ExecuteEvent with argc=3, so only the first 3 fields are reliably emitted.
+        /// </summary>
+        public event EventHandler<SellItemEventArgs> SellItem;
+
+        /// <summary>
+        /// EQ2_onSellItem Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnSellItem(object sender, LSEventArgs e)
+        {
+            var temp = SellItem;
+            if (temp != null)
+                temp(sender, new SellItemEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onSellItem Event Args. Source emits 3 args (despite the changelog
+        /// documenting a 4th ItemLinkString — it is not actually transmitted).
+        /// </summary>
+        public class SellItemEventArgs : LSEventArgs
+        {
+            internal SellItemEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Item Name
+            /// </summary>
+            public string ItemName
+            {
+                get { return Args[0]; }
+            }
+
+            /// <summary>
+            /// Quantity sold
+            /// </summary>
+            public int Quantity
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+
+            /// <summary>
+            /// Item LinkID
+            /// </summary>
+            public int LinkID
+            {
+                get { return Convert.ToInt32(Args[2]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onMenderRepairAll
+
+        /// <summary>
+        /// EQ2_onMenderRepairAll Event Handler. Fires when the player invokes the
+        /// 'repair all' action at a mender NPC (source emit at CommandHooks.cpp:299).
+        /// </summary>
+        public event EventHandler<MenderRepairAllEventArgs> MenderRepairAll;
+
+        /// <summary>
+        /// EQ2_onMenderRepairAll Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnMenderRepairAll(object sender, LSEventArgs e)
+        {
+            var temp = MenderRepairAll;
+            if (temp != null)
+                temp(sender, new MenderRepairAllEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onMenderRepairAll Event Args. Source emits 1 arg: the mender NPC's actor
+        /// ID (the player's TargetID at the moment the repair-all action is invoked).
+        /// </summary>
+        public class MenderRepairAllEventArgs : LSEventArgs
+        {
+            internal MenderRepairAllEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Actor ID of the mender NPC (player's target at action time)
+            /// </summary>
+            public int MenderID
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onCraftRoundResult
+
+        /// <summary>
+        /// EQ2_onCraftRoundResult Event Handler. Fires once per crafting reaction round
+        /// with the round's result message and stat deltas (source emit at
+        /// NetworkHooks.cpp:383).
+        /// </summary>
+        public event EventHandler<CraftRoundResultEventArgs> CraftRoundResult;
+
+        /// <summary>
+        /// EQ2_onCraftRoundResult Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnCraftRoundResult(object sender, LSEventArgs e)
+        {
+            var temp = CraftRoundResult;
+            if (temp != null)
+                temp(sender, new CraftRoundResultEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onCraftRoundResult Event Args. Source emits 9 args.
+        /// </summary>
+        public class CraftRoundResultEventArgs : LSEventArgs
+        {
+            internal CraftRoundResultEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Round result message text
+            /// </summary>
+            public string Message
+            {
+                get { return Args[0]; }
+            }
+
+            /// <summary>
+            /// Reaction result code
+            /// </summary>
+            public int Result
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+
+            /// <summary>
+            /// Quality value at end of round
+            /// </summary>
+            public int Quality
+            {
+                get { return Convert.ToInt32(Args[2]); }
+            }
+
+            /// <summary>
+            /// Progress value at end of round
+            /// </summary>
+            public int Progress
+            {
+                get { return Convert.ToInt32(Args[3]); }
+            }
+
+            /// <summary>
+            /// Progress modifier applied this round
+            /// </summary>
+            public int ProgressMod
+            {
+                get { return Convert.ToInt32(Args[4]); }
+            }
+
+            /// <summary>
+            /// Durability value at end of round
+            /// </summary>
+            public int Durability
+            {
+                get { return Convert.ToInt32(Args[5]); }
+            }
+
+            /// <summary>
+            /// Durability modifier applied this round
+            /// </summary>
+            public int DurabilityMod
+            {
+                get { return Convert.ToInt32(Args[6]); }
+            }
+
+            /// <summary>
+            /// Main icon ID for the round
+            /// </summary>
+            public int MainIconID
+            {
+                get { return Convert.ToInt32(Args[7]); }
+            }
+
+            /// <summary>
+            /// Backdrop icon ID for the round
+            /// </summary>
+            public int BackdropIconID
+            {
+                get { return Convert.ToInt32(Args[8]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onCharacterSheetUpdate
+
+        /// <summary>
+        /// EQ2_onCharacterSheetUpdate Event Handler. Fires when the character-sheet
+        /// network message is processed (source emit at NetworkHooks.cpp:421). Source
+        /// emits zero args.
+        /// </summary>
+        public event EventHandler<LSEventArgs> CharacterSheetUpdate;
+
+        /// <summary>
+        /// EQ2_onCharacterSheetUpdate Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnCharacterSheetUpdate(object sender, LSEventArgs e)
+        {
+            var temp = CharacterSheetUpdate;
+            if (temp != null)
+                temp(sender, e);
+        }
+
+        #endregion
+
+        #region EQ2_onGroupMembershipChange
+
+        /// <summary>
+        /// EQ2_onGroupMembershipChange Event Handler. Fires when the player's group
+        /// composition changes (source emit at NetworkHooks.cpp:442). Note: the source
+        /// adds +1 to both counts before emitting (legacy script compatibility), so a
+        /// solo player reports a count of 1.
+        /// </summary>
+        public event EventHandler<GroupMembershipChangeEventArgs> GroupMembershipChange;
+
+        /// <summary>
+        /// EQ2_onGroupMembershipChange Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnGroupMembershipChange(object sender, LSEventArgs e)
+        {
+            var temp = GroupMembershipChange;
+            if (temp != null)
+                temp(sender, new GroupMembershipChangeEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onGroupMembershipChange Event Args. Source emits 2 args (both
+        /// pre-incremented by 1 — see remark on the event handler).
+        /// </summary>
+        public class GroupMembershipChangeEventArgs : LSEventArgs
+        {
+            internal GroupMembershipChangeEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Group count prior to the membership change (+1 offset applied by source)
+            /// </summary>
+            public int PreviousGroupCount
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+
+            /// <summary>
+            /// Group count after the membership change (+1 offset applied by source)
+            /// </summary>
+            public int NewGroupCount
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onRaidMembershipChange
+
+        /// <summary>
+        /// EQ2_onRaidMembershipChange Event Handler. Fires when the player's raid
+        /// composition changes (source emit at NetworkHooks.cpp:462).
+        /// </summary>
+        public event EventHandler<RaidMembershipChangeEventArgs> RaidMembershipChange;
+
+        /// <summary>
+        /// EQ2_onRaidMembershipChange Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnRaidMembershipChange(object sender, LSEventArgs e)
+        {
+            var temp = RaidMembershipChange;
+            if (temp != null)
+                temp(sender, new RaidMembershipChangeEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onRaidMembershipChange Event Args. Source emits 2 args (no offset).
+        /// </summary>
+        public class RaidMembershipChangeEventArgs : LSEventArgs
+        {
+            internal RaidMembershipChangeEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Raid count prior to the membership change
+            /// </summary>
+            public int PreviousRaidCount
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+
+            /// <summary>
+            /// Raid count after the membership change
+            /// </summary>
+            public int NewRaidCount
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onContainerWindowAppeared
+
+        /// <summary>
+        /// EQ2_onContainerWindowAppeared Event Handler. Fires once per newly-opened
+        /// container window (source emit at Pulse.cpp:901).
+        /// </summary>
+        public event EventHandler<ContainerWindowAppearedEventArgs> ContainerWindowAppeared;
+
+        /// <summary>
+        /// EQ2_onContainerWindowAppeared Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnContainerWindowAppeared(object sender, LSEventArgs e)
+        {
+            var temp = ContainerWindowAppeared;
+            if (temp != null)
+                temp(sender, new ContainerWindowAppearedEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onContainerWindowAppeared Event Args. Source emits 1 arg
+        /// (a uint64-formatted window ID); wrapper exposes as int for consistency
+        /// with other window-ID args in this file.
+        /// </summary>
+        public class ContainerWindowAppearedEventArgs : LSEventArgs
+        {
+            internal ContainerWindowAppearedEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Container Window ID
+            /// </summary>
+            public int WindowID
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onLevelChange
+
+        /// <summary>
+        /// EQ2_onLevelChange Event Handler. Fires when the player levels up or down
+        /// (source emit at NetworkHooks.cpp:271).
+        /// </summary>
+        public event EventHandler<LevelChangeEventArgs> LevelChange;
+
+        /// <summary>
+        /// EQ2_onLevelChange Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnLevelChange(object sender, LSEventArgs e)
+        {
+            var temp = LevelChange;
+            if (temp != null)
+                temp(sender, new LevelChangeEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onLevelChange Event Args. Source emits 2 args.
+        /// </summary>
+        public class LevelChangeEventArgs : LSEventArgs
+        {
+            internal LevelChangeEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Player level prior to the change
+            /// </summary>
+            public int OldLevel
+            {
+                get { return Convert.ToInt32(Args[0]); }
+            }
+
+            /// <summary>
+            /// Player level after the change
+            /// </summary>
+            public int NewLevel
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onAbilityGained
+
+        /// <summary>
+        /// EQ2_onAbilityGained Event Handler. Fires when a new ability is granted to
+        /// the player (source emit at NetworkHooks.cpp:223).
+        /// </summary>
+        public event EventHandler<AbilityGainedEventArgs> AbilityGained;
+
+        /// <summary>
+        /// EQ2_onAbilityGained Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnAbilityGained(object sender, LSEventArgs e)
+        {
+            var temp = AbilityGained;
+            if (temp != null)
+                temp(sender, new AbilityGainedEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onAbilityGained Event Args. Source emits 2 args.
+        /// </summary>
+        public class AbilityGainedEventArgs : LSEventArgs
+        {
+            internal AbilityGainedEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Ability name
+            /// </summary>
+            public string Name
+            {
+                get { return Args[0]; }
+            }
+
+            /// <summary>
+            /// Ability tier
+            /// </summary>
+            public int Tier
+            {
+                get { return Convert.ToInt32(Args[1]); }
+            }
+        }
+
+        #endregion
+
+        #region EQ2_onSoundEffect
+
+        /// <summary>
+        /// EQ2_onSoundEffect Event Handler. Fires for each sound effect played by the
+        /// EQ2 audio engine (source emit at MiscHooks.cpp:161). High-frequency event;
+        /// most scripts will only attach when actively diagnosing sound names.
+        /// </summary>
+        public event EventHandler<SoundEffectEventArgs> SoundEffect;
+
+        /// <summary>
+        /// EQ2_onSoundEffect Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnSoundEffect(object sender, LSEventArgs e)
+        {
+            var temp = SoundEffect;
+            if (temp != null)
+                temp(sender, new SoundEffectEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// EQ2_onSoundEffect Event Args. Source emits 1 arg.
+        /// </summary>
+        public class SoundEffectEventArgs : LSEventArgs
+        {
+            internal SoundEffectEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Sound-effect name
+            /// </summary>
+            public string EffectName
+            {
+                get { return Args[0]; }
+            }
+        }
+
+        #endregion
+
+        #region ISXEQ2_onInstanceReloadingAfterUpdate
+
+        /// <summary>
+        /// ISXEQ2_onInstanceReloadingAfterUpdate Event Handler. Fires (via the
+        /// 'relay all -event' cross-session mechanism) when another InnerSpace session
+        /// finishes patching the ISXEQ2 extension and is about to reload, so that
+        /// other sessions can take coordinated action. Source-side handler at
+        /// Events.cpp:11.
+        /// </summary>
+        public event EventHandler<InstanceReloadingAfterUpdateEventArgs> InstanceReloadingAfterUpdate;
+
+        /// <summary>
+        /// ISXEQ2_onInstanceReloadingAfterUpdate Event Raiser
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">arguments</param>
+        protected virtual void OnInstanceReloadingAfterUpdate(object sender, LSEventArgs e)
+        {
+            var temp = InstanceReloadingAfterUpdate;
+            if (temp != null)
+                temp(sender, new InstanceReloadingAfterUpdateEventArgs(e.Args));
+        }
+
+        /// <summary>
+        /// ISXEQ2_onInstanceReloadingAfterUpdate Event Args. Source emits 1 arg: the
+        /// session name that triggered the relay.
+        /// </summary>
+        public class InstanceReloadingAfterUpdateEventArgs : LSEventArgs
+        {
+            internal InstanceReloadingAfterUpdateEventArgs(params string[] args) : base(args) { }
+
+            /// <summary>
+            /// Name of the session whose ISXEQ2 instance has been patched
+            /// </summary>
+            public string SessionPatched
+            {
+                get { return Args[0]; }
+            }
         }
 
         #endregion
