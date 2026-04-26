@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="AbilityEffect\Ability.cs" />
     <Compile Include="AbilityEffect\Achievement.cs" />
+    <Compile Include="AbilityEffect\ActorEffect.cs" />
     <Compile Include="CharacterActor\Actor.cs" />
     <Compile Include="CharacterActor\Character.cs" />
     <Compile Include="CharacterActor\EquipmentAppearance.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="UI\EQ2BaseObject.cs" />
     <Compile Include="UI\EQ2Button.cs" />
     <Compile Include="UI\EQ2CheckBox.cs" />
+    <Compile Include="UI\EQ2Composite.cs" />
     <Compile Include="UI\EQ2DataSourceContainer.cs" />
     <Compile Include="UI\EQ2DropDownBox.cs" />
     <Compile Include="UI\EQ2DynamicData.cs" />
@@ -90,7 +92,9 @@
     <Compile Include="UI\EQ2IconBank.cs" />
     <Compile Include="UI\EQ2List.cs" />
     <Compile Include="UI\EQ2ListBox.cs" />
+    <Compile Include="UI\EQ2ProgressBar.cs" />
     <Compile Include="UI\EQ2ScrollBar.cs" />
+    <Compile Include="UI\EQ2SliderBar.cs" />
     <Compile Include="UI\EQ2TabbedPane.cs" />
     <Compile Include="UI\EQ2Text.cs" />
     <Compile Include="UI\EQ2TextBox.cs" />
@@ -123,13 +127,16 @@
     <Compile Include="Quest\Quest.cs" />
     <Compile Include="UI\QuestJournalWindow.cs" />
     <Compile Include="Utility\Radar.cs" />
+    <Compile Include="UI\RadialMenuAction.cs" />
     <Compile Include="UI\RadialMenuWindow.cs" />
     <Compile Include="Recipe\Recipe.cs" />
     <Compile Include="UI\ReforgeWindow.cs" />
     <Compile Include="UI\ReplyDialog.cs" />
     <Compile Include="UI\Reward.cs" />
     <Compile Include="UI\RewardWindow.cs" />
+    <Compile Include="UI\TeleportLocation.cs" />
     <Compile Include="UI\TravelMapWindow.cs" />
+    <Compile Include="UI\TravelMapWindowLocation.cs" />
     <Compile Include="InventoryConsignment\VendingContainer.cs" />
     <Compile Include="InventoryConsignment\Vendor.cs" />
     <Compile Include="InventoryConsignment\VendorItem.cs" />
