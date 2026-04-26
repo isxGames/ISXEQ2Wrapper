@@ -10,6 +10,13 @@ namespace EQ2.ISXEQ2.InventoryConsignment
     /// <summary>
     /// This TLO returns a new datatype: 'eq2brokerwindow'. This new datatype inherits all members/methods of the 'eq2window' type.
     /// </summary>
+    /// <remarks>
+    /// BrokerWindow access can be disabled by ISXEQ2 policing. When
+    /// gEQ2Policing.bIsBrokerGriefer is set on the player, source short-circuits
+    /// ALL members and methods to return false
+    /// (DT-Eq2GuiWindows.cpp:1968-1972, 2149-2153). Wrapper consumers may see
+    /// silent failures with no exception or error code reaching .NET.
+    /// </remarks>
     public class BrokerWindow : EQ2Window
     {
         #region Constructor

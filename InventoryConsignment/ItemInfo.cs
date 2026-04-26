@@ -1129,6 +1129,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Returns MaxRange (alias).
         /// </summary>
+        /// <remarks>
+        /// <c>Range</c> and <c>MaxRange</c> share fall-through code in source (DT-Items.cpp:1607-1625) and return identical
+        /// values. The conditional that originally restricted <c>Range</c> to RangedWeapon items is commented out. Use either;
+        /// they're aliases.
+        /// </remarks>
         public int Range
         {
             get

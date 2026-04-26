@@ -603,6 +603,14 @@ namespace EQ2.ISXEQ2.Utility
         /// nopcnear [, #] - nearest actor for which there is no PC within the given radius from it. If no argument is given, then it defaults to a range of 100
         /// loc,#,# [,#] - actor at the location provided X, Z, or X, Z, Y if third parameter provided
         /// "string" - nearest actor with that string in their name
+        ///
+        /// Implementation note: this method delegates to Util.GetListFromMethod&lt;Actor&gt;,
+        /// which creates a transient LavishScript actor index and prepends its
+        /// LSReference as argv[0] before invoking the source method. This satisfies
+        /// the source-side EQ2:GetActors[indexRef, ...filter args...] signature
+        /// (DT-Miscellaneous.cpp:791-831 — argv[0] is validated as the index container
+        /// via Validate_LSObjectContainer; argv[1..n] are the filter/query tokens).
+        /// Caller-supplied 'args' here become the filter tokens after the index reference.
         /// </remarks>
         public IEnumerable<Actor> GetActors(params string[] args)
         {

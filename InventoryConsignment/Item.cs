@@ -1735,6 +1735,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Adds the item as an agent (without confirmation).
         /// </summary>
+        /// <remarks>
+        /// Source dispatches <c>add_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
+        /// per the source comment at DT-Items.cpp:680-682 ("there is a typo in the EQ2 source as of January 2020"). The comma
+        /// matches the game's expected format; do not attempt to remove it.
+        /// </remarks>
         /// <returns>call success</returns>
         public bool AddAgent()
         {
@@ -1745,6 +1750,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Adds the item as an agent.
         /// </summary>
+        /// <remarks>
+        /// Source dispatches <c>add_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
+        /// per the source comment at DT-Items.cpp:680-682 ("there is a typo in the EQ2 source as of January 2020"). The comma
+        /// matches the game's expected format; do not attempt to remove it.
+        /// </remarks>
         /// <param name="withconfirm">with confirmation</param>
         /// <returns>call success</returns>
         public bool AddAgent(bool withconfirm)
@@ -1875,6 +1885,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Converts the item as an agent (without confirmation).
         /// </summary>
+        /// <remarks>
+        /// Source dispatches <c>convert_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
+        /// per the source comment at DT-Items.cpp:693 ("there is a typo in the EQ2 source as of January 2020"). The comma
+        /// matches the game's expected format; do not attempt to remove it.
+        /// </remarks>
         /// <returns>call success</returns>
         public bool ConvertAgent()
         {
@@ -1885,6 +1900,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Converts the item as an agent.
         /// </summary>
+        /// <remarks>
+        /// Source dispatches <c>convert_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
+        /// per the source comment at DT-Items.cpp:693 ("there is a typo in the EQ2 source as of January 2020"). The comma
+        /// matches the game's expected format; do not attempt to remove it.
+        /// </remarks>
         /// <param name="withconfirm">with confirmation</param>
         /// <returns>call success</returns>
         public bool ConvertAgent(bool withconfirm)

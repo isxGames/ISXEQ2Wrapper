@@ -92,6 +92,12 @@ namespace EQ2.ISXEQ2.UI
         /// when called with linkID == 0 (default), the source dispatches based on
         /// the number of rewards in the pack.
         /// </summary>
+        /// <remarks>
+        /// After invocation, the underlying LavishScript window object becomes
+        /// invalid: the source closes the window after sending the accept_reward
+        /// command (DT-Eq2GuiWindows.cpp:1445-1446). Treat any held RewardWindow
+        /// reference as stale after this call.
+        /// </remarks>
         /// <param name="linkID">optional LinkID of the reward to accept (0 = default selection)</param>
         /// <returns>call success</returns>
         public bool AcceptReward(uint linkID = 0)
