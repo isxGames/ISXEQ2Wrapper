@@ -4,6 +4,7 @@ using System.Globalization;
 using EQ2.ISXEQ2.AbilityEffect;
 using EQ2.ISXEQ2.CharacterActor;
 using EQ2.ISXEQ2.InventoryConsignment;
+using EQ2.ISXEQ2.Recipe;
 using EQ2.ISXEQ2.UI;
 using EQ2.ISXEQ2.Utility;
 using InnerSpaceAPI;
@@ -84,9 +85,46 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
+        /// Retrieves the Beastlord window when one is currently open, otherwise NULL.
+        /// </summary>
+        public static BeastlordWindow BeastlordWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:BeastlordWindow"));
+                return new BeastlordWindow(LavishScript.Objects.GetObject("BeastlordWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Broker window (eq2brokerwindow / eq2marketwindow) when one is
+        /// currently open, otherwise NULL.
+        /// </summary>
+        public static BrokerWindow BrokerWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:BrokerWindow"));
+                return new BrokerWindow(LavishScript.Objects.GetObject("BrokerWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Channeler window when one is currently open, otherwise NULL.
+        /// </summary>
+        public static ChannelerWindow ChannelerWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:ChannelerWindow"));
+                return new ChannelerWindow(LavishScript.Objects.GetObject("ChannelerWindow"));
+            }
+        }
+
+        /// <summary>
         /// Retrieves a choice window object from the game world. This TLO returns the last choice window opened
-        ///  or the only one, if you only have one choice window up. 
-        /// (If you have no choice windows up, then it returns NULL) 
+        ///  or the only one, if you only have one choice window up.
+        /// (If you have no choice windows up, then it returns NULL)
         /// </summary>
         public static ChoiceWindow ChoiceWindow
         {
@@ -98,10 +136,41 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
+        /// Retrieves the last container window opened (or the only one, if you only
+        /// have one container window up), or the container window matching a specific
+        /// ID as supplied by the EQ2_onContainerWindowAppeared event. Returns NULL when
+        /// no container window is open.
+        /// </summary>
+        /// <param name="windowID">window id (0 = latest)</param>
+        public static ContainerWindow ContainerWindow(int windowID = 0)
+        {
+            Trace.WriteLine((windowID == 0) ? String.Format("Extension:ContainerWindow()")
+                : String.Format("Extension:ContainerWindow({0})", windowID.ToString(CultureInfo.InvariantCulture)));
+            return windowID == 0
+                ? new ContainerWindow(LavishScript.Objects.GetObject("ContainerWindow"))
+                : new ContainerWindow(LavishScript.Objects.GetObject("ContainerWindow",
+                    windowID.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Retrieves the Crafting TLO, exposing the live state of the in-progress
+        /// crafting reaction (Quality, Progress, Durability, etc.) plus the custom
+        /// crafting-variable key-value store.
+        /// </summary>
+        public static Crafting Crafting
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:Crafting"));
+                return new Crafting(LavishScript.Objects.GetObject("Crafting"));
+            }
+        }
+
+        /// <summary>
         /// Retrieves the actor from the CustomActorArray by id.
         /// </summary>
         /// <param name="id">actor id</param>
-        /// <returns>Actor</returns>       
+        /// <returns>Actor</returns>
         public static Actor CustomActor(int id)
         {
             Trace.WriteLine(String.Format("Extension:CustomActor({0})", id.ToString(CultureInfo.InvariantCulture)));
@@ -291,6 +360,45 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
+        /// Retrieves the Mail window (player mail inbox) when the player is in a mail
+        /// transaction at a post office or mailbox.
+        /// </summary>
+        public static MailWindow MailWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:MailWindow"));
+                return new MailWindow(LavishScript.Objects.GetObject("MailWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the main Map window (eq2mapwindow) when one is currently open,
+        /// otherwise NULL.
+        /// </summary>
+        public static MapWindow MapWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:MapWindow"));
+                return new MapWindow(LavishScript.Objects.GetObject("MapWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Merchant window (eq2merchantwindow) when one is currently open,
+        /// otherwise NULL.
+        /// </summary>
+        public static MerchantWindow MerchantWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:MerchantWindow"));
+                return new MerchantWindow(LavishScript.Objects.GetObject("MerchantWindow"));
+            }
+        }
+
+        /// <summary>
         /// Retrieves the player character
         /// </summary>
         public static Character Me
@@ -299,6 +407,32 @@ namespace EQ2.ISXEQ2
             {
                 Trace.WriteLine(String.Format("Extension:Me"));
                 return new Character(LavishScript.Objects.GetObject("Me"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Opened Mail window (the singular per-message reading window)
+        /// when the player has a mail item opened, otherwise NULL.
+        /// </summary>
+        public static OpenedMailWindow OpenedMailWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:OpenedMailWindow"));
+                return new OpenedMailWindow(LavishScript.Objects.GetObject("OpenedMailWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Quest Journal window (eq2questjournalwindow) when one is
+        /// currently open, otherwise NULL.
+        /// </summary>
+        public static QuestJournalWindow QuestJournalWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:QuestJournalWindow"));
+                return new QuestJournalWindow(LavishScript.Objects.GetObject("QuestJournalWindow"));
             }
         }
 
@@ -323,6 +457,32 @@ namespace EQ2.ISXEQ2
         {
             Trace.WriteLine(String.Format("Extension:Radar({0}", name));
             return new Radar(LavishScript.Objects.GetObject("Radar", name));
+        }
+
+        /// <summary>
+        /// Retrieves the Radial Menu window (eq2radialmenuwindow) when one is
+        /// currently open, otherwise NULL.
+        /// </summary>
+        public static RadialMenuWindow RadialMenuWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:RadialMenuWindow"));
+                return new RadialMenuWindow(LavishScript.Objects.GetObject("RadialMenuWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the Reforge window (eq2reforgewindow) when one is currently open,
+        /// otherwise NULL.
+        /// </summary>
+        public static ReforgeWindow ReforgeWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:ReforgeWindow"));
+                return new ReforgeWindow(LavishScript.Objects.GetObject("ReforgeWindow"));
+            }
         }
 
         /// <summary>
@@ -378,11 +538,24 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Retrieves a vendor object from the game world. For the 
-        /// purposes of ISXEQ2, a vendor is defined as any NPC or 
+        /// Retrieves the Travel Map window (eq2travelmapwindow) when one is currently
+        /// open, otherwise NULL.
+        /// </summary>
+        public static TravelMapWindow TravelMapWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:TravelMapWindow"));
+                return new TravelMapWindow(LavishScript.Objects.GetObject("TravelMapWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a vendor object from the game world. For the
+        /// purposes of ISXEQ2, a vendor is defined as any NPC or
         /// PC that can buy or sell items. This includes brokers.
-        /// For this TLO to function, you must have the vendor 
-        /// targetted and the merchant or broker window open and 
+        /// For this TLO to function, you must have the vendor
+        /// targetted and the merchant or broker window open and
         /// populated.
         /// </summary>
         public static Vendor Vendor
@@ -412,15 +585,13 @@ namespace EQ2.ISXEQ2
         /// TODO: Implement Craft
         /// TODO: Implement Dump
         /// TODO: Implement EQ2Ignore
-        /// TODO: Implement InitCommands
         /// TODO: Implement ShowStats
-        /// TODO: Implement Where
 
 
         /// <summary>
-        /// Activates an item that is currently equipped. (The command 
-        /// activates an item in the same way as if you placed the item 
-        /// in your hotbar and clicked on it, or, if you right-click on 
+        /// Activates an item that is currently equipped. (The command
+        /// activates an item in the same way as if you placed the item
+        /// in your hotbar and clicked on it, or, if you right-click on
         /// an item and select 'use'.)
         /// </summary>
         /// <param name="slot">equipment slot</param>
@@ -428,6 +599,22 @@ namespace EQ2.ISXEQ2
         {
             Trace.WriteLine(String.Format("Extension:Activate({0})", slot));
             return LavishScript.ExecuteCommand(String.Format("Activate {0}", slot.ToString().ToLower()));
+        }
+
+        /// <summary>
+        /// Makes an in-game announcement for the supplied duration with the specified
+        /// sound. Dispatches the source 'announce' command (lowercase).
+        /// </summary>
+        /// <param name="text">announcement text</param>
+        /// <param name="timer">time (seconds) to remain on screen</param>
+        /// <param name="sound">sound to play</param>
+        public static int Announce(string text, float timer, AnnouncementSound sound = AnnouncementSound.QuestComplete)
+        {
+            Trace.WriteLine(String.Format("Extension:Announce({0}, {1}, {2})", text,
+                timer.ToString(CultureInfo.InvariantCulture), sound));
+            return LavishScript.ExecuteCommand(String.Format("announce {0} {1} {2}", text,
+                timer.ToString(CultureInfo.InvariantCulture),
+                ((int)sound).ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -498,9 +685,20 @@ namespace EQ2.ISXEQ2
             return LavishScript.ExecuteCommand(String.Format("EQ2Ignore {0}", args));
         }
 
+        /// <summary>
+        /// Dispatches the 'eq2loc' console command, which is the command-side adder
+        /// for saved locations. This is distinct from the EQ2Loc(int) / EQLoc(string)
+        /// TLO accessors above, which retrieve already-saved locations.
+        /// </summary>
+        /// <param name="args">command arguments (label, notes, etc.)</param>
+        public static int EQ2Loc(string args)
+        {
+            Trace.WriteLine(String.Format("Extension:EQ2Loc({0})", args));
+            return LavishScript.ExecuteCommand(String.Format("eq2loc {0}", args));
+        }
 
         /// <summary>
-        /// Faces your current target. 
+        /// Faces your current target.
         /// </summary>
         public static int Face()
         {
@@ -572,7 +770,52 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Used to issue commands to the Radar. Custom radar name is 
+        /// Issues a GET HTTP request. The optional contentType argument was added
+        /// 2024-07-06 (per ISXEQ2Changes.txt) and corresponds to the third positional
+        /// parameter of the underlying GetURL command. Responses arrive via the
+        /// isxGames_onHTTPResponse event.
+        /// </summary>
+        /// <param name="url">target URL (http or https)</param>
+        /// <param name="contentType">optional Content-Type header value</param>
+        public static int GetURL(string url, string contentType = null)
+        {
+            Trace.WriteLine((contentType == null) ? String.Format("Extension:GetURL({0})", url)
+                : String.Format("Extension:GetURL({0}, {1})", url, contentType));
+            return LavishScript.ExecuteCommand((contentType == null)
+                ? String.Format("GetURL \"{0}\"", url)
+                : String.Format("GetURL \"{0}\" \"{1}\"", url, contentType));
+        }
+
+        /// <summary>
+        /// Re-initializes ISXEQ2's command bindings. Useful after dynamic command
+        /// registration or after certain reload scenarios.
+        /// </summary>
+        public static int InitCommands()
+        {
+            Trace.WriteLine(String.Format("Extension:InitCommands()"));
+            return LavishScript.ExecuteCommand("InitCommands");
+        }
+
+        /// <summary>
+        /// Issues a POST HTTP request with the supplied body. The optional contentType
+        /// argument was added 2024-07-06 (per ISXEQ2Changes.txt) and corresponds to the
+        /// fourth positional parameter of the underlying PostURL command. Responses
+        /// arrive via the isxGames_onHTTPResponse event.
+        /// </summary>
+        /// <param name="url">target URL (http or https)</param>
+        /// <param name="body">POST body / post_data</param>
+        /// <param name="contentType">optional Content-Type header value (e.g. "application/json")</param>
+        public static int PostURL(string url, string body, string contentType = null)
+        {
+            Trace.WriteLine((contentType == null) ? String.Format("Extension:PostURL({0})", url)
+                : String.Format("Extension:PostURL({0}, ..., {1})", url, contentType));
+            return LavishScript.ExecuteCommand((contentType == null)
+                ? String.Format("PostURL \"{0}\" \"{1}\"", url, body)
+                : String.Format("PostURL \"{0}\" \"{1}\" \"{2}\"", url, body, contentType));
+        }
+
+        /// <summary>
+        /// Used to issue commands to the Radar. Custom radar name is
         /// not used for on and off and is optional for zoomin and zoomout
         /// </summary>
         /// <param name="command">command</param>
@@ -614,6 +857,16 @@ namespace EQ2.ISXEQ2
         {
             Trace.WriteLine(String.Format("Extension:Target({0})", name));
             return LavishScript.ExecuteCommand(String.Format("Target {0}", name));
+        }
+
+        /// <summary>
+        /// Dispatches the 'Where' command, which prints the player's current world
+        /// position / zone information to the chat window.
+        /// </summary>
+        public static int Where()
+        {
+            Trace.WriteLine(String.Format("Extension:Where()"));
+            return LavishScript.ExecuteCommand("Where");
         }
 
         /// <summary>
