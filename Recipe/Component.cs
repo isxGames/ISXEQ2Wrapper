@@ -24,6 +24,27 @@ namespace EQ2.ISXEQ2.Recipe
         #region Members
 
         /// <summary>
+        /// Cache of Length
+        /// </summary>
+        private int? _length;
+
+        /// <summary>
+        /// String length of the component name. Only meaningful for primary components;
+        /// returns 0 for build components and fuel (the underlying source datatype only
+        /// registers this on PrimaryComponentType).
+        /// </summary>
+        public int Length
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Component:Length"));
+                if(!_length.HasValue)
+                    _length = this.GetIntFromLSO("Length");
+                return _length.Value;
+            }
+        }
+
+        /// <summary>
         /// Cache of Name
         /// </summary>
         private string _name;

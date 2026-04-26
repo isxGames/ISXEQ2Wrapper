@@ -74,6 +74,23 @@ namespace EQ2.ISXEQ2.Recipe
         }
 
         /// <summary>
+        /// Cache of Byproduct
+        /// </summary>
+        private string _byproduct;
+
+        /// <summary>
+        /// The name of the byproduct produced by this recipe (blank if none)
+        /// </summary>
+        public string Byproduct
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:Byproduct"));
+                return _byproduct ?? (_byproduct = this.GetStringFromLSO("Byproduct"));
+            }
+        }
+
+        /// <summary>
         /// Returns the class at the specified index
         /// </summary>
         /// <param name="index">index</param>
@@ -82,6 +99,17 @@ namespace EQ2.ISXEQ2.Recipe
         {
             Trace.WriteLine(String.Format("Recipe:Class({0})", index.ToString(CultureInfo.InvariantCulture)));
             return new Class(this.GetMember("Class", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the class by tradeskill class name
+        /// </summary>
+        /// <param name="name">tradeskill class name</param>
+        /// <returns>Class</returns>
+        public Class Class(string name)
+        {
+            Trace.WriteLine(String.Format("Recipe:Class({0})", name));
+            return new Class(this.GetMember("Class", name));
         }
 
         /// <summary>
@@ -146,6 +174,20 @@ namespace EQ2.ISXEQ2.Recipe
                 if (!_iD.HasValue)
                     _iD = this.GetUIntFromLSO("ID");
                 return _iD.Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the recipeinfo data has been loaded for this recipe.
+        /// If FALSE, accessing RecipeInfo members may return stale or default values
+        /// while ISXEQ2 asynchronously requests the data from the server.
+        /// </summary>
+        public bool IsRecipeInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:IsRecipeInfoAvailable"));
+                return this.GetBoolFromLSO("IsRecipeInfoAvailable");
             }
         }
 
@@ -251,6 +293,23 @@ namespace EQ2.ISXEQ2.Recipe
         }
 
         /// <summary>
+        /// Cache of Product
+        /// </summary>
+        private string _product;
+
+        /// <summary>
+        /// The name of the product produced by this recipe
+        /// </summary>
+        public string Product
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:Product"));
+                return _product ?? (_product = this.GetStringFromLSO("Product"));
+            }
+        }
+
+        /// <summary>
         /// Cache of RecipeBook
         /// </summary>
         private string _recipeBook;
@@ -284,6 +343,21 @@ namespace EQ2.ISXEQ2.Recipe
             }
         }
 
+        /// <summary>
+        /// Returns the RecipeInfo for this recipe. Because this wrapper combines
+        /// the recipe and recipeinfo datatypes into a single class, this returns
+        /// the same Recipe instance bound to the underlying recipeinfo object.
+        /// Use IsRecipeInfoAvailable to confirm the recipeinfo data has loaded.
+        /// </summary>
+        public Recipe ToRecipeInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Recipe:ToRecipeInfo"));
+                return new Recipe(this.GetMember("ToRecipeInfo"));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -306,6 +380,28 @@ namespace EQ2.ISXEQ2.Recipe
         {
             Trace.WriteLine(String.Format("Recipe:Examine()"));
             return this.ExecuteMethod("Examine");
+        }
+
+        /// <summary>
+        /// Examines the product produced by this recipe
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool ExamineProduct()
+        {
+            Trace.WriteLine(String.Format("Recipe:ExamineProduct()"));
+            return this.ExecuteMethod("ExamineProduct");
+        }
+
+        /// <summary>
+        /// Rebinds this Recipe variable to the recipe identified by the given RecipeID.
+        /// This is the data-mutator counterpart of the LavishScript ':Set' method.
+        /// </summary>
+        /// <param name="recipeID">recipe ID</param>
+        /// <returns>call success</returns>
+        public bool Set(long recipeID)
+        {
+            Trace.WriteLine(String.Format("Recipe:Set({0})", recipeID.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Set", recipeID.ToString(CultureInfo.InvariantCulture));
         }
 
         #endregion
