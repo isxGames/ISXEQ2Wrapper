@@ -67,6 +67,7 @@
     <Compile Include="UI\ChoiceWindow.cs" />
     <Compile Include="AbilityEffect\Class.cs" />
     <Compile Include="Recipe\Component.cs" />
+    <Compile Include="Recipe\Crafting.cs" />
     <Compile Include="InventoryConsignment\Consignment.cs" />
     <Compile Include="InventoryConsignment\ContainerWindow.cs" />
     <Compile Include="InventoryConsignment\ContainerWindowItem.cs" />
