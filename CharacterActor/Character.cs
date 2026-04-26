@@ -71,18 +71,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Achievement Point Experience
-        /// </summary>
-        public float APExp
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:APExp"));
-                return this.GetFloatFromLSO("APExp");
-            }
-        }
-
-        /// <summary>
         /// Arcane Affliction Counter
         /// </summary>
         public int Arcane
@@ -264,19 +252,6 @@ namespace EQ2.ISXEQ2.CharacterActor
                 if(!_baseWisdom.HasValue)
                     _baseWisdom = this.GetIntFromLSO("BaseWisdom");
                 return _baseWisdom.Value;
-            }
-        }
-
-        /// TODO: Find out what Me.Breath is.
-        /// <summary>
-        /// Breath
-        /// </summary>
-        public float Breath
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Breath"));
-                return this.GetFloatFromLSO("Breath");
             }
         }
 
@@ -600,55 +575,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Experience
-        /// </summary>
-        public int Exp
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Exp"));
-                return this.GetIntFromLSO("Exp");
-            }
-        }
-
-        /// TODO: Find out why Me.ExpDebt returns NULL
-        /// <summary>
-        /// Experience Debt
-        /// </summary>
-        public float ExpDebt
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:ExpDebt"));
-                return this.GetFloatFromLSO("ExpDebt");
-            }
-        }
-
-        /// <summary>
-        /// Experience Points
-        /// </summary>
-        public float ExpPoints
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:ExpPoints"));
-                return this.GetFloatFromLSO("ExpPoints");
-            }
-        }
-
-        /// <summary>
-        /// Experience Points Needed to Reach the Next Level
-        /// </summary>
-        public float ExpPointsToLevel
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:ExpPointsToLevel"));
-                return this.GetFloatFromLSO("ExpPointsToLevel");
-            }
-        }
-
-        /// <summary>
         /// Cache of Gender
         /// </summary>
         private string _gender;
@@ -904,18 +830,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:InGameWorld"));
                 return this.GetBoolFromLSO("InGameWorld");
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if Initializing Effects on the character.
-        /// </summary>
-        public bool InitializingEffects
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:InitializingEffects"));
-                return this.GetBoolFromLSO("InitializingEffects");
             }
         }
 
@@ -1329,27 +1243,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns the object the character is capable of selling at the specified index. (1 to NumItemsICanSell)
-        /// </summary>
-        /// <param name="index">index</param>
-
-        public Merchandise Merchandise(int index)
-        {
-            Trace.WriteLine(String.Format("Character:Merchandise({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return new Merchandise(this.GetMember("Merchandise", index.ToString(CultureInfo.InvariantCulture)));
-        }
-
-        /// <summary>
-        /// Returns the object the character is capable of selling based on name.
-        /// </summary>
-        /// <param name="name">name</param>
-        public Merchandise Merchandise(string name)
-        {
-            Trace.WriteLine(String.Format("Character:Merchandise({0})", name));
-            return new Merchandise(this.GetMember("Merchandise", name));
-        }
-
-        /// <summary>
         /// Cache of Name
         /// </summary>
         private string _name;
@@ -1444,20 +1337,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns the number of items that the character is capable of selling 
-        /// (ie, the number of items in the inventory minus the number of NO VALUE and NO TRADE items.) 
-        /// </summary>
-        public int NumItemsICanSell
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:NumItemsICanSell"));
-                return this.GetIntFromLSO("NumItemsICanSell");
-            }
-        }
-
-        /// <summary>
-        /// Returns the number of recipes your character currently has in his/her recipe book. 
+        /// Returns the number of recipes your character currently has in his/her recipe book.
         /// </summary>
         public int NumRecipes
         {
@@ -1465,30 +1345,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:NumRecipes"));
                 return this.GetIntFromLSO("NumRecipes");
-            }
-        }
-
-        /// <summary>
-        /// Returns the number of vending containers
-        /// </summary>
-        public int NumVendingContainers
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:NumVendingContainers"));
-                return this.GetIntFromLSO("NumVendingContainers");
-            }
-        }
-
-        /// <summary>
-        /// Returns the number of vending containers
-        /// </summary>
-        public int NumVendors
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:NumVendors"));
-                return this.GetIntFromLSO("NumVendors");
             }
         }
 
@@ -1772,19 +1628,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Total slot capacity of all the characters vending containers combined. 
-        /// </summary>
-        public int TotalVendingCapacity
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:TotalVendingCapacity"));
-                return this.GetIntFromLSO("TotalVendingCapacity");
-            }
-        }
-
-
-        /// <summary>
         /// Trauma Affliction Counter
         /// </summary>
         public int Trauma
@@ -1831,54 +1674,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Trade Skill Experience
-        /// </summary>
-        public float TSExp
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:TSExp"));
-                return this.GetFloatFromLSO("TSExp");
-            }
-        }
-
-        /// <summary>
-        /// Trade Skill Experience Debt
-        /// </summary>
-        public float TSExpDebt
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:TSExpDebt"));
-                return this.GetFloatFromLSO("TSExpDebt");
-            }
-        }
-
-        /// <summary>
-        /// Trade Skill Experience Points
-        /// </summary>
-        public float TSExpPoints
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:TSExpPoints"));
-                return this.GetFloatFromLSO("TSExpPoints");
-            }
-        }
-
-        /// <summary>
-        /// Trade Skill Experience Points Needed to Reach the Next Level
-        /// </summary>
-        public float TSExpPointsToLevel
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:TSExpPointsToLevel"));
-                return this.GetFloatFromLSO("TSExpPointsToLevel");
-            }
-        }
-
-        /// <summary>
         /// Trade Skill Level
         /// </summary>
         public int TSLevel
@@ -1903,18 +1698,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Trade Skill Vitality
-        /// </summary>
-        public float TSVitality
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:TSVitality"));
-                return this.GetFloatFromLSO("TSVitality");
-            }
-        }
-
-        /// <summary>
         /// Amount of Concentration Used
         /// </summary>
         public int UsedConc
@@ -1923,62 +1706,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:UsedConc"));
                 return this.GetIntFromLSO("UsedConc");
-            }
-        }
-
-        /// <summary>
-        /// Retrieves the vending container at the index (1 to 6)
-        /// </summary>
-        /// <param name="index">index</param>
-        public VendingContainer Vending(int index)
-        {
-            Trace.WriteLine(String.Format("Character:Vending({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return new VendingContainer(this.GetMember("Vending", index.ToString(CultureInfo.InvariantCulture)));
-        }
-
-        /// <summary>
-        /// Retrieves the vending container by exact name
-        /// </summary>
-        /// <param name="name">name</param>
-        public VendingContainer Vending(string name)
-        {
-            Trace.WriteLine(String.Format("Character:Vending({0})", name));
-            return new VendingContainer(this.GetMember("Vending", name));
-        }
-
-        /// <summary>
-        /// Number of vending container slots currently free for use 
-        /// </summary>
-        public int VendingCapacityFree
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:VendingCapacityFree"));
-                return this.GetIntFromLSO("VendingCapacityFree");
-            }
-        }
-
-        /// <summary>
-        /// Number of vending container slots currently being used 
-        /// </summary>
-        public int VendingCapacityUsed
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:VendingCapacityUsed"));
-                return this.GetIntFromLSO("VendingCapacityUsed");
-            }
-        }
-
-        /// <summary>
-        /// Experience Vitality
-        /// </summary>
-        public float Vitality
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Vitality"));
-                return this.GetFloatFromLSO("Vitality");
             }
         }
 

@@ -1670,17 +1670,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Used to retrieve effects data for this actor.
-        /// </summary>
-        /// <returns></returns>
-        public bool InitializeEffects()
-        {
-            Trace.WriteLine(String.Format("Actor:InitializeEffects()"));
-            return this.ExecuteMethod("InitializeEffects");
-        }
-
-        /// <summary>
-        /// This method will create a location in your locations database 
+        /// This method will create a location in your locations database
         /// (which will save to your isxeq2locations.xml file) creating a label for you.
         /// Please understand that this only works well for stationary actors.
         /// </summary>
