@@ -61,31 +61,9 @@ namespace EQ2.ISXEQ2.UI
             return new Reward(this.GetMember("Reward", n.ToString(CultureInfo.InvariantCulture), linkID.ToString(CultureInfo.InvariantCulture)));
         }
 
-        /// <summary>
-        /// Returns the RewardWindow as an EQ2Window
-        /// </summary>
-        public EQ2Window ToEQ2UIPage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("RewardWindow:ToEQ2UIPage"));
-                return new EQ2Window(this.GetMember("ToEQ2UIPage"));
-            }
-        }
-
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Accepts the reward
-        /// </summary>
-        /// <returns>call success</returns>
-        public bool Accept()
-        {
-            Trace.WriteLine(String.Format("RewardWindow:Accept()"));
-            return this.ExecuteMethod("Accept");
-        }
 
         /// <summary>
         /// Accepts the reward. Optionally accepts a specific reward by LinkID;
@@ -116,16 +94,6 @@ namespace EQ2.ISXEQ2.UI
         {
             Trace.WriteLine(String.Format("RewardWindow:Cancel()"));
             return this.ExecuteMethod("Cancel");
-        }
-
-        /// <summary>
-        /// Receives the reward
-        /// </summary>
-        /// <returns></returns>
-        public bool Receive()
-        {
-            Trace.WriteLine(String.Format("RewardWindow:Receive()"));
-            return this.ExecuteMethod("Receive");
         }
 
         #endregion

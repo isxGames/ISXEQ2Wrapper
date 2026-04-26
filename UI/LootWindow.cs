@@ -38,18 +38,6 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns TRUE if Lotto Loot
-        /// </summary>
-        public bool IsLotto
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("LootWindow:IsLotto"));
-                return this.GetBoolFromLSO("IsLotto");
-            }
-        }
-
-        /// <summary>
         /// Returns the item at the index provided. (From 1 to NumItems)
         /// </summary>
         /// <param name="index">index</param>
@@ -204,19 +192,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the LootWindow as an EQ2Window
-        /// </summary>
-        public EQ2Window ToEQ2UIPage
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("LootWindow:ToEQ2UIPage"));
-                return new EQ2Window(this.GetMember("ToEQ2UIPage"));
-            }
-        }
-
-        /// <summary>
-        /// Returns "Free For All" "Lottery" "Need Before Greed" or "Unknown" 
+        /// Returns "Free For All" "Lottery" "Need Before Greed" or "Unknown"
         /// </summary>
         public string Type
         {
@@ -259,17 +235,6 @@ namespace EQ2.ISXEQ2.UI
         {
             Trace.WriteLine(String.Format("LootWindow:LootAll()"));
             return this.ExecuteMethod("LootAll");
-        }
-
-        /// <summary>
-        /// Loots the single item in the loot window. This method does
-        /// not work for Lotto loot window, only for FreeForAll, LeaderOnly, or Solo.
-        /// </summary>
-        /// <returns></returns>
-        public bool LootItem()
-        {
-            Trace.WriteLine(String.Format("LootWindow:LootItem()"));
-            return this.ExecuteMethod("LootItem");
         }
 
         /// <summary>

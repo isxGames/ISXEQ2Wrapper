@@ -523,25 +523,6 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
-        /// Cache of MinDuration
-        /// </summary>
-        private float? _minDuration;
-
-        /// <summary>
-        /// Min duration of ability (Caution: something not working right)
-        /// </summary>
-        public float MinDuration
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Ability:MinDuration"));
-                if(!_minDuration.HasValue)
-                    _minDuration = this.GetFloatFromLSO("MinDuration");
-                return _minDuration.Value;
-            }
-        }
-
-        /// <summary>
         /// Cache of MinRange
         /// </summary>
         private float? _minRange;

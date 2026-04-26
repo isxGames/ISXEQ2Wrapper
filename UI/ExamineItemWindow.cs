@@ -50,30 +50,6 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns a "checkbox" eq2uielement type.
-        /// </summary>
-        public EQ2Widget GetPVPCheckbox
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("ExamineItemWindow:GetPVPCheckbox"));
-                return new EQ2Widget(this.GetMember("GetPVPCheckBox"));
-            }
-        }
-
-        /// <summary>
-        /// Number of "Texts" in the TextVector
-        /// </summary>
-        public int NumTextVector
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("ExamineItemWindow:NumTextVector"));
-                return this.GetIntFromLSO("NumTextVector");
-            }
-        }
-
-        /// <summary>
         /// Number of "Texts" in the TextVector. Sourced from the source-side
         /// arg-zero form of the TextVector member (which returns the count when
         /// invoked with no index).
