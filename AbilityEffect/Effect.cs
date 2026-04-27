@@ -55,24 +55,7 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
-        /// Cache of Description
-        /// </summary>
-        private string _description;
-
-        /// <summary>
-        /// Effect Description
-        /// </summary>
-        public string Description
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Effect:Description"));
-                return _description ?? (_description = this.GetStringFromLSO("Description"));
-            }
-        }
-
-        /// <summary>
-        /// This is the current duration of the effect in seconds. 
+        /// This is the current duration of the effect in seconds.
         /// </summary>
         public float Duration
         {
@@ -153,23 +136,6 @@ namespace EQ2.ISXEQ2.AbilityEffect
                 if(!_maxDuration.HasValue)
                     _maxDuration = this.GetFloatFromLSO("MaxDuration");
                 return _maxDuration.Value;
-            }
-        }
-
-        /// <summary>
-        /// Cache of Name
-        /// </summary>
-        private string _name;
-
-        /// <summary>
-        /// Effect Name
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Effect:Name"));
-                return _name ?? (_name = this.GetStringFromLSO("Name"));
             }
         }
 

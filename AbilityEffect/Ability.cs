@@ -278,18 +278,18 @@ namespace EQ2.ISXEQ2.AbilityEffect
         /// <summary>
         /// Cache of HealthCost
         /// </summary>
-        private int? _healthCost;
+        private long? _healthCost;
 
         /// <summary>
-        /// The health cost of the ability
+        /// The health cost of the ability. Source returns Int64 (DT-Abilities.cpp:421).
         /// </summary>
-        public int HealthCost
+        public long HealthCost
         {
             get
             {
                 Trace.WriteLine(String.Format("Ability:HealthCost"));
                 if(!_healthCost.HasValue)
-                    _healthCost = this.GetIntFromLSO("HealthCost");
+                    _healthCost = this.GetInt64FromLSO("HealthCost");
                 return _healthCost.Value;
             }
         }
@@ -297,18 +297,18 @@ namespace EQ2.ISXEQ2.AbilityEffect
         /// <summary>
         /// Cache of HealthCostPerTick
         /// </summary>
-        private int? _healthCostPerTick;
+        private long? _healthCostPerTick;
 
         /// <summary>
-        /// The health cost per tick of the ability
+        /// The health cost per tick of the ability. Source returns Int64 (DT-Abilities.cpp:488).
         /// </summary>
-        public int HealthCostPerTick
+        public long HealthCostPerTick
         {
             get
             {
                 Trace.WriteLine(String.Format("Ability:HealthCostPerTick"));
                 if(!_healthCostPerTick.HasValue)
-                    _healthCostPerTick = this.GetIntFromLSO("HealthCostPerTick");
+                    _healthCostPerTick = this.GetInt64FromLSO("HealthCostPerTick");
                 return _healthCostPerTick.Value;
             }
         }
@@ -599,18 +599,18 @@ namespace EQ2.ISXEQ2.AbilityEffect
         /// <summary>
         /// Cache of PowerCost
         /// </summary>
-        private int? _powerCost;
+        private long? _powerCost;
 
         /// <summary>
-        /// The power cost of the ability
+        /// The power cost of the ability. Source returns Int64 (DT-Abilities.cpp:425).
         /// </summary>
-        public int PowerCost
+        public long PowerCost
         {
             get
             {
                 Trace.WriteLine(String.Format("Ability:PowerCost"));
                 if(!_powerCost.HasValue)
-                    _powerCost = this.GetIntFromLSO("PowerCost");
+                    _powerCost = this.GetInt64FromLSO("PowerCost");
                 return _powerCost.Value;
             }
         }
@@ -618,18 +618,18 @@ namespace EQ2.ISXEQ2.AbilityEffect
         /// <summary>
         /// Cache of PowerCostPerTick
         /// </summary>
-        private int? _powerCostPerTick;
+        private long? _powerCostPerTick;
 
         /// <summary>
-        /// Power cost per tick of the ability
+        /// Power cost per tick of the ability. Source returns Int64 (DT-Abilities.cpp:491).
         /// </summary>
-        public int PowerCostPerTick
+        public long PowerCostPerTick
         {
             get
             {
                 Trace.WriteLine(String.Format("Ability:PowerCostPerTick"));
                 if(!_powerCostPerTick.HasValue)
-                    _powerCostPerTick = this.GetIntFromLSO("PowerCostPerTick");
+                    _powerCostPerTick = this.GetInt64FromLSO("PowerCostPerTick");
                 return _powerCostPerTick.Value;
             }
         }
@@ -764,8 +764,13 @@ namespace EQ2.ISXEQ2.AbilityEffect
         }
 
         /// <summary>
-        /// The time remaining on the ability
+        /// The time remaining on the ability.
         /// </summary>
+        /// <remarks>
+        /// Deprecated: source emits a deprecation warning at DT-Abilities.cpp:71-73 and falls through to TimeUntilReady.
+        /// Use TimeUntilReady instead.
+        /// </remarks>
+        [Obsolete("Use TimeUntilReady instead. Source emits deprecation warning at DT-Abilities.cpp:71-73 and falls through to TimeUntilReady.")]
         public float TimeRemaining
         {
             get

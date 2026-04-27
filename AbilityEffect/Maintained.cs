@@ -179,8 +179,13 @@ namespace EQ2.ISXEQ2.AbilityEffect
         private string _type;
 
         /// <summary>
-        /// This member returns one of the following strings: self only,pet only,group, or single target
+        /// This member returns one of the following strings: self only, pet only, group, or single target.
         /// </summary>
+        /// <remarks>
+        /// Deprecated: source emits a deprecation warning at DT-Effects.cpp:37-42 and falls through to TargetType.
+        /// Use TargetType instead.
+        /// </remarks>
+        [Obsolete("Use TargetType instead. Source emits deprecation warning at DT-Effects.cpp:37-42 and falls through to TargetType.")]
         public string Type
         {
             get

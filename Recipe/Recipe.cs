@@ -264,19 +264,16 @@ namespace EQ2.ISXEQ2.Recipe
         }
 
         /// <summary>
-        /// Cache of PrimaryComponent
+        /// The primary component of the recipe. Source returns a primarycomponent Ptr
+        /// (DT-Crafting.cpp:330-351), not a string — read .Name on the returned object
+        /// for the component's display name.
         /// </summary>
-        private string _primaryComponent;
-
-        /// <summary>
-        /// The name of the primary component of the recipe
-        /// </summary>
-        public string PrimaryComponent
+        public Component PrimaryComponent
         {
             get
             {
                 Trace.WriteLine(String.Format("Recipe:PrimaryComponent"));
-                return _primaryComponent ?? (_primaryComponent = this.GetStringFromLSO("PrimaryComponent"));
+                return new Component(this.GetMember("PrimaryComponent"));
             }
         }
 

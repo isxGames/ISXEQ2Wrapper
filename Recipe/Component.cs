@@ -64,31 +64,33 @@ namespace EQ2.ISXEQ2.Recipe
         /// <summary>
         /// Cache of Quantity
         /// </summary>
-        private int? _quantity;
+        private uint? _quantity;
 
         /// <summary>
-        /// Quantity of component required
+        /// Quantity of component required. Source returns DWord/pUIntType
+        /// (DT-Crafting.cpp:558 and :644).
         /// </summary>
-        public int Quantity
+        public uint Quantity
         {
             get
             {
                 Trace.WriteLine(String.Format("Component:Quantity"));
                 if(!_quantity.HasValue)
-                    _quantity = this.GetIntFromLSO("Quantity");
+                    _quantity = this.GetUIntFromLSO("Quantity");
                 return _quantity.Value;
             }
         }
 
         /// <summary>
-        /// The quantity of the compoent on hand
+        /// The quantity of the component on hand. Source returns DWord/pUIntType
+        /// (DT-Crafting.cpp:562 and :648).
         /// </summary>
-        public int QuantityOnHand
+        public uint QuantityOnHand
         {
             get
             {
                 Trace.WriteLine(String.Format("Component:QuantityOnHand"));
-                return this.GetIntFromLSO("QuantityOnHand");
+                return this.GetUIntFromLSO("QuantityOnHand");
             }
         }
 
