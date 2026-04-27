@@ -653,10 +653,16 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns the group member at the specified index between 1 and 5.
-        /// The player is at index 0. Me.Group(0) is the same as Me.ToActor
+        /// Returns the group member at the specified index between 1 and 5. The player is at index 0.
         /// </summary>
-        /// <param name="index">index</param>
+        /// <param name="index">index (0 for the player, 1-5 for other group members)</param>
+        /// <remarks>
+        /// Index 0 returns the player's own Character (not a GroupMember). Source-side Group[0] returns
+        /// pCharType per DT-Actors.cpp:3325-3336. The C# wrapper exposes this as GroupMember for API
+        /// consistency — the underlying Int64 actor ID is shared, so member access works correctly, but
+        /// C#-typed-as-GroupMember-only access patterns may behave unexpectedly when the actual underlying
+        /// object is the player's Character.
+        /// </remarks>
         public GroupMember Group(int index)
         {
             Trace.WriteLine(String.Format("Character:Group({0})", index.ToString(CultureInfo.InvariantCulture)));
@@ -1609,19 +1615,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             }
         }
 
-
-        /// <summary>
-        /// Returns as Actor
-        /// </summary>
-        public Actor ToActor
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:ToActor"));
-                return new Actor(this.GetMember("ToActor"));
-            }
-            
-        }
 
         /// <summary>
         /// Total Earned APs

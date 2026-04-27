@@ -61,6 +61,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Current raw power (Int64). Distinct from the inherited ActorType Power, which returns a percentage.
+        /// </summary>
+        public long CurrentPower
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("GroupMember:CurrentPower"));
+                return this.GetInt64FromLSO("CurrentPower");
+            }
+        }
+
+        /// <summary>
         /// Cache of EffectiveLevel
         /// </summary>
         private int? _effectiveLevel;
@@ -289,18 +301,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("GroupMember:RaidRole"));
                 return this.GetIntFromLSO("RaidRole");
-            }
-        }
-
-        /// <summary>
-        /// Accesses the Actor class of the GroupMember
-        /// </summary>
-        public Actor ToActor
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("GroupMember:ToActor"));
-                return new Actor(this.GetMember("ToActor"));
             }
         }
 

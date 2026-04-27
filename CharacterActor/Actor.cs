@@ -1477,18 +1477,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Useful for iterating the character.Group array.
-        /// </summary>
-        public Actor ToActor
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:ToActor"));
-                return new Actor(this.GetMember("ToActor"));
-            }
-        }
-
-        /// <summary>
         /// Tooltip text for the actor.
         /// </summary>
         public string Tooltip
