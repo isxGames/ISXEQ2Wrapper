@@ -647,7 +647,10 @@ namespace EQ2.ISXEQ2
         public static int EQ2Ignore(string args)
         {
             Trace.WriteLine(String.Format("Extension:EQ2Ignore({0})", args));
-            return LavishScript.ExecuteCommand(String.Format("EQ2Ignore {0}", args));
+            // Source command name is lowercase 'eq2ignore' per CommandsList.h:11; LavishScript is
+            // case-insensitive so either form works at runtime, but we dispatch the source-canonical
+            // form for fidelity.
+            return LavishScript.ExecuteCommand(String.Format("eq2ignore {0}", args));
         }
 
         /// <summary>

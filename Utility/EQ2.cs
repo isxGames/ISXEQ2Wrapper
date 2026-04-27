@@ -459,7 +459,7 @@ namespace EQ2.ISXEQ2.Utility
         /// <returns>call success</returns>
         public bool AcceptPendingQuest()
         {
-            Trace.WriteLine(String.Format("ISXEQ2:AcceptPendingQuest()"));
+            Trace.WriteLine(String.Format("EQ2:AcceptPendingQuest()"));
             return this.ExecuteMethod("AcceptPendingQuest");
         }
 

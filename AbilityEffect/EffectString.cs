@@ -27,22 +27,9 @@ namespace EQ2.ISXEQ2.AbilityEffect
         #region Members
 
         /// <summary>
-        /// Cache of Description (also exposed via the source 'Desc' alias)
+        /// Cache of Description
         /// </summary>
         private string _description;
-
-        /// <summary>
-        /// Alias of Description. Source registers both 'Desc' and 'Description' falling through
-        /// to the same case. Provided for parity with LavishScript scripts that use the short form.
-        /// </summary>
-        public string Desc
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("EffectString:Desc"));
-                return _description ?? (_description = this.GetStringFromLSO("Desc"));
-            }
-        }
 
         /// <summary>
         /// Effect description

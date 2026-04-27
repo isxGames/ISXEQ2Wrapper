@@ -298,6 +298,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Returns true if all of this item's datatype members are available
         /// (i.e., if information has been cached from the server.)
         /// </summary>
+        /// <remarks>
+        /// Source emits a deprecation print at DT-Items.cpp:413-414 and falls through to <see cref="IsItemInfoAvailable"/>.
+        /// Use <see cref="IsItemInfoAvailable"/> instead.
+        /// </remarks>
+        [Obsolete("Use IsItemInfoAvailable instead. Source emits deprecation print at DT-Items.cpp:413-414 and falls through to IsItemInfoAvailable.")]
         public bool IsInitialized
         {
             get
@@ -1025,14 +1030,19 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Sacrifices the item
+        /// Sacrifices the item.
+        /// When <paramref name="withConfirm"/> is true, the in-game client prompts the player for confirmation before the sacrifice is performed.
+        /// When false (the default), the sacrifice is performed without any confirmation prompt.
+        /// Source mapping (DT-Items.cpp:794-814): argc==0 -> deity_offer_confirm (with confirmation); argc>0 -> deity_offer (no confirmation).
         /// </summary>
-        /// <param name="withconfirm">with confirmation</param>
+        /// <param name="withConfirm">true to ask the player for confirmation; false (default) to sacrifice without confirmation.</param>
         /// <returns>call success</returns>
-        public bool Sacrifice(bool withconfirm)
+        public bool Sacrifice(bool withConfirm = false)
         {
-            Trace.WriteLine(String.Format("Item:Sacrifice({0})", withconfirm.ToString(CultureInfo.InvariantCulture)));
-            return withconfirm ? this.ExecuteMethod("Sacrifice", "With Confirmation") : this.ExecuteMethod("Sacrifice");
+            Trace.WriteLine(String.Format("Item:Sacrifice({0})", withConfirm.ToString(CultureInfo.InvariantCulture)));
+            // withConfirm == true  -> source argc==0 path (deity_offer_confirm) -> call with NO argument
+            // withConfirm == false -> source argc>0 path  (deity_offer)         -> call WITH any argument
+            return withConfirm ? this.ExecuteMethod("Sacrifice") : this.ExecuteMethod("Sacrifice", "noConfirm");
         }
 
         /// <summary>
