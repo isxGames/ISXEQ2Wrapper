@@ -80,7 +80,6 @@
     <Compile Include="Utility\EQ2.cs" />
     <Compile Include="Events\EQ2Event.cs" />
     <Compile Include="Utility\EQ2Location.cs" />
-    <Compile Include="Utility\EQ2Mail.cs" />
     <Compile Include="UI\EQ2BaseObject.cs" />
     <Compile Include="UI\EQ2Button.cs" />
     <Compile Include="UI\EQ2CheckBox.cs" />
