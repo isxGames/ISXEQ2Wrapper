@@ -26,9 +26,9 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         #region Members
 
         /// <summary>
-        /// Retrieves the consignment matching the supplied name
+        /// Retrieves the consignment matching the supplied name (exact match, case-insensitive).
         /// </summary>
-        /// <param name="name">name</param>
+        /// <param name="name">name (exact match, case-insensitive)</param>
         /// <returns>Consignment</returns>
             public Consignment Consignment(string name)
             {

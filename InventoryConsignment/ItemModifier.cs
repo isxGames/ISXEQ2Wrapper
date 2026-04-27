@@ -60,18 +60,19 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Cache of Value
         /// </summary>
-        private int? _value;
+        private float? _value;
 
         /// <summary>
-        /// Modifier Value
+        /// Modifier value. Source returns a float for Modifiers/Overcap modifier types and an int otherwise
+        /// (DT-Items.cpp:1978-1991); float here covers both.
         /// </summary>
-        public int Value
+        public float Value
         {
             get
             {
                 Trace.WriteLine(String.Format("ItemModifier:Value"));
                 if(!_value.HasValue)
-                    _value = this.GetIntFromLSO("Value");
+                    _value = this.GetFloatFromLSO("Value");
                 return _value.Value;
             }
         }

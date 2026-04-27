@@ -275,7 +275,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         public bool Remove(int quantity)
         {
             Trace.WriteLine(String.Format("Consignment:Remove({0})", quantity.ToString(CultureInfo.InvariantCulture)));
-            return this.ExecuteMethod("Remove", Quantity.ToString(CultureInfo.InvariantCulture));
+            return this.ExecuteMethod("Remove", quantity.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
