@@ -94,12 +94,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Hit Points
         /// </summary>
-        public int HitPoints
+        public long HitPoints
         {
             get
             {
                 Trace.WriteLine(String.Format("GroupMember:HitPoints"));
-                return this.GetIntFromLSO("HitPoints");
+                return this.GetInt64FromLSO("HitPoints");
             }
         }
 
@@ -169,24 +169,24 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Max Hit Points
         /// </summary>
-        public int MaxHitPoints
+        public long MaxHitPoints
         {
             get
             {
                 Trace.WriteLine(String.Format("GroupMember:MaxHitPoints"));
-                return this.GetIntFromLSO("MaxHitPoints");
+                return this.GetInt64FromLSO("MaxHitPoints");
             }
         }
 
         /// <summary>
         /// Max Power
         /// </summary>
-        public int MaxPower
+        public long MaxPower
         {
             get
             {
                 Trace.WriteLine(String.Format("GroupMember:MaxPower"));
-                return this.GetIntFromLSO("MaxPower");
+                return this.GetInt64FromLSO("MaxPower");
             }
         }
 

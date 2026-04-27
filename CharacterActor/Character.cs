@@ -326,12 +326,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Copper
         /// </summary>
-        public int Copper
+        public long Copper
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:Copper"));
-                return this.GetIntFromLSO("Copper");
+                return this.GetInt64FromLSO("Copper");
             }
         }
 
@@ -389,14 +389,14 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Cursed Counter
+        /// Cursed Counter. Returns -1 if the affliction is incurable, 0 if none, otherwise the stack count.
         /// </summary>
-        public bool Cursed
+        public int Cursed
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:Cursed"));
-                return GetMember<bool>("Cursed");
+                return this.GetIntFromLSO("Cursed");
             }
         }
 
@@ -555,12 +555,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Elemental Resist Percent
         /// </summary>
-        public int ElementalResistPct
+        public float ElementalResistPct
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:ElementalResistPct"));
-                return GetMember<int>("ElementalResistPct");
+                return this.GetFloatFromLSO("ElementalResistPct");
             }
         }
 
@@ -643,12 +643,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Gold
         /// </summary>
-        public int Gold
+        public long Gold
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:Gold"));
-                return this.GetIntFromLSO("Gold");
+                return this.GetInt64FromLSO("Gold");
             }
         }
 
@@ -739,6 +739,10 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns health as a percentage.
         /// </summary>
+        /// <remarks>
+        /// Returns the actor's current Health as a percentage (0-100) per ActorType:Health at DT-Actors.cpp:806.
+        /// For raw Int64 HP, use CurrentHealth.
+        /// </remarks>
         public int Health
         {
             get
@@ -751,12 +755,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Health Regeneration
         /// </summary>
-        public int HealthRegen
+        public long HealthRegen
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:HealthRegen"));
-                return this.GetIntFromLSO("HealthRegen");
+                return this.GetInt64FromLSO("HealthRegen");
             }
         }
 
@@ -1202,24 +1206,24 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Max Health
         /// </summary>
-        public int MaxHealth
+        public long MaxHealth
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:MaxHealth"));
-                return this.GetIntFromLSO("MaxHealth");
+                return this.GetInt64FromLSO("MaxHealth");
             }
         }
 
         /// <summary>
         /// Max Power
         /// </summary>
-        public int MaxPower
+        public long MaxPower
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:MaxPower"));
-                return this.GetIntFromLSO("MaxPower");
+                return this.GetInt64FromLSO("MaxPower");
             }
         }
 
@@ -1363,18 +1367,22 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Platinum
         /// </summary>
-        public int Platinum
+        public long Platinum
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:Platinum"));
-                return this.GetIntFromLSO("Platinum");
+                return this.GetInt64FromLSO("Platinum");
             }
         }
 
         /// <summary>
         /// Power
         /// </summary>
+        /// <remarks>
+        /// Returns the actor's current Power as a percentage (0-100) per ActorType:Power at DT-Actors.cpp:813.
+        /// For raw Int64 MP, use CurrentPower.
+        /// </remarks>
         public int Power
         {
             get
@@ -1387,12 +1395,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Power Regen
         /// </summary>
-        public int PowerRegen
+        public long PowerRegen
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:PowerRegen"));
-                return this.GetIntFromLSO("PowerRegen");
+                return this.GetInt64FromLSO("PowerRegen");
             }
         }
 
@@ -1527,12 +1535,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Silver
         /// </summary>
-        public int Silver
+        public long Silver
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:Silver)"));
-                return this.GetIntFromLSO("Silver");
+                return this.GetInt64FromLSO("Silver");
             }
         }
 
