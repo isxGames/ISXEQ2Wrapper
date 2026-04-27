@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using EQ2.ISXEQ2.Helpers;
+using EQ2.ISXEQ2.UI;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2.InventoryConsignment
@@ -14,7 +15,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
     /// *** 3.  The "ContainerWindow" TLO and related datatypes are only available when the container window is OPEN.  (However, it does 
     /// ***     not matter how far away you are from said container.)
     /// </summary>
-    public class ContainerWindow : LavishScriptObject
+    public class ContainerWindow : EQ2CloneWindow
     {
 
         #region Constructor

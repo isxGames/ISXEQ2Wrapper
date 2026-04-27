@@ -83,6 +83,7 @@
     <Compile Include="UI\EQ2BaseObject.cs" />
     <Compile Include="UI\EQ2Button.cs" />
     <Compile Include="UI\EQ2CheckBox.cs" />
+    <Compile Include="UI\EQ2CloneWindow.cs" />
     <Compile Include="UI\EQ2Composite.cs" />
     <Compile Include="UI\EQ2DataSourceContainer.cs" />
     <Compile Include="UI\EQ2DropDownBox.cs" />

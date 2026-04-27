@@ -8,7 +8,7 @@ namespace EQ2.ISXEQ2.UI
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to Choice windows. 
     /// </summary>
-    public class ChoiceWindow : LavishScriptObject
+    public class ChoiceWindow : EQ2CloneWindow
     {
 
         #region Constructor
@@ -48,14 +48,16 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Choice window text
+        /// The text widget displayed in the choice window. Source returns the
+        /// underlying eq2text widget (DT-Eq2GuiWindows.cpp:1030-1040); read its
+        /// Text/Label members for the displayed string.
         /// </summary>
-        public string Text
+        public EQ2Text Text
         {
             get
             {
                 Trace.WriteLine(String.Format("ChoiceWindow:Text"));
-                return this.GetStringFromLSO("Text");
+                return new EQ2Text(this.GetMember("Text"));
             }
         }
 

@@ -9,7 +9,7 @@ namespace EQ2.ISXEQ2.UI
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to reply dialogs. 
     /// </summary>
-    public class ReplyDialog : LavishScriptObject
+    public class ReplyDialog : EQ2CloneWindow
     {
 
         #region Constructor
@@ -37,14 +37,16 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Text
+        /// The text widget displayed by the reply dialog. Source returns the
+        /// underlying eq2text widget (DT-Eq2GuiWindows.cpp:1571-1581); read its
+        /// Text/Label members for the displayed string.
         /// </summary>
-        public string Text
+        public EQ2Text Text
         {
             get
             {
                 Trace.WriteLine(String.Format("ReplyDialog:Text"));
-                return this.GetStringFromLSO("Text");
+                return new EQ2Text(this.GetMember("Text"));
             }
         }
 

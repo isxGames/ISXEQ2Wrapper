@@ -9,7 +9,7 @@ namespace EQ2.ISXEQ2.UI
     /// <summary>
     /// Allows interaction with Reward Windows.
     /// </summary>
-    public class RewardWindow : LavishScriptObject
+    public class RewardWindow : EQ2CloneWindow
     {
 
         #region Constructor

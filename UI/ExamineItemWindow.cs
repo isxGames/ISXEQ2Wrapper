@@ -10,7 +10,7 @@ namespace EQ2.ISXEQ2.UI
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to Item Examine windows. 
     /// </summary>
-    public class ExamineItemWindow : LavishScriptObject
+    public class ExamineItemWindow : EQ2CloneWindow
     {
 
         #region Constructor
@@ -37,15 +37,17 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the item being examined as an item datatype object.
-        /// (Note:  All members of the item should be available without initialization when accessed via the examineitemwindow.)
+        /// Returns the item being examined as an iteminfo datatype object.
+        /// (Note:  All members of the iteminfo should be available without
+        /// initialization when accessed via the examineitemwindow.) Source returns
+        /// pItemInfoType at DT-Eq2GuiWindows.cpp:1507-1518.
         /// </summary>
-        public Item ToItem
+        public ItemInfo ToItem
         {
             get
             {
                 Trace.WriteLine(String.Format("ExamineItemWindow:ToItem"));
-                return new Item(this.GetMember("ToItem"));
+                return new ItemInfo(this.GetMember("ToItem"));
             }
         }
 
@@ -64,14 +66,16 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns a "text" eq2uielement type
+        /// Returns the text widget at the specified index in the examine
+        /// window's text vector. (1 to TextVectorCount). Source returns
+        /// pEQ2TextType at DT-Eq2GuiWindows.cpp:1486-1500.
         /// </summary>
-        /// <param name="index">index</param>
-        /// <returns>EQ2UIElement</returns>
-        public EQ2Widget TextVector(int index)
+        /// <param name="index">index (1-based)</param>
+        /// <returns>EQ2Text</returns>
+        public EQ2Text TextVector(int index)
         {
-            Trace.WriteLine(String.Format("ExamineItemWindow:TextVector({0}})", index.ToString(CultureInfo.InvariantCulture)));
-            return new EQ2Widget(this.GetMember("TextVector", index.ToString(CultureInfo.InvariantCulture)));
+            Trace.WriteLine(String.Format("ExamineItemWindow:TextVector({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new EQ2Text(this.GetMember("TextVector", index.ToString(CultureInfo.InvariantCulture)));
         }
 
 

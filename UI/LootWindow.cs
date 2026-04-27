@@ -10,7 +10,7 @@ namespace EQ2.ISXEQ2.UI
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to the "loot" window. 
     /// </summary>
-	public class LootWindow : LavishScriptObject
+	public class LootWindow : EQ2CloneWindow
     {
 
         #region Constructor
@@ -41,22 +41,22 @@ namespace EQ2.ISXEQ2.UI
         /// Returns the item at the index provided. (From 1 to NumItems)
         /// </summary>
         /// <param name="index">index</param>
-        /// <returns>Item</returns>
-        public Item Item(int index)
+        /// <returns>ItemInfo</returns>
+        public ItemInfo Item(int index)
         {
             Trace.WriteLine(String.Format("LootWindow:Item({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return new Item(this.GetMember("Item", index.ToString(CultureInfo.InvariantCulture)));
+            return new ItemInfo(this.GetMember("Item", index.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
         /// Returns the item that matches the substring name
         /// </summary>
         /// <param name="name">name</param>
-        /// <returns>call success</returns>
-        public Item Item(string name)
+        /// <returns>ItemInfo</returns>
+        public ItemInfo Item(string name)
         {
             Trace.WriteLine(String.Format("LootWindow:Item({0})", name));
-            return new Item(this.GetMember("Item", name));
+            return new ItemInfo(this.GetMember("Item", name));
         }
 
         /// <summary>
@@ -192,7 +192,9 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns "Free For All" "Lottery" "Need Before Greed" or "Unknown"
+        /// Returns one of "Leader Only", "Free for all", "Lotto",
+        /// "Need before Greed", or "Unknown" (matches the strings produced by
+        /// LootWindowType::Type at DT-Eq2GuiWindows.cpp:786-806).
         /// </summary>
         public string Type
         {
@@ -238,18 +240,24 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Attempts to loot the item with ID provided
+        /// Attempts to loot the item with the specified ID.
         /// </summary>
-        /// <param name="id">ID</param>
-        /// <param name="lootNoTrade">Loot No Trade Items</param>
+        /// <param name="id">item ID to loot</param>
+        /// <param name="autoConfirmNoTrade">
+        /// When true, dispatches the source's 1-arg form (<c>loot_item id</c>),
+        /// which auto-confirms via <c>loot_confirmation</c> if the item has the
+        /// NoTrade modifier. When false (default), dispatches the 2-arg form
+        /// (<c>loot_item id 0</c>), which leaves NoTrade-confirmation to the
+        /// player. Per DT-Eq2GuiWindows.cpp:949-957.
+        /// </param>
         /// <returns>call success</returns>
-        public bool LootItem(int id, bool lootNoTrade = false)
+        public bool LootItem(int id, bool autoConfirmNoTrade = false)
         {
             Trace.WriteLine(String.Format("LootWindow:LootItem({0}, {1})", id.ToString(CultureInfo.InvariantCulture),
-                lootNoTrade.ToString(CultureInfo.InvariantCulture)));
-            return lootNoTrade
+                autoConfirmNoTrade.ToString(CultureInfo.InvariantCulture)));
+            return autoConfirmNoTrade
                 ? this.ExecuteMethod("LootItem", id.ToString(CultureInfo.InvariantCulture))
-                : this.ExecuteMethod("LootItem", id.ToString(CultureInfo.InvariantCulture), 
+                : this.ExecuteMethod("LootItem", id.ToString(CultureInfo.InvariantCulture),
                 0.ToString(CultureInfo.InvariantCulture));
         }
 
