@@ -5,12 +5,22 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.Events
 {
     /// <summary>
-    /// This contains Event Handlers and Raisers for all EQ2Events
+    /// This contains Event Handlers and Raisers for all EQ2Events.
+    ///
+    /// EQ2Event implements IDisposable — consumers should wrap instances in a 'using'
+    /// block, or call Dispose() explicitly when finished, so that all event Detach
+    /// calls run deterministically while the LavishScript runtime is still live. The
+    /// finalizer is retained as a backstop ONLY: when finalization fires, 'disposing'
+    /// is false and Detach calls are intentionally skipped, because non-deterministic
+    /// finalization may run after LavishScript runtime shutdown (calling Detach into
+    /// a dead runtime would error or crash). The correct path is always explicit
+    /// Dispose; the finalizer simply prevents the GC-path from making the situation
+    /// worse if a consumer forgets.
     /// </summary>
-	public class EQ2Event
+	public class EQ2Event : IDisposable
     {
 
-        #region Constructor/Deconstructor
+        #region Constructor / Disposal
 
         /// <summary>
         /// Constructor. Attaches all events.
@@ -62,52 +72,94 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// Deconstructor. Detaches all events.
+        /// Tracks whether Dispose has already run. Idempotency guard so repeat calls
+        /// are no-ops.
+        /// </summary>
+        private bool _disposed;
+
+        /// <summary>
+        /// Releases all event subscriptions. Call explicitly (or via a 'using' block)
+        /// when finished with this EQ2Event instance so the Detach calls run while the
+        /// LavishScript runtime is still live.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Standard .NET disposable pattern. When 'disposing' is true (called from
+        /// Dispose()), Detach all event handlers from the LavishScript runtime. When
+        /// 'disposing' is false (called from the finalizer), skip Detach — the GC may
+        /// be running after LavishScript runtime shutdown, in which case Detach into
+        /// a dead runtime would error.
+        /// </summary>
+        /// <param name="disposing">true when called from Dispose(), false when called from the finalizer</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                // managed resource cleanup — Detach all events here
+                Detach("EQ2_ActorSpawned", OnActorSpawned);
+                Detach("EQ2_ActorDespawned", OnActorDespawned);
+                Detach("EQ2_CastingStarted", OnCastingStarted);
+                Detach("EQ2_CastingEnded", OnCastingEnded);
+                Detach("EQ2_ActorPowerChange", OnActorPowerChange);
+                Detach("EQ2_ActorHealthChange", OnActorHealthChange);
+                Detach("EQ2_ActorStanceChange", OnActorStanceChange);
+                Detach("EQ2_ActorTargetChange", OnActorTargetChange);
+                Detach("EQ2_OnHOWindowStateChange", OnHOWindowStateChanged);
+                Detach("EQ2_onQuestOffered", OnQuestOffered);
+                Detach("EQ2_ReplyDialogAppeared", OnReplyDialogAppeared);
+                Detach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
+                Detach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
+                Detach("EQ2_onInventoryUpdate", OnInventoryUpdate);
+                Detach("EQ2_onQuestUpdate", OnQuestUpdate);
+                Detach("EQ2_FinishedZoning", OnFinishedZoning);
+                Detach("EQ2_StartedZoning", OnStartedZoning);
+                Detach("EQ2_ExamineAchievement", OnExamineAchievement);
+                Detach("EQ2_onTellIgnored", OnTellIgnored);
+                Detach("EQ2_onIncomingChatText", OnIncomingChatText);
+                Detach("EQ2_onChoiceWindowAppeared", OnChoiceWindowAppeared);
+                Detach("EQ2_onAnnouncement", OnAnnouncement);
+                Detach("EQ2_onIncomingText", OnIncomingText);
+                Detach("EQ2_onRewardWindowAppeared", OnRewardWindowAppeared);
+                Detach("EQ2_onMeAfflicted", OnMeAfflicted);
+                Detach("EQ2_onGroupMemberAfflicted", OnGroupMemberAfflicted);
+                Detach("EQ2_onRaidMemberAfflicted", OnRaidMemberAfflicted);
+                Detach("EQ2_ActorAnimationChanged", OnActorAnimationChanged);
+                Detach("EQ2_ItemAddedToAltarForSacrifice", OnItemAddedToAltarForSacrifice);
+                Detach("EQ2_onDestroyItem", OnDestroyItem);
+                Detach("EQ2_onDeleteQuest", OnDeleteQuest);
+                Detach("EQ2_onSellItem", OnSellItem);
+                Detach("EQ2_onMenderRepairAll", OnMenderRepairAll);
+                Detach("EQ2_onCraftRoundResult", OnCraftRoundResult);
+                Detach("EQ2_onCharacterSheetUpdate", OnCharacterSheetUpdate);
+                Detach("EQ2_onGroupMembershipChange", OnGroupMembershipChange);
+                Detach("EQ2_onRaidMembershipChange", OnRaidMembershipChange);
+                Detach("EQ2_onContainerWindowAppeared", OnContainerWindowAppeared);
+                Detach("EQ2_onLevelChange", OnLevelChange);
+                Detach("EQ2_onAbilityGained", OnAbilityGained);
+                Detach("EQ2_onSoundEffect", OnSoundEffect);
+                Detach("ISXEQ2_onInstanceReloadingAfterUpdate", OnInstanceReloadingAfterUpdate);
+            }
+
+            _disposed = true;
+        }
+
+        /// <summary>
+        /// Finalizer — backstop only. When fired by the GC, 'disposing' is false in
+        /// Dispose(bool), so Detach calls are intentionally skipped. See class-level
+        /// remarks: non-deterministic finalization may run after LavishScript runtime
+        /// shutdown, and Detach into a dead runtime would error.
         /// </summary>
         ~EQ2Event()
         {
-            Detach("EQ2_ActorSpawned", OnActorSpawned);
-            Detach("EQ2_ActorDespawned", OnActorDespawned);
-            Detach("EQ2_CastingStarted", OnCastingStarted);
-            Detach("EQ2_CastingEnded", OnCastingEnded);
-            Detach("EQ2_ActorPowerChange", OnActorPowerChange);
-            Detach("EQ2_ActorHealthChange", OnActorHealthChange);
-            Detach("EQ2_ActorStanceChange", OnActorStanceChange);
-            Detach("EQ2_ActorTargetChange", OnActorTargetChange);
-            Detach("EQ2_OnHOWindowStateChange", OnHOWindowStateChanged);
-            Detach("EQ2_onQuestOffered", OnQuestOffered);
-            Detach("EQ2_ReplyDialogAppeared", OnReplyDialogAppeared);
-            Detach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
-            Detach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
-            Detach("EQ2_onInventoryUpdate", OnInventoryUpdate);
-            Detach("EQ2_onQuestUpdate", OnQuestUpdate);
-            Detach("EQ2_FinishedZoning", OnFinishedZoning);
-            Detach("EQ2_StartedZoning", OnStartedZoning);
-            Detach("EQ2_ExamineAchievement", OnExamineAchievement);
-            Detach("EQ2_onTellIgnored", OnTellIgnored);
-            Detach("EQ2_onIncomingChatText", OnIncomingChatText);
-            Detach("EQ2_onChoiceWindowAppeared", OnChoiceWindowAppeared);
-            Detach("EQ2_onAnnouncement", OnAnnouncement);
-            Detach("EQ2_onIncomingText", OnIncomingText);
-            Detach("EQ2_onRewardWindowAppeared", OnRewardWindowAppeared);
-            Detach("EQ2_onMeAfflicted", OnMeAfflicted);
-            Detach("EQ2_onGroupMemberAfflicted", OnGroupMemberAfflicted);
-            Detach("EQ2_onRaidMemberAfflicted", OnRaidMemberAfflicted);
-            Detach("EQ2_ActorAnimationChanged", OnActorAnimationChanged);
-            Detach("EQ2_ItemAddedToAltarForSacrifice", OnItemAddedToAltarForSacrifice);
-            Detach("EQ2_onDestroyItem", OnDestroyItem);
-            Detach("EQ2_onDeleteQuest", OnDeleteQuest);
-            Detach("EQ2_onSellItem", OnSellItem);
-            Detach("EQ2_onMenderRepairAll", OnMenderRepairAll);
-            Detach("EQ2_onCraftRoundResult", OnCraftRoundResult);
-            Detach("EQ2_onCharacterSheetUpdate", OnCharacterSheetUpdate);
-            Detach("EQ2_onGroupMembershipChange", OnGroupMembershipChange);
-            Detach("EQ2_onRaidMembershipChange", OnRaidMembershipChange);
-            Detach("EQ2_onContainerWindowAppeared", OnContainerWindowAppeared);
-            Detach("EQ2_onLevelChange", OnLevelChange);
-            Detach("EQ2_onAbilityGained", OnAbilityGained);
-            Detach("EQ2_onSoundEffect", OnSoundEffect);
-            Detach("ISXEQ2_onInstanceReloadingAfterUpdate", OnInstanceReloadingAfterUpdate);
+            Dispose(false);
         }
 
         #endregion

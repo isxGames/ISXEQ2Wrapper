@@ -6,9 +6,10 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.CharacterActor
 {
     /// <summary>
-    /// This DataType includes all of the data available to ISXEQ2 that is related to group members. 
+    /// This DataType includes all of the data available to ISXEQ2 that is related to group members.
+    /// Mirrors source-side GroupMemberType inheritance from ActorType (INHERITDIRECT(pActorType) at DataTypes.h:1599).
     /// </summary>
-    public class GroupMember : LavishScriptObject
+    public class GroupMember : Actor
     {
         #region Constructor
 
@@ -39,7 +40,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Class
         /// </summary>
-        public string Class
+        public new string Class
         {
             get
             {
@@ -80,7 +81,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Effective Level (mentored or chrono)
         /// </summary>
-        public int EffectiveLevel
+        public new int EffectiveLevel
         {
             get
             {
@@ -123,7 +124,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// ID
         /// </summary>
-        public int ID
+        public new int ID
         {
             get
             {
@@ -167,7 +168,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Level
         /// </summary>
-        public int Level
+        public new int Level
         {
             get
             {
@@ -210,7 +211,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Name
         /// </summary>
-        public string Name
+        public new string Name
         {
             get
             {
@@ -251,18 +252,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Power
-        /// </summary>
-        public int Power
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("GroupMember:Power"));
-                return this.GetIntFromLSO("Power");
-            }
-        }
-
-        /// <summary>
         /// Cache of Race
         /// </summary>
         private string _race;
@@ -270,7 +259,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Race
         /// </summary>
-        public string Race
+        public new string Race
         {
             get
             {

@@ -11,9 +11,10 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.CharacterActor
 {
     /// <summary>
-    /// This Data Type includes all of the data available to ISXEQ2 that can be gathered from the character Information structure. 
+    /// This Data Type includes all of the data available to ISXEQ2 that can be gathered from the character Information structure.
+    /// Mirrors source-side CharType inheritance from ActorType (INHERITDIRECT(pActorType) at DataTypes.h:1533).
     /// </summary>
-    public class Character : LavishScriptObject
+    public class Character : Actor
     {
 
         #region Constructor
@@ -285,7 +286,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <param name="toX">X</param>
         /// <param name="toY">Y</param>
         /// <param name="toZ">Z</param>
-        public bool CheckCollision(float toX, float toY, float toZ)
+        public new bool CheckCollision(float toX, float toY, float toZ)
         {
             Trace.WriteLine(String.Format("Character:CheckCollision({0}, {1}, {2})", toX.ToString(CultureInfo.InvariantCulture),
                 toY.ToString(CultureInfo.InvariantCulture), toZ.ToString(CultureInfo.InvariantCulture)));
@@ -302,7 +303,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// Class (warrior, brawler, crusader, sorcerer, enchanter, summoner, druid,
         /// cleric, shaman, shaper, bard, predator, rogue, animalist)
         /// </summary>
-        public string Class
+        public new string Class
         {
             get
             {
@@ -519,7 +520,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Effective Level (Mentored or Chrono)
         /// </summary>
-        public int EffectiveLevel
+        public new int EffectiveLevel
         {
             get
             {
@@ -582,7 +583,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Gender
         /// </summary>
-        public string Gender
+        public new string Gender
         {
             get
             {
@@ -718,7 +719,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Heading. Returns heading as degrees (think compass), to a precision of 2 decimal places.
         /// </summary>
-        public float Heading
+        public new float Heading
         {
             get
             {
@@ -728,12 +729,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns the heading you would need to face to reach the target point. Better known as bearing. 
+        /// Returns the heading you would need to face to reach the target point. Better known as bearing.
         /// </summary>
         /// <param name="toX">X</param>
         /// <param name="toY">Y</param>
         /// <param name="toZ">Z</param>
-        public float HeadingTo(float toX, float toY, float toZ)
+        public new float HeadingTo(float toX, float toY, float toZ)
         {
             Trace.WriteLine(String.Format("Character:HeadingTo({0}, {1}, {2})", toX.ToString(CultureInfo.InvariantCulture),
                 toY.ToString(CultureInfo.InvariantCulture), toZ.ToString(CultureInfo.InvariantCulture)));
@@ -741,22 +742,6 @@ namespace EQ2.ISXEQ2.CharacterActor
                 toY.ToString(CultureInfo.InvariantCulture), toZ.ToString(CultureInfo.InvariantCulture));
         }
 
-
-        /// <summary>
-        /// Returns health as a percentage.
-        /// </summary>
-        /// <remarks>
-        /// Returns the actor's current Health as a percentage (0-100) per ActorType:Health at DT-Actors.cpp:806.
-        /// For raw Int64 HP, use CurrentHealth.
-        /// </remarks>
-        public int Health
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Health"));
-                return GetMember<int>("Health");
-            }
-        }
 
         /// <summary>
         /// Health Regeneration
@@ -767,18 +752,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:HealthRegen"));
                 return this.GetInt64FromLSO("HealthRegen");
-            }
-        }
-
-        /// <summary>
-        /// ID
-        /// </summary>
-        public int ID
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:ID"));
-                return this.GetIntFromLSO("ID");
             }
         }
 
@@ -928,7 +901,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if the character is flagged AFK
         /// </summary>
-        public bool IsAFK
+        public new bool IsAFK
         {
             get
             {
@@ -952,7 +925,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if the character is camping
         /// </summary>
-        public bool IsCamping
+        public new bool IsCamping
         {
             get
             {
@@ -1060,7 +1033,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if the character is looking for group
         /// </summary>
-        public bool IsLFG
+        public new bool IsLFG
         {
             get
             {
@@ -1073,7 +1046,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if the character is looking for work
         /// </summary>
-        public bool IsLFW
+        public new bool IsLFW
         {
             get
             {
@@ -1110,7 +1083,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if the character is sitting
         /// </summary>
-        public bool IsSitting
+        public new bool IsSitting
         {
             get
             {
@@ -1127,7 +1100,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Level
         /// </summary>
-        public int Level
+        public new int Level
         {
             get
             {
@@ -1234,25 +1207,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Cache of MentoringXPAdj
-        /// </summary>
-        private float? _mentoringXPAdj;
-
-        /// <summary>
-        /// Mentoring XP Adjustment
-        /// </summary>
-        public float MentoringXPAdj
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:MentoringXPAdj"));
-                if(!_mentoringXPAdj.HasValue)
-                    _mentoringXPAdj = this.GetFloatFromLSO("MentoringXPAdj");
-                return _mentoringXPAdj.Value;
-            }
-        }
-
-        /// <summary>
         /// Cache of Name
         /// </summary>
         private string _name;
@@ -1260,7 +1214,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Name
         /// </summary>
-        public string Name
+        public new string Name
         {
             get
             {
@@ -1333,7 +1287,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// The number of effects. (Beneficial, Detrimental, All)
         /// </summary>
         /// <param name="type">type</param>
-        public int NumEffects(EffectType type = EffectType.All)
+        public new int NumEffects(EffectType type = EffectType.All)
         {
             Trace.WriteLine(String.Format("Character:NumEffects({0})", type));
             switch (type)
@@ -1361,7 +1315,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns the character's pet, if any.
         /// </summary>
-        public Actor Pet
+        public new Actor Pet
         {
             get
             {
@@ -1379,22 +1333,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:Platinum"));
                 return this.GetInt64FromLSO("Platinum");
-            }
-        }
-
-        /// <summary>
-        /// Power
-        /// </summary>
-        /// <remarks>
-        /// Returns the actor's current Power as a percentage (0-100) per ActorType:Power at DT-Actors.cpp:813.
-        /// For raw Int64 MP, use CurrentPower.
-        /// </remarks>
-        public int Power
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Power"));
-                return this.GetIntFromLSO("Power");
             }
         }
 
@@ -1418,7 +1356,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Race
         /// </summary>
-        public string Race
+        public new string Race
         {
             get
             {
@@ -1734,43 +1672,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             }
         }
 
-        /// <summary>
-        /// X-coordinate
-        /// </summary>
-        public float X
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:X"));
-                return GetMember<float>("X");
-            }
-        }
-
-        /// <summary>
-        /// Y-coordinate
-        /// </summary>
-        public float Y
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Y"));
-                return this.GetFloatFromLSO("Y");
-            }
-        }
-
-
-        /// <summary>
-        /// Z-coordinate
-        /// </summary>
-        public float Z
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Character:Z"));
-                return this.GetFloatFromLSO("Z");
-            }
-        }
-
         #endregion
 
         #region Methods
@@ -1873,16 +1774,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Initializes character effects
-        /// </summary>
-        /// <returns>call success</returns>
-        public bool InitializeEffects()
-        {
-            Trace.WriteLine(String.Format("Character:InitializeEffects()"));
-            return this.ExecuteMethod("InitializeEffects");
-        }
-
-        /// <summary>
         /// Returns the abilities matching the given query string.
         /// </summary>
         /// <param name="query">LavishScript query expression</param>
@@ -1930,7 +1821,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// Asynchronously requests effect info for all of the character's effects.
         /// </summary>
         /// <returns>call success</returns>
-        public bool RequestEffectsInfo()
+        public new bool RequestEffectsInfo()
         {
             Trace.WriteLine(String.Format("Character:RequestEffectsInfo()"));
             return this.ExecuteMethod("RequestEffectsInfo");
