@@ -814,15 +814,18 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Makes an in game announcement for the provided time with the specified sound. (NOT WORKING CORRECTLY)
+        /// Makes an in-game announcement for the supplied duration with the specified
+        /// sound. Prefer the newer Announce(...) method going forward — this overload
+        /// is retained for source-API parity with older script consumers.
         /// </summary>
-        /// <param name="announcement">announcment</param>
-        /// <param name="timer">time to remain on screen</param>
+        /// <param name="announcement">announcement text</param>
+        /// <param name="timer">time (seconds) to remain on screen</param>
         /// <param name="sound">sound to play</param>
+        [Obsolete("Use Announce(...) instead — this method is retained for backwards compatibility only.")]
         public static int EQ2Announce(string announcement, float timer, AnnouncementSound sound = AnnouncementSound.QuestComplete)
         {
-            return LavishScript.ExecuteCommand(String.Format("EQ2Announce {0} {1} {2}", announcement, 
-                timer.ToString(CultureInfo.InvariantCulture), ((int)sound).ToString(CultureInfo.InvariantCulture) ));
+            return LavishScript.ExecuteCommand(String.Format("announce {0} {1} {2}", announcement,
+                timer.ToString(CultureInfo.InvariantCulture), ((int)sound).ToString(CultureInfo.InvariantCulture)));
         }
 
         #endregion

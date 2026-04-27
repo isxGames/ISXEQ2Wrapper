@@ -31,7 +31,7 @@ namespace EQ2.ISXEQ2.Events
             Attach("EQ2_ExamineItemWindowAppeared", OnExamineItemWindowAppeared);
             Attach("EQ2_onLootWindowAppeared", OnLootWindowAppeared);
             Attach("EQ2_onInventoryUpdate", OnInventoryUpdate);
-            Attach("EQ2_onQuestUpdate", OnQuestOffered);
+            Attach("EQ2_onQuestUpdate", OnQuestUpdate);
             Attach("EQ2_FinishedZoning", OnFinishedZoning);
             Attach("EQ2_StartedZoning", OnStartedZoning);
             Attach("EQ2_ExamineAchievement", OnExamineAchievement);

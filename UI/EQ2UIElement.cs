@@ -42,22 +42,6 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Retrieves the specified Child. This data member only works for Composite UI element types.
-        /// This data member uses two arguments. The first is the 'type' the element, which can be 
-        /// either "Button", "Icon", "Text", "CheckBox", "Page", "DataSourceContainer", or "Composite". 
-        /// The second argument is the index location of the child within the composite's children array.
-        /// This number will be between 1 and NumChildren.  
-        /// </summary>
-        /// <param name="type">type</param>
-        /// <param name="index">index</param>
-        /// <returns>EQ2UIElement</returns>
-        public EQ2Widget Child(ElementType type, int index)
-        {
-            Trace.WriteLine(String.Format("EQ2UIElement:Child({0}, {1})", type.ToString(), index.ToString(CultureInfo.InvariantCulture)));
-            return new EQ2Widget(this.GetMember("ChildType", type.ToString(), index.ToString(CultureInfo.InvariantCulture)));
-        }
-
-        /// <summary>
         /// Retrieves the ChildType at the specified index.
         /// This data member only works for Composite UI element types. 
         /// This data member uses one argument. This argument is a 
@@ -90,10 +74,6 @@ namespace EQ2.ISXEQ2.UI
                     return ElementType.TextBox;
                 case "List":
                     return ElementType.List;
-                case "VolumePage":
-                    return ElementType.VolumePage;
-                case "DataSource":
-                    return ElementType.DataSource;
                 default:
                     return ElementType.Unknown;
             }
@@ -141,14 +121,16 @@ namespace EQ2.ISXEQ2.UI
         private string _label;
 
         /// <summary>
-        /// Label. This data member only works for Checkbox, Text, DynamicData, and Button UI element types.
+        /// Label. Falls through to the underlying widget's registered Label
+        /// member (DropDownBox, ListBox, DynamicData each register a Label;
+        /// dedicated subtype wrappers override this property where appropriate).
         /// </summary>
         public string Label
         {
             get
             {
                 Trace.WriteLine(String.Format("EQ2UIElement:Label"));
-                return _label ?? (_label = this.GetStringFromLSO("Text"));
+                return _label ?? (_label = this.GetStringFromLSO("Label"));
             }
         }
 
@@ -165,14 +147,18 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Parent
+        /// Parent of this widget. Source (DT-Widgets.cpp:99-107) sets Dest.Type
+        /// via pParent-&gt;GetLSType(), so the parent may be any datatype that
+        /// derives from eq2baseobject (eq2widget, eq2uipage, eq2window, ...).
+        /// The wrapper return type is the polymorphic EQ2BaseObject; callers
+        /// downcast as needed.
         /// </summary>
-        public EQ2Widget Parent
+        public EQ2BaseObject Parent
         {
             get
             {
                 Trace.WriteLine(String.Format("EQ2UIElement:Parent"));
-                return new EQ2Widget(this.GetMember("Parent"));
+                return new EQ2BaseObject(this.GetMember("Parent"));
             }
         }
 
@@ -247,10 +233,6 @@ namespace EQ2.ISXEQ2.UI
                         return ElementType.TextBox;
                     case "List":
                         return ElementType.List;
-                    case "VolumePage":
-                        return ElementType.VolumePage;
-                    case "DataSource":
-                        return ElementType.DataSource;
                     default:
                         return ElementType.Unknown;
                 }
@@ -372,14 +354,6 @@ namespace EQ2.ISXEQ2.UI
             /// Element Type DynamicData
             /// </summary>
             DynamicData,
-            /// <summary>
-            /// Element Type Volume Page
-            /// </summary>
-            VolumePage,
-            /// <summary>
-            /// Element Type DataSource
-            /// </summary>
-            DataSource,
             /// <summary>
             /// Element Type Lists
             /// </summary>
