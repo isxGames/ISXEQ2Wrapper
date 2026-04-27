@@ -261,6 +261,18 @@ namespace EQ2.ISXEQ2
         /// </summary>
         /// <param name="label">label</param>
         /// <param name="allZones">include all zones</param>
+        /// <remarks>
+        /// Method name retained as EQLoc (typo) rather than EQ2Loc to avoid a silent
+        /// overload-resolution shift: this class also defines an EQ2Loc(string args)
+        /// command-dispatch method returning int. If this method were renamed to
+        /// EQ2Loc, calls of the form EQ2Loc("someLabel") (single string arg) would
+        /// resolve to the command-dispatch overload (more-specific match) instead of
+        /// the TLO accessor (which has a defaulted bool allZones parameter), silently
+        /// shifting the return type from EQ2Location to int. Functionally the
+        /// typo'd method works correctly — it dispatches the same EQ2Loc TLO as
+        /// EQ2Loc(int index, bool allZones). Use this method for label-based
+        /// lookups; use EQ2Loc(int) for index-based lookups.
+        /// </remarks>
         public static EQ2Location EQLoc(string label, bool allZones = false)
         {
             Trace.WriteLine(String.Format("Extension:EQ2Location({0}, {1})", label, allZones.ToString()));
@@ -505,8 +517,17 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Retrieves the active target object
+        /// Retrieves the active target object.
         /// </summary>
+        /// <remarks>
+        /// Exposed as a method (rather than a property like Me / Zone) because the
+        /// public API also includes command-invoker overloads Target(string) and
+        /// Target(int) for issuing target commands. C# does not allow a property and
+        /// a method to share the same identifier on the same class, so the no-arg
+        /// accessor stays in method form to preserve the command-invoker overloads.
+        /// Functionally equivalent to a property — call Target() to read the current
+        /// target Actor.
+        /// </remarks>
         public static Actor Target()
         {
             Trace.WriteLine(String.Format("Extension:Target"));
