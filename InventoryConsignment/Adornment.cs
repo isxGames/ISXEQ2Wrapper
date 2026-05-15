@@ -96,6 +96,19 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             }
         }
 
+        /// <summary>
+        /// Recreates the in-game chat hyperlink for this adornment (used typically with
+        /// eq2echo or eq2execute).
+        /// </summary>
+        public string ToLink
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Adornment:ToLink"));
+                return this.GetStringFromLSO("ToLink");
+            }
+        }
+
         #endregion
     }
 }

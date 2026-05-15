@@ -74,6 +74,7 @@
     <Compile Include="InventoryConsignment\Consignment.cs" />
     <Compile Include="InventoryConsignment\ContainerWindow.cs" />
     <Compile Include="InventoryConsignment\ContainerWindowItem.cs" />
+    <Compile Include="InventoryConsignment\CreatedItem.cs" />
     <Compile Include="AbilityEffect\Effect.cs" />
     <Compile Include="AbilityEffect\EffectInfo.cs" />
     <Compile Include="AbilityEffect\EffectString.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="UI\EQ2Window.cs" />
     <Compile Include="UI\ExamineItemWindow.cs" />
     <Compile Include="UI\InboxMailMessage.cs" />
+    <Compile Include="UI\InspectPlayerWindow.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="CharacterActor\GroupMember.cs" />

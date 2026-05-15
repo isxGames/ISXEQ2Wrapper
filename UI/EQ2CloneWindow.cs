@@ -6,14 +6,11 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2clonewindow' datatype. Source EQ2CloneWindowType
-    /// inherits from EQ2WindowType (INHERITDIRECT(pEQ2WindowType)) and registers
-    /// a single ID member returning a 64-bit pointer-sized identifier
-    /// (DT-Eq2GuiWindows.cpp:147-152, Dest.Type = pInt64PtrType). Several of the
-    /// other windows (LootWindow, ChoiceWindow, ContainerWindow, RewardWindow,
-    /// ExamineItemWindow, ReplyDialog) inherit from this type in source via
-    /// INHERITDIRECT(pEQ2CloneWindowType), so their wrapper classes inherit
-    /// EQ2CloneWindow rather than EQ2Window directly.
+    /// Wraps the ISXEQ2 'eq2clonewindow' datatype. Inherits from EQ2Window. Exposes
+    /// a single ID member returning a 64-bit pointer-sized identifier. Several of
+    /// the other windows (LootWindow, ChoiceWindow, ContainerWindow, RewardWindow,
+    /// ExamineItemWindow, ReplyDialog) inherit from this type, so their wrapper
+    /// classes inherit EQ2CloneWindow rather than EQ2Window directly.
     /// </summary>
     public class EQ2CloneWindow : EQ2Window
     {

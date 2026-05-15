@@ -3,10 +3,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source datatype 'eq2travelmapwindow' (TravelMapWindowType,
-    /// declared at DataTypes.h:4046; INHERITDIRECT(pEQ2WindowType)). Exposed
-    /// via the TravelMapWindow TLO. Members are stubbed empty in this batch
-    /// and will be filled in by the dedicated TravelMapWindow audit batch.
+    /// Wraps the ISXEQ2 'eq2travelmapwindow' datatype. Inherits from EQ2Window.
+    /// Exposed via the TravelMapWindow TLO. Members are stubbed empty in this
+    /// batch and will be filled in by a dedicated TravelMapWindow audit batch.
     /// </summary>
     public class TravelMapWindow : EQ2Window
     {

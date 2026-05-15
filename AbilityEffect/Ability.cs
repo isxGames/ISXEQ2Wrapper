@@ -281,7 +281,7 @@ namespace EQ2.ISXEQ2.AbilityEffect
         private long? _healthCost;
 
         /// <summary>
-        /// The health cost of the ability. Source returns Int64 (DT-Abilities.cpp:421).
+        /// The health cost of the ability.
         /// </summary>
         public long HealthCost
         {
@@ -300,7 +300,7 @@ namespace EQ2.ISXEQ2.AbilityEffect
         private long? _healthCostPerTick;
 
         /// <summary>
-        /// The health cost per tick of the ability. Source returns Int64 (DT-Abilities.cpp:488).
+        /// The health cost per tick of the ability.
         /// </summary>
         public long HealthCostPerTick
         {
@@ -602,7 +602,7 @@ namespace EQ2.ISXEQ2.AbilityEffect
         private long? _powerCost;
 
         /// <summary>
-        /// The power cost of the ability. Source returns Int64 (DT-Abilities.cpp:425).
+        /// The power cost of the ability.
         /// </summary>
         public long PowerCost
         {
@@ -621,7 +621,7 @@ namespace EQ2.ISXEQ2.AbilityEffect
         private long? _powerCostPerTick;
 
         /// <summary>
-        /// Power cost per tick of the ability. Source returns Int64 (DT-Abilities.cpp:491).
+        /// Power cost per tick of the ability.
         /// </summary>
         public long PowerCostPerTick
         {
@@ -767,10 +767,10 @@ namespace EQ2.ISXEQ2.AbilityEffect
         /// The time remaining on the ability.
         /// </summary>
         /// <remarks>
-        /// Deprecated: source emits a deprecation warning at DT-Abilities.cpp:71-73 and falls through to TimeUntilReady.
+        /// Deprecated: emits a deprecation warning at runtime and forwards to TimeUntilReady.
         /// Use TimeUntilReady instead.
         /// </remarks>
-        [Obsolete("Use TimeUntilReady instead. Source emits deprecation warning at DT-Abilities.cpp:71-73 and falls through to TimeUntilReady.")]
+        [Obsolete("Use TimeUntilReady instead. TimeRemaining emits a deprecation warning at runtime and forwards to TimeUntilReady.")]
         public float TimeRemaining
         {
             get

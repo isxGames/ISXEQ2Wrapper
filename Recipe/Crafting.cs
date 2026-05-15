@@ -13,9 +13,9 @@ namespace EQ2.ISXEQ2.Recipe
     /// current crafting event) plus a small key-value store ("crafting variables")
     /// that scripts can use to share state with each other safely.
     ///
-    /// Source CraftingType registers short aliases (M/R/Q/P/PM/D/DM/MII/BDII) that
-    /// fall through to the long-form members; this wrapper exposes the long-form
-    /// names only.
+    /// The underlying 'crafting' datatype registers short aliases (M / R / Q / P /
+    /// PM / D / DM / MII / BDII) that fall through to the long-form members; this
+    /// wrapper exposes the long-form names only.
     /// </summary>
     public class Crafting : LavishScriptObject
     {

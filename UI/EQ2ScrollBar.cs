@@ -6,10 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2scrollbar' datatype. EQ2ScrollBarType inherits from
-    /// EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers AttachedControl,
-    /// ThumbPosition, ThumbSize, CanScrollUp, CanScrollDown as members and ScrollUp,
-    /// ScrollDown as methods. (The 'Test' member is #if MYCOPY-gated and excluded.)
+    /// Wraps the ISXEQ2 'eq2scrollbar' datatype. Inherits from EQ2Widget. Exposes
+    /// AttachedControl, ThumbPosition, ThumbSize, CanScrollUp, CanScrollDown plus the
+    /// ScrollUp / ScrollDown methods.
     /// </summary>
     public class EQ2ScrollBar : EQ2Widget
     {
@@ -27,9 +26,9 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
-        /// The widget the scrollbar is attached to. Source (DT-Widgets.cpp:347-352)
-        /// sets Dest.Type via pAttachedControl-&gt;GetLSType(), so the result may be
-        /// any eq2widget derivative. The wrapper return type is the polymorphic
+        /// The widget the scrollbar is attached to. The runtime types the returned
+        /// value as the attached control's actual LS type, so the result may be any
+        /// eq2widget derivative. The wrapper return type is the polymorphic
         /// EQ2BaseObject; callers downcast as needed.
         /// </summary>
         public EQ2BaseObject AttachedControl
@@ -43,7 +42,6 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Current thumb position in pixels along the scrollbar.
-        /// Source: DT-Widgets.cpp:353-360.
         /// </summary>
         public int ThumbPosition
         {
@@ -55,7 +53,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Current thumb size in pixels. Source: DT-Widgets.cpp:361-368.
+        /// Current thumb size in pixels.
         /// </summary>
         public int ThumbSize
         {
@@ -67,7 +65,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// True when the scrollbar can scroll up. Source: DT-Widgets.cpp:369-374.
+        /// True when the scrollbar can scroll up.
         /// </summary>
         public bool CanScrollUp
         {
@@ -79,7 +77,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// True when the scrollbar can scroll down. Source: DT-Widgets.cpp:375-380.
+        /// True when the scrollbar can scroll down.
         /// </summary>
         public bool CanScrollDown
         {
@@ -95,7 +93,7 @@ namespace EQ2.ISXEQ2.UI
         #region Methods
 
         /// <summary>
-        /// Scrolls the bar up by one tick. Source: DT-Widgets.cpp:419-423.
+        /// Scrolls the bar up by one tick.
         /// </summary>
         /// <returns>call success</returns>
         public bool ScrollUp()
@@ -105,7 +103,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Scrolls the bar down by one tick. Source: DT-Widgets.cpp:424-428.
+        /// Scrolls the bar down by one tick.
         /// </summary>
         /// <returns>call success</returns>
         public bool ScrollDown()

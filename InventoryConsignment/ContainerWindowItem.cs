@@ -6,8 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.InventoryConsignment
 {
     /// <summary>
-    /// Represents an item in a ContainerWindow (Supply Depot Items). Only available when the ContainerWindow is open.
-    /// Source: ContainerWindowItemType (DataTypes.h:3741-3776, DT-Eq2GuiWindows.cpp:1192-1304).
+    /// Represents an item in a ContainerWindow (Supply Depot Items). Only available
+    /// when the ContainerWindow is open. Wraps the ISXEQ2 'containerwindowitem'
+    /// datatype.
     /// </summary>
     public class ContainerWindowItem : LavishScriptObject
     {
@@ -31,9 +32,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         private int? _iD;
 
         /// <summary>
-        /// Item ID. Used as the index argument for the 'RemoveItem' METHOD on the 'containerwindow' datatype.
-        /// Source maps this to <c>pItem-&gt;Unknown1</c> (DT-Eq2GuiWindows.cpp:1212-1217), which is semantically the slot/item index within
-        /// the container; it is NOT the item template ItemID. For the link-side identifier, see <see cref="LinkID"/>.
+        /// Item ID. Used as the index argument for the 'RemoveItem' METHOD on the
+        /// 'containerwindow' datatype. Semantically the slot/item index within the
+        /// container; it is NOT the item template ItemID. For the link-side identifier,
+        /// see <see cref="LinkID"/>.
         /// </summary>
         public int ID
         {
@@ -47,7 +49,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Item link identifier (source: <c>pItem-&gt;LinkID</c>, DT-Eq2GuiWindows.cpp:1218-1223).
+        /// Item link identifier.
         /// </summary>
         public int LinkID
         {
@@ -60,7 +62,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
 
         /// <summary>
         /// Returns a chat-link string for this item in the form <c>\aITEM linkid linkhash 0 0 0:Name\/a</c>.
-        /// Source: DT-Eq2GuiWindows.cpp:1224-1230.
         /// </summary>
         public string ToLink
         {
@@ -77,7 +78,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         private int? _iconID;
 
         /// <summary>
-        /// Item Icon ID (source: <c>pItem-&gt;IconID</c>, DT-Eq2GuiWindows.cpp:1231-1236).
+        /// Item Icon ID.
         /// </summary>
         public int IconID
         {
@@ -139,8 +140,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// True if the underlying ItemInfo (CExamineItemNode) is loaded and valid for this container item.
-        /// Source: DT-Eq2GuiWindows.cpp:1255-1264.
+        /// True if the underlying ItemInfo is loaded and valid for this container item.
         /// </summary>
         public bool IsItemInfoAvailable
         {
@@ -153,7 +153,6 @@ namespace EQ2.ISXEQ2.InventoryConsignment
 
         /// <summary>
         /// Returns the underlying <see cref="ItemInfo"/> for this container item, or null if unavailable/invalid.
-        /// Source: DT-Eq2GuiWindows.cpp:1265-1287 (returns <c>pItemInfoType</c>).
         /// </summary>
         public ItemInfo ToItemInfo
         {

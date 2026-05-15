@@ -49,11 +49,11 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Returns the reward by LinkID. The first argument is treated as a marker
-        /// (any value); the second argument is the LinkID. This matches the source
-        /// two-argument form which dispatches on argc==2.
+        /// (any value); the second argument is the LinkID. Matches the underlying
+        /// LavishScript two-argument form.
         /// </summary>
         /// <param name="linkID">LinkID of the reward</param>
-        /// <param name="n">marker argument (source uses argv[1] for LinkID)</param>
+        /// <param name="n">marker argument (any value)</param>
         /// <returns>Reward</returns>
         public Reward Reward(uint linkID, int n)
         {
@@ -66,15 +66,14 @@ namespace EQ2.ISXEQ2.UI
         #region Methods
 
         /// <summary>
-        /// Accepts the reward. Optionally accepts a specific reward by LinkID;
-        /// when called with linkID == 0 (default), the source dispatches based on
-        /// the number of rewards in the pack.
+        /// Accepts the reward. Optionally accepts a specific reward by LinkID; when
+        /// called with linkID == 0 (default), the dispatch is based on the number of
+        /// rewards in the pack.
         /// </summary>
         /// <remarks>
         /// After invocation, the underlying LavishScript window object becomes
-        /// invalid: the source closes the window after sending the accept_reward
-        /// command (DT-Eq2GuiWindows.cpp:1445-1446). Treat any held RewardWindow
-        /// reference as stale after this call.
+        /// invalid: the window is closed once the accept_reward command is sent.
+        /// Treat any held RewardWindow reference as stale after this call.
         /// </remarks>
         /// <param name="linkID">optional LinkID of the reward to accept (0 = default selection)</param>
         /// <returns>call success</returns>

@@ -7,7 +7,7 @@ namespace EQ2.ISXEQ2.CharacterActor
 {
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to group members.
-    /// Mirrors source-side GroupMemberType inheritance from ActorType (INHERITDIRECT(pActorType) at DataTypes.h:1599).
+    /// Inherits from Actor.
     /// </summary>
     public class GroupMember : Actor
     {
@@ -62,7 +62,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Current raw power (Int64). Distinct from the inherited ActorType Power, which returns a percentage.
+        /// Current raw power (Int64). Distinct from the inherited Actor.Power, which returns a percentage.
         /// </summary>
         public long CurrentPower
         {

@@ -6,9 +6,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2tabbedpane' datatype. EQ2TabbedPaneType inherits from
-    /// EQ2UIPageType (INHERITDIRECT(pEQ2UIPageType)) and registers ActiveTab,
-    /// LastTab, TargetPage, DataSource as members.
+    /// Wraps the ISXEQ2 'eq2tabbedpane' datatype. Inherits from EQ2UIPage. Exposes
+    /// ActiveTab, LastTab, TargetPage, DataSource.
     /// </summary>
     public class EQ2TabbedPane : EQ2UIPage
     {
@@ -26,7 +25,7 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
-        /// Index of the currently active tab. Source: DT-Widgets.cpp:1272-1276.
+        /// Index of the currently active tab.
         /// </summary>
         public int ActiveTab
         {
@@ -38,7 +37,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Index of the previously active tab. Source: DT-Widgets.cpp:1278-1282.
+        /// Index of the previously active tab.
         /// </summary>
         public int LastTab
         {
@@ -50,8 +49,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// The target page of the active tab. Source (DT-Widgets.cpp:1284-1288)
-        /// sets Dest.Type to pEQ2UIPageType.
+        /// The target page of the active tab.
         /// </summary>
         public EQ2UIPage TargetPage
         {
@@ -63,8 +61,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// The data source backing the tabbed pane. Source (DT-Widgets.cpp:1290-1294)
-        /// sets Dest.Type to pEQ2BaseObjectType.
+        /// The data source backing the tabbed pane.
         /// </summary>
         public EQ2BaseObject DataSource
         {

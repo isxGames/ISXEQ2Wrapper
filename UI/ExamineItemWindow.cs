@@ -38,9 +38,8 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Returns the item being examined as an iteminfo datatype object.
-        /// (Note:  All members of the iteminfo should be available without
-        /// initialization when accessed via the examineitemwindow.) Source returns
-        /// pItemInfoType at DT-Eq2GuiWindows.cpp:1507-1518.
+        /// (Note: All members of the iteminfo should be available without
+        /// initialization when accessed via the examineitemwindow.)
         /// </summary>
         public ItemInfo ToItem
         {
@@ -52,9 +51,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Number of "Texts" in the TextVector. Sourced from the source-side
-        /// arg-zero form of the TextVector member (which returns the count when
-        /// invoked with no index).
+        /// Number of "Texts" in the TextVector. Reads the arg-zero form of the
+        /// TextVector member (which returns the count when invoked with no index).
         /// </summary>
         public int TextVectorCount
         {
@@ -67,8 +65,7 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Returns the text widget at the specified index in the examine
-        /// window's text vector. (1 to TextVectorCount). Source returns
-        /// pEQ2TextType at DT-Eq2GuiWindows.cpp:1486-1500.
+        /// window's text vector. (1 to TextVectorCount).
         /// </summary>
         /// <param name="index">index (1-based)</param>
         /// <returns>EQ2Text</returns>

@@ -6,10 +6,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'travelmapwindowlocation' datatype. Represents a single
-    /// destination on the TravelMapWindow's location list. Source
-    /// TravelMapWindowLocationType (LSTypeDef_Ptr, no INHERITDIRECT) registers
-    /// ten members and no methods.
+    /// Wraps the ISXEQ2 'travelmapwindowlocation' datatype. Represents a single
+    /// destination on the TravelMapWindow's location list.
     /// </summary>
     public class TravelMapWindowLocation : LavishScriptObject
     {

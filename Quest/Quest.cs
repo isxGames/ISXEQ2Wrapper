@@ -8,9 +8,9 @@ namespace EQ2.ISXEQ2.Quest
     /// <summary>
     /// This DataType wraps the ISXEQ2 'quest' datatype, which exposes a single
     /// entry from the player's quest journal (active or completed). Reach a Quest
-    /// instance via the Character or Quest journal accessors. Source backs this
-    /// with an LSTypeDef_UInt holding the quest ID; member access falls through
-    /// to a journal lookup so reading members on a stale ID returns invalid.
+    /// instance via the Character or Quest journal accessors. The datatype is
+    /// keyed by quest ID; member access falls through to a journal lookup, so
+    /// reading members on a stale ID returns invalid.
     /// </summary>
     public class Quest : LavishScriptObject
     {
@@ -145,7 +145,7 @@ namespace EQ2.ISXEQ2.Quest
 
         /// <summary>
         /// Selects this quest as the current completed-tab selection in the quest journal.
-        /// Only valid for active quests (per source comment, completed quests are not supported by methods).
+        /// Only valid for active quests; completed quests are not supported by methods.
         /// </summary>
         /// <returns>call success</returns>
         public bool MakeCurrentCompletedQuest()

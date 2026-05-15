@@ -6,9 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.CharacterActor
 {
     /// <summary>
-    /// Represents an object currently being moved/placed in the world via the moveable-object placement
-    /// system. Exposed via EQ2.ObjectBeingMoved. Backed by source datatype 'moveableobject'
-    /// (see DT-Actors.cpp:4981+ / DataTypes.h:886+).
+    /// Represents an object currently being moved/placed in the world via the moveable-object
+    /// placement system. Exposed via EQ2.ObjectBeingMoved. Wraps the ISXEQ2 'moveableobject'
+    /// datatype.
     /// </summary>
     public class MoveableObject : LavishScriptObject
     {

@@ -7,10 +7,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2inboxmailmessage' datatype. Represents a single
-    /// message entry in the MailWindow inbox listing. Source InboxMailMessageType
-    /// inherits nothing (LSTypeDef_Ptr) and registers nine members and three
-    /// methods (the extra method versus MailMessage is Open).
+    /// Wraps the ISXEQ2 'eq2inboxmailmessage' datatype. Represents a single message
+    /// entry in the MailWindow inbox listing. Exposes nine members and three methods
+    /// (the extra method versus MailMessage is Open).
     /// </summary>
     public class InboxMailMessage : LavishScriptObject
     {

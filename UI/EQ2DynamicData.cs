@@ -6,11 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2dynamicdata' datatype. EQ2DynamicDataType inherits
-    /// directly from EQ2BaseObjectType (INHERITDIRECT(pEQ2BaseObjectType)) — NOT
-    /// from EQ2WidgetType — so this class derives from EQ2BaseObject. Registered
-    /// members: Label, Tooltip, IsSet, Percent. Returned by
-    /// EQ2DataSourceContainer.GetDynamicData and by character.GetGameData.
+    /// Wraps the ISXEQ2 'eq2dynamicdata' datatype. Inherits directly from
+    /// EQ2BaseObject (NOT from EQ2Widget). Exposes Label, Tooltip, IsSet, Percent.
+    /// Returned by EQ2DataSourceContainer.GetDynamicData and by character.GetGameData.
     /// </summary>
     public class EQ2DynamicData : EQ2BaseObject
     {
@@ -28,7 +26,7 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
-        /// Tooltip text. Source: DT-Widgets.cpp:1692-1697.
+        /// Tooltip text.
         /// </summary>
         public string Tooltip
         {
@@ -40,7 +38,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Label text. Source: DT-Widgets.cpp:1698-1705.
+        /// Label text.
         /// </summary>
         public string Label
         {
@@ -52,8 +50,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Percent value (already scaled ×100 by source — DT-Widgets.cpp:1706-1711
-        /// returns Percent*100.0f). Caller does NOT need to multiply again.
+        /// Percent value. Already scaled ×100 by the runtime; caller does NOT need to
+        /// multiply again.
         /// </summary>
         public float Percent
         {
@@ -65,8 +63,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// True when the underlying CDynamicData's IsSet flag is set.
-        /// Source: DT-Widgets.cpp:1712-1717.
+        /// True when the underlying dynamic-data IsSet flag is set.
         /// </summary>
         public bool IsSet
         {

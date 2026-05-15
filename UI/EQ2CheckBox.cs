@@ -3,8 +3,7 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2checkbox' datatype. Source EQ2CheckBoxType inherits
-    /// from EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers no
+    /// Wraps the ISXEQ2 'eq2checkbox' datatype. Inherits from EQ2Widget. Exposes no
     /// members or methods of its own. This class exists as a precise return-type
     /// marker; all useful surface comes from EQ2Widget.
     /// </summary>

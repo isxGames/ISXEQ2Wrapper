@@ -230,14 +230,17 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Returns the created item name at the given index (1 to NumItemsCreated).
+        /// Returns the created item entry at the given index (1 to NumItemsCreated).
+        /// Now returns a 'createditem' object; previously returned a string. Legacy
+        /// scripts that read the result as a string continue to function — the
+        /// datatype coerces to the item name when accessed with no member.
         /// </summary>
         /// <param name="index">created item index</param>
-        /// <returns>created item name</returns>
-        public string CreatesItem(int index)
+        /// <returns>CreatedItem</returns>
+        public CreatedItem CreatesItem(int index)
         {
             Trace.WriteLine(String.Format("ItemInfo:CreatesItem({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return this.GetStringFromLSO("CreatesItem", index.ToString(CultureInfo.InvariantCulture));
+            return new CreatedItem(this.GetMember("CreatesItem", index.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
@@ -1130,9 +1133,9 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Returns MaxRange (alias).
         /// </summary>
         /// <remarks>
-        /// <c>Range</c> and <c>MaxRange</c> share fall-through code in source (DT-Items.cpp:1607-1625) and return identical
-        /// values. The conditional that originally restricted <c>Range</c> to RangedWeapon items is commented out. Use either;
-        /// they're aliases.
+        /// <c>Range</c> and <c>MaxRange</c> return identical values; the conditional that
+        /// originally restricted <c>Range</c> to RangedWeapon items is no longer enforced.
+        /// Use either; they're aliases.
         /// </remarks>
         public int Range
         {

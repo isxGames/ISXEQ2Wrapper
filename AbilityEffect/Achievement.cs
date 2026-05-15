@@ -156,12 +156,12 @@ namespace EQ2.ISXEQ2.AbilityEffect
         /// Returns the achievement as an ability.
         /// </summary>
         /// <remarks>
-        /// Source returns pAbilityInfoType per DT-Miscellaneous.cpp:2666-2670 (renamed from
-        /// pAbilityType per ISXEQ2Changes.txt:1405). The wrapper's combined Ability class
-        /// proxies both AbilityType and AbilityInfoType source members, so this still
-        /// resolves correctly — the IsAbilityInfoAvailable / ToAbilityInfo accessors and
-        /// AbilityInfo-only members (AscensionClass, AscensionLevel, etc.) are usable on
-        /// the returned object.
+        /// Returns an 'abilityinfo' object (the achievement's reward / linked ability,
+        /// previously typed as 'ability'). The wrapper's combined Ability class proxies
+        /// both 'ability' and 'abilityinfo' members, so this still resolves correctly —
+        /// the IsAbilityInfoAvailable / ToAbilityInfo accessors and abilityinfo-only
+        /// members (AscensionClass, AscensionLevel, etc.) are usable on the returned
+        /// object.
         /// </remarks>
         /// <returns>ability</returns>
         public Ability ToAbility

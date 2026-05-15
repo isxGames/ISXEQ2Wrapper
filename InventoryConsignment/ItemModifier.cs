@@ -63,8 +63,8 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         private float? _value;
 
         /// <summary>
-        /// Modifier value. Source returns a float for Modifiers/Overcap modifier types and an int otherwise
-        /// (DT-Items.cpp:1978-1991); float here covers both.
+        /// Modifier value. Returns a float for Modifiers / Overcap modifier types and
+        /// an int otherwise; float here covers both.
         /// </summary>
         public float Value
         {

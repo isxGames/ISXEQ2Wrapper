@@ -526,8 +526,7 @@ namespace EQ2.ISXEQ2.Utility
 
         /// <summary>
         /// Returns the list of expansion / feature names attached to the current
-        /// account (e.g. "Visions of Vetrovia", "Mercenaries", etc.). Source iterates
-        /// the AccountHasFeature/AccountHasContent flags into a string index.
+        /// account (e.g. "Visions of Vetrovia", "Mercenaries", etc.).
         /// </summary>
         /// <returns>Enumerable of feature/expansion names</returns>
         public IEnumerable<string> GetAccountFeatures()
@@ -584,11 +583,11 @@ namespace EQ2.ISXEQ2.Utility
         ///
         /// Implementation note: this method delegates to Util.GetListFromMethod&lt;Actor&gt;,
         /// which creates a transient LavishScript actor index and prepends its
-        /// LSReference as argv[0] before invoking the source method. This satisfies
-        /// the source-side EQ2:GetActors[indexRef, ...filter args...] signature
-        /// (DT-Miscellaneous.cpp:791-831 — argv[0] is validated as the index container
-        /// via Validate_LSObjectContainer; argv[1..n] are the filter/query tokens).
-        /// Caller-supplied 'args' here become the filter tokens after the index reference.
+        /// LSReference as argv[0] before invoking the method. This satisfies the
+        /// EQ2:GetActors[indexRef, ...filter args...] LavishScript signature — argv[0]
+        /// is validated as the index container; argv[1..n] are the filter / query
+        /// tokens. Caller-supplied 'args' here become the filter tokens after the
+        /// index reference.
         /// </remarks>
         public IEnumerable<Actor> GetActors(params string[] args)
         {

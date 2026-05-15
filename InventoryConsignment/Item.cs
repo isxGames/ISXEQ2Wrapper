@@ -134,6 +134,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns TRUE if the item currently has one or more adornments attached.
+        /// </summary>
+        public bool HasAdornments
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:HasAdornments"));
+                return this.GetBoolFromLSO("HasAdornments");
+            }
+        }
+
+        /// <summary>
         /// The icon ID of the item.
         /// </summary>
         public int IconID
@@ -299,10 +311,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// (i.e., if information has been cached from the server.)
         /// </summary>
         /// <remarks>
-        /// Source emits a deprecation print at DT-Items.cpp:413-414 and falls through to <see cref="IsItemInfoAvailable"/>.
-        /// Use <see cref="IsItemInfoAvailable"/> instead.
+        /// Emits a deprecation warning at runtime and forwards to
+        /// <see cref="IsItemInfoAvailable"/>. Use <see cref="IsItemInfoAvailable"/> instead.
         /// </remarks>
-        [Obsolete("Use IsItemInfoAvailable instead. Source emits deprecation print at DT-Items.cpp:413-414 and falls through to IsItemInfoAvailable.")]
+        [Obsolete("Use IsItemInfoAvailable instead. IsInitialized emits a deprecation warning at runtime and forwards to IsItemInfoAvailable.")]
         public bool IsInitialized
         {
             get
@@ -619,9 +631,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Adds the item as an agent (without confirmation).
         /// </summary>
         /// <remarks>
-        /// Source dispatches <c>add_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
-        /// per the source comment at DT-Items.cpp:680-682 ("there is a typo in the EQ2 source as of January 2020"). The comma
-        /// matches the game's expected format; do not attempt to remove it.
+        /// Dispatches <c>add_agent_item %1%, 0</c> with an extraneous comma — this is
+        /// an intentional EQ2-side typo (an annotation in the upstream changelog notes
+        /// "there is a typo in the EQ2 client as of January 2020"). The comma matches
+        /// the game's expected format; do not attempt to remove it.
         /// </remarks>
         /// <returns>call success</returns>
         public bool AddAgent()
@@ -634,9 +647,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Adds the item as an agent.
         /// </summary>
         /// <remarks>
-        /// Source dispatches <c>add_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
-        /// per the source comment at DT-Items.cpp:680-682 ("there is a typo in the EQ2 source as of January 2020"). The comma
-        /// matches the game's expected format; do not attempt to remove it.
+        /// Dispatches <c>add_agent_item %1%, 0</c> with an extraneous comma — this is
+        /// an intentional EQ2-side typo (an annotation in the upstream changelog notes
+        /// "there is a typo in the EQ2 client as of January 2020"). The comma matches
+        /// the game's expected format; do not attempt to remove it.
         /// </remarks>
         /// <param name="withconfirm">with confirmation</param>
         /// <returns>call success</returns>
@@ -692,8 +706,8 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Moves the quantity of the stack to the vendor/vending container (1 to 6).
         /// </summary>
         /// <remarks>
-        /// The second argument accepts EITHER a 1-6 vendor index OR a vendor SerialNumber. Per source
-        /// (DT-Items.cpp:608-615): if the value is &lt;= 6 it is treated as an index; otherwise as a SerialNumber.
+        /// The second argument accepts EITHER a 1-6 vendor index OR a vendor SerialNumber:
+        /// if the value is &lt;= 6 it is treated as an index; otherwise as a SerialNumber.
         /// Use the (int, long) overload when you have a SerialNumber, since high SerialNumbers will overflow int.
         /// </remarks>
         /// <param name="quantity">quantity</param>
@@ -711,7 +725,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Moves the quantity of the stack to the vendor/vending container identified by SerialNumber (or 1-6 index, if &lt;= 6).
         /// </summary>
         /// <remarks>
-        /// Per source (DT-Items.cpp:608-615), the second argument's value determines its mode: &lt;= 6 = vendor index;
+        /// The second argument's value determines its mode: &lt;= 6 = vendor index;
         /// otherwise = vendor SerialNumber. Use this long overload to avoid signed-int overflow on high SerialNumbers.
         /// </remarks>
         /// <param name="quantity">quantity</param>
@@ -792,9 +806,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Converts the item as an agent (without confirmation).
         /// </summary>
         /// <remarks>
-        /// Source dispatches <c>convert_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
-        /// per the source comment at DT-Items.cpp:693 ("there is a typo in the EQ2 source as of January 2020"). The comma
-        /// matches the game's expected format; do not attempt to remove it.
+        /// Dispatches <c>convert_agent_item %1%, 0</c> with an extraneous comma — this is
+        /// an intentional EQ2-side typo (an annotation in the upstream changelog notes
+        /// "there is a typo in the EQ2 client as of January 2020"). The comma matches
+        /// the game's expected format; do not attempt to remove it.
         /// </remarks>
         /// <returns>call success</returns>
         public bool ConvertAgent()
@@ -807,9 +822,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Converts the item as an agent.
         /// </summary>
         /// <remarks>
-        /// Source dispatches <c>convert_agent_item %1%, 0</c> with an extraneous comma — this is an intentional EQ2-side typo
-        /// per the source comment at DT-Items.cpp:693 ("there is a typo in the EQ2 source as of January 2020"). The comma
-        /// matches the game's expected format; do not attempt to remove it.
+        /// Dispatches <c>convert_agent_item %1%, 0</c> with an extraneous comma — this is
+        /// an intentional EQ2-side typo (an annotation in the upstream changelog notes
+        /// "there is a typo in the EQ2 client as of January 2020"). The comma matches
+        /// the game's expected format; do not attempt to remove it.
         /// </remarks>
         /// <param name="withconfirm">with confirmation</param>
         /// <returns>call success</returns>
@@ -1033,15 +1049,15 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Sacrifices the item.
         /// When <paramref name="withConfirm"/> is true, the in-game client prompts the player for confirmation before the sacrifice is performed.
         /// When false (the default), the sacrifice is performed without any confirmation prompt.
-        /// Source mapping (DT-Items.cpp:794-814): argc==0 -> deity_offer_confirm (with confirmation); argc>0 -> deity_offer (no confirmation).
+        /// Internally: no-arg form dispatches deity_offer_confirm (with confirmation); the with-arg form dispatches deity_offer (no confirmation).
         /// </summary>
         /// <param name="withConfirm">true to ask the player for confirmation; false (default) to sacrifice without confirmation.</param>
         /// <returns>call success</returns>
         public bool Sacrifice(bool withConfirm = false)
         {
             Trace.WriteLine(String.Format("Item:Sacrifice({0})", withConfirm.ToString(CultureInfo.InvariantCulture)));
-            // withConfirm == true  -> source argc==0 path (deity_offer_confirm) -> call with NO argument
-            // withConfirm == false -> source argc>0 path  (deity_offer)         -> call WITH any argument
+            // withConfirm == true  -> no-arg path  (deity_offer_confirm) -> call with NO argument
+            // withConfirm == false -> with-arg path (deity_offer)        -> call WITH any argument
             return withConfirm ? this.ExecuteMethod("Sacrifice") : this.ExecuteMethod("Sacrifice", "noConfirm");
         }
 

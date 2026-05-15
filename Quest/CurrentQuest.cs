@@ -8,7 +8,7 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.Quest
 {
     /// <summary>
-    /// Wraps the source 'journalcurrentquest' datatype, which exposes the
+    /// Wraps the ISXEQ2 'journalcurrentquest' datatype, which exposes the
     /// quest-journal panel's currently-displayed quest as a set of UI text
     /// widgets (each member returns an EQ2Text bound to the live UI element)
     /// plus a single GetDetails method that snapshots the journal's per-step

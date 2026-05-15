@@ -8,9 +8,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2dropdownbox' datatype. Source EQ2DropDownBoxType
-    /// inherits from EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers
-    /// Label as a member and Set/GetOptions as methods.
+    /// Wraps the ISXEQ2 'eq2dropdownbox' datatype. Inherits from EQ2Widget. Exposes
+    /// Label as a member and Set / GetOptions as methods.
     /// </summary>
     public class EQ2DropDownBox : EQ2Widget
     {
@@ -30,7 +29,6 @@ namespace EQ2.ISXEQ2.UI
         /// <summary>
         /// Label of the currently selected drop-down entry (falls back to the
         /// entry's Localtext / text properties if Name is empty).
-        /// Source: DT-Widgets.cpp:602-636.
         /// </summary>
         public new string Label
         {
@@ -47,7 +45,6 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Sets the selected entry to the given 0-based index.
-        /// Source: DT-Widgets.cpp:662-668.
         /// </summary>
         /// <param name="index">0-based selection index</param>
         /// <returns>call success</returns>
@@ -59,10 +56,10 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Snapshots every drop-down option into a list of LavishScript maps.
-        /// Each returned map has a 'Name' key plus every property the source CUIData
-        /// exposes for that option (read with entry.GetStringFromLSO("key")).
-        /// Source: DT-Widgets.cpp:669-724 — populates a caller-provided
-        /// index:map[string,string]; the wrapper manages the LS-side index.
+        /// Each returned map has a 'Name' key plus every property the underlying UI
+        /// data exposes for that option (read with entry.GetStringFromLSO("key")).
+        /// Internally populates a caller-provided index:map[string,string]; the
+        /// wrapper manages the LS-side index.
         /// </summary>
         /// <returns>list of option maps, or null on failure</returns>
         public List<LavishScriptObject> GetOptions()

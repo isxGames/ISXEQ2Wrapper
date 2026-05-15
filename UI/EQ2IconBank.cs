@@ -7,9 +7,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2iconbank' datatype. EQ2IconBankType inherits from
-    /// EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers NumIcons and
-    /// Icon[#] as members. (The 'Test' member is #if MYCOPY-gated and excluded.)
+    /// Wraps the ISXEQ2 'eq2iconbank' datatype. Inherits from EQ2Widget. Exposes
+    /// NumIcons and Icon[#] as members.
     /// </summary>
     public class EQ2IconBank : EQ2Widget
     {
@@ -27,7 +26,7 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
-        /// Total number of icons in the bank. Source: DT-Widgets.cpp:1542-1547.
+        /// Total number of icons in the bank.
         /// </summary>
         public int NumIcons
         {
@@ -40,7 +39,6 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Returns the icon at the given 1-based index (1..NumIcons).
-        /// Source: DT-Widgets.cpp:1548-1571 (Dest.Type = pEQ2IconType).
         /// </summary>
         /// <param name="index">1-based icon index</param>
         /// <returns>EQ2Icon at the given slot</returns>

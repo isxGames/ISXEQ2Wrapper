@@ -8,9 +8,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2listbox' datatype. EQ2ListBoxType inherits from
-    /// EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers Label as a
-    /// member and GetOptions as a method. Almost identical to EQ2DropDownBox.
+    /// Wraps the ISXEQ2 'eq2listbox' datatype. Inherits from EQ2Widget. Exposes Label
+    /// as a member and GetOptions as a method. Almost identical to EQ2DropDownBox.
     /// </summary>
     public class EQ2ListBox : EQ2Widget
     {
@@ -30,7 +29,6 @@ namespace EQ2.ISXEQ2.UI
         /// <summary>
         /// Label of the currently selected list-box entry (falls back to the
         /// entry's Localtext / text properties if Name is empty).
-        /// Source: DT-Widgets.cpp:1407-1441.
         /// </summary>
         public new string Label
         {
@@ -47,10 +45,10 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Snapshots every list-box option into a list of LavishScript maps.
-        /// Each returned map has a 'Name' key plus every property the source CUIData
-        /// exposes for that option (read with entry.GetStringFromLSO("key")).
-        /// Source: DT-Widgets.cpp:1467-1518 — populates a caller-provided
-        /// index:map[string,string]; the wrapper manages the LS-side index.
+        /// Each returned map has a 'Name' key plus every property the underlying UI
+        /// data exposes for that option (read with entry.GetStringFromLSO("key")).
+        /// Internally populates a caller-provided index:map[string,string]; the
+        /// wrapper manages the LS-side index.
         /// </summary>
         /// <returns>list of option maps, or null on failure</returns>
         public List<LavishScriptObject> GetOptions()

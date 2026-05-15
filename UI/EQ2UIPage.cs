@@ -7,9 +7,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2uipage' datatype. Source EQ2UIPageType inherits from
-    /// EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers NumChildren,
-    /// ChildType, Child as members and SpewChildren as a method.
+    /// Wraps the ISXEQ2 'eq2uipage' datatype. Inherits from EQ2Widget. Exposes
+    /// NumChildren, ChildType, Child as members and SpewChildren as a method.
     /// </summary>
     public class EQ2UIPage : EQ2Widget
     {
@@ -27,7 +26,7 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
-        /// Number of direct children of the page. Source: DT-Widgets.cpp:1079-1083.
+        /// Number of direct children of the page.
         /// </summary>
         public new int NumChildren
         {
@@ -40,7 +39,7 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Returns the registered LavishScript datatype name of the child at the
-        /// given 1-based index (1..NumChildren). Source: DT-Widgets.cpp:1085-1110.
+        /// given 1-based index (1..NumChildren).
         /// </summary>
         /// <param name="index">1-based child index</param>
         /// <returns>type name string</returns>
@@ -51,10 +50,9 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the child at the given 1-based index (1..NumChildren).
-        /// Source (DT-Widgets.cpp:1112-1178) sets Dest.Type to the child's actual
-        /// LS type via GetLSType(); the wrapper return type is the polymorphic
-        /// EQ2BaseObject so callers can downcast as needed.
+        /// Returns the child at the given 1-based index (1..NumChildren). The runtime
+        /// types the returned value as the child's actual LS type; the wrapper return
+        /// type is the polymorphic EQ2BaseObject so callers can downcast as needed.
         /// </summary>
         /// <param name="index">1-based child index</param>
         /// <returns>child object</returns>
@@ -65,8 +63,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the first child whose name matches. Source: DT-Widgets.cpp:1112-1178
-        /// (string-arg branch invokes GetChildByName(name, 1)).
+        /// Returns the first child whose name matches.
         /// </summary>
         /// <param name="name">child name</param>
         /// <returns>child object</returns>
@@ -77,10 +74,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns the Nth instance of the named child (instance is 1-based).
-        /// Source: DT-Widgets.cpp:1142-1164 (two-arg branch invokes
-        /// GetChildByName(name, instance) — the FIRST argument is the instance
-        /// number and the SECOND is the name).
+        /// Returns the Nth instance of the named child (instance is 1-based). NOTE:
+        /// the FIRST argument is the instance number and the SECOND is the name.
         /// </summary>
         /// <param name="instance">1-based instance number</param>
         /// <param name="name">child name</param>
@@ -97,7 +92,6 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Spews the page's children to the ISXEQ2 console. Debug-only convenience.
-        /// Source: DT-Widgets.cpp:1202-1205.
         /// </summary>
         /// <returns>call success</returns>
         public bool SpewChildren()

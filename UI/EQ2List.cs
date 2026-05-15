@@ -8,10 +8,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2list' datatype. Source EQ2ListType inherits from
-    /// EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers HighlightRow
-    /// and GetOptions as methods (no members of its own). HighlightRow currently
-    /// lives on the base EQ2Widget for legacy reasons; a future batch will
+    /// Wraps the ISXEQ2 'eq2list' datatype. Inherits from EQ2Widget. Exposes
+    /// HighlightRow and GetOptions as methods (no members of its own). HighlightRow
+    /// currently lives on the base EQ2Widget for legacy reasons; a future batch will
     /// migrate it here.
     /// </summary>
     public class EQ2List : EQ2Widget
@@ -31,10 +30,10 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Snapshots every list row into a list of LavishScript maps.
-        /// Each returned map has a 'Name' key plus every property the source CUIData
-        /// exposes for that row (read with entry.GetStringFromLSO("key")).
-        /// Source: DT-Widgets.cpp:961-1012 — populates a caller-provided
-        /// index:map[string,string]; the wrapper manages the LS-side index.
+        /// Each returned map has a 'Name' key plus every property the underlying UI
+        /// data exposes for that row (read with entry.GetStringFromLSO("key")).
+        /// Internally populates a caller-provided index:map[string,string]; the
+        /// wrapper manages the LS-side index.
         /// </summary>
         /// <returns>list of row maps, or null on failure</returns>
         public List<LavishScriptObject> GetOptions()

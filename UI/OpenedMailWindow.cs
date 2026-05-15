@@ -6,10 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2openedmailwindow' datatype. Represents the window
-    /// shown when an inbox message has been opened. Source OpenedMailWindowType
-    /// inherits from EQ2WindowType (INHERITDIRECT(pEQ2WindowType)) and registers
-    /// a single Message member and a single Cancel method.
+    /// Wraps the ISXEQ2 'eq2openedmailwindow' datatype. Represents the window shown
+    /// when an inbox message has been opened. Inherits from EQ2Window. Exposes a
+    /// single Message member and a single Cancel method.
     /// </summary>
     public class OpenedMailWindow : EQ2Window
     {

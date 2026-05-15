@@ -1574,7 +1574,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_ActorAnimationChanged Event Args. Source emits 8 args (see Pulse.cpp:443).
+        /// EQ2_ActorAnimationChanged Event Args.
         /// </summary>
         public class ActorAnimationChangedEventArgs : LSEventArgs
         {
@@ -1651,7 +1651,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_ItemAddedToAltarForSacrifice Event Handler. Fires when an inventory item
-        /// is added to a deity altar for sacrifice (source emit at CommandHooks.cpp:192).
+        /// is added to a deity altar for sacrifice.
         /// </summary>
         public event EventHandler<ItemAddedToAltarForSacrificeEventArgs> ItemAddedToAltarForSacrifice;
 
@@ -1668,7 +1668,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_ItemAddedToAltarForSacrifice Event Args. Source emits 1 arg.
+        /// EQ2_ItemAddedToAltarForSacrifice Event Args.
         /// </summary>
         public class ItemAddedToAltarForSacrificeEventArgs : LSEventArgs
         {
@@ -1689,7 +1689,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onDestroyItem Event Handler. Fires when the player destroys an inventory
-        /// item via the in-game 'inventory destroy' command (source emit at CommandHooks.cpp:219).
+        /// item via the in-game 'inventory destroy' command.
         /// </summary>
         public event EventHandler<DestroyItemEventArgs> DestroyItem;
 
@@ -1706,15 +1706,14 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onDestroyItem Event Args. Source emits 2 args.
+        /// EQ2_onDestroyItem Event Args.
         /// </summary>
         public class DestroyItemEventArgs : LSEventArgs
         {
             internal DestroyItemEventArgs(params string[] args) : base(args) { }
 
             /// <summary>
-            /// Item ID (source emits pItem-&gt;ID as a uint string; wrapper exposes as int
-            /// for consistency with other ID args in this file).
+            /// Item ID.
             /// </summary>
             public int ItemID
             {
@@ -1736,7 +1735,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onDeleteQuest Event Handler. Fires when the player deletes a quest via
-        /// the in-game 'deletequest' command (source emit at CommandHooks.cpp:244).
+        /// the in-game 'deletequest' command.
         /// </summary>
         public event EventHandler<DeleteQuestEventArgs> DeleteQuest;
 
@@ -1753,11 +1752,10 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onDeleteQuest Event Args. Source emits 2 args parsed verbatim from the
-        /// 'deletequest &lt;Param1&gt; &lt;Param2&gt;' console command. Field names match
-        /// the source variables; the precise game-side semantics of Param1/Param2 are
-        /// not formally documented (changelog has no entry for this event), so callers
-        /// should treat them as opaque strings until verified empirically.
+        /// EQ2_onDeleteQuest Event Args. Two opaque positional arguments parsed verbatim
+        /// from the 'deletequest &lt;Param1&gt; &lt;Param2&gt;' console command. The
+        /// precise game-side semantics of Param1/Param2 are not formally documented;
+        /// callers should treat them as opaque strings until verified empirically.
         /// </summary>
         public class DeleteQuestEventArgs : LSEventArgs
         {
@@ -1786,9 +1784,9 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onSellItem Event Handler. Fires when the player sells an item to a
-        /// merchant (source emit at CommandHooks.cpp:278). Note: the source declares a
-        /// 4-element argv (ItemName, Quantity, LinkID, ItemLinkString) but invokes
-        /// ExecuteEvent with argc=3, so only the first 3 fields are reliably emitted.
+        /// merchant. The 4th ItemLinkString field documented in older changelogs is
+        /// not actually transmitted; only ItemName / Quantity / LinkID are reliably
+        /// emitted.
         /// </summary>
         public event EventHandler<SellItemEventArgs> SellItem;
 
@@ -1805,8 +1803,9 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onSellItem Event Args. Source emits 3 args (despite the changelog
-        /// documenting a 4th ItemLinkString — it is not actually transmitted).
+        /// EQ2_onSellItem Event Args. Three positional arguments are emitted (despite
+        /// older changelog documentation of a 4th ItemLinkString — it is not actually
+        /// transmitted).
         /// </summary>
         public class SellItemEventArgs : LSEventArgs
         {
@@ -1843,7 +1842,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onMenderRepairAll Event Handler. Fires when the player invokes the
-        /// 'repair all' action at a mender NPC (source emit at CommandHooks.cpp:299).
+        /// 'repair all' action at a mender NPC.
         /// </summary>
         public event EventHandler<MenderRepairAllEventArgs> MenderRepairAll;
 
@@ -1860,8 +1859,8 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onMenderRepairAll Event Args. Source emits 1 arg: the mender NPC's actor
-        /// ID (the player's TargetID at the moment the repair-all action is invoked).
+        /// EQ2_onMenderRepairAll Event Args. Carries the mender NPC's actor ID (the
+        /// player's TargetID at the moment the repair-all action is invoked).
         /// </summary>
         public class MenderRepairAllEventArgs : LSEventArgs
         {
@@ -1882,8 +1881,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onCraftRoundResult Event Handler. Fires once per crafting reaction round
-        /// with the round's result message and stat deltas (source emit at
-        /// NetworkHooks.cpp:383).
+        /// with the round's result message and stat deltas.
         /// </summary>
         public event EventHandler<CraftRoundResultEventArgs> CraftRoundResult;
 
@@ -1900,7 +1898,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onCraftRoundResult Event Args. Source emits 9 args.
+        /// EQ2_onCraftRoundResult Event Args.
         /// </summary>
         public class CraftRoundResultEventArgs : LSEventArgs
         {
@@ -1985,8 +1983,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onCharacterSheetUpdate Event Handler. Fires when the character-sheet
-        /// network message is processed (source emit at NetworkHooks.cpp:421). Source
-        /// emits zero args.
+        /// network message is processed. No arguments are emitted.
         /// </summary>
         public event EventHandler<LSEventArgs> CharacterSheetUpdate;
 
@@ -2008,9 +2005,8 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onGroupMembershipChange Event Handler. Fires when the player's group
-        /// composition changes (source emit at NetworkHooks.cpp:442). Note: the source
-        /// adds +1 to both counts before emitting (legacy script compatibility), so a
-        /// solo player reports a count of 1.
+        /// composition changes. Note: both counts are pre-incremented by 1 before being
+        /// emitted (legacy script compatibility), so a solo player reports a count of 1.
         /// </summary>
         public event EventHandler<GroupMembershipChangeEventArgs> GroupMembershipChange;
 
@@ -2027,15 +2023,15 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onGroupMembershipChange Event Args. Source emits 2 args (both
-        /// pre-incremented by 1 — see remark on the event handler).
+        /// EQ2_onGroupMembershipChange Event Args. Both counts are pre-incremented by 1
+        /// — see remark on the event handler.
         /// </summary>
         public class GroupMembershipChangeEventArgs : LSEventArgs
         {
             internal GroupMembershipChangeEventArgs(params string[] args) : base(args) { }
 
             /// <summary>
-            /// Group count prior to the membership change (+1 offset applied by source)
+            /// Group count prior to the membership change (+1 offset is applied)
             /// </summary>
             public int PreviousGroupCount
             {
@@ -2043,7 +2039,7 @@ namespace EQ2.ISXEQ2.Events
             }
 
             /// <summary>
-            /// Group count after the membership change (+1 offset applied by source)
+            /// Group count after the membership change (+1 offset is applied)
             /// </summary>
             public int NewGroupCount
             {
@@ -2057,7 +2053,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onRaidMembershipChange Event Handler. Fires when the player's raid
-        /// composition changes (source emit at NetworkHooks.cpp:462).
+        /// composition changes.
         /// </summary>
         public event EventHandler<RaidMembershipChangeEventArgs> RaidMembershipChange;
 
@@ -2074,7 +2070,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onRaidMembershipChange Event Args. Source emits 2 args (no offset).
+        /// EQ2_onRaidMembershipChange Event Args. No offset is applied.
         /// </summary>
         public class RaidMembershipChangeEventArgs : LSEventArgs
         {
@@ -2103,7 +2099,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onContainerWindowAppeared Event Handler. Fires once per newly-opened
-        /// container window (source emit at Pulse.cpp:901).
+        /// container window.
         /// </summary>
         public event EventHandler<ContainerWindowAppearedEventArgs> ContainerWindowAppeared;
 
@@ -2120,9 +2116,8 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onContainerWindowAppeared Event Args. Source emits 1 arg
-        /// (a uint64-formatted window ID); wrapper exposes as int for consistency
-        /// with other window-ID args in this file.
+        /// EQ2_onContainerWindowAppeared Event Args. Carries the new container window's
+        /// numeric ID.
         /// </summary>
         public class ContainerWindowAppearedEventArgs : LSEventArgs
         {
@@ -2142,8 +2137,7 @@ namespace EQ2.ISXEQ2.Events
         #region EQ2_onLevelChange
 
         /// <summary>
-        /// EQ2_onLevelChange Event Handler. Fires when the player levels up or down
-        /// (source emit at NetworkHooks.cpp:271).
+        /// EQ2_onLevelChange Event Handler. Fires when the player levels up or down.
         /// </summary>
         public event EventHandler<LevelChangeEventArgs> LevelChange;
 
@@ -2160,7 +2154,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onLevelChange Event Args. Source emits 2 args.
+        /// EQ2_onLevelChange Event Args.
         /// </summary>
         public class LevelChangeEventArgs : LSEventArgs
         {
@@ -2189,7 +2183,7 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onAbilityGained Event Handler. Fires when a new ability is granted to
-        /// the player (source emit at NetworkHooks.cpp:223).
+        /// the player.
         /// </summary>
         public event EventHandler<AbilityGainedEventArgs> AbilityGained;
 
@@ -2206,7 +2200,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onAbilityGained Event Args. Source emits 2 args.
+        /// EQ2_onAbilityGained Event Args.
         /// </summary>
         public class AbilityGainedEventArgs : LSEventArgs
         {
@@ -2235,8 +2229,8 @@ namespace EQ2.ISXEQ2.Events
 
         /// <summary>
         /// EQ2_onSoundEffect Event Handler. Fires for each sound effect played by the
-        /// EQ2 audio engine (source emit at MiscHooks.cpp:161). High-frequency event;
-        /// most scripts will only attach when actively diagnosing sound names.
+        /// EQ2 audio engine. High-frequency event; most scripts will only attach when
+        /// actively diagnosing sound names.
         /// </summary>
         public event EventHandler<SoundEffectEventArgs> SoundEffect;
 
@@ -2253,7 +2247,7 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// EQ2_onSoundEffect Event Args. Source emits 1 arg.
+        /// EQ2_onSoundEffect Event Args.
         /// </summary>
         public class SoundEffectEventArgs : LSEventArgs
         {
@@ -2276,8 +2270,7 @@ namespace EQ2.ISXEQ2.Events
         /// ISXEQ2_onInstanceReloadingAfterUpdate Event Handler. Fires (via the
         /// 'relay all -event' cross-session mechanism) when another InnerSpace session
         /// finishes patching the ISXEQ2 extension and is about to reload, so that
-        /// other sessions can take coordinated action. Source-side handler at
-        /// Events.cpp:11.
+        /// other sessions can take coordinated action.
         /// </summary>
         public event EventHandler<InstanceReloadingAfterUpdateEventArgs> InstanceReloadingAfterUpdate;
 
@@ -2294,8 +2287,8 @@ namespace EQ2.ISXEQ2.Events
         }
 
         /// <summary>
-        /// ISXEQ2_onInstanceReloadingAfterUpdate Event Args. Source emits 1 arg: the
-        /// session name that triggered the relay.
+        /// ISXEQ2_onInstanceReloadingAfterUpdate Event Args. Carries the session name
+        /// that triggered the relay.
         /// </summary>
         public class InstanceReloadingAfterUpdateEventArgs : LSEventArgs
         {

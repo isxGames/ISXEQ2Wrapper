@@ -264,9 +264,9 @@ namespace EQ2.ISXEQ2.Recipe
         }
 
         /// <summary>
-        /// The primary component of the recipe. Source returns a primarycomponent Ptr
-        /// (DT-Crafting.cpp:330-351), not a string — read .Name on the returned object
-        /// for the component's display name.
+        /// The primary component of the recipe. Returns a 'primarycomponent' object,
+        /// not a string — read .Name on the returned object for the component's display
+        /// name.
         /// </summary>
         public Component PrimaryComponent
         {

@@ -37,9 +37,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// The text widget displayed by the reply dialog. Source returns the
-        /// underlying eq2text widget (DT-Eq2GuiWindows.cpp:1571-1581); read its
-        /// Text/Label members for the displayed string.
+        /// The text widget displayed by the reply dialog. Returns the underlying
+        /// eq2text widget; read its Text / Label members for the displayed string.
         /// </summary>
         public EQ2Text Text
         {

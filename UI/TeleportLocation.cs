@@ -6,12 +6,10 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'teleportlocation' datatype. Represents a single
-    /// teleport destination on the MapWindow's teleport list. Source
-    /// TeleportLocationType (LSTypeDef_Ptr, no INHERITDIRECT) registers three
-    /// members. The Examine method is enum-declared but NOT registered in the
-    /// ctor and its impl is commented out; it is intentionally omitted from this
-    /// wrapper.
+    /// Wraps the ISXEQ2 'teleportlocation' datatype. Represents a single teleport
+    /// destination on the MapWindow's teleport list. Exposes three members; an
+    /// Examine method exists upstream but is not currently registered, so it is
+    /// intentionally omitted from this wrapper.
     /// </summary>
     public class TeleportLocation : LavishScriptObject
     {

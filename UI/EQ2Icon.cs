@@ -1,16 +1,18 @@
 using System;
 using System.Diagnostics;
 using EQ2.ISXEQ2.Helpers;
+using EQ2.ISXEQ2.InventoryConsignment;
+using EQ2.ISXEQ2.Recipe;
 using LavishScriptAPI;
 
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2icon' datatype. EQ2IconType inherits from EQ2WidgetType
-    /// (INHERITDIRECT(pEQ2WidgetType)) and registers IconID, NodeID, IsReady,
-    /// PercentUndimmed, and ToAbility as members. (ToAbility currently lives on
-    /// the base EQ2Widget class for legacy reasons; a future batch will migrate
-    /// it here.)
+    /// Wraps the ISXEQ2 'eq2icon' datatype. Inherits from EQ2Widget. Exposes IconID,
+    /// ID (renamed from NodeID), IsReady, PercentUndimmed, IsItem,
+    /// IsItemInfoAvailable, ToItemInfo, IsRecipe, IsRecipeInfoAvailable,
+    /// ToRecipeInfo, and IsAbility. NodeID continues to work as a deprecated alias
+    /// for ID and emits a deprecation warning when used.
     /// </summary>
     public class EQ2Icon : EQ2Widget
     {
@@ -28,7 +30,7 @@ namespace EQ2.ISXEQ2.UI
         #region Members
 
         /// <summary>
-        /// The icon's IconID. Source: DT-Widgets.cpp:751-756.
+        /// The icon's IconID.
         /// </summary>
         public int IconID
         {
@@ -40,9 +42,22 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// The icon's NodeID (uint). Source: DT-Widgets.cpp:757-762
-        /// (Dest.DWord, Dest.Type = pUIntType).
+        /// The icon's ID (formerly NodeID).
         /// </summary>
+        public uint ID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:ID"));
+                return this.GetUIntFromLSO("ID");
+            }
+        }
+
+        /// <summary>
+        /// The icon's NodeID (uint). Renamed to ID; the alias still works but emits a
+        /// deprecation warning when used. Prefer ID.
+        /// </summary>
+        [Obsolete("Renamed to ID. NodeID still works but emits a deprecation warning at runtime.")]
         public uint NodeID
         {
             get
@@ -53,8 +68,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// True when the icon is "ready" (PercentIconUnDimmed greater than 0).
-        /// Source: DT-Widgets.cpp:769-777.
+        /// True when the icon is "ready" (PercentUndimmed greater than 0).
         /// </summary>
         public bool IsReady
         {
@@ -67,7 +81,6 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// The fraction of the icon that is currently un-dimmed (0.0 - 1.0).
-        /// Source: DT-Widgets.cpp:778-783.
         /// </summary>
         public float PercentUndimmed
         {
@@ -75,6 +88,95 @@ namespace EQ2.ISXEQ2.UI
             {
                 Trace.WriteLine(String.Format("EQ2Icon:PercentUndimmed"));
                 return this.GetFloatFromLSO("PercentUndimmed");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the icon represents an item.
+        /// </summary>
+        public bool IsItem
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:IsItem"));
+                return this.GetBoolFromLSO("IsItem");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if iteminfo data is available for this icon's item. Returns NULL
+        /// if the icon is not an item.
+        /// </summary>
+        public bool IsItemInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:IsItemInfoAvailable"));
+                return this.GetBoolFromLSO("IsItemInfoAvailable");
+            }
+        }
+
+        /// <summary>
+        /// Returns the iteminfo for the item this icon represents. Returns NULL if the
+        /// icon is not an item or the iteminfo is not valid.
+        /// </summary>
+        public ItemInfo ToItemInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:ToItemInfo"));
+                return new ItemInfo(this.GetMember("ToItemInfo"));
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the icon represents an ability.
+        /// </summary>
+        public bool IsAbility
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:IsAbility"));
+                return this.GetBoolFromLSO("IsAbility");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the icon represents a recipe.
+        /// </summary>
+        public bool IsRecipe
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:IsRecipe"));
+                return this.GetBoolFromLSO("IsRecipe");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if recipeinfo data is available for this icon's recipe. Returns
+        /// NULL if the icon is not a recipe.
+        /// </summary>
+        public bool IsRecipeInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:IsRecipeInfoAvailable"));
+                return this.GetBoolFromLSO("IsRecipeInfoAvailable");
+            }
+        }
+
+        /// <summary>
+        /// Returns the recipeinfo for the recipe this icon represents. Returns NULL if
+        /// the icon is not a recipe or the recipeinfo is not valid. The wrapper's
+        /// Recipe class doubles as both 'recipe' and 'recipeinfo'.
+        /// </summary>
+        public Recipe.Recipe ToRecipeInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:ToRecipeInfo"));
+                return new Recipe.Recipe(this.GetMember("ToRecipeInfo"));
             }
         }
 

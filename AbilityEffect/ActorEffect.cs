@@ -6,11 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.AbilityEffect
 {
     /// <summary>
-    /// Wraps the source 'actoreffect' datatype. Represents a single effect entry
-    /// from an actor's effect list (as opposed to the player's own Effect entries
-    /// which are LSTypeDef_Int and live on Effect/Maintained). Source
-    /// ActorEffectType (LSTypeDef_Ptr, no INHERITDIRECT) registers six members and
-    /// one method.
+    /// Wraps the ISXEQ2 'actoreffect' datatype. Represents a single effect entry
+    /// from an actor's effect list (as opposed to the player's own Effect entries,
+    /// which live on Effect/Maintained).
     /// </summary>
     public class ActorEffect : LavishScriptObject
     {

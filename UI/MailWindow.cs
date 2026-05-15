@@ -8,12 +8,10 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2mailwindow' datatype. Represents the main mail window
-    /// (compose pane plus inbox listing). Source MailWindowType inherits from
-    /// EQ2WindowType (INHERITDIRECT(pEQ2WindowType)) and registers eleven members
-    /// and ten methods. Recipient/Subject/Body return EQ2TextBox widgets (use
-    /// SetProperty("Text", value) on those widgets to populate compose fields);
-    /// Send returns the EQ2Button.
+    /// Wraps the ISXEQ2 'eq2mailwindow' datatype. Represents the main mail window
+    /// (compose pane plus inbox listing). Inherits from EQ2Window. Recipient,
+    /// Subject and Body return EQ2TextBox widgets (use SetProperty("Text", value)
+    /// on those widgets to populate compose fields); Send returns the EQ2Button.
     /// </summary>
     public class MailWindow : EQ2Window
     {
@@ -114,8 +112,7 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// The compose-pane recipient textbox widget. (Source comment notes the
-        /// underlying type is CTextBoxPlayerName, exposed as eq2textbox.)
+        /// The compose-pane recipient textbox widget.
         /// </summary>
         public EQ2TextBox Recipient
         {

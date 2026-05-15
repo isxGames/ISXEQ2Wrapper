@@ -7,11 +7,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'radialmenuaction' datatype. Represents a single action
-    /// entry inside a RadialMenuWindow. Source RadialMenuActionType
-    /// (LSTypeDef_Ptr, no INHERITDIRECT) registers seven members and zero
-    /// methods. RadialMenuAction is NOT a window; it inherits LavishScriptObject
-    /// directly.
+    /// Wraps the ISXEQ2 'radialmenuaction' datatype. Represents a single action
+    /// entry inside a RadialMenuWindow. Note: RadialMenuAction is NOT a window; it
+    /// inherits LavishScriptObject directly.
     /// </summary>
     public class RadialMenuAction : LavishScriptObject
     {

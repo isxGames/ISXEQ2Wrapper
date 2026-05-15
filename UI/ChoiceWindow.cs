@@ -48,9 +48,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// The text widget displayed in the choice window. Source returns the
-        /// underlying eq2text widget (DT-Eq2GuiWindows.cpp:1030-1040); read its
-        /// Text/Label members for the displayed string.
+        /// The text widget displayed in the choice window. Returns the underlying
+        /// eq2text widget; read its Text / Label members for the displayed string.
         /// </summary>
         public EQ2Text Text
         {

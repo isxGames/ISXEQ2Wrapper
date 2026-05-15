@@ -333,7 +333,21 @@ namespace EQ2.ISXEQ2
         }
 
         /// <summary>
-        /// Returns the last loot window opened (or the only one, if you only have one loot window up), 
+        /// Retrieves the InspectPlayer window (eq2inspectplayerwindow) when one is
+        /// currently open, otherwise NULL. Provides per-slot access to the equipped
+        /// and appearance items being inspected.
+        /// </summary>
+        public static InspectPlayerWindow InspectPlayerWindow
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Extension:InspectPlayerWindow"));
+                return new InspectPlayerWindow(LavishScript.Objects.GetObject("InspectPlayerWindow"));
+            }
+        }
+
+        /// <summary>
+        /// Returns the last loot window opened (or the only one, if you only have one loot window up),
         /// or the loot window that corresponds with a specific ID as supplied by the EQ2_onLootWindowAppeared event. 
         /// (If you have no loot windows up, then it returns NULL) 
         /// </summary>
@@ -583,7 +597,7 @@ namespace EQ2.ISXEQ2
 
         /// <summary>
         /// Makes an in-game announcement for the supplied duration with the specified
-        /// sound. Dispatches the source 'announce' command (lowercase).
+        /// sound. Dispatches the 'announce' command (lowercase).
         /// </summary>
         /// <param name="text">announcement text</param>
         /// <param name="timer">time (seconds) to remain on screen</param>
@@ -647,9 +661,9 @@ namespace EQ2.ISXEQ2
         public static int EQ2Ignore(string args)
         {
             Trace.WriteLine(String.Format("Extension:EQ2Ignore({0})", args));
-            // Source command name is lowercase 'eq2ignore' per CommandsList.h:11; LavishScript is
-            // case-insensitive so either form works at runtime, but we dispatch the source-canonical
-            // form for fidelity.
+            // The canonical command name is lowercase 'eq2ignore'; LavishScript is
+            // case-insensitive so either form works at runtime, but we dispatch the
+            // canonical form for fidelity.
             return LavishScript.ExecuteCommand(String.Format("eq2ignore {0}", args));
         }
 
@@ -840,7 +854,7 @@ namespace EQ2.ISXEQ2
         /// <summary>
         /// Makes an in-game announcement for the supplied duration with the specified
         /// sound. Prefer the newer Announce(...) method going forward — this overload
-        /// is retained for source-API parity with older script consumers.
+        /// is retained for API parity with older script consumers.
         /// </summary>
         /// <param name="announcement">announcement text</param>
         /// <param name="timer">time (seconds) to remain on screen</param>

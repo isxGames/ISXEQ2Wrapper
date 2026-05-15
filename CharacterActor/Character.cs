@@ -12,7 +12,7 @@ namespace EQ2.ISXEQ2.CharacterActor
 {
     /// <summary>
     /// This Data Type includes all of the data available to ISXEQ2 that can be gathered from the character Information structure.
-    /// Mirrors source-side CharType inheritance from ActorType (INHERITDIRECT(pActorType) at DataTypes.h:1533).
+    /// Inherits from Actor.
     /// </summary>
     public class Character : Actor
     {
@@ -366,7 +366,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Current raw health (Int64). Distinct from the inherited ActorType Health, which returns a percentage.
+        /// Current raw health (Int64). Distinct from the inherited Actor.Health, which returns a percentage.
         /// </summary>
         public long CurrentHealth
         {
@@ -378,7 +378,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Current raw power (Int64). Distinct from the inherited ActorType Power, which returns a percentage.
+        /// Current raw power (Int64). Distinct from the inherited Actor.Power, which returns a percentage.
         /// </summary>
         public long CurrentPower
         {
@@ -658,11 +658,11 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// </summary>
         /// <param name="index">index (0 for the player, 1-5 for other group members)</param>
         /// <remarks>
-        /// Index 0 returns the player's own Character (not a GroupMember). Source-side Group[0] returns
-        /// pCharType per DT-Actors.cpp:3325-3336. The C# wrapper exposes this as GroupMember for API
-        /// consistency — the underlying Int64 actor ID is shared, so member access works correctly, but
-        /// C#-typed-as-GroupMember-only access patterns may behave unexpectedly when the actual underlying
-        /// object is the player's Character.
+        /// Index 0 returns the player's own Character (not a GroupMember). The wrapper
+        /// exposes this as GroupMember for API consistency — the underlying actor ID
+        /// is shared, so member access works correctly, but C#-typed-as-GroupMember-only
+        /// access patterns may behave unexpectedly when the actual underlying object is
+        /// the player's Character.
         /// </remarks>
         public GroupMember Group(int index)
         {

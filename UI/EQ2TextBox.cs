@@ -6,10 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2textbox' datatype. Source EQ2TextBoxType inherits
-    /// from EQ2WidgetType (INHERITDIRECT(pEQ2WidgetType)) and registers a single
-    /// AppendText method. The Recipient/Subject/Body fields of MailWindow return
-    /// values of this type.
+    /// Wraps the ISXEQ2 'eq2textbox' datatype. Inherits from EQ2Widget. Exposes a
+    /// single AppendText method. The Recipient/Subject/Body fields of MailWindow
+    /// return values of this type.
     /// </summary>
     public class EQ2TextBox : EQ2Widget
     {
@@ -27,8 +26,8 @@ namespace EQ2.ISXEQ2.UI
         #region Methods
 
         /// <summary>
-        /// Appends the given text to the textbox. The source comment notes that
-        /// to "SetText" the wrapper should use SetProperty("Text", value) instead.
+        /// Appends the given text to the textbox. To replace the textbox contents
+        /// outright, use SetProperty("Text", value) on the widget instead.
         /// </summary>
         /// <param name="text">text to append</param>
         /// <returns>call success</returns>

@@ -30,8 +30,8 @@ namespace EQ2.ISXEQ2.Recipe
 
         /// <summary>
         /// String length of the component name. Only meaningful for primary components;
-        /// returns 0 for build components and fuel (the underlying source datatype only
-        /// registers this on PrimaryComponentType).
+        /// returns 0 for build components and fuel (only the primarycomponent datatype
+        /// registers this member).
         /// </summary>
         public int Length
         {
@@ -67,8 +67,7 @@ namespace EQ2.ISXEQ2.Recipe
         private uint? _quantity;
 
         /// <summary>
-        /// Quantity of component required. Source returns DWord/pUIntType
-        /// (DT-Crafting.cpp:558 and :644).
+        /// Quantity of component required.
         /// </summary>
         public uint Quantity
         {
@@ -82,8 +81,7 @@ namespace EQ2.ISXEQ2.Recipe
         }
 
         /// <summary>
-        /// The quantity of the component on hand. Source returns DWord/pUIntType
-        /// (DT-Crafting.cpp:562 and :648).
+        /// The quantity of the component on hand.
         /// </summary>
         public uint QuantityOnHand
         {

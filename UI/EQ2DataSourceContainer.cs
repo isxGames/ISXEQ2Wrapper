@@ -6,10 +6,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'eq2datasourcecontainer' datatype. EQ2DataSourceContainerType
-    /// inherits directly from EQ2BaseObjectType (INHERITDIRECT(pEQ2BaseObjectType)) —
-    /// NOT from EQ2WidgetType — so this class derives from EQ2BaseObject. Returned
-    /// by the EQ2DataSourceContainer TLO.
+    /// Wraps the ISXEQ2 'eq2datasourcecontainer' datatype. Inherits directly from
+    /// EQ2BaseObject (NOT from EQ2Widget). Returned by the EQ2DataSourceContainer TLO.
     /// </summary>
     public class EQ2DataSourceContainer : EQ2BaseObject
     {
@@ -28,8 +26,7 @@ namespace EQ2.ISXEQ2.UI
 
         /// <summary>
         /// Returns the dynamic-data entry at the given dotted path
-        /// (e.g. "Self.ZoneLocaleName", "Stats.Haste"). Source: DT-Widgets.cpp:1636-1647
-        /// (Dest.Type = pEQ2DynamicDataType).
+        /// (e.g. "Self.ZoneLocaleName", "Stats.Haste").
         /// </summary>
         /// <param name="name">dotted path name</param>
         /// <returns>EQ2DynamicData at the given path</returns>

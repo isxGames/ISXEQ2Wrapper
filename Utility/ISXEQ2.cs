@@ -64,8 +64,7 @@ namespace EQ2.ISXEQ2.Utility
 
         /// <summary>
         /// Converts an amount of silver into a formatted currency string of the form
-        /// "#p,#g,#s,#c". Internally the source converts to copper (silver*100) before
-        /// formatting.
+        /// "#p,#g,#s,#c".
         /// </summary>
         /// <param name="amountInSilver">amount expressed in silver</param>
         /// <returns>formatted currency string</returns>
@@ -93,9 +92,9 @@ namespace EQ2.ISXEQ2.Utility
         /// Reads a previously-stored ISXEQ2 custom variable, parsed as the requested
         /// type. Valid 'type' values: "str", "int", "uint", "bool", "float". Returns
         /// the raw string form of the value (caller parses if a typed result is
-        /// desired); supplying the type token influences the underlying source-side
-        /// conversion path. Returns the empty string / "0" / "-1" on lookup miss
-        /// depending on type.
+        /// desired); supplying the type token influences the underlying conversion
+        /// path. Returns the empty string / "0" / "-1" on lookup miss depending on
+        /// type.
         /// </summary>
         /// <param name="name">variable name</param>
         /// <param name="type">"str" / "int" / "uint" / "bool" / "float"</param>
@@ -218,9 +217,9 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Clears the recipes cache. Currently a no-op in the source implementation
-        /// (TODO-ADDBACK noted at DT-Miscellaneous.cpp:1209) but the method is still
-        /// registered and dispatchable; included for forward compatibility.
+        /// Clears the recipes cache. Currently a no-op (the underlying implementation
+        /// is pending), but the method is still registered and dispatchable; included
+        /// for forward compatibility.
         /// </summary>
         /// <returns>call success</returns>
         public bool ClearRecipesCache()
@@ -421,8 +420,8 @@ namespace EQ2.ISXEQ2.Utility
 
         /// <summary>
         /// Toggles the "Enable Welcome Info Window" persisted setting. Accepts a
-        /// boolean argument (any value triggers the toggle in the source impl;
-        /// argc==1 is required).
+        /// boolean argument (any value triggers the toggle; a single argument is
+        /// required).
         /// </summary>
         /// <param name="enable">argument value (toggle trigger; any value)</param>
         /// <returns>call success</returns>
@@ -433,9 +432,10 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Toggles the "Optional Auto Reloads Enabled" persisted setting. The source
-        /// implementation body is currently commented out (always returns true) but
-        /// the method remains registered; included for forward compatibility.
+        /// Toggles the "Optional Auto Reloads Enabled" persisted setting. The
+        /// underlying implementation currently always returns true (the body is
+        /// pending), but the method remains registered; included for forward
+        /// compatibility.
         /// </summary>
         /// <returns>call success</returns>
         public bool ToggleOptionalAutoReloads()

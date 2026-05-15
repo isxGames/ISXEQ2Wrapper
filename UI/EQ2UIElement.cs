@@ -147,11 +147,10 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Parent of this widget. Source (DT-Widgets.cpp:99-107) sets Dest.Type
-        /// via pParent-&gt;GetLSType(), so the parent may be any datatype that
-        /// derives from eq2baseobject (eq2widget, eq2uipage, eq2window, ...).
-        /// The wrapper return type is the polymorphic EQ2BaseObject; callers
-        /// downcast as needed.
+        /// Parent of this widget. The runtime types the returned value as the
+        /// parent's actual LS type, so the parent may be any datatype that derives
+        /// from eq2baseobject (eq2widget, eq2uipage, eq2window, ...). The wrapper
+        /// return type is the polymorphic EQ2BaseObject; callers downcast as needed.
         /// </summary>
         public EQ2BaseObject Parent
         {
@@ -298,9 +297,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// MiddleClicks the eq2uielement. Source: DT-Widgets.cpp:247-259.
-        /// Sends the radial-request / mouse-down / context-request /
-        /// middle-click / mouse-up message sequence to the widget.
+        /// MiddleClicks the eq2uielement. Sends the radial-request / mouse-down /
+        /// context-request / middle-click / mouse-up message sequence to the widget.
         /// </summary>
         /// <returns>call success</returns>
         public bool MiddleClick()

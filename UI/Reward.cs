@@ -6,9 +6,8 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.UI
 {
     /// <summary>
-    /// Wraps the source 'reward' datatype. Represents a single reward entry
-    /// inside a RewardWindow's reward pack. Source RewardType registers a
-    /// single LinkID member.
+    /// Wraps the ISXEQ2 'reward' datatype. Represents a single reward entry inside
+    /// a RewardWindow's reward pack. Exposes a single LinkID member.
     /// </summary>
     public class Reward : LavishScriptObject
     {

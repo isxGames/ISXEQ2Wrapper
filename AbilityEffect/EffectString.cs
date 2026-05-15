@@ -7,7 +7,7 @@ namespace EQ2.ISXEQ2.AbilityEffect
 {
     /// <summary>
     /// This DataType includes all of the data available to ISXEQ2 that is related to ability/effect
-    /// description strings (one row of the in-game examine breakdown). Source datatype was renamed
+    /// description strings (one row of the in-game examine breakdown). The datatype was renamed
     /// from 'abilityeffect' to 'effectstring'. Reached via AbilityInfo.Effect[#] or
     /// EffectInfo.EffectString[#].
     /// </summary>

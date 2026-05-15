@@ -192,9 +192,8 @@ namespace EQ2.ISXEQ2.UI
         }
 
         /// <summary>
-        /// Returns one of "Leader Only", "Free for all", "Lotto",
-        /// "Need before Greed", or "Unknown" (matches the strings produced by
-        /// LootWindowType::Type at DT-Eq2GuiWindows.cpp:786-806).
+        /// Returns one of "Leader Only", "Free for all", "Lotto", "Need before Greed",
+        /// or "Unknown".
         /// </summary>
         public string Type
         {
@@ -244,11 +243,10 @@ namespace EQ2.ISXEQ2.UI
         /// </summary>
         /// <param name="id">item ID to loot</param>
         /// <param name="autoConfirmNoTrade">
-        /// When true, dispatches the source's 1-arg form (<c>loot_item id</c>),
-        /// which auto-confirms via <c>loot_confirmation</c> if the item has the
-        /// NoTrade modifier. When false (default), dispatches the 2-arg form
-        /// (<c>loot_item id 0</c>), which leaves NoTrade-confirmation to the
-        /// player. Per DT-Eq2GuiWindows.cpp:949-957.
+        /// When true, dispatches the 1-arg form (<c>loot_item id</c>), which
+        /// auto-confirms via <c>loot_confirmation</c> if the item has the NoTrade
+        /// modifier. When false (default), dispatches the 2-arg form
+        /// (<c>loot_item id 0</c>), which leaves NoTrade-confirmation to the player.
         /// </param>
         /// <returns>call success</returns>
         public bool LootItem(int id, bool autoConfirmNoTrade = false)
