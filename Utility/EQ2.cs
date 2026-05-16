@@ -44,6 +44,30 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Returns the account roster character at the given index (1 to
+        /// <see cref="AccountRosterCount"/>).
+        /// </summary>
+        /// <param name="index">roster index (1-based)</param>
+        /// <returns>AccountRosterRecord</returns>
+        public AccountRosterRecord AccountRoster(int index)
+        {
+            Trace.WriteLine(String.Format("EQ2:AccountRoster({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new AccountRosterRecord(this.GetMember("AccountRoster", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the number of characters on the account roster.
+        /// </summary>
+        public ulong AccountRosterCount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:AccountRosterCount"));
+                return this.GetUInt64FromLSO("AccountRosterCount");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if the client is currently at the character-select screen
         /// </summary>
         public bool AtCharSelect
@@ -52,6 +76,18 @@ namespace EQ2.ISXEQ2.Utility
             {
                 Trace.WriteLine(String.Format("EQ2:AtCharSelect"));
                 return this.GetBoolFromLSO("AtCharSelect");
+            }
+        }
+
+        /// <summary>
+        /// Returns the unique ID of the currently-logged-in character.
+        /// </summary>
+        public ulong CharacterID
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:CharacterID"));
+                return this.GetUInt64FromLSO("CharacterID");
             }
         }
 

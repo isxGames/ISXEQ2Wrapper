@@ -6,9 +6,9 @@ using LavishScriptAPI;
 namespace EQ2.ISXEQ2.InventoryConsignment
 {
     /// <summary>
-    /// This DataType includes all of the data available to ISXEQ2 that is related to modifiers on items. 
+    /// This DataType includes all of the data available to ISXEQ2 that is related to modifiers on items.
     /// </summary>
-    public class ItemModifier : LavishScriptObject
+    public class Modifier : LavishScriptObject
     {
 
         #region Constructor
@@ -17,7 +17,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Constructor
         /// </summary>
         /// <param name="copy">LS Object</param>
-        public ItemModifier(LavishScriptObject copy) : base(copy) { }
+        public Modifier(LavishScriptObject copy) : base(copy) { }
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             get
             {
-                Trace.WriteLine(String.Format("ItemModifier:SubType"));
+                Trace.WriteLine(String.Format("Modifier:SubType"));
                 return _subType ?? (_subType = this.GetStringFromLSO("SubType"));
             }
         }
@@ -52,7 +52,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             get
             {
-                Trace.WriteLine(String.Format("ItemModifier:Type"));
+                Trace.WriteLine(String.Format("Modifier:Type"));
                 return _type ?? (_type = this.GetStringFromLSO("Type"));
             }
         }
@@ -70,7 +70,7 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         {
             get
             {
-                Trace.WriteLine(String.Format("ItemModifier:Value"));
+                Trace.WriteLine(String.Format("Modifier:Value"));
                 if(!_value.HasValue)
                     _value = this.GetFloatFromLSO("Value");
                 return _value.Value;

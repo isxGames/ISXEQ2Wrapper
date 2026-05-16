@@ -26,7 +26,7 @@ Extensions/Utils.cs -text
 /GroupMember.cs -text
 /ISXEQ2.cs -text
 /Item.cs -text
-/ItemModifier.cs -text
+/Modifier.cs -text
 /LootWindow.cs -text
 /Maintained.cs -text
 /Merchandise.cs -text

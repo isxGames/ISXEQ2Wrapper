@@ -78,6 +78,7 @@
     <Compile Include="AbilityEffect\Effect.cs" />
     <Compile Include="AbilityEffect\EffectInfo.cs" />
     <Compile Include="AbilityEffect\EffectString.cs" />
+    <Compile Include="Utility\AccountRosterRecord.cs" />
     <Compile Include="Utility\EQ2.cs" />
     <Compile Include="Events\EQ2Event.cs" />
     <Compile Include="Utility\EQ2Location.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="InventoryConsignment\Adornment.cs" />
     <Compile Include="InventoryConsignment\Item.cs" />
     <Compile Include="InventoryConsignment\ItemEffectString.cs" />
-    <Compile Include="InventoryConsignment\ItemModifier.cs" />
+    <Compile Include="InventoryConsignment\Modifier.cs" />
     <Compile Include="InventoryConsignment\PackagedItem.cs" />
     <Compile Include="Helpers\LavishScriptObjectExtensions.cs" />
     <Compile Include="UI\LootWindow.cs" />

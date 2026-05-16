@@ -786,11 +786,11 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// Returns the modifier at the given index (1 to NumModifiers).
         /// </summary>
         /// <param name="index">modifier index</param>
-        /// <returns>ItemModifier</returns>
-        public ItemModifier Modifier(int index)
+        /// <returns>Modifier</returns>
+        public Modifier Modifier(int index)
         {
             Trace.WriteLine(String.Format("ItemInfo:Modifier({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return new ItemModifier(this.GetMember("Modifier", index.ToString(CultureInfo.InvariantCulture)));
+            return new Modifier(this.GetMember("Modifier", index.ToString(CultureInfo.InvariantCulture)));
         }
 
         /// <summary>
