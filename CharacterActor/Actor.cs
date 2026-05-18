@@ -162,6 +162,24 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Cache of VisualScale
+        /// </summary>
+        private float? _visualScale;
+
+        /// <summary>
+        /// Visual (model display) scale of the actor
+        /// </summary>
+        public float VisualScale
+        {
+            get
+            {
+                if(!_visualScale.HasValue)
+                    _visualScale = this.GetFloatFromLSO("VisualScale");
+                return _visualScale.Value;
+            }
+        }
+
+        /// <summary>
         /// Con Color
         /// </summary>
         /// <param name="asRGB">as RGB</param>

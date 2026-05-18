@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using EQ2.ISXEQ2.AbilityEffect;
@@ -490,6 +491,21 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// <summary>
         /// Returns TRUE if the item is indestructible.
         /// </summary>
+        public bool Indestructible
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ItemInfo:Indestructible"));
+                return this.GetBoolFromLSO("Indestructible");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is indestructible. Renamed to Indestructible (correct
+        /// spelling); the alias still works but emits a deprecation warning when used.
+        /// Prefer Indestructible.
+        /// </summary>
+        [Obsolete("Renamed to Indestructible. Indestructable still works but emits a deprecation warning at runtime.")]
         public bool Indestructable
         {
             get
@@ -771,15 +787,40 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Display string of the item's mod-flag bitfield.
+        /// The number of mod flags set on the item (count of restriction/property flags
+        /// such as Attuned, NoTrade, Heirloom, etc.).
         /// </summary>
-        public string ModFlag
+        public int NumModFlags
         {
             get
             {
-                Trace.WriteLine(String.Format("ItemInfo:ModFlag"));
-                return this.GetStringFromLSO("ModFlag");
+                Trace.WriteLine(String.Format("ItemInfo:NumModFlags"));
+                return this.GetIntFromLSO("NumModFlags");
             }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the item is no-exchange (cannot be traded or otherwise
+        /// exchanged between players).
+        /// </summary>
+        public bool NoExchange
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ItemInfo:NoExchange"));
+                return this.GetBoolFromLSO("NoExchange");
+            }
+        }
+
+        /// <summary>
+        /// Returns the list of mod-flag names set on the item (one human-readable name
+        /// per set flag). Pair with NumModFlags for the count.
+        /// </summary>
+        /// <returns>Enumerable of mod-flag names</returns>
+        public IEnumerable<string> GetModFlags()
+        {
+            Trace.WriteLine(String.Format("ItemInfo:GetModFlags()"));
+            return Util.GetListFromMethod<string>(this, "GetModFlags", "string");
         }
 
         /// <summary>
