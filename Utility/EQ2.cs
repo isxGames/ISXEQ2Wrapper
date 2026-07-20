@@ -44,6 +44,19 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Returns the account number of the logged-in account. The native member returns NULL when the client is not in a game scene, and the
+        /// wrapper's null/invalid sentinel for an unsigned read is 0 -- so this reads 0 at character-select or otherwise outside a game scene.
+        /// </summary>
+        public uint AccountNumber
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2:AccountNumber"));
+                return this.GetUIntFromLSO("AccountNumber");
+            }
+        }
+
+        /// <summary>
         /// Returns the account roster character at the given index (1 to
         /// <see cref="AccountRosterCount"/>).
         /// </summary>
@@ -80,14 +93,15 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Returns the unique ID of the currently-logged-in character.
+        /// Returns the unique ID of the currently-logged-in character. The native member is signed (Dest.Int64 / pInt64Type), so this is a long --
+        /// the changelog's "uint64" is inaccurate and the native source is canonical.
         /// </summary>
-        public ulong CharacterID
+        public long CharacterID
         {
             get
             {
                 Trace.WriteLine(String.Format("EQ2:CharacterID"));
-                return this.GetUInt64FromLSO("CharacterID");
+                return this.GetInt64FromLSO("CharacterID");
             }
         }
 
@@ -688,6 +702,27 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Populates the supplied LavishScript actor index with all actors matching the given query expression, sorted by the supplied sort mode.
+        /// The native side matches the sort argument case-insensitively (stricmp) and falls back to <see cref="ActorSort.ByDist"/> for an
+        /// unrecognized value; omitting the argument entirely (the <see cref="QueryActors(string)"/> overload) is also ByDist, which is the
+        /// previous behavior, so existing callers are unaffected. <see cref="ActorSort.NoSort"/> is a genuine optimization: QueryActors otherwise
+        /// sorts the ENTIRE actor list by distance on every call, so pass NoSort when you only need to test or iterate the matches.
+        /// </summary>
+        /// <param name="queryExpr">query expression (e.g. "Type =- \"NPC\" &amp;&amp; Distance &lt;= 50"); must be non-empty for 'sort' to apply</param>
+        /// <param name="sort">sort mode applied to the resulting index</param>
+        /// <returns>Enumerable of matching actors</returns>
+        /// <remarks>
+        /// Undocumented native quirk: the sort argument is SILENTLY IGNORED when the query expression is empty. An empty query routes to a
+        /// separate native code path that takes no sort parameter and sorts anyway, so the sort mode has effect only with a non-empty query.
+        /// Use the <see cref="QueryActors(string)"/> overload when you want all actors.
+        /// </remarks>
+        public IEnumerable<Actor> QueryActors(string queryExpr, ActorSort sort)
+        {
+            Trace.WriteLine(String.Format("EQ2:QueryActors({0}, {1})", queryExpr, ActorSortToString(sort)));
+            return Util.GetListFromMethod<Actor>(this, "QueryActors", "actor", queryExpr, ActorSortToString(sort));
+        }
+
+        /// <summary>
         /// Sets the master sound volume
         /// </summary>
         /// <param name="volPct">float value between 0 and 100</param>
@@ -706,6 +741,79 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("EQ2:ShowAllOnScreenAnnouncements()"));
             return this.ExecuteMethod("ShowAllOnScreenAnnouncements");
+        }
+
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// Sort mode accepted by the <see cref="QueryActors(string, ActorSort)"/> overload. Mirrors only the four values the native QueryActors
+        /// parser actually recognizes -- the native SortingMethod enum in ISXEQ2.h also declares a Type value, but QueryActors has no branch for it,
+        /// so mirroring it here would silently degrade to distance-sort.
+        /// </summary>
+        public enum ActorSort
+        {
+            /// <summary>
+            /// Sort by distance. This is the native default and matches the behavior of the sort-less overload.
+            /// </summary>
+            ByDist,
+            /// <summary>
+            /// Sort by actor level.
+            /// </summary>
+            ByLevel,
+            /// <summary>
+            /// Sort by actor name.
+            /// </summary>
+            ByName,
+            /// <summary>
+            /// Do not sort the results at all. Worthwhile when result order does not matter, since QueryActors otherwise sorts the entire actor list.
+            /// </summary>
+            NoSort
+        }
+
+        /// <summary>
+        /// Name lookup used by <see cref="ActorSortToEnum"/>; matched case-insensitively to mirror the native stricmp comparison.
+        /// </summary>
+        private static readonly Dictionary<string, ActorSort> ActorSortTable = new Dictionary<string, ActorSort>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "ByDist", ActorSort.ByDist },
+            { "ByLevel", ActorSort.ByLevel },
+            { "ByName", ActorSort.ByName },
+            { "NoSort", ActorSort.NoSort }
+        };
+
+        /// <summary>
+        /// Converts an <see cref="ActorSort"/> to the literal string the native QueryActors parser expects.
+        /// </summary>
+        /// <param name="s">sort mode</param>
+        /// <returns>native sort-mode string</returns>
+        public static string ActorSortToString(ActorSort s)
+        {
+            switch (s)
+            {
+                case ActorSort.ByDist:  return "ByDist";
+                case ActorSort.ByLevel: return "ByLevel";
+                case ActorSort.ByName:  return "ByName";
+                case ActorSort.NoSort:  return "NoSort";
+            }
+
+            return String.Format("Unknown [{0}]", ((int)s).ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Converts a native sort-mode string to an <see cref="ActorSort"/>. Matching is case-insensitive and an unrecognized (or null) value falls
+        /// back to <see cref="ActorSort.ByDist"/>, mirroring the native parser.
+        /// </summary>
+        /// <param name="s">native sort-mode string</param>
+        /// <returns>matching sort mode, or ByDist when unrecognized</returns>
+        public static ActorSort ActorSortToEnum(string s)
+        {
+            ActorSort result;
+            if (s != null && ActorSortTable.TryGetValue(s, out result))
+                return result;
+
+            return ActorSort.ByDist;
         }
 
         #endregion

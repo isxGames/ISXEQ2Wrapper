@@ -110,5 +110,19 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Opens the examine window for this adornment.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool Examine()
+        {
+            Trace.WriteLine(String.Format("Adornment:Examine()"));
+            return this.ExecuteMethod("Examine");
+        }
+
+        #endregion
     }
 }

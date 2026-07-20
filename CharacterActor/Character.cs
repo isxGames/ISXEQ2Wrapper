@@ -366,6 +366,30 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Crit Bonus
+        /// </summary>
+        public float CritBonus
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CritBonus"));
+                return this.GetFloatFromLSO("CritBonus");
+            }
+        }
+
+        /// <summary>
+        /// Crit Bonus Overcap
+        /// </summary>
+        public float CritBonusMax
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CritBonusMax"));
+                return this.GetFloatFromLSO("CritBonusMax");
+            }
+        }
+
+        /// <summary>
         /// Current raw health (Int64). Distinct from the inherited Actor.Health, which returns a percentage.
         /// </summary>
         public long CurrentHealth
@@ -576,6 +600,30 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Fervor
+        /// </summary>
+        public float Fervor
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:Fervor"));
+                return this.GetFloatFromLSO("Fervor");
+            }
+        }
+
+        /// <summary>
+        /// Fervor Overcap
+        /// </summary>
+        public float FervorMax
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:FervorMax"));
+                return this.GetFloatFromLSO("FervorMax");
+            }
+        }
+
+        /// <summary>
         /// Cache of Gender
         /// </summary>
         private string _gender;
@@ -637,8 +685,8 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// </summary>
         public IEnumerable<Item> GetInventoryAtHand()
         {
-            Trace.WriteLine(String.Format("Character:GetInventory()"));
-            return Util.GetListFromMember<Item>(this, "GetInventory", "item");
+            Trace.WriteLine(String.Format("Character:GetInventoryAtHand()"));
+            return Util.GetListFromMember<Item>(this, "GetInventoryAtHand", "item");
         }
 
         /// <summary>
@@ -1657,6 +1705,30 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:WaterDepth"));
                 return this.GetFloatFromLSO("WaterDepth");
+            }
+        }
+
+        /// <summary>
+        /// Weapon Damage
+        /// </summary>
+        public float WeaponDamage
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:WeaponDamage"));
+                return this.GetFloatFromLSO("WeaponDamage");
+            }
+        }
+
+        /// <summary>
+        /// Weapon Damage Overcap
+        /// </summary>
+        public float WeaponDamageMax
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:WeaponDamageMax"));
+                return this.GetFloatFromLSO("WeaponDamageMax");
             }
         }
 

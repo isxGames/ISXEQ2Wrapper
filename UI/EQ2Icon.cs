@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using EQ2.ISXEQ2.Helpers;
 using EQ2.ISXEQ2.InventoryConsignment;
 using EQ2.ISXEQ2.Recipe;
@@ -177,6 +178,55 @@ namespace EQ2.ISXEQ2.UI
             {
                 Trace.WriteLine(String.Format("EQ2Icon:ToRecipeInfo"));
                 return new Recipe.Recipe(this.GetMember("ToRecipeInfo"));
+            }
+        }
+
+        /// <summary>
+        /// The icon's label at the supplied index. The index is 1-4; the native side returns NULL for anything outside that range.
+        /// </summary>
+        /// <param name="index">label index (1-4)</param>
+        /// <returns>label string</returns>
+        /// <remarks>
+        /// Declared 'new' deliberately: EQ2Widget already declares an arg-less, cached string Label property, and a method cannot overload an
+        /// inherited property of the same name, so the compiler would emit CS0108 without it. This hides the inherited arg-less Label for
+        /// EQ2Icon-typed references -- callers who want the widget-level Label must go through an EQ2Widget-typed reference. The native
+        /// eq2icon.Label is indexed and has no arg-less form, so the shape is forced by the native API. Note also that the native side uses the
+        /// 1-based value as a RAW array subscript with no -1 adjustment, so the index is passed through unmodified.
+        /// </remarks>
+        public new string Label(int index)
+        {
+            Trace.WriteLine(String.Format("EQ2Icon:Label({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return this.GetStringFromLSO("Label", index.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// The icon's current state. Documented (but unverified) values are "Normal", "MouseOver", "Pressed" and "Disabled"; the value comes from a
+        /// game-side getter we have not confirmed, so this is left a free-form string rather than an enum (matching the LootWindow.Type precedent).
+        /// </summary>
+        public string State
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:State"));
+                return this.GetStringFromLSO("State");
+            }
+        }
+
+        /// <summary>
+        /// The icon's type as a free-form string.
+        /// </summary>
+        /// <remarks>
+        /// Declared 'new' deliberately: EQ2Widget already declares an ElementType-returning Type property, and the compiler would emit CS0108
+        /// without it. The native eq2icon.Type is a free-form string with different semantics from the base widget's element-type enum, so the two
+        /// members are genuinely unrelated despite the shared name; mirroring the native LS type exactly means this must stay a string. This hides
+        /// the inherited enum Type for EQ2Icon-typed references -- callers who want the element type must go through an EQ2Widget-typed reference.
+        /// </remarks>
+        public new string Type
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("EQ2Icon:Type"));
+                return this.GetStringFromLSO("Type");
             }
         }
 

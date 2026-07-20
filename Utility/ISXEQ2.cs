@@ -106,21 +106,15 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
-        /// Cached value of IsReady
-        /// </summary>
-        private bool? _isReady;
-
-        /// <summary>
         /// Returns TRUE when the authentication and patching routines are complete and ISXEQ2 is truly ready.
+        /// This value is read live on every access and is deliberately NOT cached, since callers poll it while waiting for readiness to flip from FALSE to TRUE.
         /// </summary>
         public bool IsReady
         {
             get
             {
                 Trace.WriteLine(String.Format("ISXEQ2:IsReady"));
-                if(!_isReady.HasValue)
-                    _isReady = this.GetBoolFromLSO("IsReady");
-                return _isReady.Value;
+                return this.GetBoolFromLSO("IsReady");
             }
         }
 

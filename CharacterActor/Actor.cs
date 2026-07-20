@@ -348,21 +348,15 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Cache of FlyingUsingMount
-        /// </summary>
-        private bool? _flyingUseMount;
-
-        /// <summary>
-        /// Returns TRUE if currently flying in the air using a flying mount (the mount is visible)
+        /// Returns TRUE if currently flying in the air using a flying mount (the mount is visible). This value is not static per actor, so it is read fresh on every access.
+        /// NOTE: OnTransport is unreliable for your own character -- use Me.OnMount for a self-facing mount check.
         /// </summary>
         public bool FlyingUsingMount
         {
             get
             {
                 Trace.WriteLine(String.Format("Actor:FlyingUsingMount"));
-                if (!_flyingUseMount.HasValue)
-                    _flyingUseMount = this.GetBoolFromLSO("FlyingUsingMount");
-                return _flyingUseMount.Value;
+                return this.GetBoolFromLSO("FlyingUsingMount");
             }
         }
 
@@ -932,7 +926,20 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns TRUE if the actor is rooted. NOTE: If you're 'mezzed' you are 
+        /// Returns 1 if the actor is an NPC or a NamedNPC, otherwise 0. Cheaper than testing Type against "NPC" or "NamedNPC".
+        /// NOTE: The underlying helper returns -1 for a null or invalid actor, so test for '== 1' rather than '!= 0'.
+        /// </summary>
+        public int IsNPC
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:IsNPC"));
+                return this.GetIntFromLSO("IsNPC");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the actor is rooted. NOTE: If you're 'mezzed' you are
         /// both rooted and you cannot turn. Use similar logic to determine other 
         /// situations such as being 'stunned' etc.
         /// </summary>
@@ -1193,6 +1200,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if the actor is on a mount they steer themselves; that is, physically mounted and not on a griffon.
+        /// </summary>
+        public bool OnControllableMount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:OnControllableMount"));
+                return this.GetBoolFromLSO("OnControllableMount");
+            }
+        }
+
+        /// <summary>
         /// Cache of OnFlyingMount
         /// </summary>
         private bool? _onFlyingMount;
@@ -1214,6 +1233,12 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if the actor is flying on a griffin. (Old World, intra zone travel like horses and sokokar)
         /// </summary>
+        /// <remarks>
+        /// Deprecated: the underlying native 'OnGriffin' member was REMOVED from ISXEQ2 in July 2020 (along with OnHorse and OnCarpet) and replaced by OnTransport.
+        /// This member therefore always returns FALSE regardless of actual state -- it is not forwarded to a replacement, because no replacement is semantically equivalent.
+        /// Use OnTransport (the documented replacement) or OnGriffon, which is broader and covers a griffon or other flight-path transport rather than griffins specifically.
+        /// </remarks>
+        [Obsolete("The native OnGriffin member was removed from ISXEQ2 in July 2020 and this always returns false. Use OnTransport instead, or OnGriffon for flight-path transports.")]
         public bool OnGriffin
         {
             get
@@ -1248,7 +1273,20 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE while the actor is physically on any mount. This reads physical/collision mount state, so it stays TRUE even when the mount model is hidden.
+        /// </summary>
+        public bool OnMount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:OnMount"));
+                return this.GetBoolFromLSO("OnMount");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE if the actor is on a transport (mount/horse/carpet/griffin/etc.).
+        /// NOTE: Unreliable for your own character -- use Me.OnMount instead.
         /// </summary>
         public bool OnTransport
         {
