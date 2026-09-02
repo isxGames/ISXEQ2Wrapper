@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using EQ2.ISXEQ2.Helpers;
 using LavishScriptAPI;
 
@@ -26,25 +26,31 @@ namespace EQ2.ISXEQ2.UI
         #region Methods
 
         /// <summary>
-        /// Fast bulk retrieval of an ACTIVE quest's ID by its 1-based position in the active-quest list.
+        /// Bulk-retrieves the raw IDs of every ACTIVE quest. This wraps the LavishScript 'GetActiveQuestIDs'
+        /// method, which clears and bulk-fills an index:uint container (passed by name) with each active quest's
+        /// raw ID and returns bool for success. The same populate-and-enumerate idiom as EQ2:GetActors. The wrapper
+        /// declares the transient index:uint, invokes the method, then reads the populated container's Used count
+        /// and its 1-based elements back into the returned list. Quest IDs routinely exceed 2^31, hence uint.
         /// </summary>
-        /// <param name="index">1-based index into the active-quest list.</param>
-        /// <returns>The quest ID at the given index.</returns>
-        public uint GetActiveQuestIDs(uint index)
+        /// <returns>List of active quest IDs, or null if the underlying method fails.</returns>
+        public List<uint> GetActiveQuestIDs()
         {
-            Trace.WriteLine(String.Format("QuestJournalWindow:GetActiveQuestIDs({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return this.GetUIntFromLSO("GetActiveQuestIDs", index.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("QuestJournalWindow:GetActiveQuestIDs()"));
+            return Util.GetListFromMethod<uint>(this, "GetActiveQuestIDs", "uint");
         }
 
         /// <summary>
-        /// Fast bulk retrieval of a COMPLETED quest's ID by its 1-based position in the completed-quest list.
+        /// Bulk-retrieves the raw IDs of every COMPLETED quest. This wraps the LavishScript 'GetCompletedQuestIDs'
+        /// method, which clears and bulk-fills an index:uint container (passed by name) with each completed quest's
+        /// raw ID and returns bool for success. The same populate-and-enumerate idiom as EQ2:GetActors. The wrapper
+        /// declares the transient index:uint, invokes the method, then reads the populated container's Used count
+        /// and its 1-based elements back into the returned list. Quest IDs routinely exceed 2^31, hence uint.
         /// </summary>
-        /// <param name="index">1-based index into the completed-quest list.</param>
-        /// <returns>The quest ID at the given index.</returns>
-        public uint GetCompletedQuestIDs(uint index)
+        /// <returns>List of completed quest IDs, or null if the underlying method fails.</returns>
+        public List<uint> GetCompletedQuestIDs()
         {
-            Trace.WriteLine(String.Format("QuestJournalWindow:GetCompletedQuestIDs({0})", index.ToString(CultureInfo.InvariantCulture)));
-            return this.GetUIntFromLSO("GetCompletedQuestIDs", index.ToString(CultureInfo.InvariantCulture));
+            Trace.WriteLine(String.Format("QuestJournalWindow:GetCompletedQuestIDs()"));
+            return Util.GetListFromMethod<uint>(this, "GetCompletedQuestIDs", "uint");
         }
 
         #endregion
