@@ -112,6 +112,7 @@
     <Compile Include="CharacterActor\MoveableObject.cs" />
     <Compile Include="Utility\ISXEQ2.cs" />
     <Compile Include="InventoryConsignment\Adornment.cs" />
+    <Compile Include="InventoryConsignment\GuildBankItem.cs" />
     <Compile Include="InventoryConsignment\Item.cs" />
     <Compile Include="InventoryConsignment\ItemEffectString.cs" />
     <Compile Include="InventoryConsignment\Modifier.cs" />

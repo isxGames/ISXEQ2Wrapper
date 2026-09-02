@@ -926,15 +926,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns 1 if the actor is an NPC or a NamedNPC, otherwise 0. Cheaper than testing Type against "NPC" or "NamedNPC".
-        /// NOTE: The underlying helper returns -1 for a null or invalid actor, so test for '== 1' rather than '!= 0'.
+        /// Returns TRUE if the actor is an NPC or a NamedNPC. Cheaper than testing Type against "NPC" or "NamedNPC".
         /// </summary>
-        public int IsNPC
+        /// <remarks>
+        /// This member changed from int to bool in ISXEQ2 (previously returned 1/0). It now reports a plain
+        /// boolean, so it can be used directly in a query, e.g. EQ2:QueryActors[Actors, IsNPC &amp;&amp; Distance &lt;= 15].
+        /// </remarks>
+        public bool IsNPC
         {
             get
             {
                 Trace.WriteLine(String.Format("Actor:IsNPC"));
-                return this.GetIntFromLSO("IsNPC");
+                return this.GetBoolFromLSO("IsNPC");
             }
         }
 
@@ -1273,6 +1276,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE while the actor is on a "jumping"/leaper mount (e.g. a Faydark Jumper).
+        /// </summary>
+        public bool OnJumpingMount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:OnJumpingMount"));
+                return this.GetBoolFromLSO("OnJumpingMount");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE while the actor is physically on any mount. This reads physical/collision mount state, so it stays TRUE even when the mount model is hidden.
         /// </summary>
         public bool OnMount
@@ -1334,6 +1349,43 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if the actor has the feather/quill quest-update icon (i.e. it may provide a quest update).
+        /// This is the same test used by the "where questtarget" command.
+        /// </summary>
+        public bool QuestTarget
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:QuestTarget"));
+                return this.GetBoolFromLSO("QuestTarget");
+            }
+        }
+
+        /// <summary>
+        /// Returns WHICH kind of quest update the actor is flagged for, or "None" if it is not flagged.
+        /// </summary>
+        /// <remarks>
+        /// Possible values:
+        /// <list type="bullet">
+        /// <item><description>None -- not flagged for a quest update.</description></item>
+        /// <item><description>KillTarget -- update for a quest in YOUR journal (a kill target).</description></item>
+        /// <item><description>BaubleTarget -- update for a quest in YOUR journal (a bauble/collection target).</description></item>
+        /// <item><description>GenericTarget -- update for a quest in YOUR journal (anything else).</description></item>
+        /// <item><description>AllyKillTarget -- update for a quest in a GROUP MEMBER'S journal (a kill target).</description></item>
+        /// <item><description>AllyBaubleTarget -- update for a quest in a GROUP MEMBER'S journal (a bauble/collection target).</description></item>
+        /// <item><description>AllyGenericTarget -- update for a quest in a GROUP MEMBER'S journal (anything else).</description></item>
+        /// </list>
+        /// </remarks>
+        public string QuestTargetType
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:QuestTargetType"));
+                return this.GetStringFromLSO("QuestTargetType");
+            }
+        }
+
+        /// <summary>
         /// Cache of Race
         /// </summary>
         private string _race;
@@ -1366,6 +1418,19 @@ namespace EQ2.ISXEQ2.CharacterActor
                 if(!_speed.HasValue)
                     _speed = this.GetFloatFromLSO("Speed");
                 return _speed.Value;
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if the actor shows the white AA-star (i.e. grants Achievement XP).
+        /// This is the same test used by the "where starred" command.
+        /// </summary>
+        public bool Starred
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:Starred"));
+                return this.GetBoolFromLSO("Starred");
             }
         }
 

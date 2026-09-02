@@ -156,6 +156,18 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// The character name of the seller who listed this broker item.
+        /// </summary>
+        public string SellerName
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Consignment:SellerName"));
+                return this.GetStringFromLSO("SellerName");
+            }
+        }
+
+        /// <summary>
         /// Consignment Serial Number
         /// </summary>
         public long SerialNumber

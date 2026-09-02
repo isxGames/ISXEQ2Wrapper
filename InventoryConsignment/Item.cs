@@ -49,8 +49,14 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Returns the slot of the parent container that holds this item, or -1 if the item is not inside a container.
+        /// Returns the 1-based bag number of the container that holds this item (1 for the first bag, 2 for
+        /// the second, and so on), or -1 if the item is not inside a bag.
         /// </summary>
+        /// <remarks>
+        /// This member is 1-based, matching ISXEQ2's 1-based scripter convention (previously it was 0-based).
+        /// "Not in a bag" is still reported as -1 (equipped items, top-level inventory/bank items, items on
+        /// the cursor, etc.), so the -1 "no bag" sentinel can never be confused with a real 1-based index.
+        /// </remarks>
         public int Bag
         {
             get
@@ -111,6 +117,20 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             {
                 Trace.WriteLine(String.Format("Item:EffectiveLevel"));
                 return this.GetIntFromLSO("EffectiveLevel");
+            }
+        }
+
+        /// <summary>
+        /// The complete name of the item, even for items with very long names whose <see cref="Name"/> can
+        /// come back shortened. Falls back to the same value as <see cref="Name"/> if the item's examine info
+        /// is not yet available, so it never returns empty.
+        /// </summary>
+        public string FullName
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:FullName"));
+                return this.GetStringFromLSO("FullName");
             }
         }
 
@@ -190,6 +210,10 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         /// A number that represents a unique item number for an item.
         /// e.g. eq2execute "inventory equip 'ItemIndex' 'SlotNumber'"
         /// </summary>
+        /// <remarks>
+        /// Index is the raw inventory array position used by the move/equip commands, not a slot number, and
+        /// stays 0-based (it is NOT affected by the item slot API's move to 1-based indexing).
+        /// </remarks>
         public int Index
         {
             get
@@ -350,6 +374,23 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns TRUE only while the name currently being read (via <see cref="Name"/>) is STILL shortened.
+        /// </summary>
+        /// <remarks>
+        /// This answers "is what I'm reading right now still short?" rather than "was this name ever shortened?".
+        /// Check it before comparing <see cref="Name"/> against a name you already know -- if it's TRUE, an
+        /// equality test against the full name will fail. Use <see cref="FullName"/> for the complete name.
+        /// </remarks>
+        public bool IsNameTruncated
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Item:IsNameTruncated"));
+                return this.GetBoolFromLSO("IsNameTruncated");
+            }
+        }
+
+        /// <summary>
         /// Returns true if the IsActivatable == TRUE and the item is ready for use
         /// </summary>
         public bool IsReady
@@ -393,9 +434,12 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Returns TRUE if the slot is open
+        /// Returns TRUE if the given 1-based slot is open (IsSlotOpen(1) tests the first slot).
         /// </summary>
-        /// <param name="slot">slot number</param>
+        /// <remarks>
+        /// This method was ALREADY 1-based and is unchanged by the item slot API's move to 1-based indexing.
+        /// </remarks>
+        /// <param name="slot">1-based slot number</param>
         /// <returns>TRUE if the slot is open</returns>
         public bool IsSlotOpen(int slot)
         {
@@ -428,9 +472,13 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Returns the item in the slot
+        /// Returns the item in the given 1-based slot (ItemInSlot(1) returns the item in the first slot).
         /// </summary>
-        /// <param name="slot">slot number</param>
+        /// <remarks>
+        /// This member is now 1-based, matching ISXEQ2's 1-based scripter convention (previously slot 0 was
+        /// the first slot). A slot number below 1 matches nothing.
+        /// </remarks>
+        /// <param name="slot">1-based slot number</param>
         /// <returns>item in the slot</returns>
         public Item ItemInSlot(int slot)
         {
@@ -501,8 +549,14 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// The next open slot in the container
+        /// The next open slot in the container, as a 1-based slot number (1 for the first open slot, 2 for the
+        /// second, and so on).
         /// </summary>
+        /// <remarks>
+        /// This member is now 1-based, matching ISXEQ2's 1-based scripter convention (previously the first open
+        /// slot was 0). When the container has no open slot (or the item is not a container) the underlying
+        /// member returns NULL, which surfaces here as -1.
+        /// </remarks>
         public int NextSlotOpen
         {
             get
@@ -575,10 +629,14 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Returns the current slot position for the item within its container, or within your inventory.
-        /// So, if the item is in a bag that has 20 slots, it will return a number between 0 and 19.
-        /// If the item (or container) is sitting in one of your six "real" inventory slots, it will return 0 to 5.
+        /// Returns the current 1-based slot position for the item within its container, or within your inventory.
+        /// So, if the item is in a bag that has 20 slots, it will return a number between 1 and 20.
         /// </summary>
+        /// <remarks>
+        /// This member is now 1-based, matching ISXEQ2's 1-based scripter convention (previously it was 0-based).
+        /// Any negative value (e.g. the -1 "no bag" sentinel from <see cref="Bag"/>) is passed straight through,
+        /// so a negative slot can never be confused with a real 1-based index.
+        /// </remarks>
         public int Slot
         {
             get
@@ -940,10 +998,17 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Moves an item to a particular slot in a bag
+        /// Moves an item to a particular slot in a bag.
         /// </summary>
-        /// <param name="bagslot">slot</param>
-        /// <param name="bagID">bag id</param>
+        /// <remarks>
+        /// The first argument (destination slot within the target container) is now 1-based, matching
+        /// ISXEQ2's 1-based scripter convention (previously it was 0-based) -- pass 1 for the first slot.
+        /// A value below 1 is rejected; -1 still means "auto-slot" (let the server choose). The second
+        /// argument (destination ContainerID / region code) and the optional quantity are NOT indices and
+        /// are unchanged. The common pattern still works: Move(item.NextSlotOpen, bag.ContainerID).
+        /// </remarks>
+        /// <param name="bagslot">1-based destination slot (-1 = auto-slot)</param>
+        /// <param name="bagID">bag id / ContainerID</param>
         /// <returns>call success</returns>
         public bool Move(int bagslot, int bagID)
         {
@@ -954,10 +1019,14 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
-        /// Moves a quantity of a stackable item to a particular slot in a container
+        /// Moves a quantity of a stackable item to a particular slot in a container.
         /// </summary>
-        /// <param name="bagslot">slot</param>
-        /// <param name="bagID">bag id</param>
+        /// <remarks>
+        /// The first argument (destination slot) is 1-based (pass 1 for the first slot; -1 = auto-slot;
+        /// a value below 1 is rejected). The bag id and quantity are NOT indices and are unchanged.
+        /// </remarks>
+        /// <param name="bagslot">1-based destination slot (-1 = auto-slot)</param>
+        /// <param name="bagID">bag id / ContainerID</param>
         /// <param name="quantity">quantity</param>
         /// <returns>call success</returns>
         public bool Move(int bagslot, int bagID, int quantity)
@@ -981,6 +1050,103 @@ namespace EQ2.ISXEQ2.InventoryConsignment
                 quantity.ToString(CultureInfo.InvariantCulture)));
             return ExecuteMethod("Move", invtype.ToString(),
                 quantity.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Auto-deposits this item to a region's auto pad (the same as dropping it on the
+        /// "auto-inventory"/"auto-bank" pad). The entire stack is moved.
+        /// </summary>
+        /// <remarks>
+        /// GuildBank has no auto pad, so it is not a valid region for MoveAuto -- use <see cref="MoveToBag(int,int)"/>
+        /// (the page/slot overload) for the guild bank instead.
+        /// </remarks>
+        /// <param name="region">Inventory, Bank, or SharedBank.</param>
+        /// <returns>call success</returns>
+        public bool MoveAuto(MoveRegion region)
+        {
+            Trace.WriteLine(String.Format("Item:MoveAuto({0})", region.ToString()));
+            return this.ExecuteMethod("MoveAuto", region.ToString());
+        }
+
+        /// <summary>
+        /// Auto-deposits a quantity of this item to a region's auto pad.
+        /// </summary>
+        /// <remarks>
+        /// GuildBank has no auto pad, so it is not a valid region for MoveAuto.
+        /// </remarks>
+        /// <param name="region">Inventory, Bank, or SharedBank.</param>
+        /// <param name="quantity">Quantity to move (0 = the entire stack).</param>
+        /// <returns>call success</returns>
+        public bool MoveAuto(MoveRegion region, int quantity)
+        {
+            Trace.WriteLine(String.Format("Item:MoveAuto({0}, {1})", region.ToString(),
+                quantity.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("MoveAuto", region.ToString(),
+                quantity.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Moves this item into a specific bag of a region (Inventory, Bank, or SharedBank). The entire stack is moved.
+        /// </summary>
+        /// <param name="region">Inventory, Bank, or SharedBank.</param>
+        /// <param name="bag">1-based bag number within the region.</param>
+        /// <returns>call success</returns>
+        public bool MoveToBag(MoveRegion region, int bag)
+        {
+            Trace.WriteLine(String.Format("Item:MoveToBag({0}, {1})", region.ToString(),
+                bag.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("MoveToBag", region.ToString(), bag.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Moves a quantity of this item into a specific bag of a region (Inventory, Bank, or SharedBank).
+        /// </summary>
+        /// <param name="region">Inventory, Bank, or SharedBank.</param>
+        /// <param name="bag">1-based bag number within the region.</param>
+        /// <param name="quantity">Quantity to move (0 = the entire stack).</param>
+        /// <returns>call success</returns>
+        public bool MoveToBag(MoveRegion region, int bag, int quantity)
+        {
+            Trace.WriteLine(String.Format("Item:MoveToBag({0}, {1}, {2})", region.ToString(),
+                bag.ToString(CultureInfo.InvariantCulture), quantity.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("MoveToBag", region.ToString(), bag.ToString(CultureInfo.InvariantCulture),
+                quantity.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Moves this item to a specific page and slot in the GUILD BANK. The entire stack is moved.
+        /// </summary>
+        /// <remarks>
+        /// This is the guild-bank form of MoveToBag (the underlying region is "GuildBank"). The guild bank has
+        /// no auto pad, so a page and slot are required.
+        /// </remarks>
+        /// <param name="page">1-based guild-bank page (1-4).</param>
+        /// <param name="slot">1-based slot within the page (1-80).</param>
+        /// <returns>call success</returns>
+        public bool MoveToBag(int page, int slot)
+        {
+            Trace.WriteLine(String.Format("Item:MoveToBag(GuildBank, {0}, {1})", page.ToString(CultureInfo.InvariantCulture),
+                slot.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("MoveToBag", "GuildBank", page.ToString(CultureInfo.InvariantCulture),
+                slot.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Moves a quantity of this item to a specific page and slot in the GUILD BANK.
+        /// </summary>
+        /// <remarks>
+        /// This is the guild-bank form of MoveToBag (the underlying region is "GuildBank").
+        /// </remarks>
+        /// <param name="page">1-based guild-bank page (1-4).</param>
+        /// <param name="slot">1-based slot within the page (1-80).</param>
+        /// <param name="quantity">Quantity to move (0 = the entire stack).</param>
+        /// <returns>call success</returns>
+        public bool MoveToBag(int page, int slot, int quantity)
+        {
+            Trace.WriteLine(String.Format("Item:MoveToBag(GuildBank, {0}, {1}, {2})", page.ToString(CultureInfo.InvariantCulture),
+                slot.ToString(CultureInfo.InvariantCulture), quantity.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("MoveToBag", "GuildBank", page.ToString(CultureInfo.InvariantCulture),
+                slot.ToString(CultureInfo.InvariantCulture), quantity.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -1222,6 +1388,26 @@ namespace EQ2.ISXEQ2.InventoryConsignment
             /// Bank Inventory
             /// </summary>
             NextFreeInBank
+        }
+
+        /// <summary>
+        /// Region targets for the MoveToBag() and MoveAuto() Methods. (The guild bank is targeted via the
+        /// page/slot MoveToBag overloads, not this enum, since it has no auto pad.)
+        /// </summary>
+        public enum MoveRegion
+        {
+            /// <summary>
+            /// Personal inventory
+            /// </summary>
+            Inventory,
+            /// <summary>
+            /// Personal bank
+            /// </summary>
+            Bank,
+            /// <summary>
+            /// Shared bank
+            /// </summary>
+            SharedBank
         }
 
         #endregion

@@ -315,12 +315,28 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// <summary>
         /// Returns TRUE if Combat Experience is enabled.
         /// </summary>
+        /// <remarks>
+        /// This is the original member name; it continues to work. <see cref="CombatXPEnabled"/> is the
+        /// preferred name going forward (both read the same underlying state).
+        /// </remarks>
         public bool CombatExpEnabled
         {
             get
             {
                 Trace.WriteLine(String.Format("Character:CombatExpEnabled"));
                 return this.GetBoolFromLSO("CombatExpEnabled");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE if Combat XP is enabled. (Preferred name for <see cref="CombatExpEnabled"/>.)
+        /// </summary>
+        public bool CombatXPEnabled
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CombatXPEnabled"));
+                return this.GetBoolFromLSO("CombatXPEnabled");
             }
         }
 
@@ -749,6 +765,47 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:Grouped"));
                 return this.GetBoolFromLSO("Grouped");
+            }
+        }
+
+        /// <summary>
+        /// Returns the guild-bank item at the specified 1-based index.
+        /// </summary>
+        /// <remarks>
+        /// The guild bank must have been opened this session; otherwise <see cref="GuildBankCount"/> returns 0.
+        /// A guild-bank item's detailed info resolves asynchronously -- see <see cref="GuildBankItem"/>.
+        /// </remarks>
+        /// <param name="index">1-based index into the guild bank.</param>
+        public GuildBankItem GuildBank(int index)
+        {
+            Trace.WriteLine(String.Format("Character:GuildBank({0})", index.ToString(CultureInfo.InvariantCulture)));
+            return new GuildBankItem(this.GetMember("GuildBank", index.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the guild-bank item matching the name provided.
+        /// </summary>
+        /// <param name="name">item name.</param>
+        public GuildBankItem GuildBank(string name)
+        {
+            Trace.WriteLine(String.Format("Character:GuildBank({0})", name));
+            return new GuildBankItem(this.GetMember("GuildBank", name));
+        }
+
+        /// <summary>
+        /// Returns the number of items currently in the guild bank.
+        /// </summary>
+        /// <remarks>
+        /// Returns 0 (the integer 0) if the guild bank has not been opened this session. This reads the
+        /// underlying 'GuildBank' member with no index (which returns the item count); the indexed
+        /// GuildBank(#) / GuildBank(name) overloads return the individual items.
+        /// </remarks>
+        public int GuildBankCount
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:GuildBankCount"));
+                return this.GetIntFromLSO("GuildBank");
             }
         }
 
@@ -1397,6 +1454,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if Quest XP is enabled.
+        /// </summary>
+        public bool QuestXPEnabled
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:QuestXPEnabled"));
+                return this.GetBoolFromLSO("QuestXPEnabled");
+            }
+        }
+
+        /// <summary>
         /// Cache of Race
         /// </summary>
         private string _race;
@@ -1904,7 +1973,11 @@ namespace EQ2.ISXEQ2.CharacterActor
         /// the zone reuse window at least once in your current session before working
         /// properly (use /togglezonereuse)
         /// </summary>
-        /// <param name="name">zone name</param>
+        /// <remarks>
+        /// Passing "all" resets every zone timer at once (similar to clicking the "Reset All" button);
+        /// note that the GUI may not visibly update when used this way.
+        /// </remarks>
+        /// <param name="name">zone name, or "all" to reset every zone timer</param>
         /// <returns>call success</returns>
         public bool ResetZoneTimer(string name)
         {
@@ -1964,7 +2037,27 @@ namespace EQ2.ISXEQ2.CharacterActor
         {
             Trace.WriteLine(String.Format("Character:TakeAllVendingCoin()"));
             return this.ExecuteMethod("TakeAllVendingCoin");
-        }  
+        }
+
+        /// <summary>
+        /// Toggles Combat XP on/off. Check the current state with <see cref="CombatXPEnabled"/>.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool ToggleCombatXP()
+        {
+            Trace.WriteLine(String.Format("Character:ToggleCombatXP()"));
+            return this.ExecuteMethod("ToggleCombatXP");
+        }
+
+        /// <summary>
+        /// Toggles Quest XP on/off. Check the current state with <see cref="QuestXPEnabled"/>.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool ToggleQuestXP()
+        {
+            Trace.WriteLine(String.Format("Character:ToggleQuestXP()"));
+            return this.ExecuteMethod("ToggleQuestXP");
+        }
 
         #endregion
 
