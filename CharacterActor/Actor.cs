@@ -571,19 +571,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns TRUE if the actor is backing up. Mutually exclusive with IsStrafingLeft,
-        /// IsStrafingRight, and IsIdle.
-        /// </summary>
-        public bool IsBackingUp
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:IsAPet"));
-                return this.GetBoolFromLSO("IsBackingUp");
-            }
-        }
-
-        /// <summary>
         /// Cache of IsBanker
         /// </summary>
         private bool? _isBanker;
@@ -716,18 +703,6 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns TRUE if the actor is falling or jumping.
-        /// </summary>
-        public bool IsFalling
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:IsFalling"));
-                return this.GetBoolFromLSO("IsFalling");
-            }
-        }
-
-        /// <summary>
         /// Returns TRUE if the actor is feign death.
         /// </summary>
         public bool IsFD
@@ -759,8 +734,7 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
-        /// Returns TRUE if the actor is idle. Mutually exclusive with
-        /// IsBackingUp, IsStrafingLeft, and IsStrafingRight.
+        /// Returns TRUE if the actor is idle.
         /// </summary>
         public bool IsIdle
         {
@@ -790,18 +764,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Actor:IsInvis"));
                 return this.GetBoolFromLSO("IsInvis");
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if the actor is jumping.
-        /// </summary>
-        public bool IsJumping
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:IsJumping"));
-                return this.GetBoolFromLSO("IsJumping");
             }
         }
 
@@ -1022,32 +984,6 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Actor:IsStealthed"));
                 return this.GetBoolFromLSO("IsStealthed");
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if the actor is strafing left. Mutually exclusive 
-        /// with IsBackingUp, IsStrafingRight, and IsIdle.
-        /// </summary>
-        public bool IsStrafingLeft
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:IsStrafingLeft"));
-                return this.GetBoolFromLSO("IsStrafingLeft");
-            }
-        }
-
-        /// <summary>
-        /// Returns TRUE if the actor is strafing right. Mutually exclusive
-        /// with IsBackingUp, IsStrafingLeft, and IsIdle.
-        /// </summary>
-        public bool IsStrafingRight
-        {
-            get
-            {
-                Trace.WriteLine(String.Format("Actor:IsStrafingRight"));
-                return GetMember<bool>("IsStrafingRight");
             }
         }
 
