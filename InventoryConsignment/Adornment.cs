@@ -97,6 +97,32 @@ namespace EQ2.ISXEQ2.InventoryConsignment
         }
 
         /// <summary>
+        /// Returns TRUE once this adornment's detailed (examine) info is available client-side.
+        /// The first read of this member triggers the examine request to the server; poll it until TRUE
+        /// before reading <see cref="ToItemInfo"/>.
+        /// </summary>
+        public bool IsItemInfoAvailable
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Adornment:IsItemInfoAvailable"));
+                return this.GetBoolFromLSO("IsItemInfoAvailable");
+            }
+        }
+
+        /// <summary>
+        /// Returns the ItemInfo (examine data) for this adornment. Check <see cref="IsItemInfoAvailable"/> first.
+        /// </summary>
+        public ItemInfo ToItemInfo
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Adornment:ToItemInfo"));
+                return new ItemInfo(this.GetMember("ToItemInfo"));
+            }
+        }
+
+        /// <summary>
         /// Recreates the in-game chat hyperlink for this adornment (used typically with
         /// eq2echo or eq2execute).
         /// </summary>

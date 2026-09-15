@@ -125,6 +125,7 @@
     <Compile Include="UI\MerchantWindow.cs" />
     <Compile Include="AbilityEffect\Maintained.cs" />
     <Compile Include="InventoryConsignment\Merchandise.cs" />
+    <Compile Include="InventoryConsignment\MountEquipmentSlot.cs" />
     <Compile Include="UI\OpenedMailWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quest\CurrentQuest.cs" />

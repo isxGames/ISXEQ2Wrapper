@@ -106,6 +106,18 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Returns TRUE when the running ISXEQ2 install is the BETA build.
+        /// </summary>
+        public bool IsBeta
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:IsBeta"));
+                return this.GetBoolFromLSO("IsBeta");
+            }
+        }
+
+        /// <summary>
         /// Returns TRUE when the authentication and patching routines are complete and ISXEQ2 is truly ready.
         /// This value is read live on every access and is deliberately NOT cached, since callers poll it while waiting for readiness to flip from FALSE to TRUE.
         /// </summary>
@@ -119,6 +131,18 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Returns TRUE when the running ISXEQ2 install is the TEST build.
+        /// </summary>
+        public bool IsTestBuild
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:IsTestBuild"));
+                return this.GetBoolFromLSO("IsTestBuild");
+            }
+        }
+
+        /// <summary>
         /// Returns a boolean indicating whether or not a key board key is a valid eq2press key
         /// </summary>
         /// <param name="keyName"></param>
@@ -127,6 +151,45 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("ISXEQ2:IsValidEQ2PressKey({0})", keyName));
             return this.GetBoolFromLSO("IsValidEQ2PressKey", keyName);
+        }
+
+        /// <summary>
+        /// Returns TRUE when emissive/glow effects (e.g. glowing items and weapons) are currently hidden.
+        /// This setting persists across sessions.
+        /// </summary>
+        public bool NoEmissive
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:NoEmissive"));
+                return this.GetBoolFromLSO("NoEmissive");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE when all particle effects (item, spell and environmental) are currently hidden.
+        /// This setting persists across sessions.
+        /// </summary>
+        public bool NoParticles
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:NoParticles"));
+                return this.GetBoolFromLSO("NoParticles");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE when world/environment geometry is currently hidden (characters and their
+        /// effects remain visible). This setting persists across sessions.
+        /// </summary>
+        public bool NoScenery
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("ISXEQ2:NoScenery"));
+                return this.GetBoolFromLSO("NoScenery");
+            }
         }
 
         /// <summary>
@@ -410,6 +473,81 @@ namespace EQ2.ISXEQ2.Utility
         {
             Trace.WriteLine(String.Format("ISXEQ2:SetCustomVariable({0}, {1})", name, value));
             return this.ExecuteMethod("SetCustomVariable", name, value);
+        }
+
+        /// <summary>
+        /// Sets whether emissive/glow effects (e.g. glowing items and weapons) are hidden. The
+        /// setting persists across sessions. Read the current state via <see cref="NoEmissive"/>;
+        /// use <see cref="SetNoEmissive()"/> to toggle it.
+        /// </summary>
+        /// <param name="on">TRUE to hide emissive/glow effects, FALSE to show them</param>
+        /// <returns>call success</returns>
+        public bool SetNoEmissive(bool on)
+        {
+            Trace.WriteLine(String.Format("ISXEQ2:SetNoEmissive({0})", on ? "on" : "off"));
+            return this.ExecuteMethod("NoEmissive", on ? "on" : "off");
+        }
+
+        /// <summary>
+        /// Toggles whether emissive/glow effects (e.g. glowing items and weapons) are hidden. The
+        /// setting persists across sessions. Read the current state via <see cref="NoEmissive"/>;
+        /// use <see cref="SetNoEmissive(bool)"/> to set an explicit state.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool SetNoEmissive()
+        {
+            Trace.WriteLine(String.Format("ISXEQ2:SetNoEmissive()"));
+            return this.ExecuteMethod("NoEmissive");
+        }
+
+        /// <summary>
+        /// Sets whether all particle effects (item, spell and environmental) are hidden. The
+        /// setting persists across sessions. Read the current state via <see cref="NoParticles"/>;
+        /// use <see cref="SetNoParticles()"/> to toggle it.
+        /// </summary>
+        /// <param name="on">TRUE to hide particle effects, FALSE to show them</param>
+        /// <returns>call success</returns>
+        public bool SetNoParticles(bool on)
+        {
+            Trace.WriteLine(String.Format("ISXEQ2:SetNoParticles({0})", on ? "on" : "off"));
+            return this.ExecuteMethod("NoParticles", on ? "on" : "off");
+        }
+
+        /// <summary>
+        /// Toggles whether all particle effects (item, spell and environmental) are hidden. The
+        /// setting persists across sessions. Read the current state via <see cref="NoParticles"/>;
+        /// use <see cref="SetNoParticles(bool)"/> to set an explicit state.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool SetNoParticles()
+        {
+            Trace.WriteLine(String.Format("ISXEQ2:SetNoParticles()"));
+            return this.ExecuteMethod("NoParticles");
+        }
+
+        /// <summary>
+        /// Sets whether world/environment geometry is hidden (characters and their effects remain
+        /// visible). The setting persists across sessions. Read the current state via
+        /// <see cref="NoScenery"/>; use <see cref="SetNoScenery()"/> to toggle it.
+        /// </summary>
+        /// <param name="on">TRUE to hide world/environment geometry, FALSE to show it</param>
+        /// <returns>call success</returns>
+        public bool SetNoScenery(bool on)
+        {
+            Trace.WriteLine(String.Format("ISXEQ2:SetNoScenery({0})", on ? "on" : "off"));
+            return this.ExecuteMethod("NoScenery", on ? "on" : "off");
+        }
+
+        /// <summary>
+        /// Toggles whether world/environment geometry is hidden (characters and their effects
+        /// remain visible). The setting persists across sessions. Read the current state via
+        /// <see cref="NoScenery"/>; use <see cref="SetNoScenery(bool)"/> to set an explicit state.
+        /// </summary>
+        /// <returns>call success</returns>
+        public bool SetNoScenery()
+        {
+            Trace.WriteLine(String.Format("ISXEQ2:SetNoScenery()"));
+            return this.ExecuteMethod("NoScenery");
         }
 
         /// <summary>

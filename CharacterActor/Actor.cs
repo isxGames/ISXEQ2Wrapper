@@ -190,6 +190,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if the actor is in crouch mode.
+        /// </summary>
+        public bool CrouchMode
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:CrouchMode"));
+                return this.GetBoolFromLSO("CrouchMode");
+            }
+        }
+
+        /// <summary>
         /// Current animation name applied to the actor.
         /// </summary>
         public string CurrentAnimation
@@ -715,6 +727,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns TRUE if the actor is feared.
+        /// </summary>
+        public bool IsFeared
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:IsFeared"));
+                return this.GetBoolFromLSO("IsFeared");
+            }
+        }
+
+        /// <summary>
         /// Cache of IsHeroic
         /// </summary>
         private bool? _isHeroic;
@@ -984,6 +1008,18 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Actor:IsStealthed"));
                 return this.GetBoolFromLSO("IsStealthed");
+            }
+        }
+
+        /// <summary>
+        /// Returns TRUE while the actor is stunned OR mesmerized (a single combined state).
+        /// </summary>
+        public bool IsStunnedOrMezzed
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Actor:IsStunnedOrMezzed"));
+                return this.GetBoolFromLSO("IsStunnedOrMezzed");
             }
         }
 

@@ -76,6 +76,18 @@ namespace EQ2.ISXEQ2.UI
             }
         }
 
+        /// <summary>
+        /// Selects (highlights) a row of the listbox from script, as if the user clicked it.
+        /// The row is 1-based (matching the index returned by <see cref="GetOptions"/>); Select(0) deselects.
+        /// </summary>
+        /// <param name="row">1-based row to select, or 0 to deselect</param>
+        /// <returns>call success</returns>
+        public bool Select(int row)
+        {
+            Trace.WriteLine(String.Format("EQ2ListBox:Select({0})", row.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("Select", row.ToString(CultureInfo.InvariantCulture));
+        }
+
         #endregion
 
     }

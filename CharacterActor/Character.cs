@@ -60,6 +60,16 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns the active mount Item for the requested mount page.
+        /// </summary>
+        /// <param name="type">"equipped", "appearance" or "training"</param>
+        public Item ActiveMount(string type)
+        {
+            Trace.WriteLine(String.Format("Character:ActiveMount({0})", type));
+            return new Item(GetMember("ActiveMount", type));
+        }
+
+        /// <summary>
         /// Agility
         /// </summary>
         public int Agility
@@ -265,6 +275,18 @@ namespace EQ2.ISXEQ2.CharacterActor
             {
                 Trace.WriteLine(String.Format("Character:CameraPitch"));
                 return this.GetFloatFromLSO("CameraPitch");
+            }
+        }
+
+        /// <summary>
+        /// Current camera zoom distance (distance of the camera behind the character).
+        /// </summary>
+        public float CameraZoomDistance
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:CameraZoomDistance"));
+                return this.GetFloatFromLSO("CameraZoomDistance");
             }
         }
 
@@ -1312,6 +1334,65 @@ namespace EQ2.ISXEQ2.CharacterActor
         }
 
         /// <summary>
+        /// Returns the MountEquipmentSlot at the given Mount-page slot id (47 to 66).
+        /// The slot reads empty (see MountEquipmentSlot.IsEmpty) when no mount is summoned.
+        /// </summary>
+        /// <param name="slot">mount-equipment slot id (47-66)</param>
+        public MountEquipmentSlot MountEquipment(int slot)
+        {
+            Trace.WriteLine(String.Format("Character:MountEquipment({0})", slot.ToString(CultureInfo.InvariantCulture)));
+            return new MountEquipmentSlot(GetMember("MountEquipment", slot.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        /// <summary>
+        /// Returns the MountEquipmentSlot for the named Mount-page slot. Valid slot names are:
+        /// Saddle, Hackamore, Reins, Breeching, Stirrup, Shoes, Martingale and Barding1 .. Barding13.
+        /// The slot reads empty (see MountEquipmentSlot.IsEmpty) when no mount is summoned.
+        /// </summary>
+        /// <param name="slotName">slot name</param>
+        public MountEquipmentSlot MountEquipment(string slotName)
+        {
+            Trace.WriteLine(String.Format("Character:MountEquipment({0})", slotName));
+            return new MountEquipmentSlot(GetMember("MountEquipment", slotName));
+        }
+
+        /// <summary>
+        /// Number of extra barding slots available on the Mount page.
+        /// </summary>
+        public int MountExtraBardingSlots
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MountExtraBardingSlots"));
+                return this.GetIntFromLSO("MountExtraBardingSlots");
+            }
+        }
+
+        /// <summary>
+        /// The maximum mount training rank.
+        /// </summary>
+        public int MountTrainingMaxRank
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MountTrainingMaxRank"));
+                return this.GetIntFromLSO("MountTrainingMaxRank");
+            }
+        }
+
+        /// <summary>
+        /// The current mount training rank.
+        /// </summary>
+        public int MountTrainingRank
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:MountTrainingRank"));
+                return this.GetIntFromLSO("MountTrainingRank");
+            }
+        }
+
+        /// <summary>
         /// Cache of Name
         /// </summary>
         private string _name;
@@ -1579,6 +1660,18 @@ namespace EQ2.ISXEQ2.CharacterActor
         {
             Trace.WriteLine(String.Format("Character:Recipe({0})", name));
             return new Recipe.Recipe(this.GetMember("Recipe", name));
+        }
+
+        /// <summary>
+        /// Returns TRUE when the character is in run mode (as opposed to walk mode).
+        /// </summary>
+        public bool RunMode
+        {
+            get
+            {
+                Trace.WriteLine(String.Format("Character:RunMode"));
+                return this.GetBoolFromLSO("RunMode");
+            }
         }
 
         /// <summary>
@@ -1994,6 +2087,17 @@ namespace EQ2.ISXEQ2.CharacterActor
         {
             Trace.WriteLine(String.Format("Character:SetCameraPitch({0})", pitch.ToString(CultureInfo.InvariantCulture)));
             return this.ExecuteMethod("SetCameraPitch", pitch.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Sets the camera zoom distance (distance of the camera behind the character).
+        /// </summary>
+        /// <param name="distance">zoom distance</param>
+        /// <returns>call success</returns>
+        public bool SetCameraZoomDistance(float distance)
+        {
+            Trace.WriteLine(String.Format("Character:SetCameraZoomDistance({0})", distance.ToString(CultureInfo.InvariantCulture)));
+            return this.ExecuteMethod("SetCameraZoomDistance", distance.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
