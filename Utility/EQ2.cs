@@ -646,6 +646,25 @@ namespace EQ2.ISXEQ2.Utility
         }
 
         /// <summary>
+        /// Populates the LavishScript variable identified by 'collectionVarName' with
+        /// every console variable. The caller must pre-declare an 'index:collection:string'
+        /// LS variable (matching journalcurrentquest:GetDetails) and pass its name; the
+        /// method clears and refills it, producing one index element per console variable,
+        /// each element a collection:string keyed by the variable name with its current
+        /// value. Commands and aliases are omitted, and the call works at character
+        /// select. This wrapper exposes the LS-native signature so scripts that already
+        /// manage an LS-side index can use it directly. For .NET-side materialization,
+        /// iterate the LS index after the call returns.
+        /// </summary>
+        /// <param name="collectionVarName">name of a pre-declared LS index:collection:string variable</param>
+        /// <returns>call success</returns>
+        public bool GetConsoleVariables(string collectionVarName)
+        {
+            Trace.WriteLine(String.Format("EQ2:GetConsoleVariables({0})", collectionVarName));
+            return this.ExecuteMethod("GetConsoleVariables", collectionVarName);
+        }
+
+        /// <summary>
         /// Returns a list of Persistent Zones
         /// </summary>
         /// <returns>Enumerable</returns>
